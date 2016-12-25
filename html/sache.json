@@ -1,0 +1,5 @@
+{
+  "name": "CGStore HTML",
+  "description": "CGStore HTML template build with Sass, Gulp",
+  "tags": ["sass", "starter kit", "boilerplate", "mixin library",  "gulp", "smacss"]
+}

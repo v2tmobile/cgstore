@@ -1,0 +1,46 @@
+{
+  "name": "cgstore-html",
+  "title": "CGStore HTML",
+  "description": "CGStore HTML template build with Sass, Gulp",
+  "author": {
+    "name": "Ahiho.,JSC",
+    "url": "https://ahiho.com"
+  },
+  "version": "1.0.0",
+  "homepage": "https://ahiho.com",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/ahiho/cgstore-html-template.git"
+  },
+  "dependencies": {
+    "imagemin-pngquant": "^4.2.2"
+  },
+  "devDependencies": {
+    "bourbon": "^4.2.7",
+    "browser-sync": "^2.0.0-rc4",
+    "colors": "^1.1.2",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-concat": "^2.6.1",
+    "gulp-gh-pages": "^0.4.0",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-jshint": "^1.9.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sass-lint": "1.0.1",
+    "gulp-size": "^1.3.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.5.4",
+    "imagemin-pngquant": "^4.0.0",
+    "run-sequence": "^1.1.4",
+    "sassdoc": "^2.1.15",
+    "susy": "^2.2.12",
+    "vinyl-paths": "^2.0.0"
+  }
+}
