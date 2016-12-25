@@ -1,0 +1,164 @@
+// Header
+.header {
+  .main-nav {
+    @include clearfix;
+    .left {
+      @include span(1.3 of 12);
+      padding: 0;
+    }
+    .middle {
+      @include span(7 of 12);
+      padding: 0;
+    }
+    .right {
+      @include span(3.7 of 12);
+      padding: 0;
+    }
+  }
+}
+
+// Categories overview
+.categories-overview {
+  .container {
+    .categories-overview-content {
+      ul.category-section-categories {
+        li {
+          @include span (3 of 12);
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Main
+
+
+.content-box-wrapper {
+  margin: 0 -0.5em;
+  .product-grid-item {
+    @include span(3 of 12);
+    &:nth-child(4n+1) {
+      @include clearfix;
+    }
+    .content-box {
+      .content-box-content {
+        figure.content-box-image {
+          img {
+            max-height: 195px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+section.content-section {
+  .designers {
+    margin: 4em -0.5em;
+    .designer {
+      @include span(4 of 12);
+      &:nth-child(3n+1) {
+        @include clearfix;
+      }
+      .designer-photo {
+        @include span(1.5 of 4);
+      }
+      .designer-content {
+        @include span(2.5 of 4);
+        float: right;
+      }
+    }
+  }
+  .challenges-list {
+    margin: 0 -0.5em 1em;
+    .challenge {
+      @include span(6 of 12);
+      &:nth-child(2n+1) {
+        @include clearfix;
+      }
+    }
+  }
+  .tutorials {
+    margin: 0 -0.5em 1em;
+    .tutorial {
+      @include span (6 of 12);
+      .tutorial-content {
+        @include clearfix;
+        .tutorials-item-image {
+          @include span(first 2 of 6);
+        }
+        .tutorials-item-content {
+          @include span(last 4 of 6);
+        }
+      }
+      &:nth-child(1n+1) {
+        @include clearfix;
+      }
+    }
+  }
+  .blog-posts {
+    margin: 0 -0.5em 1em;
+    .blog-post {
+      @include span (6 of 12);
+      &:nth-child(2n+1) {
+        @include clearfix;
+      }
+    }
+  }
+  .showcase-items {
+    margin: 0 -0.5em 1em;
+    .showcase-item {
+      @include span (2.4 of 12 1/6);
+    }
+  }
+}
+
+// Categories list
+.categories-list {
+  .category {
+    .category-content {
+      .category-image {
+        @include span (first 2.2 of 12);
+        padding-left: 0;
+      }
+      .category-main-content {
+        @include span (last 9.8 of 12);
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+// Products
+
+.product-container {
+  .product-content {
+    @include span (first 7.5 of 12 3/4);
+    padding-left: 0;
+  }
+  .product-sidebar {
+    @include span (last 4.5 of 12 3/4);
+    padding-right: 0;
+  }
+}
+
+// Footer
+footer.footer {
+  .container {
+    @include clearfix;
+    .site-logo {
+      @include span (1 of 12);
+      padding: 0;
+    }
+    .site-footer-links {
+      @include span (7.3 of 12);
+      padding: 0;
+    }
+    .site-footer-social {
+      @include span (3.7 of 12);
+      padding: 0;
+    }
+  }
+}
