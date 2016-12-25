@@ -1,0 +1,105 @@
+<?php
+/**
+ * The header for our theme.
+ *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package Shopping_Mall
+ */
+
+?><!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+<?php wp_head(); ?>
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, user-scalable=1, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+	<!-- http://mathiasbynens.be/notes/rel-shortcut-icon -->
+	<!-- http://mathiasbynens.be/notes/touch-icons -->
+	<link rel="icon" type="image/ico" href="favicon.ico">
+	<link rel="icon" type="image/png" href="favicon.png">
+
+	<!-- CSS, you gotta have style -->
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/themes/cgstore.css">
+
+	<!-- Modernizer, cause some browsers suck -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body <?php body_class(); ?>>
+<div class="wrapper">
+	<header class="header">
+		<div class="top-nav">
+
+		</div>
+		<div class="main-nav">
+			<div class="left">
+				<div class="logo">
+					<span><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></span>
+				</div>
+			</div>
+			<div class="middle">
+				<nav class="primary-navigation">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'nav', 'container' => '' ) ); ?>
+				</nav>
+			</div>
+			<div class="right">
+				<div class="notification-nav">
+					<ul>
+						<li class="notification-item">
+							<a href="javascript:;" class="menu">
+								<i class="fa fa-bars fa-24"></i>
+							</a>
+						</li>
+						<li class="notification-item">
+							<a href="#"><img alt="v2tmobile_it" class="avatar avatar-small" src="https://assets.cgtrader.com/assets/avatar/small_avatar-04ef157a5b11c33ad48fe0d8dee962db9a781ddb0c5eed3c4023767c3bfa7827.png"></a>
+						</li>
+						<li class="notification-item">
+							<a class="has-indicator" href="#">
+								<i class="fa fa-envelope fa-24"></i>
+							</a>
+						</li>
+						<li class="notification-item">
+							<a class="has-indicator" href="#">
+								<i class="fa fa-bell fa-24"></i>
+								<span class="cart-indicator indicator is-sticky ">1</span>
+							</a>
+						</li>
+						<li class="notification-item">
+							<a class="has-indicator" href="#">
+								<i class="fa fa-shopping-cart fa-24"></i>
+								<span class="cart-indicator indicator is-sticky ">1</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="header-content">
+			<div class="search-form">
+				<form accept-charset="UTF-8" action="/" id="search-form" method="get">
+					<input autocomplete="off" class="site-search-field" name="keywords" placeholder="Search 530 000 3D models" type="text">
+					<button class="site-search-button" type="submit"><i class="fa fa-search"></i> </button>
+				</form>
+				<div class="site-search-suggestions">
+					<div class="js-search-results-container" style="display: none;">
+						<div class="site-search-suggestions-heading">
+							<div class="site-search-suggestions-col-suggestion">Suggestions</div>
+							<div class="site-search-suggestions-col-cg">3D Models</div>
+							<div class="site-search-suggestions-col-lowpoly">VR/ AR/ Low poly</div>
+						</div>
+						<ul class="site-search-suggestions-results js-search-results"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="main">

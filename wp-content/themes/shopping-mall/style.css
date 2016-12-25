@@ -1,0 +1,32 @@
+/*
+Theme Name: Shopping Mall
+Theme URI: https://ahiho.com
+Author: Ahiho., JSC
+Author URI: https://ahiho.com
+Description: Description
+Version: 1.0.0
+Text Domain: shopping-mall
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Shopping Mall is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+*/
+
+
+/* Hot fix css */
+.woocommerce span.onsale {
+    z-index: 1;
+    display: none;
+}
+.product-pricing-price del{
+    font-size: 10pt;
+    display: block;
+    color: #C0C0C0;
+}
+.product-pricing-price ins {
+    text-decoration: none;
+}
