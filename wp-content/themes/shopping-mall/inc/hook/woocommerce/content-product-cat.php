@@ -76,3 +76,53 @@ add_action('woocommerce_after_subcategory', function ($category) {
     <?php
     endif;
 }, 10);
+
+
+add_action('woocommerce_archive_description','add_subcat_for_product_cat',10);
+function add_subcat_for_product_cat(){
+ 
+       global $wp_query;
+
+        if ( 1 === $wp_query->found_posts || ! woocommerce_products_will_display() ) {
+
+           $html = '
+           <div class="box-tags">
+               <h4>POPULAR TAGS</h4>
+             <div class="prodcut_tags">
+                  <a href="#">Tag 1</a>
+                  <a href="#">Tag 2</a>
+                  <a href="#">Tag 3</a>
+             </div>
+           </div>';
+          echo $html;
+           
+        }else{
+
+         if ( ! $term && ( is_tax() || is_tag() || is_category() ) ) {
+               $term = get_queried_object();
+         if ( $term ) {
+                $curent_term_id = $term->term_id;
+                ?>
+                <ul>
+    <?php
+        wp_list_categories( array(
+        'orderby'    => 'name',
+        'show_count' => true,
+        'child_of'    =>$curent_term_id,
+        'taxonomy'=>'product_cat',
+        'hide_empty'=>false,
+        'title_li'=>'',
+        'show_option_none'=>''
+     ) ); 
+    ?> 
+      </ul>
+   <?php 
+         }
+       
+     }
+
+  }
+
+}
+
+remove_action('woocommerce_before_shop_loop','woocommerce_result_count',20);

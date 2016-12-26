@@ -67,17 +67,39 @@ add_action('woocommerce_after_add_to_cart_button', function () {
         <span class="icon"></span>Offer your price
     </a>
     <?php
+       $buy_now = do_shortcode('[add_to_cart_url id="'.get_the_ID().'"]');
+     ?>
+    <a class="btn buy-now" href="<?php echo $buy_now; ?>">Buy Now</a>
+    <?php
 });
 
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 
 add_action('woocommerce_share', function () {
-    global $post;
+    global $post,$product;
     $permalink = get_permalink($post->ID);
     $featured_image =  wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail');
     $featured_image_2 = $featured_image['0'];
     $post_title = rawurlencode(get_the_title($post->ID));
    ?>
+   <div class="list-files">
+       <h3>Available formats</h3>
+       <?php 
+         $downloads= $product->get_files();
+         if($downloads){
+            echo '<ul>';
+             foreach ($downloads as $download) {
+                  $info     = pathinfo($download["file"]);
+                  $ext      = $info['extension'];
+                 
+               echo '<li><a href="#">'.$download['name'].'</a>(.'.$ext.')<span>2.4MB</span></li>';
+             }
+
+             echo '<ul>';
+         }
+       ?>
+   </div>
+
     <div class="details-box card has-padding">
         <div class="details-box-title">Share it!</div>
         <div class="product-share-old">

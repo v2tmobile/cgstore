@@ -20,8 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-global $post;
+global $post,$product;
 
 ?>
-
 <?php the_content(); ?>
+<div class="tags">
+	<h4>Tags:</h4>
+	<?php 
+     $tags = $product->get_tags();
+     echo $tags;
+	?>
+</div>

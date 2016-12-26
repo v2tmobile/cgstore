@@ -42,5 +42,18 @@ remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add
 remove_action( 'woocommerce_after_shop_loop_item', array('WCV_Vendor_Shop', 'template_loop_sold_by'), 9, 2);
 
 add_action('woocommerce_after_shop_loop_item', function () {
-    echo '</div>';
+    echo '<div class="content-box-controls">
+                            <div class="content-box-control">
+                                <button class="action">
+                                    <i class="fa fa-chevron-left fa-lg"></i>
+                                </button>
+                            </div>
+                            <div class="content-box-control">
+                                <button class="action">
+                                    <i class="fa fa-chevron-right fa-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+            <div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
+        </div>';
 }, 5);
