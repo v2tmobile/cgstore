@@ -1,0 +1,123 @@
+
+/* ! PRIMARY STYLES */
+html, body{width:100%;}
+a{text-decoration: none;}
+.clear{clear:both;}
+
+.container{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+p {
+    margin: 0 0 20px 0;
+}
+.is-hidden {
+    display: none !important;
+}
+.content-area{
+	max-width: 70em;
+	    margin-left: auto;
+    margin-right: auto;
+}
+.entry-header{
+	padding-top: 20px;
+}
+.login-container{
+	&.session-container {
+	    width: 43.25744%; 
+	    margin: 80px auto;
+	}
+	.box{
+		display: block;
+	    width: 100%;
+	    border: 1px solid #e0ddd2;
+	    border-radius: 3px;
+	    background: white;
+	    box-shadow: 0 2px 5px rgba(19,21,24,0.05);
+	    .l-inner {
+		    padding: 20px;
+		}
+	}
+	input[type="text"] {
+	    width: 100%;
+	    padding: 5px 10px;
+	    border: 1px solid #e4e1d8;
+	    border-radius: 3px;
+	    background: white;
+	    color: #3f444c;
+	    font-size: 1rem;
+	    line-height: 24px;
+	    -webkit-transition: 0.15s ease-in-out opacity;
+	    transition: 0.15s ease-in-out opacity;
+	    -webkit-font-smoothing: antialiased;
+	}
+	.form-row {
+	    margin-bottom: 12px;
+	    padding-bottom: 12px;
+	    border-bottom: 1px solid #d5d1c3;
+	    position: relative;
+	    label {
+	      display: block;
+	      margin-bottom: 3px;
+	  }
+	}
+	.field--important {
+	    padding: 10px;
+	}
+	input[type="text"]:after {
+	    clear: both;
+	}
+	input[type="text"]:before, input[type="text"]:after {
+	    content: " ";
+	    display: table;
+	}
+	input[type="text"] {
+	    margin-bottom: 12px;
+	    padding-bottom: 12px;
+	    border-bottom: 1px solid #d5d1c3;
+	    position: relative;
+	}
+	input[type="text"].is-last {
+	    padding-bottom: 0;
+	    border-bottom: 0;
+	}
+	input[type="submit"]{
+		height: 50px;
+	    padding: 0 15px;
+	    font-size: 1rem;
+	    line-height: 48px;
+	}
+	label[for="rememberme"]{
+		float: right;
+		    margin-top: 21px;
+	}
+	a.button {
+	    color: white;
+	}
+	.button--facebook {
+	    background: #43609b;
+	}
+	.button--compact {
+	    height: 40px;
+	    line-height: 40px;
+	}
+	.button--gplus {
+	    background: #cb5d44;
+	}
+	.session-links {
+	    margin: 20px 0 0 0;
+	    padding: 0;
+	    text-align: center;
+	    &>li{
+	      display: inline-block;
+	    margin-right: 15px;
+	    list-style: none;
+
+	    }
+	    a{
+	      font-size: 15px;
+	      text-decoration: underline;
+	      font-weight: bold;
+	    }
+	}
+}

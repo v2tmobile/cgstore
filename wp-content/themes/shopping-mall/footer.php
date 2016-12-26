@@ -119,6 +119,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/libs.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/app.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/tooltipster.bundle.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/class.SiteMain.js"></script>
+
 <!-- Google Analytics -->
 <?php wp_footer(); ?>
 </body>

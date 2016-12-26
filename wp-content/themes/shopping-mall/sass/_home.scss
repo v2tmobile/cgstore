@@ -1,0 +1,137 @@
+.home-page{
+	.section{
+		padding: 20px 0;
+	    background: #f7f7f7;
+	    text-align: center;
+	}
+	.section__title {
+	    margin-bottom: 40px;
+	    font-size: 2.1875rem;
+	    line-height: 40px;
+	    padding-top: 40px;
+	}
+	.section__content{
+		    width: 85%;
+	    margin: 0 auto;
+	    min-height: 260px;
+	    &:after{
+	    	content:"";
+	    	    display: table;
+	    	clear: both;
+	    }
+	}
+	.section--low-poly {
+		.section__content{
+			    background: url(../images/home_section_low_poly.png) no-repeat center left;
+		}
+		
+	}
+	.section__text{
+			width: 24%;
+    		float: right;
+		    margin-top: 65px;
+			text-align: left;
+		}
+	.section--alt {
+	    background: #EEE;
+	}
+	.section--cg-models {
+		.section__text {
+	    	float: left;
+		}
+		
+		.section__content{
+			background: url(../images/home_section_models.png) no-repeat center right;
+		}
+	}
+	.section--jobs{
+		.section__title{
+			color: #fff;
+		}
+		.section__content{
+			    width: 70%;
+    		margin: 40px auto 40px;
+		}
+		.jobs-content__find{
+			    width: 49.56217%;
+		    float: left;
+		    margin-right: 0.87566%;
+		    padding: 240px 60px 0 80px;
+		    background: url(../images/home_jobs_01.png) no-repeat top center;
+		    position: relative;
+		    &:after {
+		    	display: block;
+			    width: 34px;
+			    height: 34px;
+			    background: url(../images/home_jobs_spin.png) no-repeat;
+			    position: absolute;
+			    top: 35%;
+			    right: -20px;
+			    content: " ";
+		    }
+		}
+
+		.jobs-content__hire{
+			    width: 49.56217%;
+		    float: right;
+		    margin-right: 0;
+		    padding: 240px 60px 0 75px;
+		    background: url(../images/home_jobs_02.png) no-repeat top center;
+		}
+		h3{
+			color: #fff;
+		}
+	}
+	.section--community{
+		.section__content{
+			width: 100%;
+    margin-bottom: 40px;
+		}
+		.community-content__col{
+			width: 24.34326%;
+		    float: left;
+		    margin-right: 0.87566%;
+		    padding: 160px 40px 0 40px;
+		    text-align: center;
+		    &.community-content__col--{
+		    	&designers{
+		    		background: url(../images/home_community_01.png) no-repeat top center;	
+		    	}
+		    	&challenges{
+		    		background: url(../images/home_community_02.png) no-repeat top center;
+		    	}
+		    	&galleries{
+		    		background: url(../images/home_community_03.png) no-repeat top center;	
+		    	}
+		    	&forum{
+		    		background: url(../images/home_community_04.png) no-repeat top center;
+			    	&:last-child{
+			    		float: right;
+			    		margin-right: 0;
+			    	}
+		    	}
+		    	
+		    }
+		}
+		.community-content__title{
+			font-size: 1.5625rem;
+    font-weight: normal;
+        margin: 20px 0;
+		}
+	}
+}
+.title {
+    margin: 0 0 10px 0;
+    background: url(../images/hexagon_tiny_darker.png) no-repeat 0 4px;
+    font-size: 0.9375rem;
+    line-height: 22px;
+    text-indent: 20px;
+    font-weight: normal;
+    text-align: left;
+}
+.button--big {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 1rem;
+    line-height: 48px;
+}
