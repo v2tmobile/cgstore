@@ -10,13 +10,18 @@ var SiteMain = (function() {
 	
 	function createTooltip(){
 		$(".tooltip").each(function(){
-			$('.tooltipster-box .slick').slick();
+			
 			$(this).tooltipster({
 				contentCloning: true,
 				side: 'right',
 				contentAsHTML: true,
-				functionInit: function(){
-					
+				functionReady: function(){
+					$('.tooltipster-box .slick').not('.slick-initialized').slick({
+						dots: false,
+						    prevArrow: false,
+						    nextArrow: false
+
+					});
 				}
 			});
 			
