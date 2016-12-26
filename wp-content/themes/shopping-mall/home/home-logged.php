@@ -8,7 +8,17 @@
 			</header>
 			<div class="content-box-wrapper grid">
 				<div class="product-grid-item">
-					<div class="content-box content-box-interactive tooltipstered tooltip" data-slick-image="["https://img1.cgtrader.com/items/671754/961cf79d99/large/orson-krennics-dt-29-heavy-blaster-3d-model-stl-ige-igs-iges.jpg", "https://img1.cgtrader.com/items/671754/00c386159c/large/orson-krennics-dt-29-heavy-blaster-3d-model-stl-ige-igs-iges.jpg", "https://img2.cgtrader.com/items/671754/1154512d29/large/orson-krennics-dt-29-heavy-blaster-3d-model-stl-ige-igs-iges.jpg", "https://img-new.cgtrader.com/items/671754/b032b037f8/large/orson-krennics-dt-29-heavy-blaster-3d-model-stl-ige-igs-iges.jpg", "https://img2.cgtrader.com/items/671754/3dfbe7adeb/large/orson-krennics-dt-29-heavy-blaster-3d-model-stl-ige-igs-iges.jpg", "https://img-new.cgtrader.com/items/671754/f1c9a981d0/large/orson-krennics-dt-29-heavy-blaster-3d-model-stl-ige-igs-iges.jpg"]" data-tooltip-content="#tooltip_content_item_1">
+					<div class="content-box content-box-interactive tooltipstered tooltip" data-tooltip-content="#tooltip_content_item_1">
+						<div class="tooltip_templates" style="display: none;">
+							<div id="tooltip_content_item_1" >
+								<ul>
+									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-1.jpg"/></li>
+									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-2.jpg"/></li>
+									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-1.jpg"/></li>
+									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-2.jpg"/></li>
+								</ul>
+							</div>
+						</div>
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">

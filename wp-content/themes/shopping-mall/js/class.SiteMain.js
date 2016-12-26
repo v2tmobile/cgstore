@@ -9,14 +9,19 @@ var SiteMain = (function() {
 	}
 	
 	function createTooltip(){
-		$('.tooltip').tooltipster({
-			contentCloning: true,
-			side: 'right',
-			contentAsHTML: true
+		$(".tooltip").each(function(){
+			$('.tooltipster-box .slick').slick();
+			$(this).tooltipster({
+				contentCloning: true,
+				side: 'right',
+				contentAsHTML: true,
+				functionInit: function(){
+					
+				}
+			});
 			
-		}).on( 'hover', function() {
-		  console.log($( this ).attr('class'));
 		});
+		
 	}
 	
 	function openPopup(idDiv){
