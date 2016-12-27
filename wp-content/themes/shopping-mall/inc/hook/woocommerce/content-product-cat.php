@@ -105,24 +105,24 @@ function add_subcat_for_product_cat(){
                 $curent_term_id = $term->term_id;
                 ?>
          <div class="price-range">
-
+            <input id="rangePrice">
           </div>
-          <div class="freeCk">
+          <div class="freeCk aleft">
             <label>
               <input type="checkbox" value="" name="freeCheckbox" class="iCheckBox"/>
               <span>Free</span>
             </label>
           </div>
-          <div class="filterSelect">
-            <select name="formatSelect">
+          <div class="filterSelect aleft">
+            <select name="formatSelect" style="display: none;">
               <option value="">Formats</option>
               <option value="">3D Studio Max</option>
               <option value="">Auto Desk</option>
               <option value="">Blender</option>
             </select>
           </div>
-          <div class="filterSelect">
-            <select name="polySelect">
+          <div class="filterSelect aleft">
+            <select name="polySelect" style="display: none;">
               <option value="">Poly Count</option>
               <option value="">Up to 5k</option>
               <option value="">10K to 50k</option>
@@ -130,7 +130,7 @@ function add_subcat_for_product_cat(){
             </select>
           </div>       
 
-                
+
                 <ul>
     <?php
         wp_list_categories( array(

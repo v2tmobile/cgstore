@@ -9,3 +9,23 @@ $fontArial12: normal 11px/1.2 "Source Sans Pro", Helvetica, sans-serif;
 
 /*COLOR*/
 $colorBlack:#000;
+
+/*CHECKBOX*/
+.icheckbox {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin: 0 3px 0 0;
+    padding: 0;
+    border: none;
+    background: url(../images/checkbox_radio_sprite.png) no-repeat;
+    cursor: pointer;
+    position: relative;
+    top: -1px;
+    &.checked {
+	    background-position: -22px 0;
+	}
+
+
+}
