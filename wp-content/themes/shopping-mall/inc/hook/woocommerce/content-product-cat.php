@@ -62,7 +62,6 @@ add_action('woocommerce_after_subcategory', function ($category) {
     if ($termchildren) :
     ?>
     <div class="category-footer">
-        
         <ul class="list list-inline">
         <?php
         foreach ( $termchildren as $child ) {

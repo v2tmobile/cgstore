@@ -54,9 +54,9 @@
 								</a>
 							</li>
 							<li class="notification-item">
-								<a class="has-indicator" href="#">
+								<a class="has-indicator" href="<?php echo wc_get_cart_url(); ?>">
 									<i class="fa fa-shopping-cart fa-24"></i>
-									<span class="cart-indicator indicator is-sticky ">1</span>
+									<span class="cart-indicator indicator is-sticky "><?php echo WC()->cart->get_cart_contents_count(); ?></a></span>
 								</a>
 							</li>
 						</ul>
