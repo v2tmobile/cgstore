@@ -1,38 +1,15 @@
-<?php
-/**
- * The header for our theme.
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Shopping_Mall
- */
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-
-<?php wp_head(); ?>
-
 	<!-- Mobile Metas -->
 	<meta name="viewport" content="width=device-width, user-scalable=1, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-
-	<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
-	<!-- http://mathiasbynens.be/notes/rel-shortcut-icon -->
-	<!-- http://mathiasbynens.be/notes/touch-icons -->
 	<link rel="icon" type="image/ico" href="favicon.ico">
 	<link rel="icon" type="image/png" href="favicon.png">
-
 	<!-- CSS, you gotta have style -->
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/themes/cgstore.css">
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/all.css">
-
-	<!-- Modernizer, cause some browsers suck -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>

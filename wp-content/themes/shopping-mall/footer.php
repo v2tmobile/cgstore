@@ -1,16 +1,3 @@
-<?php
-/**
- * The template for displaying the footer.
- *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Shopping_Mall
- */
-
-?>
-
 </div>
 <footer class="footer">
 	<div class="container">
@@ -115,15 +102,6 @@
 	</ul>
 </div>
 </div>
-<!-- SCRIPTS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/libs.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/app.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/tooltipster.bundle.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/slick.min.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/class.SiteMain.js"></script>
-
-<!-- Google Analytics -->
 <?php wp_footer(); ?>
 <div class="tooltipImage"></div>
 </body>

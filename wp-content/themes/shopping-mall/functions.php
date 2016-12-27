@@ -1,20 +1,15 @@
 <?php
-/**
- * Shopping Mall functions and definitions.
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package Shopping_Mall
- */
+define('TEMPLATE_PATH',get_bloginfo('template_url'));
+define('HOME_URL',get_home_url());
+define('BlOG_NAME',get_bloginfo('blog_name'));
+define('SLOGAN', get_bloginfo('description'));
+
+//add_image_size( 'thumb-service',225,230,true);
+
+include_once 'inc/add-scripts.php';
+include_once 'inc/my-custom.php';
 
 if ( ! function_exists( 'shopping_mall_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
 function shopping_mall_setup() {
 	/*
 	 * Make theme available for translation.
