@@ -6,6 +6,7 @@ var SiteMain = (function() {
 	
 	function createRadio(){
 		$('input.iCheckRadio').iCheck();
+		$('input.iCheckBox').iCheck();
 	}
 	
 	function createTooltip(){
