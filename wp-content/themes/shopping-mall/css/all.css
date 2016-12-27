@@ -1,0 +1,720 @@
+/*COLOR*/
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.clear {
+  clear: both; }
+
+a {
+  outline: none; }
+
+form, input, textarea {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'NiveaOTFBook', Arial, Helvetica, sans-serif;
+  color: #575859; }
+
+/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
+/*paramater*/
+/* #Clearing
+================================================== */
+/* Self Clearing Goodness */
+/* Use clearfix class on parent to clear nested columns,
+or wrap each row of columns in a <div class="row"> */
+.clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+
+.row:after,
+.clearfix:after {
+  clear: both; }
+
+.row,
+.clearfix {
+  zoom: 1; }
+
+/* You can also use a <br class="clear" /> to clear columns */
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+
+/* ! PRIMARY STYLES */
+html, body {
+  width: 100%; }
+
+a {
+  text-decoration: none; }
+
+.clear {
+  clear: both; }
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+p {
+  margin: 0 0 20px 0; }
+
+.is-hidden {
+  display: none !important; }
+
+.content-area {
+  max-width: 70em;
+  margin-left: auto;
+  margin-right: auto; }
+
+.entry-header {
+  padding-top: 20px; }
+
+.login-container h2 {
+  font-size: 30px;
+  padding-bottom: 15px; }
+.login-container.session-container {
+  width: 43.25744%;
+  margin: 80px auto; }
+.login-container .box {
+  display: block;
+  width: 100%;
+  border: 1px solid #e0ddd2;
+  border-radius: 3px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(19, 21, 24, 0.05); }
+  .login-container .box .l-inner {
+    padding: 20px; }
+.login-container input[type="text"], .login-container input[type="password"] {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #e4e1d8;
+  border-radius: 3px;
+  background: white;
+  color: #3f444c;
+  font-size: 1rem;
+  line-height: 24px;
+  -webkit-transition: 0.15s ease-in-out opacity;
+  transition: 0.15s ease-in-out opacity;
+  -webkit-font-smoothing: antialiased; }
+.login-container .form-row {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d5d1c3;
+  position: relative; }
+  .login-container .form-row label {
+    display: block;
+    margin-bottom: 3px; }
+.login-container .field--important {
+  padding: 10px; }
+.login-container input[type="text"]:after {
+  clear: both; }
+.login-container input[type="text"]:before, .login-container input[type="text"]:after {
+  content: " ";
+  display: table; }
+.login-container input[type="text"] {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d5d1c3;
+  position: relative; }
+.login-container input[type="text"].is-last {
+  padding-bottom: 0;
+  border-bottom: 0; }
+.login-container input[type="submit"] {
+  height: 50px;
+  padding: 0 15px;
+  font-size: 1rem;
+  line-height: 48px; }
+.login-container label[for="rememberme"] {
+  float: right;
+  margin-top: 21px; }
+.login-container a.button {
+  color: white; }
+.login-container .button--facebook {
+  background: #43609b; }
+.login-container .button--compact {
+  height: 40px;
+  line-height: 40px; }
+.login-container .button--gplus {
+  background: #cb5d44; }
+.login-container .session-links {
+  margin: 20px 0 0 0;
+  padding: 0;
+  text-align: center; }
+  .login-container .session-links > li {
+    display: inline-block;
+    margin-right: 15px;
+    list-style: none; }
+  .login-container .session-links a {
+    font-size: 15px;
+    text-decoration: underline;
+    font-weight: bold; }
+
+.content-area .page-title {
+  font-size: 30px; }
+.content-area .term-description p {
+  font-size: 16px; }
+
+.wrapper {
+  max-width: inherit; }
+
+.main-nav {
+  padding-top: 25px; }
+
+.logo {
+  margin-top: -22px;
+  font-size: 22px; }
+
+.notification-nav {
+  display: inline-block;
+  height: 55px;
+  vertical-align: top;
+  float: right; }
+  .notification-nav .sign-box li {
+    float: left; }
+
+.header-search {
+  height: 300px;
+  background: #181a1e; }
+  .header-search .header-content {
+    width: 60%;
+    margin: 0 auto 0;
+    padding-top: 100px; }
+    .header-search .header-content .header__title {
+      margin-bottom: 25px;
+      font-size: 1.9125rem;
+      line-height: 31px;
+      color: #fff;
+      text-align: center;
+      font-weight: normal; }
+
+.home-page .section {
+  padding: 20px 0;
+  background: #f7f7f7;
+  text-align: center; }
+.home-page .section__title {
+  margin-bottom: 40px;
+  font-size: 2.1875rem;
+  line-height: 40px;
+  padding-top: 40px; }
+.home-page .section__content {
+  width: 85%;
+  margin: 0 auto;
+  min-height: 260px; }
+  .home-page .section__content:after {
+    content: "";
+    display: table;
+    clear: both; }
+.home-page .section--low-poly .section__content {
+  background: url(../images/home_section_low_poly.png) no-repeat center left; }
+.home-page .section__text {
+  width: 24%;
+  float: right;
+  margin-top: 65px;
+  text-align: left; }
+.home-page .section--alt {
+  background: #EEE; }
+.home-page .section--cg-models .section__text {
+  float: left; }
+.home-page .section--cg-models .section__content {
+  background: url(../images/home_section_models.png) no-repeat center right; }
+.home-page .section--jobs .section__title {
+  color: #fff; }
+.home-page .section--jobs .section__content {
+  width: 70%;
+  margin: 40px auto 40px; }
+.home-page .section--jobs .jobs-content__find {
+  width: 49.56217%;
+  float: left;
+  margin-right: 0.87566%;
+  padding: 240px 60px 0 80px;
+  background: url(../images/home_jobs_01.png) no-repeat top center;
+  position: relative; }
+  .home-page .section--jobs .jobs-content__find:after {
+    display: block;
+    width: 34px;
+    height: 34px;
+    background: url(../images/home_jobs_spin.png) no-repeat;
+    position: absolute;
+    top: 35%;
+    right: -20px;
+    content: " "; }
+.home-page .section--jobs .jobs-content__hire {
+  width: 49.56217%;
+  float: right;
+  margin-right: 0;
+  padding: 240px 60px 0 75px;
+  background: url(../images/home_jobs_02.png) no-repeat top center; }
+.home-page .section--jobs h3 {
+  color: #fff; }
+.home-page .section--community .section__content {
+  width: 100%;
+  margin-bottom: 40px; }
+.home-page .section--community .community-content__col {
+  width: 24.34326%;
+  float: left;
+  margin-right: 0.87566%;
+  padding: 160px 40px 0 40px;
+  text-align: center; }
+  .home-page .section--community .community-content__col.community-content__col--designers {
+    background: url(../images/home_community_01.png) no-repeat top center; }
+  .home-page .section--community .community-content__col.community-content__col--challenges {
+    background: url(../images/home_community_02.png) no-repeat top center; }
+  .home-page .section--community .community-content__col.community-content__col--galleries {
+    background: url(../images/home_community_03.png) no-repeat top center; }
+  .home-page .section--community .community-content__col.community-content__col--forum {
+    background: url(../images/home_community_04.png) no-repeat top center; }
+    .home-page .section--community .community-content__col.community-content__col--forum:last-child {
+      float: right;
+      margin-right: 0; }
+.home-page .section--community .community-content__title {
+  font-size: 1.5625rem;
+  font-weight: normal;
+  margin: 20px 0; }
+
+.title {
+  margin: 0 0 10px 0;
+  background: url(../images/hexagon_tiny_darker.png) no-repeat 0 4px;
+  font-size: 0.9375rem;
+  line-height: 22px;
+  text-indent: 20px;
+  font-weight: normal;
+  text-align: left; }
+
+.button--big {
+  height: 50px;
+  padding: 0 15px;
+  font-size: 1rem;
+  line-height: 48px; }
+
+.tooltip_templates {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.tooltipster-content ul {
+  height: auto;
+  width: 300px; }
+
+/* This is the core CSS of Tooltipster */
+/* GENERAL STRUCTURE RULES (do not edit this section) */
+.tooltipster-base {
+  /* this ensures that a constrained height set by functionPosition,
+  if greater that the natural height of the tooltip, will be enforced
+  in browsers that support display:flex */
+  display: flex;
+  pointer-events: none;
+  /* this may be overriden in JS for fixed position origins */
+  position: absolute; }
+
+.tooltipster-box {
+  /* see .tooltipster-base. flex-shrink 1 is only necessary for IE10-
+  and flex-basis auto for IE11- (at least) */
+  flex: 1 1 auto; }
+
+.tooltipster-content {
+  /* prevents an overflow if the user adds padding to the div */
+  box-sizing: border-box;
+  /* these make sure we'll be able to detect any overflow */
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto; }
+
+.tooltipster-ruler {
+  /* these let us test the size of the tooltip without overflowing the window */
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  visibility: hidden; }
+
+/* ANIMATIONS */
+/* Open/close animations */
+/* fade */
+.tooltipster-fade {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity; }
+
+.tooltipster-fade.tooltipster-show {
+  opacity: 1; }
+
+/* grow */
+.tooltipster-grow {
+  -webkit-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -webkit-backface-visibility: hidden; }
+
+.tooltipster-grow.tooltipster-show {
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15); }
+
+/* swing */
+.tooltipster-swing {
+  opacity: 0;
+  -webkit-transform: rotateZ(4deg);
+  -moz-transform: rotateZ(4deg);
+  -o-transform: rotateZ(4deg);
+  -ms-transform: rotateZ(4deg);
+  transform: rotateZ(4deg);
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform; }
+
+.tooltipster-swing.tooltipster-show {
+  opacity: 1;
+  -webkit-transform: rotateZ(0deg);
+  -moz-transform: rotateZ(0deg);
+  -o-transform: rotateZ(0deg);
+  -ms-transform: rotateZ(0deg);
+  transform: rotateZ(0deg);
+  -webkit-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  -moz-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  -ms-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  -o-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4); }
+
+/* fall */
+.tooltipster-fall {
+  -webkit-transition-property: top;
+  -moz-transition-property: top;
+  -o-transition-property: top;
+  -ms-transition-property: top;
+  transition-property: top;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15); }
+
+.tooltipster-fall.tooltipster-initial {
+  top: 0 !important; }
+
+.tooltipster-fall.tooltipster-dying {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  top: 0 !important;
+  opacity: 0; }
+
+/* slide */
+.tooltipster-slide {
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  -ms-transition-property: left;
+  transition-property: left;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15); }
+
+.tooltipster-slide.tooltipster-initial {
+  left: -40px !important; }
+
+.tooltipster-slide.tooltipster-dying {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  left: 0 !important;
+  opacity: 0; }
+
+/* Update animations */
+/* We use animations rather than transitions here because
+ transition durations may be specified in the style tag due to
+ animationDuration, and we try to avoid collisions and the use
+ of !important */
+/* fade */
+@keyframes tooltipster-fading {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.tooltipster-update-fade {
+  animation: tooltipster-fading 400ms; }
+
+/* rotate */
+@keyframes tooltipster-rotating {
+  25% {
+    transform: rotate(-2deg); }
+  75% {
+    transform: rotate(2deg); }
+  100% {
+    transform: rotate(0); } }
+.tooltipster-update-rotate {
+  animation: tooltipster-rotating 600ms; }
+
+/* scale */
+@keyframes tooltipster-scaling {
+  50% {
+    transform: scale(1.1); }
+  100% {
+    transform: scale(1); } }
+.tooltipster-update-scale {
+  animation: tooltipster-scaling 600ms; }
+
+/**
+ * DEFAULT STYLE OF THE SIDETIP PLUGIN
+ * 
+ * All styles are "namespaced" with .tooltipster-sidetip to prevent
+ * conflicts between plugins.
+ */
+/* .tooltipster-box */
+.tooltipster-sidetip .tooltipster-box {
+  background: #565656;
+  border: 2px solid black;
+  border-radius: 4px; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-box {
+  margin-top: 8px; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-box {
+  margin-right: 8px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-box {
+  margin-left: 8px; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-box {
+  margin-bottom: 8px; }
+
+/* .tooltipster-content */
+.tooltipster-sidetip .tooltipster-content {
+  color: white;
+  line-height: 18px;
+  padding: 6px 14px; }
+
+/* .tooltipster-arrow : will keep only the zone of .tooltipster-arrow-uncropped that
+corresponds to the arrow we want to display */
+.tooltipster-sidetip .tooltipster-arrow {
+  overflow: hidden;
+  position: absolute; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow {
+  height: 10px;
+  /* half the width, for centering */
+  margin-left: -10px;
+  top: 0;
+  width: 20px; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow {
+  height: 20px;
+  margin-top: -10px;
+  right: 0;
+  /* top 0 to keep the arrow from overflowing .tooltipster-base when it has not
+  been positioned yet */
+  top: 0;
+  width: 10px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow {
+  height: 20px;
+  margin-top: -10px;
+  left: 0;
+  /* same as .tooltipster-left .tooltipster-arrow */
+  top: 0;
+  width: 10px; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+  bottom: 0;
+  height: 10px;
+  margin-left: -10px;
+  width: 20px; }
+
+/* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
+.tooltipster-sidetip .tooltipster-arrow-background, .tooltipster-sidetip .tooltipster-arrow-border {
+  height: 0;
+  position: absolute;
+  width: 0; }
+
+/* .tooltipster-arrow-background */
+.tooltipster-sidetip .tooltipster-arrow-background {
+  border: 10px solid transparent; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background {
+  border-bottom-color: #565656;
+  left: 0px;
+  top: 3px; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background {
+  border-left-color: #565656;
+  left: -3px;
+  top: 0px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
+  border-right-color: #565656;
+  left: 3px;
+  top: 0px; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+  border-top-color: #565656;
+  left: 0px;
+  top: -3px; }
+
+/* .tooltipster-arrow-border */
+.tooltipster-sidetip .tooltipster-arrow-border {
+  border: 10px solid transparent;
+  left: 0;
+  top: 0; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border {
+  border-bottom-color: black; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border {
+  border-left-color: black; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-border {
+  border-right-color: black; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border {
+  border-top-color: black; }
+
+/* tooltipster-arrow-uncropped */
+.tooltipster-sidetip .tooltipster-arrow-uncropped {
+  position: relative; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-uncropped {
+  top: -10px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-uncropped {
+  left: -10px; }
+
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent; }
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0; }
+  .slick-list:focus {
+    outline: none; }
+  .slick-list.dragging {
+    cursor: pointer;
+    cursor: hand; }
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block; }
+  .slick-track:before, .slick-track:after {
+    content: "";
+    display: table; }
+  .slick-track:after {
+    clear: both; }
+  .slick-loading .slick-track {
+    visibility: hidden; }
+
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none; }
+  [dir="rtl"] .slick-slide {
+    float: right; }
+  .slick-slide img {
+    display: block; }
+  .slick-slide.slick-loading img {
+    display: none; }
+  .slick-slide.dragging img {
+    pointer-events: none; }
+  .slick-initialized .slick-slide {
+    display: block; }
+  .slick-loading .slick-slide {
+    visibility: hidden; }
+  .slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent; }
+
+.slick-arrow.slick-hidden {
+  display: none; }
+
+/*# sourceMappingURL=all.css.map */

@@ -1,0 +1,40 @@
+.wrapper{
+	max-width: inherit;
+}
+.main-nav{
+	padding-top: 25px;
+}
+.logo{
+	margin-top: -22px;
+    font-size: 22px;
+}
+.notification-nav{
+	    display: inline-block;
+    height: 55px;
+    vertical-align: top;
+    float: right;
+	.sign-box{
+		li{
+			float: left; 
+		}
+	}	
+}
+
+.header-search{
+	height: 300px;
+	background: #181a1e;
+	.header-content{
+		width: 60%;
+    	margin: 0 auto 0;
+    	padding-top: 100px;
+    	.header__title{
+    		margin-bottom: 25px;
+		    font-size: 1.9125rem;
+		    line-height: 31px;
+		    color: #fff;
+		    text-align: center;
+		    font-weight: normal;
+    	}
+	}
+}
+
