@@ -62,7 +62,6 @@ add_action('woocommerce_after_subcategory', function ($category) {
     if ($termchildren) :
     ?>
     <div class="category-footer">
-        
         <ul class="list list-inline">
         <?php
         foreach ( $termchildren as $child ) {
@@ -104,33 +103,6 @@ function add_subcat_for_product_cat(){
          if ( $term ) {
                 $curent_term_id = $term->term_id;
                 ?>
-         <div class="price-range">
-
-          </div>
-          <div class="freeCk">
-            <label>
-              <input type="checkbox" value="" name="freeCheckbox" class="iCheckBox"/>
-              <span>Free</span>
-            </label>
-          </div>
-          <div class="filterSelect">
-            <select name="formatSelect">
-              <option value="">Formats</option>
-              <option value="">3D Studio Max</option>
-              <option value="">Auto Desk</option>
-              <option value="">Blender</option>
-            </select>
-          </div>
-          <div class="filterSelect">
-            <select name="polySelect">
-              <option value="">Poly Count</option>
-              <option value="">Up to 5k</option>
-              <option value="">10K to 50k</option>
-              <option value="">50k to 100k</option>
-            </select>
-          </div>       
-
-                
                 <ul>
     <?php
         wp_list_categories( array(
