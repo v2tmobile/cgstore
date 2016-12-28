@@ -22,6 +22,12 @@ p {
 .entry-header{
 	padding-top: 20px;
 }
+.section{
+	.container{
+		max-width: 71.375em;
+		margin: 0 auto;
+	}
+}
 .login-container{
 	h2{
 		font-size: 30px;
@@ -128,11 +134,24 @@ p {
 
 .content-area{
 	.page-title{
-		font-size: 30px;		
+		    font-size: 30px;
+    padding-bottom: 15px;
+    padding-top: 13px;
 	}
 	.term-description{
+		padding-bottom: 10px;
 		p{
 			font-size: 16px;
+		}
+	}
+	.box-tags{
+		padding-top: 10px;
+		padding-bottom: 15px;
+		h4{
+			padding-bottom: 15px;
+		}
+		a{
+			 margin-right: 30px;
 		}
 	}
 }
@@ -142,11 +161,13 @@ p {
 }
 .freeCk {
 	margin-right: 15px;
+	margin-left: 15px;
 }
-.filterSelect{
+.filterSelect, .woocommerce-ordering{
 	width: 130px;margin-right: 40px;
 	.selection, .select2-selection{
 		display: block;
+		    padding-right: 15px;
 	}
 	.select2 {
 		display: block;
@@ -180,7 +201,9 @@ p {
 	        top: 14px;
     right: 10px;
 	}
-	
+	select{
+		display: none;
+	}
 
 }
 .select2-container{
@@ -190,4 +213,90 @@ p {
 		border: 1px solid #ccc;
 		padding: 3px;
 	}
+	.select2-results{
+		ul{
+			li{
+				    padding-top: 8px;
+				    &:hover{
+				    	color: #27a885;
+				    }
+			}
+		}
+	}
+	.select2-search{
+		display: none;
+	}
+}
+.freeCk{
+	margin-top: 10px;
+}
+.categories-overview{
+	min-height: 286px;
+	background: url(../images/printable.jpg) no-repeat bottom center;
+	background-size: cover;
+	.content-area{
+		position: relative;
+		    z-index: 2;
+	}
+	&:after{
+		    background: #2e343a;
+	    opacity: 0.8;
+	    content: "";
+	    width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	}
+}
+
+.noUi-horizontal{
+	height: 5px;
+}
+.noUi-handle:after {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 3px solid white;
+    background: #67c4b0;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    content: "";
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+}
+.price-range{
+	    margin-top: 10px;
+	    margin-right: 15px;
+	span{
+		    float: left;
+    margin-right: 13px
+	}
+	#rangePrice{
+		display: inline-block;    
+		margin-top: 6px!important;
+	}
+}
+.cat-list-filter{
+	float: left;
+    width: 70%;
+	li{
+		display: inline-block;
+	}
+}
+.filter-block{
+
+}
+.woocommerce-ordering{
+	float: right;
+	    width: auto;
+	margin-right: 0;
+	    margin-top: -15px;
+}
+.content-box-wrapper{
+	clear: both;
 }

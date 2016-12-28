@@ -10,6 +10,8 @@ function cgstore_add_scripts(){
    wp_enqueue_script('cgstore-slick-js',TEMPLATE_PATH.'/js/slick.min.js',array('jquery'));
    wp_enqueue_script('cgstore-icheck-js',TEMPLATE_PATH.'/js/icheck.js',array('jquery'));
    wp_enqueue_script('cgstore-select2-js',TEMPLATE_PATH.'/js/select2.js',array('jquery'));
+   wp_enqueue_script('cgstore-nouislider-js',TEMPLATE_PATH.'/js/nouislider.min.js',array('jquery'));
+   wp_enqueue_script('cgstore-wNumb-js',TEMPLATE_PATH.'/js/wNumb.js',array('jquery'));
    wp_enqueue_script('cgstore-sitemain-js',TEMPLATE_PATH.'/js/class.SiteMain.js',array('jquery'));
    $vars = array(
          'SITE_URL'=> HOME_URL,

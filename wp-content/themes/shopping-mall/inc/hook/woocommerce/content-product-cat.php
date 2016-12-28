@@ -103,46 +103,50 @@ function add_subcat_for_product_cat(){
          if ( $term ) {
                 $curent_term_id = $term->term_id;
                 ?>
-         <div class="price-range">
-            <input id="rangePrice">
-          </div>
-          <div class="freeCk aleft">
-            <label>
-              <input type="checkbox" value="" name="freeCheckbox" class="iCheckBox"/>
-              <span>Free</span>
-            </label>
-          </div>
-          <div class="filterSelect aleft">
-            <select name="formatSelect" style="display: none;">
-              <option value="">Formats</option>
-              <option value="">3D Studio Max</option>
-              <option value="">Auto Desk</option>
-              <option value="">Blender</option>
-            </select>
-          </div>
-          <div class="filterSelect aleft">
-            <select name="polySelect" style="display: none;">
-              <option value="">Poly Count</option>
-              <option value="">Up to 5k</option>
-              <option value="">10K to 50k</option>
-              <option value="">50k to 100k</option>
-            </select>
-          </div>       
+         <div class="filter-block">
+            <div class="price-range aleft">
+            <input id="price" name="price" type="hidden" value="">
+              <span>Price</span><div id="rangePrice"></div>
+            </div>
+            <div class="freeCk aleft">
+              <label>
+                <input type="checkbox" value="" name="freeCheckbox" class="iCheckBox"/>
+                <span>Free</span>
+              </label>
+            </div>
+            <div class="filterSelect aleft">
+              <select name="formatSelect" style="display: none;">
+                <option value="">Formats</option>
+                <option value="">3D Studio Max</option>
+                <option value="">Auto Desk</option>
+                <option value="">Blender</option>
+              </select>
+            </div>
+            <div class="filterSelect aleft">
+              <select name="polySelect" style="display: none;">
+                <option value="">Poly Count</option>
+                <option value="">Up to 5k</option>
+                <option value="">10K to 50k</option>
+                <option value="">50k to 100k</option>
+              </select>
+            </div>       
+            <div class="clear"></div>
 
+                  <ul class="cat-list-filter">
+      <?php
+          wp_list_categories( array(
+          'orderby'    => 'name',
+          'show_count' => true,
+          'child_of'    =>$curent_term_id,
+          'taxonomy'=>'product_cat',
+          'hide_empty'=>false,
+          'title_li'=>'',
+          'show_option_none'=>''
+       ) ); 
+      ?> 
+        </ul>
+         </div>
 
-                <ul>
-    <?php
-        wp_list_categories( array(
-        'orderby'    => 'name',
-        'show_count' => true,
-        'child_of'    =>$curent_term_id,
-        'taxonomy'=>'product_cat',
-        'hide_empty'=>false,
-        'title_li'=>'',
-        'show_option_none'=>''
-     ) ); 
-    ?> 
-      </ul>
    <?php 
          }
        

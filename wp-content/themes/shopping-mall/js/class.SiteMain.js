@@ -4,6 +4,7 @@ var SiteMain = (function() {
 		createTooltip();
 		createRadio();
 		createSelectBox();
+		createRangePrice();
 	}
 	
 	function createRadio(){
@@ -12,37 +13,35 @@ var SiteMain = (function() {
 	}
 	
 	function createSelectBox(){
-		$('.filterSelect select').select2();
+		$('.filterSelect select, .woocommerce-ordering select').select2({
+			minimumResultsForSearch: -1
+		});
 	}
 
 	function createRangePrice(){
 		var range = document.getElementById('rangePrice');
 
-		range.style.height = '400px';
+		range.style.width = '120px';
 		range.style.margin = '0 auto 30px';
-
+		$(range).tooltipster({
+            theme: "tooltip--light",
+            animation: "grow",
+            tooltips: true
+        })
 		noUiSlider.create(range, {
-			start: [ 1450, 2050, 2350, 3000 ], // 4 handles, starting at...
-			margin: 300, // Handles must be at least 300 apart
-			limit: 600, // ... but no more than 600
-			connect: true, // Display a colored bar between the handles
-			direction: 'rtl', // Put '0' at the bottom of the slider
-			orientation: 'vertical', // Orient the slider vertically
-			behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-			step: 150,
-			tooltips: true,
 			format: wNumb({
-				decimals: 0
+				decimals: 0,
+				thousand: '.',
+				postfix: '$ '
 			}),
-			range: {
-				'min': 1300,
-				'max': 3250
-			},
-			pips: { // Show a scale with the slider
-				mode: 'steps',
-				stepped: true,
-				density: 4
-			}
+			tooltips: true,
+			connect: !0,
+	        start: [0, 5000],
+	                step: 1,
+	                range: {
+	                    min: 0,
+	                    max: 5000
+	                }
 		});
 	}
 	function createTooltip(){
