@@ -76,8 +76,8 @@
 			<div class="header-content">
 				<h1 class="header__title">3D models for VR / AR, 3D printing and computer graphics</h1>
 				<div class="search-form">
-					<form accept-charset="UTF-8" action="/" id="search-form" method="get">
-						<input autocomplete="off" class="site-search-field" name="keywords" placeholder="Search 530 000 3D models" type="text">
+					<form action="<?php echo home_url( '/' ); ?>" id="search-form" method="get">
+						<input autocomplete="off" class="site-search-field" name="s" placeholder="Search 530 000 3D models" type="text" value="<?php echo get_search_query() ?>">
 						<button class="site-search-button" type="submit"><i class="fa fa-search"></i> </button>
 					</form>
 					<div class="site-search-suggestions">

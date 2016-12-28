@@ -16,4 +16,4 @@
  * @version     2.0.0
  */
 ?>
-<div class="categories-list products-list content-box-wrapper grid">
+<ul class="categories-list products-list content-box-wrapper grid products">

@@ -77,6 +77,7 @@ add_action('woocommerce_after_subcategory', function ($category) {
     endif;
 }, 10);
 
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
 add_action('woocommerce_archive_description','add_subcat_for_product_cat',10);
 function add_subcat_for_product_cat(){
@@ -103,7 +104,36 @@ function add_subcat_for_product_cat(){
          if ( $term ) {
                 $curent_term_id = $term->term_id;
                 ?>
-         <div class="filter-block">
+        <div class="list-cat clearfix">
+          <ul class="cat-list-filter">
+              <?php
+                  wp_list_categories( array(
+                  'orderby'    => 'name',
+                  'show_count' => true,
+                  'child_of'    =>$curent_term_id,
+                  'taxonomy'=>'product_cat',
+                  'hide_empty'=>false,
+                  'title_li'=>'',
+                  'show_option_none'=>''
+               ) ); 
+              ?> 
+        </ul>
+        </div>
+     <div class="filter-block">
+             <ul class="cat-list-filter">
+              <?php
+                  wp_list_categories( array(
+                  'orderby'    => 'name',
+                  'show_count' => true,
+                  'child_of'    =>$curent_term_id,
+                  'taxonomy'=>'product_cat',
+                  'hide_empty'=>false,
+                  'title_li'=>'',
+                  'show_option_none'=>''
+               ) ); 
+              ?> 
+        </ul>
+     <form class="woocommerce-ordering" method="get">
             <div class="price-range aleft">
             <input id="price" name="price" type="hidden" value="">
               <span>Price</span><div id="rangePrice"></div>
@@ -131,23 +161,22 @@ function add_subcat_for_product_cat(){
               </select>
             </div>       
             <div class="clear"></div>
-
-                  <ul class="cat-list-filter">
-      <?php
-          wp_list_categories( array(
-          'orderby'    => 'name',
-          'show_count' => true,
-          'child_of'    =>$curent_term_id,
-          'taxonomy'=>'product_cat',
-          'hide_empty'=>false,
-          'title_li'=>'',
-          'show_option_none'=>''
-       ) ); 
-      ?> 
-        </ul>
-         </div>
-
+            <div class="filterSelect aleft">
+              <select name="orderby" style="display: none;">
+                 <option value="menu_order" selected="selected">Default sorting</option>
+                <option value="popularity">Sort by popularity</option>
+                <option value="date">Sort by newness</option>
+                <option value="price">Sort by price: low to high</option>
+                <option value="price-desc">Sort by price: high to low</option>
+              </select>
+            </div> 
+            <input type="submit" name="">
+          </form>
+      </div> 
+   
    <?php 
+          
+
          }
        
      }
