@@ -327,7 +327,7 @@ input[type="checkbox"], input[type="radio"] {
 
 /* Slider */
 .slick-loading .slick-list {
-  background: #fff url("../../images/ajax-loader.gif") center center no-repeat;
+  background: #fff url("../images/ajax-loader.gif") center center no-repeat;
 }
 
 /* Icons */

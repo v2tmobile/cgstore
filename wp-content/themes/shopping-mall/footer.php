@@ -106,3 +106,7 @@
 <div class="tooltipImage"></div>
 </body>
 </html>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/js/libs.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/js/app.js"></script>
+<!-- Google Analytics -->

@@ -1,7 +1,7 @@
 // JavaScript Document
 var SiteMain = (function() {
 	function init(){
-		createTooltip();
+		//createTooltip();
 		createRadio();
 		createSelectBox();
 		createRangePrice();
@@ -50,6 +50,7 @@ var SiteMain = (function() {
 	}
 	function createTooltip(){
 		
+<<<<<<< HEAD
 		var gallery_arr = [];
 		$(".tooltip").each(function(){
 			
@@ -73,11 +74,29 @@ var SiteMain = (function() {
 			    },
 				functionReady: function(){
 					
+=======
+
+		$('.tooltip').each(function(){
+			$(this).tooltip({
+				// tweak the position
+ 				 position: { 
+		            my: 'right+250 bottom', 
+		            at: 'left top-20'
+		          },
+					content: function(){
+					var imagelist = $(this).find('.tooltip-data').val();
+					console.log(imagelist);
+					imagelist = JSON.parse(imagelist);
+					var list = "<ul>";
+					for (var i = 0; i < imagelist.length; i++) {
+					    list += "<li><img src=" + imagelist[i] + " /></li>"
+					}
+					list += "</ul>";
+					return list;
+>>>>>>> a83a10e47d1a1dee12ce36fc8fbc2012efb52085
 				}
 			});
-			
 		});
-		
 	}
 	
 	function openPopup(idDiv){
