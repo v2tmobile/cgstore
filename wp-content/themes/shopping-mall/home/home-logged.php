@@ -7,14 +7,14 @@
 			<div class="content-box-wrapper grid">
 				<div class="product-grid-item">
 					<div class="abc content-box content-box-interactive tooltipstered tooltip" >
-						<input type="hidden" class="tooltip-data" value= "<?php echo get_template_directory_uri() ?>/images/orson-1.jpg, <?php echo get_template_directory_uri() ?>/images/orson-2.jpg">
+						
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">
 									<img alt="" src="https://img-new.cgtrader.com/items/669155/e19f74fccf/grid/ra-2-rail-bus-3d-model-low-poly-max-obj-3ds.jpg">
 									<figcaption class="content-box-title">GATEway Project driverless bus traffic</figcaption>
 								</figure>
-
+								<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
 							</a>
 							<div class="content-box-price">$165.00</div>
 						</div>

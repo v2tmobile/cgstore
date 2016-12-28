@@ -49,34 +49,27 @@ var SiteMain = (function() {
 	}
 	function createTooltip(){
 		
-		var gallery_arr = [];
-		$(".tooltip").each(function(){
-			
-			$(this).tooltipster({
-				contentCloning: true,
-				side: 'right',
-				contentAsHTML: true,
-				functionBefore: function(origin,continueTooltip){
-					var $ul = $( '<ul>' );
-					console.log($(this).find(('.tooltip-data')));
-					var clsdata = $(this).find('.tooltip-data').selector;
-					gallery_arr = $(clsdata).val().split(',');
-					
 
-					for ( var i = 0; i < gallery_arr.length ; i++ ) {
-					    $ul.append( '<li>' + gallery_arr[i] + '</li>' );
+		$('.tooltip').each(function(){
+			$(this).tooltip({
+				// tweak the position
+ 				 position: { 
+		            my: 'right+250 bottom', 
+		            at: 'left top-20'
+		          },
+					content: function(){
+					var imagelist = $(this).find('.tooltip-data').val();
+					console.log(imagelist);
+					imagelist = JSON.parse(imagelist);
+					var list = "<ul>";
+					for (var i = 0; i < imagelist.length; i++) {
+					    list += "<li><img src=" + imagelist[i] + " /></li>"
 					}
-					console.log($ul );
-			        //origin.tooltipster('content',origin.find('.tooltip-data'));
-			        //continueTooltip();
-			    },
-				functionReady: function(){
-					
+					list += "</ul>";
+					return list;
 				}
 			});
-			
 		});
-		
 	}
 	
 	function openPopup(idDiv){
