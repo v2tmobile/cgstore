@@ -95,7 +95,7 @@ add_action('woocommerce_share', function () {
                echo '<li><a href="#">'.$download['name'].'</a>(.'.$ext.')<span>2.4MB</span></li>';
              }
 
-             echo '<ul>';
+             echo '</ul>';
          }
        ?>
    </div>

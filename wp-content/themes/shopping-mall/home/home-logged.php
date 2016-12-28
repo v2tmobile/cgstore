@@ -5,9 +5,18 @@
 				<p class="content-heading-subtitle">Check the best 3D models available on CGStore.com. Can you do better? <a href="#">Learn how to get on top of the list</a>! </p>
 			</header>
 			<div class="content-box-wrapper grid">
+<<<<<<< HEAD
+			 <?php
+              echo do_shortcode('[recent_products per_page="8" columns="4"]');
+			  ?>
+				<!--<div class="product-grid-item">
+					<div class="abc content-box content-box-interactive tooltipstered tooltip" >
+						<input type="hidden" class="tooltip-data" value= "<?php //echo get_template_directory_uri() ?>/images/orson-1.jpg, <?php //echo get_template_directory_uri() ?>/images/orson-2.jpg">
+=======
 				<div class="product-grid-item">
 					<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
 						<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
+>>>>>>> a83a10e47d1a1dee12ce36fc8fbc2012efb52085
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">
@@ -32,6 +41,10 @@
 						</div>
 						<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
 					</div>
+<<<<<<< HEAD
+				</div> -->
+				
+=======
 				</div>
 				<div class="product-grid-item">
 					<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
@@ -216,6 +229,7 @@
 						<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
 					</div>
 				</div>
+>>>>>>> a83a10e47d1a1dee12ce36fc8fbc2012efb52085
 			</div>
 			<div class="link-promo">
 				<a href="#">CGStore community rating system</a>

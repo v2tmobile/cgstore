@@ -7,6 +7,7 @@ define('SLOGAN', get_bloginfo('description'));
 //add_image_size( 'thumb-service',225,230,true);
 
 include_once 'inc/add-scripts.php';
+include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
 
 if ( ! function_exists( 'shopping_mall_setup' ) ) :
