@@ -30,7 +30,6 @@ add_action('wp_enqueue_scripts', 'cgstore_add_scripts');
 function cgstore_add_styles(){
 
    wp_enqueue_style('cgstore-main-css',TEMPLATE_PATH . '/css/themes/cgstore.css', array(), false, 'all');
-   wp_enqueue_style('cgstore-styles-css',TEMPLATE_PATH . '/css/styles.css', array(), false, 'all');
    wp_enqueue_style('cgstore-all-css',TEMPLATE_PATH . '/css/all.css', array(), false, 'all');
 }
 add_action('wp_enqueue_scripts', 'cgstore_add_styles');

@@ -334,5 +334,26 @@ p {
 		font-size: 1.33333em;
     line-height: 0.75em;
     vertical-align: -15%;
+    font: normal normal normal 21px/1 FontAwesome;
+    top: -3px;
+    margin-right: 5px;
+	}
+}
+.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions button, .product-container .product-sidebar .details-box .product-pricing .product-pricing-actions .button-buy-now{
+	font-weight: 700;
+}
+
+.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions a.buy-now{
+	background-color: #ce3c5c;
+    padding: 6px 10px 8px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+	&:before{
+		content: "\f290";
+		font: normal normal normal 18px/1 FontAwesome;
+    margin-right: 5px;
+        top: -2px;
+
 	}
 }
