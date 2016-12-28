@@ -1,7 +1,7 @@
 // JavaScript Document
 var SiteMain = (function() {
 	function init(){
-		createTooltip();
+		//createTooltip();
 		createRadio();
 		createSelectBox();
 		createRangePrice();

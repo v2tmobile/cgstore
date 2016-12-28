@@ -306,4 +306,33 @@ p {
 		width: 400px;
 		height: auto;
 	}
+} 
+
+.product-container .product-content .product-header .product-header-title {
+    display: block;
+    margin: 0;
+    font-size: 34px;
+    padding-bottom: 10px;
+}
+.product-container .product-content .product-header .product-header-title span{
+	    bottom: -5px;
+}
+.product-container .product-content .product-header{
+	padding-bottom: 20px;
+	    margin-bottom: 20px;
+}
+.product-container .product-sidebar .details-box .product-pricing .product-pricing-price {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions button{
+	&:before{
+		content: "\f217";
+		font-size: 1.33333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+	}
 }
