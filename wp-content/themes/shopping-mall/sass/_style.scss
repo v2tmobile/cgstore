@@ -300,10 +300,11 @@ p {
 .content-box-wrapper{
 	clear: both;
 }
-
-.ui-tooltip-content{
-	ul{
-		width: 400px;
+div.ui-tooltip {
+    max-width: 400px;
+}
+.ui-tooltip-content{ 
+	ul{ 
 		height: auto;
 	}
 } 
@@ -356,4 +357,7 @@ p {
         top: -2px;
 
 	}
+}
+.slick-slide img{
+	width: 100%;
 }

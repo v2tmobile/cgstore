@@ -6,26 +6,26 @@
 			</header>
 			<div class="content-box-wrapper grid">
 				<div class="product-grid-item">
-					<div class="abc content-box content-box-interactive tooltipstered tooltip" >
-						
+					<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
+						<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">
 									<img alt="" src="https://img-new.cgtrader.com/items/669155/e19f74fccf/grid/ra-2-rail-bus-3d-model-low-poly-max-obj-3ds.jpg">
 									<figcaption class="content-box-title">GATEway Project driverless bus traffic</figcaption>
 								</figure>
-								<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
+								
 							</a>
 							<div class="content-box-price">$165.00</div>
 						</div>
 						<div class="content-box-controls">
 							<div class="content-box-control">
-								<button class="action">
+								<button class="action prev">
 									<i class="fa fa-chevron-left fa-lg"></i>
 								</button>
 							</div>
 							<div class="content-box-control">
-								<button class="action">
+								<button class="action next">
 									<i class="fa fa-chevron-right fa-lg"></i>
 								</button>
 							</div>
@@ -34,8 +34,8 @@
 					</div>
 				</div>
 				<div class="product-grid-item">
-					<div class="derf content-box content-box-interactive tooltipstered tooltip">
-						<input type="hidden" class="tooltip-data" value= "">
+					<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
+						<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-3.jpg" ]'>
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">
@@ -47,12 +47,12 @@
 						</div>
 						<div class="content-box-controls">
 							<div class="content-box-control">
-								<button class="action">
+								<button class="action prev">
 									<i class="fa fa-chevron-left fa-lg"></i>
 								</button>
 							</div>
 							<div class="content-box-control">
-								<button class="action">
+								<button class="action next">
 									<i class="fa fa-chevron-right fa-lg"></i>
 								</button>
 							</div>

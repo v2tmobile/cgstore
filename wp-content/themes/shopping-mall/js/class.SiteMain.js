@@ -1,7 +1,7 @@
 // JavaScript Document
 var SiteMain = (function() {
 	function init(){
-		//createTooltip();
+		createTooltip();
 		createRadio();
 		createSelectBox();
 		createRangePrice();
@@ -48,25 +48,45 @@ var SiteMain = (function() {
 		
 	}
 	function createTooltip(){
-		
+		var wElement = $('.content-box-wrapper .product-grid-item').width();
+		var position = { my: 'left center', at: 'right+10 bottom-20' }; 
+		position.collision = 'none';
 
-		$('.tooltip').each(function(){
-			$(this).tooltip({
-				// tweak the position
- 				 position: { 
-		            my: 'right+250 bottom', 
-		            at: 'left top-20'
-		          },
-					content: function(){
+		$(function() {
+		    $( document ).tooltip();
+		});
+
+		$('#test-input').hover(function(){
+		    $( "#label" ).tooltip( "open" );
+		});
+
+		$('div.tooltip').each(function(){
+			$(document).tooltip({
+	        	items: '[data-toggle="tooltip"]',
+				position: position,
+				tooltipClass: 'right',
+				content: function(){
 					var imagelist = $(this).find('.tooltip-data').val();
-					console.log(imagelist);
 					imagelist = JSON.parse(imagelist);
-					var list = "<ul>";
+					var list = "<ul class='slick'>";
 					for (var i = 0; i < imagelist.length; i++) {
 					    list += "<li><img src=" + imagelist[i] + " /></li>"
 					}
 					list += "</ul>";
+					
 					return list;
+				},
+				open: function () {
+					
+					$('ul.slick').not('.slick-initialized').slick({
+						dots: false,
+						    prevArrow: $('.prev'),
+							nextArrow: $('.next')
+
+
+					});
+
+					$(this).find('.content-box-controls .action .fa-chevron-left ')
 				}
 			});
 		});
