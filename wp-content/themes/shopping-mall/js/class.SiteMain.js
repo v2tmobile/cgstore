@@ -19,45 +19,59 @@ var SiteMain = (function() {
 	}
 
 	function createRangePrice(){
-		var range = document.getElementById('rangePrice');
+		if($('#rangePrice').length > 0){
+			var range = document.getElementById('rangePrice');
 
-		range.style.width = '120px';
-		range.style.margin = '0 auto 30px';
-		$(range).tooltipster({
-            theme: "tooltip--light",
-            animation: "grow",
-            tooltips: true
-        })
-		noUiSlider.create(range, {
-			format: wNumb({
-				decimals: 0,
-				thousand: '.',
-				postfix: '$ '
-			}),
-			tooltips: true,
-			connect: !0,
-	        start: [0, 5000],
-	                step: 1,
-	                range: {
-	                    min: 0,
-	                    max: 5000
-	                }
-		});
+			range.style.width = '120px';
+			range.style.margin = '0 auto 30px';
+			$(range).tooltipster({
+	            theme: "tooltip--light",
+	            animation: "grow",
+	            tooltips: true
+	        })
+			noUiSlider.create(range, {
+				format: wNumb({
+					decimals: 0,
+					thousand: '.',
+					postfix: '$ '
+				}),
+				tooltips: true,
+				connect: !0,
+		        start: [0, 5000],
+		                step: 1,
+		                range: {
+		                    min: 0,
+		                    max: 5000
+		                }
+			});
+		}
+		
 	}
 	function createTooltip(){
+		
+		var gallery_arr = [];
 		$(".tooltip").each(function(){
 			
 			$(this).tooltipster({
 				contentCloning: true,
 				side: 'right',
 				contentAsHTML: true,
-				functionReady: function(){
-					$('.tooltipster-box .slick').not('.slick-initialized').slick({
-						dots: false,
-						    prevArrow: false,
-						    nextArrow: false
+				functionBefore: function(origin,continueTooltip){
+					var $ul = $( '<ul>' );
+					console.log($(this).find(('.tooltip-data')));
+					var clsdata = $(this).find('.tooltip-data').selector;
+					gallery_arr = $(clsdata).val().split(',');
+					
 
-					});
+					for ( var i = 0; i < gallery_arr.length ; i++ ) {
+					    $ul.append( '<li>' + gallery_arr[i] + '</li>' );
+					}
+					console.log($ul );
+			        //origin.tooltipster('content',origin.find('.tooltip-data'));
+			        //continueTooltip();
+			    },
+				functionReady: function(){
+					
 				}
 			});
 			

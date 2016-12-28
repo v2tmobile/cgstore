@@ -6,17 +6,8 @@
 			</header>
 			<div class="content-box-wrapper grid">
 				<div class="product-grid-item">
-					<div class="content-box content-box-interactive tooltipstered tooltip" data-tooltip-content="#tooltip_content_item_1">
-						<div class="tooltip_templates" style="display: none;">
-							<div id="tooltip_content_item_1" >
-								<ul class="slick">
-									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-1.jpg"/></li>
-									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-2.jpg"/></li>
-									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-1.jpg"/></li>
-									<li><img width="100%" src="<?php echo get_template_directory_uri() ?>/images/orson-2.jpg"/></li>
-								</ul>
-							</div>
-						</div>
+					<div class="abc content-box content-box-interactive tooltipstered tooltip" >
+						<input type="hidden" class="tooltip-data" value= "<?php echo get_template_directory_uri() ?>/images/orson-1.jpg, <?php echo get_template_directory_uri() ?>/images/orson-2.jpg">
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">
@@ -43,7 +34,8 @@
 					</div>
 				</div>
 				<div class="product-grid-item">
-					<div class="content-box content-box-interactive tooltipstered tooltip">
+					<div class="derf content-box content-box-interactive tooltipstered tooltip">
+						<input type="hidden" class="tooltip-data" value= "">
 						<div class="content-box-content">
 							<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
 								<figure class="content-box-image">
