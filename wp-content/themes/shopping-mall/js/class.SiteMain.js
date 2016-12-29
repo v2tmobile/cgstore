@@ -72,6 +72,9 @@ var SiteMain = (function() {
 				tooltipClass: 'right',
 				content: function(){
 					var imagelist = $(this).find('.tooltip-data').val();
+					var productname = $(this).find('.content-box-title').html();
+					var extension = $(this).find('.content-box-file-extensions').html();
+
 					$this = $(this);
 					imagelist = JSON.parse(imagelist);
 					var list = "<ul class='slick'>";
@@ -79,7 +82,7 @@ var SiteMain = (function() {
 					    list += "<li><img src=" + imagelist[i] + " /></li>"
 					}
 					list += "</ul>";
-					
+					list += "<div class='product-name'>" + productname + "</div> <div class='extension'>"+ extension +"</div>";
 					return list;
 				},
 				open: function (elem,ui) {
@@ -111,11 +114,11 @@ var SiteMain = (function() {
 				    	
 				        var xPos = left + proW + 10;
 				        var yPos = top;
-				        ui.tooltip.css({ top: yPos, left: xPos  }, "fast" );
+				        ui.tooltip.css({ top: yPos, left: xPos + 25  }, "fast" );
 				    } else if (topbottom == top && leftright == left) {
 				    	console.log(4);
 				        var yPos = top ;
-				        var xPos = left - (tooltipw/2) - proW/2;
+				        var xPos = left - (tooltipw - 25);
 				        ui.tooltip.css({ top: yPos, left: xPos - 50  }, "fast" );
 				    } else {}
 
