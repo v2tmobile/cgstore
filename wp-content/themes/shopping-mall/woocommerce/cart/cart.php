@@ -24,7 +24,7 @@ wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post" class="cart-form">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -61,7 +61,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
 							if ( ! $product_permalink ) {
-								echo $thumbnail;
+								echo $thumbnail; 
 							} else {
 								printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail );
 							}
