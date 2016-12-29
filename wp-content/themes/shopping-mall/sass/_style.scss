@@ -405,7 +405,7 @@ div.ui-tooltip {
 		margin: 20px 0;
 	}
 }
-.woocommerce-cart{
+.woocommerce-cart, .woocommerce-checkout{
 	.entry-title{
 		font-size: 30px;
 		padding-bottom: 20px;
@@ -497,6 +497,19 @@ div.ui-tooltip {
 		    }
 	}
 }
-.button{
+.woocommerce-checkout{
 	
+}
+input.input-text {
+	width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #e4e1d8;
+    border-radius: 3px;
+    background: white;
+    color: #3f444c;
+    font-size: 1rem;
+    line-height: 24px;
+    -webkit-transition: 0.15s ease-in-out opacity;
+    transition: 0.15s ease-in-out opacity;
+    -webkit-font-smoothing: antialiased;
 }
