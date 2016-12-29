@@ -133,7 +133,7 @@ function add_subcat_for_product_cat(){
                ) ); 
               ?> 
         </ul>
-     <form class="woocommerce-ordering" method="get">
+     <form class="woocommerce-ordering hasborder" method="get">
             <div class="price-range aleft">
             <input id="price" name="price" type="hidden" value="">
               <span>Price</span><div id="rangePrice"></div>
@@ -160,8 +160,7 @@ function add_subcat_for_product_cat(){
                 <option value="">50k to 100k</option>
               </select>
             </div>       
-            <div class="clear"></div>
-            <div class="filterSelect aleft">
+            <div class="filterSelect aright sort-by">
               <select name="orderby" style="display: none;">
                  <option value="menu_order" selected="selected">Default sorting</option>
                 <option value="popularity">Sort by popularity</option>
@@ -171,6 +170,8 @@ function add_subcat_for_product_cat(){
               </select>
             </div> 
             <input type="submit" name="">
+                        <div class="clear"></div>
+
           </form>
       </div> 
    
