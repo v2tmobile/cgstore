@@ -391,3 +391,26 @@ div.ui-tooltip {
 	}
 
 }
+
+.woocommerce-page{
+	.woocommerce-message, .woocommerce-error{
+		margin: 20px 0;
+	}
+}
+.woocommerce-cart{
+	.entry-title{
+		font-size: 30px;
+		padding-bottom: 20px;
+	}
+	.shop_table{
+		    width: 100%;
+		tr{
+			th{
+				font-weight: bold;
+			}
+			td{
+				vertical-align: middle;
+			}
+		}
+	}
+}

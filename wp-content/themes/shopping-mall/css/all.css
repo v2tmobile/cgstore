@@ -417,6 +417,19 @@ div.ui-tooltip {
 .noUi-horizontal .noUi-handle:hover .noUi-tooltip {
   opacity: 1; }
 
+.woocommerce-page .woocommerce-message, .woocommerce-page .woocommerce-error {
+  margin: 20px 0; }
+
+.woocommerce-cart .entry-title {
+  font-size: 30px;
+  padding-bottom: 20px; }
+.woocommerce-cart .shop_table {
+  width: 100%; }
+  .woocommerce-cart .shop_table tr th {
+    font-weight: bold; }
+  .woocommerce-cart .shop_table tr td {
+    vertical-align: middle; }
+
 .wrapper {
   max-width: inherit; }
 
