@@ -22,7 +22,8 @@ var SiteMain = (function() {
 	function createRangePrice(){
 		if($('#rangePrice').length > 0){
 			var range = document.getElementById('rangePrice');
-
+			var pricemin = $(range).attr('data-min');
+			var pricemax = $(range).attr('data-max');
 			range.style.width = '120px';
 			range.style.margin = '0 auto 30px';
 			$(range).tooltipster({
@@ -38,12 +39,23 @@ var SiteMain = (function() {
 				}),
 				tooltips: true,
 				connect: !0,
-		        start: [0, 5000],
+		        start: [parseInt(pricemin), parseInt(pricemax)],
 		                step: 1,
 		                range: {
-		                    min: 0,
-		                    max: 5000
+		                    min: parseInt(pricemin),
+		                    max: parseInt(pricemax)
 		                }
+			});
+			range.noUiSlider.on('update', function( values, handle ) {
+				var nummin = values[0].split('$')[0].replace('.','');
+				var nummax = values[1].split('$')[0].replace('.','');
+			    $(range).attr('data-min', parseFloat(nummin));
+			    $(range).attr('data-max', parseFloat(nummax));
+			    $('.pricemin').val(parseFloat(nummin));
+			    $('.pricemax').val(parseFloat(nummax));
+			});
+			range.noUiSlider.on('change', function( values, handle ) {
+				 $("#woocommerce-filter").submit();
 			});
 		}
 		
