@@ -103,6 +103,7 @@ function add_subcat_for_product_cat(){
                $term = get_queried_object();
          if ( $term ) {
                 $curent_term_id = $term->term_id;
+
                 ?>
         <div class="list-cat clearfix">
           <ul class="cat-list-filter">
@@ -169,7 +170,7 @@ function add_subcat_for_product_cat(){
                 <option value="price-desc">Sort by price: high to low</option>
               </select>
             </div> 
-            <input type="submit" name="">
+          
                         <div class="clear"></div>
 
           </form>

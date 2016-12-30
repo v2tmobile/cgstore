@@ -57,8 +57,8 @@ $args_format = array(
     'show_tagcloud'              => true,
 );
 
- register_taxonomy( 'prodcut_format', 'product', $args_format );
- register_taxonomy_for_object_type( 'prodcut_format', 'product' );
+ register_taxonomy( 'product_format', 'product', $args_format );
+ register_taxonomy_for_object_type( 'product_format', 'product' );
 
 
 
