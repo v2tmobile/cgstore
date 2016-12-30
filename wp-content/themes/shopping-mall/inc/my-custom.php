@@ -29,6 +29,40 @@ $args = array(
 );
  register_taxonomy( 'type_product', 'product', $args );
  register_taxonomy_for_object_type( 'type_product', 'product' );
+
+
+$labels_format = array(
+    'name'                       => 'Format',
+    'singular_name'              => 'Format',
+    'menu_name'                  => 'Format',
+    'all_items'                  => 'All Format',
+    'parent_item'                => 'Parent Format',
+    'parent_item_colon'          => 'Parent Format:',
+    'new_item_name'              => 'New Format',
+    'add_new_item'               => 'Add New Format',
+    'edit_item'                  => 'Edit Format',
+    'update_item'                => 'Update Format',
+    'separate_items_with_commas' => 'Separate Format with commas',
+    'search_items'               => 'Search Format',
+    'add_or_remove_items'        => 'Add or remove Format',
+    'choose_from_most_used'      => 'Choose from the most used Format',
+);
+$args_format = array(
+    'labels'                     => $labels_format,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'prodcut_format', 'product', $args_format );
+ register_taxonomy_for_object_type( 'prodcut_format', 'product' );
+
+
+
+
 }
 
 
