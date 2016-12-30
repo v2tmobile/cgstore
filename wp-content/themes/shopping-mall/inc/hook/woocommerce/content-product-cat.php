@@ -134,10 +134,12 @@ function add_subcat_for_product_cat(){
                ) ); 
               ?> 
         </ul>
-     <form class="woocommerce-ordering hasborder" method="get">
+     <form class="woocommerce-ordering hasborder" method="get" id="woocommerce-filter">
             <div class="price-range aleft">
+              <input type="hidden" name="pricemin" class="pricemin" value=""/>
+              <input type="hidden" name="pricemax" class="pricemax" value=""/>
             <input id="price" name="price" type="hidden" value="">
-              <span>Price</span><div id="rangePrice"></div>
+              <span>Price</span><div id="rangePrice" data-min="0" data-max="5000"></div>
             </div>
             <div class="freeCk aleft">
               <label>
@@ -148,17 +150,17 @@ function add_subcat_for_product_cat(){
             <div class="filterSelect aleft">
               <select name="formatSelect" style="display: none;">
                 <option value="">Formats</option>
-                <option value="">3D Studio Max</option>
-                <option value="">Auto Desk</option>
-                <option value="">Blender</option>
+                <option value="3D-Studio-Max">3D Studio Max</option>
+                <option value="Auto-Desk">Auto Desk</option>
+                <option value="Blender">Blender</option>
               </select>
             </div>
             <div class="filterSelect aleft">
               <select name="polySelect" style="display: none;">
                 <option value="">Poly Count</option>
-                <option value="">Up to 5k</option>
-                <option value="">10K to 50k</option>
-                <option value="">50k to 100k</option>
+                <option value="up-to-5k">Up to 5k</option>
+                <option value="10k-to-50k">10K to 50k</option>
+                <option value="50k-to-100k">50k to 100k</option>
               </select>
             </div>       
             <div class="filterSelect aright sort-by">
