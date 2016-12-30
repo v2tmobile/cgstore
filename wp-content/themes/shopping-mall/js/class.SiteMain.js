@@ -17,6 +17,11 @@ var SiteMain = (function() {
 		$('.filterSelect select, .woocommerce-ordering select').select2({
 			minimumResultsForSearch: -1
 		});
+		$(".filterSelect select, .woocommerce-ordering select").on('change', function(e) {
+		    // Access to full data
+		    //console.log($(this).val());
+		    $("#woocommerce-filter").submit();
+		});
 	}
 
 	function createRangePrice(){

@@ -149,17 +149,17 @@ function add_subcat_for_product_cat(){
             <div class="filterSelect aleft">
               <select name="formatSelect" style="display: none;">
                 <option value="">Formats</option>
-                <option value="">3D Studio Max</option>
-                <option value="">Auto Desk</option>
-                <option value="">Blender</option>
+                <option value="3D-Studio-Max">3D Studio Max</option>
+                <option value="Auto-Desk">Auto Desk</option>
+                <option value="Blender">Blender</option>
               </select>
             </div>
             <div class="filterSelect aleft">
               <select name="polySelect" style="display: none;">
                 <option value="">Poly Count</option>
-                <option value="">Up to 5k</option>
-                <option value="">10K to 50k</option>
-                <option value="">50k to 100k</option>
+                <option value="up-to-5k">Up to 5k</option>
+                <option value="10k-to-50k">10K to 50k</option>
+                <option value="50k-to-100k">50k to 100k</option>
               </select>
             </div>       
             <div class="filterSelect aright sort-by">
