@@ -5,6 +5,7 @@ var SiteMain = (function() {
 		createRadio();
 		createSelectBox();
 		createRangePrice();
+		openCartPopup();
 	}
 	
 	function createRadio(){
@@ -138,8 +139,16 @@ var SiteMain = (function() {
 		});
 	}
 	
+
+	function openCartPopup(){
+		$('a#linkCartPopup').click(function(){
+			$('#cart-box-content').toggleClass('opened');
+		});
+		
+	}
+
 	function openPopup(idDiv){
-		$('.result_question').css('display','none')
+		$('.popover-box').css('display','none')
 		$(idDiv).css('display','block');	
 	}
 	function closePopup(idDiv){

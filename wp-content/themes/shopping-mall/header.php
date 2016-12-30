@@ -54,10 +54,54 @@
 								</a>
 							</li>
 							<li class="notification-item">
-								<a class="has-indicator" href="<?php echo wc_get_cart_url(); ?>">
+								<a class="has-indicator" id="linkCartPopup" href="#">
 									<i class="fa fa-shopping-cart fa-24"></i>
 									<span class="cart-indicator indicator is-sticky "><?php echo WC()->cart->get_cart_contents_count(); ?></a></span>
 								</a>
+								<div id="cart-box-content" class="popover-box">
+									<div class="popover-box__inner">
+									   <h4 class="popover-box__title">Shopping cart</h4>
+									   <!-- react-text: 106 -->You have <!-- /react-text --><span class="indicator cart-indicator">2</span><!-- react-text: 108 --> items in your shopping cart.<!-- /react-text -->
+									</div>
+									<div class="popover-box__inner">
+									   <div class="product-list product-list--on-contrast">
+									      <article class="product-list__item">
+									         <div class="product-list__item-preview">
+									         	<a href="#" title="SimplePoly Urban - Low Poly Assets">
+										         	<img alt="SimplePoly Urban - Low Poly Assets" src="https://img2.cgtrader.com/items/658464/7a412b2f43/thumb/simplepoly-urban-low-poly-assets-3d-model-low-poly-fbx.jpg">
+										        </a>
+									         </div>
+									         <div class="product-list__item-info">
+									            <h1 class="product-list__item-title"><a href="/3d-models/architectural-exterior/cityscape/simplepoly-urban-low-poly-assets">SimplePoly Urban - Low Poly As...</a></h1>
+									            <div class="product-list__item-summary">3D model</div>
+									         </div>
+									         <div class="product-list__item-price">
+									            <!-- react-text: 120 -->$<!-- /react-text --><!-- react-text: 121 -->28<!-- /react-text -->
+									         </div>
+									         <div class="product-list__item-remove has-tooltip tooltipstered"><i class="fa fa-times-circle-o fa-lg"></i></div>
+									      </article>
+									      <article class="product-list__item" >
+									         <div class="product-list__item-preview"><a href="/3d-models/art/coins-badges/kiddie-ride-pack" title="Kiddie Ride Pack"><img alt="Kiddie Ride Pack" src="https://img1.cgtrader.com/items/66966/fa6f093b94/thumb/kiddie-ride-pack-3d-model-low-poly-obj-stl-blend-dae.jpg"></a></div>
+									         <div class="product-list__item-info">
+									            <h1 class="product-list__item-title"><a href="/3d-models/art/coins-badges/kiddie-ride-pack">Kiddie Ride Pack</a></h1>
+									            <div class="product-list__item-summary">3D model</div>
+									         </div>
+									         <div class="product-list__item-price">
+									            <!-- react-text: 133 -->$<!-- /react-text --><!-- react-text: 134 -->104.99<!-- /react-text -->
+									         </div>
+									         <div class="product-list__item-remove has-tooltip tooltipstered"><i class="fa fa-times-circle-o fa-lg"></i></div>
+									      </article>
+									   </div>
+									   <div class="popover-box__actions">
+									      <a href="<?php echo wc_get_cart_url(); ?>">
+									         <i class="fa fa-shopping-cart fa-lg"></i><!-- react-text: 140 --> View cart<!-- /react-text -->
+									      </a>
+									      <a class="button button--compact button--alt u-float-right" href="/cg/checkout/payment">
+									         <i class="fa fa-shopping-bag"></i><!-- react-text: 143 --> Proceed to checkout<!-- /react-text -->
+									      </a>
+									   </div>
+									</div>
+								</div>
 							</li>
 						</ul>
 					<?php } else { ?>
@@ -72,9 +116,11 @@
 			
 		</header>
 	</div>
-	<div class="header-search">
-			<div class="header-content">
+	<div class="header-search <?php if( is_user_logged_in() ) echo 'header-login';?>">
+			<div class="header-content ">
+				<?php if( !is_user_logged_in() ) {?>
 				<h1 class="header__title">3D models for VR / AR, 3D printing and computer graphics</h1>
+				<?php } ?>
 				<div class="search-form">
 					<form action="<?php echo home_url( '/' ); ?>" id="search-form" method="get">
 						<input autocomplete="off" class="site-search-field" name="s" placeholder="Search 530 000 3D models" type="text" value="<?php echo get_search_query() ?>">

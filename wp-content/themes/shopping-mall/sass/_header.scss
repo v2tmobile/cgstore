@@ -18,11 +18,21 @@
 			float: left; 
 		}
 	}	
+	.notification-item{
+		position: relative;
+	}
 }
 
 .header-search{
 	height: 300px;
-	background: #181a1e;
+	background: url(../images/header_bg.jpg) no-repeat top center;
+    background-size: cover;
+    &.header-login{
+    	height: 100px; 
+    	.header-content {
+    		padding-top: 20px;
+    	}
+    }
 	.header-content{
 		width: 60%;
     	margin: 0 auto 0;
