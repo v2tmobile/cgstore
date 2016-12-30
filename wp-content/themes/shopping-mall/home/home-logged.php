@@ -8,10 +8,10 @@
 				</header>
 				<div class="content-box-wrapper grid">
 				 <?php
-	              //echo do_shortcode('[recent_products per_page="8" columns="4"]');
+	                echo do_shortcode('[recent_products per_page="8" columns="4"]');
 				  ?>
 					
-					<div class="product-grid-item">
+					<!--<div class="product-grid-item">
 						<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
 							<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
 							<div class="content-box-content">
@@ -38,194 +38,9 @@
 							</div>
 							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
 						</div>
-					</div>
+					</div> -->
 					
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
-							<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-3.jpg" ]'>
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img2.cgtrader.com/items/658464/7a412b2f43/grid/simplepoly-urban-low-poly-assets-3d-model-low-poly-fbx.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action prev">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action next">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
-						<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img2.cgtrader.com/items/669496/539b4cd431/grid/thames-compressor-lorry-1958-3d-model-max.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action prev">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action next">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
-						<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img-new.cgtrader.com/items/666071/b25870ccd6/grid/ring-masonic-skull-freemasons-ring-stl-3d-model-for-3d-printing-3d-model-obj-3ds-stl.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action prev">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action next">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
-						<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img2.cgtrader.com/items/669496/539b4cd431/grid/thames-compressor-lorry-1958-3d-model-max.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action prev">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action next">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered">
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img2.cgtrader.com/items/669496/539b4cd431/grid/thames-compressor-lorry-1958-3d-model-max.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered">
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img2.cgtrader.com/items/669496/539b4cd431/grid/thames-compressor-lorry-1958-3d-model-max.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
-					<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered">
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img2.cgtrader.com/items/669496/539b4cd431/grid/thames-compressor-lorry-1958-3d-model-max.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus</figcaption>
-									</figure>
-								</a>
-								<div class="content-box-price">$65.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div>
+					
 				</div>
 				<div class="link-promo">
 					<a href="#">CGStore community rating system</a>
