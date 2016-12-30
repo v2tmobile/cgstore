@@ -32,7 +32,9 @@
 				</div>
 				<div class="right">
 					<div class="notification-nav">
-					<?php if( is_user_logged_in() ) {?>
+					<?php if( is_user_logged_in() ) {
+                          $cart_total = WC()->cart->get_cart_contents_count();
+						?>
 						<ul>
 							<li class="notification-item">
 								<a href="javascript:;" class="menu">
@@ -56,50 +58,69 @@
 							<li class="notification-item">
 								<a class="has-indicator" id="linkCartPopup" href="#">
 									<i class="fa fa-shopping-cart fa-24"></i>
-									<span class="cart-indicator indicator is-sticky "><?php echo WC()->cart->get_cart_contents_count(); ?></a></span>
+									<span class="cart-indicator indicator is-sticky ">
+									<?php echo $cart_total; ?>
+									</a></span>
 								</a>
 								<div id="cart-box-content" class="popover-box">
 									<div class="popover-box__inner">
 									   <h4 class="popover-box__title">Shopping cart</h4>
-									   <!-- react-text: 106 -->You have <!-- /react-text --><span class="indicator cart-indicator">2</span><!-- react-text: 108 --> items in your shopping cart.<!-- /react-text -->
+									  You have <span class="indicator cart-indicator"><?php echo $cart_total; ?></span> items in your shopping cart.
 									</div>
 									<div class="popover-box__inner">
-									   <div class="product-list product-list--on-contrast">
-									      <article class="product-list__item">
-									         <div class="product-list__item-preview">
-									         	<a href="#" title="SimplePoly Urban - Low Poly Assets">
-										         	<img alt="SimplePoly Urban - Low Poly Assets" src="https://img2.cgtrader.com/items/658464/7a412b2f43/thumb/simplepoly-urban-low-poly-assets-3d-model-low-poly-fbx.jpg">
-										        </a>
-									         </div>
+									   
+									     <?php
+                                             global $woocommerce;
+    										 $items = $woocommerce->cart->get_cart();
+    										 if($items){
+    										 	?>
+    										 	<div class="product-list product-list--on-contrast">
+    										 	<?php 
+    										 	  foreach ($items as $item) {
+    										 	  	 $_product = $item['data']->post;
+    										 	  	 $title =  $_product->post_title;
+    										 	  	 $link = get_permalink($_product->id);
+    										 	  	 $price = get_post_meta($item['product_id'] , '_price', true);
+    										 	  	 $img = new WC_Product($_product->id);
+    										 	  	 $taxs = get_the_terms($_product->id,'product_cat');
+    										 	  	 $tax = ($taxs) ? $taxs[0]->name :''; 
+    										 	  	 
+    										 	  	?>
+                                               <article class="product-list__item">
+											         <div class="product-list__item-preview">
+											         	<a href="<?php echo $link;?>" title="<?php echo $title; ?>">
+												         <?php echo $img->get_image(array(30,30)); ?>
+												        </a>
+											         </div>
 									         <div class="product-list__item-info">
-									            <h1 class="product-list__item-title"><a href="/3d-models/architectural-exterior/cityscape/simplepoly-urban-low-poly-assets">SimplePoly Urban - Low Poly As...</a></h1>
-									            <div class="product-list__item-summary">3D model</div>
+									            <h1 class="product-list__item-title"><a href="<?php echo $link;?>"><?php echo $title; ?></a></h1>
+									            <div class="product-list__item-summary"><?php echo $tax; ?></div>
 									         </div>
 									         <div class="product-list__item-price">
-									            <!-- react-text: 120 -->$<!-- /react-text --><!-- react-text: 121 -->28<!-- /react-text -->
+									               <?php echo $price; ?>
 									         </div>
 									         <div class="product-list__item-remove has-tooltip tooltipstered"><i class="fa fa-times-circle-o fa-lg"></i></div>
 									      </article>
-									      <article class="product-list__item" >
-									         <div class="product-list__item-preview"><a href="/3d-models/art/coins-badges/kiddie-ride-pack" title="Kiddie Ride Pack"><img alt="Kiddie Ride Pack" src="https://img1.cgtrader.com/items/66966/fa6f093b94/thumb/kiddie-ride-pack-3d-model-low-poly-obj-stl-blend-dae.jpg"></a></div>
-									         <div class="product-list__item-info">
-									            <h1 class="product-list__item-title"><a href="/3d-models/art/coins-badges/kiddie-ride-pack">Kiddie Ride Pack</a></h1>
-									            <div class="product-list__item-summary">3D model</div>
-									         </div>
-									         <div class="product-list__item-price">
-									            <!-- react-text: 133 -->$<!-- /react-text --><!-- react-text: 134 -->104.99<!-- /react-text -->
-									         </div>
-									         <div class="product-list__item-remove has-tooltip tooltipstered"><i class="fa fa-times-circle-o fa-lg"></i></div>
-									      </article>
-									   </div>
-									   <div class="popover-box__actions">
-									      <a href="<?php echo wc_get_cart_url(); ?>">
-									         <i class="fa fa-shopping-cart fa-lg"></i><!-- react-text: 140 --> View cart<!-- /react-text -->
-									      </a>
-									      <a class="button button--compact button--alt u-float-right" href="/cg/checkout/payment">
-									         <i class="fa fa-shopping-bag"></i><!-- react-text: 143 --> Proceed to checkout<!-- /react-text -->
-									      </a>
-									   </div>
+    										 	  	<?php 
+    										 	  
+    										 	  }
+    										 	 ?>
+
+										  </div>
+											   <div class="popover-box__actions">
+											      <a href="<?php echo wc_get_cart_url(); ?>">
+											         <i class="fa fa-shopping-cart fa-lg"></i> View cart
+											      </a>
+											      <a class="button button--compact button--alt u-float-right" href="<?php echo $woocommerce->cart->get_checkout_url(); ?>">
+											         <i class="fa fa-shopping-bag"></i>Proceed to checkout
+											      </a>
+											   </div>
+    										<?php 
+    										 
+    										 }
+
+									      ?>
+									      
 									</div>
 								</div>
 							</li>

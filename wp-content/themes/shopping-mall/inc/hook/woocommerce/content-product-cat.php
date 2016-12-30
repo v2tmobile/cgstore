@@ -136,19 +136,18 @@ function add_subcat_for_product_cat(){
         </ul>
      <form class="woocommerce-ordering hasborder" method="get" id="woocommerce-filter">
             <div class="price-range aleft">
-              <input type="hidden" name="pricemin" class="pricemin" value=""/>
-              <input type="hidden" name="pricemax" class="pricemax" value=""/>
-            <input id="price" name="price" type="hidden" value="">
+              <input type="hidden" name="min_price" class="pricemin" value=""/>
+              <input type="hidden" name="max_price" class="pricemax" value=""/>
               <span>Price</span><div id="rangePrice" data-min="0" data-max="5000"></div>
             </div>
             <div class="freeCk aleft">
               <label>
-                <input type="checkbox" value="" name="freeCheckbox" class="iCheckBox"/>
+                <input type="checkbox" value="1" name="free" class="iCheckBox"/>
                 <span>Free</span>
               </label>
             </div>
             <div class="filterSelect aleft">
-              <select name="formatSelect" style="display: none;">
+              <select name="product_format" style="display: none;">
                 <option value="">Formats</option>
                 <option value="3D-Studio-Max">3D Studio Max</option>
                 <option value="Auto-Desk">Auto Desk</option>
@@ -156,24 +155,23 @@ function add_subcat_for_product_cat(){
               </select>
             </div>
             <div class="filterSelect aleft">
-              <select name="polySelect" style="display: none;">
+              <select name="poly" style="display: none;">
                 <option value="">Poly Count</option>
-                <option value="up-to-5k">Up to 5k</option>
-                <option value="10k-to-50k">10K to 50k</option>
-                <option value="50k-to-100k">50k to 100k</option>
+                <option value="0-5">Up to 5k</option>
+                <option value="5-10">5K to 10k</option>
+                <option value="10k-50k">10k to 50k</option>
               </select>
             </div>       
             <div class="filterSelect aright sort-by">
               <select name="orderby" style="display: none;">
-                 <option value="menu_order" selected="selected">Default sorting</option>
+                <option value="menu_order" selected="selected">Default sorting</option>
                 <option value="popularity">Sort by popularity</option>
                 <option value="date">Sort by newness</option>
                 <option value="price">Sort by price: low to high</option>
                 <option value="price-desc">Sort by price: high to low</option>
               </select>
             </div> 
-          
-                        <div class="clear"></div>
+           <div class="clear"></div>
 
           </form>
       </div> 

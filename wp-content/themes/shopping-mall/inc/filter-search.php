@@ -29,10 +29,13 @@ function add_filter_search($query){
  	  	   	    //'relation' => 'AND',
 		        array(
 		            'taxonomy' => 'product_format',
-		            'field' => 'id',
+		            'field' => 'term_id',
 		            'terms' => array(49)
 		        	)
     		);
+
+ 	  	   $query->tax_query->queries[] = $pf_query; 
+   		   $query->query_vars['tax_query'] = $query->tax_query->queries;
 
  	  	  //$query->set('tax_query',$pf_query);
 
