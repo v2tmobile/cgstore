@@ -9,6 +9,7 @@ define('SLOGAN', get_bloginfo('description'));
 include_once 'inc/add-scripts.php';
 include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
+include_once 'socials/login_socials.php';
 
  function current_user_has_avatar() {
 
