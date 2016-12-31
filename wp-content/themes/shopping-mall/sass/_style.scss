@@ -1140,3 +1140,11 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 		}
 	}
 }
+
+.woocommerce-account{
+	.entry-header{
+		h1.entry-title{
+			display: none;
+		}
+	}
+}
