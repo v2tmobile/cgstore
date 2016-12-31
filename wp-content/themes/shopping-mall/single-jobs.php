@@ -6,14 +6,19 @@
 
 get_header(); ?>
 
+<?php
+	while ( have_posts() ) : the_post();
+	?>
 <div class="jobs-page">
 	<div class="content-area">
 		<div class="jobs-application__content">
 		   <div class="jobs-application__job">
 		      <div class="jobs__item">
-		         <div class="jobs-item__image"><img alt="Battelfield ground, redoubt, entrencm..." src="https://cgtfiles.s3.amazonaws.com/uploads/attachments/33967/Redoubt_5.jpg"></div>
+		         <div class="jobs-item__image">
+		         	<?php echo get_the_post_thumbnail(get_the_ID());?>
+		         </div>
 		         <div class="jobs-item__content">
-		            <h3 class="jobs__title">Battelfield ground, redoubt, entrencm...</h3>
+		            <h3 class="jobs__title"><?php the_title();?></h3>
 		            <ul class="label-list">
 		               <li>
 		                  <div class="jobs__aplicants"><span class="label--hexagon">5 applicants</span></div>
@@ -34,7 +39,9 @@ get_header(); ?>
 		         <div class="jobs-price__content">
 		            <h3 class="jobs__price u-text-right">$100</h3>
 		         </div>
-		         <p class="jobs-application-text">I need a model of a landscape created from a map. Its a battelfield. In the landscape are  10 redoubts with trenches connecting them. The budget can be negotiated according to the Work.</p>
+		         <div class="jobs-application-text">
+		         	<?php the_content();?>
+		         </div>
 		         <a class="button button-primary view-attached-files"><i class="fa fa-file-text"></i>View attached files (1)</a>
 		         <ul class="attached-files-container is-hidden">
 		            <a target="_blank" id="332fbd4668b94659922f32cfc6b0b59a" href="/attachments/33967">
@@ -98,5 +105,7 @@ get_header(); ?>
 		</div>
 	</div>
 </div>
-
+<?php
+		endwhile; // End of the loop.
+		?>
 <?php get_footer(); ?>
