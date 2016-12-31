@@ -9,7 +9,7 @@ var SiteMain = (function() {
 	}
 	
 	function createRadio(){
-		$('input.iCheckRadio').iCheck();
+		$(' input.iCheckRadio').iCheck();
 		$('input.iCheckBox').iCheck();
 	}
 	
@@ -134,9 +134,10 @@ var SiteMain = (function() {
 				        var yPos = top;
 				        ui.tooltip.css({ top: yPos, left: xPos + 25  }, "fast" );
 				    } else if (topbottom == top && leftright == left) {
-				    	console.log(4);
+				    	
 				        var yPos = top ;
-				        var xPos = left - (tooltipw - 25);
+				        var xPos = left - proW - (tooltipw/2);
+				        console.log(left- proW- tooltipw);
 				        ui.tooltip.css({ top: yPos, left: xPos - 50  }, "fast" );
 				    } else {}
 

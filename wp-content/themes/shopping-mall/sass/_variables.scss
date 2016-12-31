@@ -29,3 +29,22 @@ $colorBlack:#000;
 
 
 }
+
+.iradio {
+    display: inline-block;
+    vertical-align: middle;
+    width: 21px;
+    height: 20px;
+    margin: 0 3px 0 0;
+    padding: 0;
+    border: none;
+    background: url(../images/checkbox_radio_sprite.png) no-repeat -131px 0;
+    cursor: pointer;
+    position: relative;
+    top: -1px;
+    &.checked {
+        background-position: -109px 0;
+    }
+
+
+}

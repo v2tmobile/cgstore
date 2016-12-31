@@ -3721,7 +3721,7 @@ ul.list.list-inline li:first-child {
 .indicator.is-sticky {
   position: absolute;
   top: 5px;
-  right: -8px;
+  right: 8px;
 }
 
 .card {
