@@ -31,13 +31,19 @@ add_action('woocommerce_before_single_product', function () {
                     <div class="like-button-counter">225</div>
                 </div>
             </div>
+            <?php
+              $post_author_id = get_post_field( 'post_author', get_the_ID());
+
+             ?>
             <div class="product-header-author"><span>by</span>
                 <div class="author author-small">
-                    <a href="#" title="fisherman3d">
-                        <img alt="fisherman3d" class="avatar avatar-with-name author-avatar" src="https://assets.cgtrader.com/assets/avatar/small_avatar-04ef157a5b11c33ad48fe0d8dee962db9a781ddb0c5eed3c4023767c3bfa7827.png">
+                    <a href="<?php echo get_author_posts_url($post_author_id); ?>" title="<?php the_author_meta( 'user_nicename', $post_author_id );?>">
+                      <?php echo bp_displayed_user_avatar($post_author_id); ?>
                     </a>
                     <div class="author-name">
-                        <a class="js-author-link" href="#" itemprop="creator" title="fisherman3d">fisherman3d</a>
+                      
+                        <a class="js-author-link" href="<?php echo get_author_posts_url($post_author_id); ?>" itemprop="creator" title="<?php the_author_meta( 'user_nicename', $post_author_id );?>">
+                        <?php the_author_meta( 'user_nicename', $post_author_id );?></a>
                     </div>
                 </div>
             </div>
@@ -67,7 +73,7 @@ add_action('woocommerce_after_add_to_cart_button', function () {
         <span class="icon"></span>Offer your price
     </a>
     <?php
-       $buy_now = do_shortcode('[add_to_cart_url id="'.get_the_ID().'"]');
+       $buy_now = do_shortcode('[wc_quick_buy_link  label=" Quick Buy" qty="1" type="link"]');
      ?>
     <a class="btn buy-now" href="<?php echo $buy_now; ?>">Buy Now</a>
     <?php

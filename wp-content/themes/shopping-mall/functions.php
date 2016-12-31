@@ -10,6 +10,26 @@ include_once 'inc/add-scripts.php';
 include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
 
+ function current_user_has_avatar() {
+
+global $bp;
+
+if ( bp_core_fetch_avatar( array( 'item_id' => $bp->loggedin_user->id, 'no_grav' => true,'html'=> false ) ) != bp_core_avatar_default() )
+    return true;
+
+  return false;
+
+}
+
+add_filter( 'woocommerce_composited_product_quantity', 'wc_cp_show_zero_min_quantity', 10, 5 );
+function wc_cp_show_zero_min_quantity( $value, $min, $max, $product, $component_id ) {
+	if ( (int) $value === 1 && (int) $min === 0 ) {
+		$value = 1;
+	}
+	return $value;
+}
+
+
 if ( ! function_exists( 'shopping_mall_setup' ) ) :
 function shopping_mall_setup() {
 	/*
