@@ -48,7 +48,7 @@
 					<?php } ?>
 					
 				</div>
-				<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL; ?>/challenges/">View more challenges <i class="fa fa-chevron-right"></i> </a></p>
+				<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL; ?>/challenge/">View more challenges <i class="fa fa-chevron-right"></i> </a></p>
 			</div>
 </section>
 <?php } ?>
