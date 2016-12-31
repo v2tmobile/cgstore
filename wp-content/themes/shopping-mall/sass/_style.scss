@@ -675,3 +675,19 @@ input.input-text {
 		height: auto;
 	}
 }
+.select2-container .select2-choice{
+	border: none;
+}
+.select2-container {
+	border: 1px solid #ccc;
+	padding: 5px;
+
+}
+.select2-container .select2-choice .select2-arrow{
+	border-left: none;
+	background: transparent;
+}
+.select2-dropdown-open .select2-choice{
+	background: transparent;
+	box-shadow: none;
+}
