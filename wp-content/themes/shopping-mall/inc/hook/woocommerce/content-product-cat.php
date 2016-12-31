@@ -143,9 +143,9 @@ function add_subcat_for_product_cat(){
         </ul>
      <form class="woocommerce-ordering hasborder" method="get" id="woocommerce-filter">
             <div class="price-range aleft">
-              <input type="hidden" name="min_price" class="pricemin" value=""/>
-              <input type="hidden" name="max_price" class="pricemax" value=""/>
-              <span>Price</span><div id="rangePrice" data-min="0" data-max="5000"></div>
+              <input type="hidden" name="min_price" class="pricemin" value="<?php echo ($_GET['min_price']) ? $_GET['mix_price'] : 0;  ?>"/>
+              <input type="hidden" name="max_price" class="pricemax" value="<?php echo ($_GET['min_price']) ? $_GET['max_price'] : 5000;  ?>"/>
+              <span>Price</span><div id="rangePrice" data-min="<?php echo ($_GET['min_price']) ? $_GET['min_price'] : 0;  ?>" data-max="<?php echo ($_GET['max_price']) ? $_GET['max_price'] : 5000;  ?>"></div>
             </div>
             <div class="freeCk aleft">
               <label>

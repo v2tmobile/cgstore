@@ -6,7 +6,7 @@ function add_filter_search($query){
  if( $query->is_main_query() and
             ( is_shop() or is_product_category() or is_product_taxonomy() or is_product_tag() )
         ) {
- 	  $min_price = ($_GET['min_price']) ? $_GET['min_price'] : 0;
+ 	   $min_price = ($_GET['min_price']) ? $_GET['min_price'] : 0;
       $max_price = ($_GET['max_price']) ? $_GET['max_price'] : 0;
       $product_format = ($_GET['product_format']) ? $_GET['product_format']: '';
 
