@@ -1011,3 +1011,16 @@ section.content-section .tutorials .tutorial .tutorial-content .tutorials-title{
 	    right: 0;
 	}
 }
+section.content-section .challenges-list .challenge .challenge-content .challenge-inner {
+	.challenge-info{
+		background: transparent;
+		    padding-left: 0;
+		    .challenge-action{
+		    	top: 7px;
+		    }
+	}
+
+}
+section.content-section .challenges-list .challenge .challenge-content .challenge-inner .challenge-title{
+	min-height: 83px;
+}
