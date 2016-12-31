@@ -421,7 +421,9 @@ div.ui-tooltip {
 		    
 		tr{
 			border-bottom: 1px solid #ccc;
-
+			&:last-child{
+				border-bottom: none;
+			}
 			th{
 				font-weight: bold;
 				padding-bottom: 10px;
@@ -488,6 +490,7 @@ div.ui-tooltip {
 		    	a{
 		    		padding: 10px 20px;
 		    		    height: auto;
+		    		        font-size: 18px;
 		    		&:after{
 		    			font: normal normal normal 18px/1 FontAwesome;
 		    			content: "\f054";
@@ -847,5 +850,164 @@ section.content-section .tutorials .tutorial .tutorial-content .tutorials-title{
 	article.comment-body{
 		border-bottom: 1px solid #ccc;
 		padding-bottom: 20px;
+	}
+}
+
+.single-product{
+	form.product-pricing-actions{
+		.quantity{
+			input.qty{
+				display: none;
+			}
+		}
+	}
+}
+.details-box {
+    padding: 0 10px 10px;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+}
+.list-files{
+	h3{
+		display: block;
+    width: 100%;
+    margin: 0 10px 15px 0px;
+    padding-top: 0px;
+    color: #ce3c5c;
+    font-size: 1rem;
+    line-height: 24px;
+	}
+	ul{
+		li{
+			span{
+				float: right;
+			}
+		}
+	}
+}
+.woocommerce-Reviews.comments{
+	article.comment{
+		.comment-author{
+			margin-right: 10px;
+
+		}
+		strong{
+			font-weight: bold;
+		}
+	}
+}
+.product-container .product-main .product-tabs .tabs-container .tab-pane .details-box .comments .comment .comment-author{
+	margin-top: 0;
+}
+.content-heading{
+	h2.content-heading__title{
+		font-weight: bold;
+	}
+}
+.heading {
+    display: block;
+    margin: 0 0 20px 0;
+    padding-left: 25px;
+    background: url(../images/hexagon_small.png) no-repeat 0 3px;
+    font-size: 1.5rem;
+    line-height: 24px;
+    color: #131518;
+    font-weight: 300;
+}
+.challenges-list{
+	margin-bottom: 35px;
+	.challenge__image{
+		img{
+			width: 100%;
+		}
+	}
+	.challenge {
+    
+	    display: block;
+	    border-radius: 3px;
+	    background: white;
+	    position: relative;
+	}
+	.challenge .challenge__inner {
+	    padding: 20px 20px;
+	}
+	.challenge__title {
+	    font-size: 1.6875rem;
+	    margin: 0 0 15px 0;
+	    line-height: 30px;
+	    color: #131518;
+	    font-weight: 300;
+	    display: inline-block;
+	}
+	.challenge__title a {
+	    color: #131518;
+	    display: block;
+	    width: 100%;
+	    text-decoration: none;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	}
+	.challenge__title a {
+	    top: 360px;
+	    left: 20px;
+	}
+	.challenge__title a>span {
+	    display: block;
+	    width: 100%;
+	    top: 185px;
+	    left: 20px;
+	}
+	.challenge__title a span {
+	    position: static;
+	}
+	.challenge__description {
+	    font-size: 1rem;
+	    height: auto;
+	    margin-top: 25px;
+	    margin-bottom: 35px;
+	    line-height: 26px;
+	    color: #6d6d6d;
+	    overflow: hidden;
+	}
+	.challenge__info {
+	    margin-bottom: 20px;
+	    position: relative;
+	}
+	.challenge__deadline {
+	    display: block;
+	    width: 100%;
+	    position: relative;
+	}
+	.challenge__deadline span {
+	    display: inline-block;
+	    padding-right: 10px;
+	    background: white;
+	    position: relative;
+	    z-index: 1;
+	    b{
+	    	font-weight: bold;
+	    }
+	}
+	.challenge__deadline:after {
+	    height: 2px;
+	    display: block;
+	    width: 100%;
+	    background: #eae8e1;
+	    position: absolute;
+	    top: 50%;
+	    left: 0;
+	    content: " ";
+	}
+	.challenge__action {
+	    display: block;
+	    padding-left: 10px;
+	    background: white;
+	    position: absolute;
+	    top: -25%;
+	    right: 0;
 	}
 }

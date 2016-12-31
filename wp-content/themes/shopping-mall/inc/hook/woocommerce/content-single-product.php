@@ -82,7 +82,7 @@ add_action('woocommerce_share', function () {
     $featured_image_2 = $featured_image['0'];
     $post_title = rawurlencode(get_the_title($post->ID));
    ?>
-   <div class="list-files">
+   <div class="list-files details-box">
        <h3>Available formats</h3>
        <?php 
          $downloads= $product->get_files();
