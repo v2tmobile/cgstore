@@ -507,6 +507,7 @@ div.ui-tooltip {
 		border: 1px solid #e4e1d8;
 		.select2-choice{
 			border: none;
+			background: transparent;
 		}
 	}
 	.woocommerce-info{
@@ -580,6 +581,9 @@ div.ui-tooltip {
 	h3#order_review_heading{
 		font-weight: bold;
 		padding: 20px 0;
+		    font-weight: bold;
+    padding: 20px 0;
+    font-size: 30px;
 	}
 	.woocommerce-checkout-review-order{
 		background: #fff;
@@ -609,7 +613,9 @@ div.ui-tooltip {
 	}
 	.wc_payment_methods.payment_methods{
 		padding-bottom: 45px;
-
+		li{
+			padding-bottom: 25px;
+		}
 	}
 	.cart-subtotal{
 		.woocommerce-Price-amount {
@@ -1075,5 +1081,62 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 .breadcrumb-wrapper{
 	.container{
 		padding-left: 0;
+	}
+}
+
+.woocommerce-error{
+	li{
+		color: red;
+	}
+}
+
+.woocommerce-order-received{
+	.entry-content{
+		background: #fff;
+		padding: 20px;
+		.woocommerce-thankyou-order-received{
+			font-size: 30px;
+		}
+		.woocommerce-thankyou-order-details{
+			li{
+				font-size: 16px;
+			}
+		}
+		h2{
+			font-size: 20px;
+			font-weight: bold;
+			padding-bottom: 20px;
+		}
+		table.order_details{
+			tr{
+				border-bottom: 1px solid #ccc;
+
+				th{
+					text-align: left;
+					vertical-align: middle;
+				}
+				td{
+					span.woocommerce-Price-amount{
+						font-weight: bold;
+						font-size: 20px;
+					}
+					&.product-total{
+						font-weight: bold;
+						span{
+							font-size: 16px;
+						}
+					}
+					
+				}
+			}
+		}
+		table.customer_details{
+			tr{
+				th{
+					text-align: left;
+					vertical-align: middle;
+				}
+			}
+		}
 	}
 }
