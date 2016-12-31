@@ -691,3 +691,161 @@ input.input-text {
 	background: transparent;
 	box-shadow: none;
 }
+section.content-section .tutorials .tutorial .tutorial-content .tutorials-title{
+	line-height: 46px;
+}
+.challenge-header{
+	img{
+		width: 100%;
+	}
+}
+.challenge-content {
+    display: block;
+    background: white;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1142px;
+}
+.challenge-content__title {
+    font-size: 2.5rem;
+    margin: 20px 0 30px;
+    line-height: 44px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+.challenge-content__description {
+    font-size: 1.25rem;
+    clear: both;
+    line-height: 30px;
+    -webkit-font-smoothing: antialiased;
+    p{
+	    font-size: 1.25rem;
+	    clear: both;
+	    line-height: 30px;
+    }
+}
+.challenge-content__subtitle {
+    font-size: 1.625rem;
+    margin-bottom: 20px;
+    line-height: 30px;
+    -webkit-font-smoothing: antialiased;
+}
+.challenge-info {
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #fbfaf9;
+}
+.challenge-info__action {
+    float: left;
+}
+.button--material {
+    min-width: 88px;
+    height: 36px;
+    padding: 0 16px;
+    margin: 6px 4px;
+    line-height: 36px;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.24);
+}
+.challenge-info__countdown {
+    padding-top: 4px;
+    float: left; 
+}
+.countdown__block {
+    display: inline-block;
+    width: 45px;
+    padding: 8px;
+    border-right: 1px solid #eae8e1;
+    text-align: center;
+    font-weight: bold;
+}
+.challenge-info__deadline {
+    margin-left: 10px;
+    float: left;
+    line-height: 46px;
+    b{
+    	font-weight: bold;
+    }
+}
+.challenge__share {
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+.challenge__share span {
+    font-size: 1.125rem;
+    font-weight: 800;
+    margin-right: 10px;
+}
+.challenge__share .list.list-inline {
+    display: inline-block;
+    li{
+    	padding-right: 0px;
+    }
+}
+
+.comment-reply-title{
+	font-weight: bold;
+}
+.comment-form-comment{
+	label{
+		display: block;
+	}
+	textarea{
+		width: 60%;
+		    		padding: 5px;
+		    		border: 1px solid #e4e1d8;
+		    		    display: block;
+    				margin-top: 7px;
+    				font-size: 14px;
+    				min-height: 150px;
+	}
+}
+.form-submit{
+	input[type="submit"]{
+		min-width: 88px;
+	    height: 36px;
+	    padding: 0 16px;
+	    margin: 6px 4px;
+	    line-height: 36px;
+	    font-size: 0.875rem;
+	    background: #27a885;
+	    text-transform: uppercase;
+	    box-shadow: 0 1px 4px rgba(0,0,0,0.24);
+	    color: #fff;
+	}
+}
+.yourcomment{
+	h3{
+		font-weight: bold;
+		font-size: 18px;
+		padding-bottom: 15px;
+	}
+}
+.comments-area{
+	.comments-title{
+		font-size: 20px;
+	}
+	.comment-list{
+		li{
+			padding: 20px 0;
+			.comment-author.vcard{
+				img{
+					float: left;
+				margin-right: 10px;
+				}
+			}
+			.comment-content{
+				font-size: 16px;
+			}
+		}
+	}
+	.children{
+		padding-left: 30px;
+	}
+	article.comment-body{
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 20px;
+	}
+}
