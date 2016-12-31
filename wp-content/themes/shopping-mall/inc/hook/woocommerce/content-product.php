@@ -51,7 +51,18 @@ add_action('woocommerce_before_shop_loop_item_title', function (){
                                     </button>
                                 </div>
                             </div>
-          <div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
+    <?php
+        $downloads= $product->get_files();
+        $ext = [];
+        if($downloads){
+             foreach ($downloads as $download) {
+                  $info  = pathinfo($download["file"]);
+                  $ext[]  = $info['extension'];
+             }
+        }
+
+     ?>
+     <div class="content-box-file-extensions"><?php echo implode(', ',$ext);?></div>
      </div>
     </div>
     <?php

@@ -85,16 +85,23 @@ function add_subcat_for_product_cat(){
        global $wp_query;
 
         if ( 1 === $wp_query->found_posts || ! woocommerce_products_will_display() ) {
+         $tag_tax = 'product_tag';
+         $tags = get_terms( $tag_tax, 'orderby=count&hide_empty=0&number=5' );
+          $tag_html = '';
+          if($tags){
+             foreach ($tags as $tag) {
+               $link  = get_term_link($tag);
+               $tag_html .='<a href="'.$link.'" title="'.$tag->name.'">'.$tag->name.'</a>';
+             }
+          }
 
-           $html = '
+           $html = ($tag_html) ? '
            <div class="box-tags">
                <h4>POPULAR TAGS</h4>
              <div class="prodcut_tags">
-                  <a href="#">Tag 1</a>
-                  <a href="#">Tag 2</a>
-                  <a href="#">Tag 3</a>
+                 '.$tag_html.'
              </div>
-           </div>';
+           </div>' : '';
           echo $html;
            
         }else{

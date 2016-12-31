@@ -10,37 +10,6 @@
 				 <?php
 	                echo do_shortcode('[recent_products per_page="8" columns="4"]');
 				  ?>
-					
-					<!--<div class="product-grid-item">
-						<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
-							<input type="hidden" class="tooltip-data" value= '["<?php echo TEMPLATE_PATH ?>/images/orson-1.jpg", "<?php echo TEMPLATE_PATH ?>/images/orson-2.jpg" ]'>
-							<div class="content-box-content">
-								<a class="content-box-link" href="#" title="VR / AR / lowpoly GATEway Project driverless bus 3D Model">
-									<figure class="content-box-image">
-										<img alt="" src="https://img-new.cgtrader.com/items/669155/e19f74fccf/grid/ra-2-rail-bus-3d-model-low-poly-max-obj-3ds.jpg">
-										<figcaption class="content-box-title">GATEway Project driverless bus traffic</figcaption>
-									</figure>
-									
-								</a>
-								<div class="content-box-price">$165.00</div>
-							</div>
-							<div class="content-box-controls">
-								<div class="content-box-control">
-									<button class="action prev">
-										<i class="fa fa-chevron-left fa-lg"></i>
-									</button>
-								</div>
-								<div class="content-box-control">
-									<button class="action next">
-										<i class="fa fa-chevron-right fa-lg"></i>
-									</button>
-								</div>
-							</div>
-							<div class="content-box-file-extensions">max, obj, fbx, 3ds</div>
-						</div>
-					</div> -->
-					
-					
 				</div>
 				<div class="link-promo">
 					<a href="#">CGStore community rating system</a>
@@ -104,64 +73,8 @@
 				<div class="link-promo"><a href="#">Learn more about royalty system and levels</a></div>
 			</div>
 		</section>
-		<section class="content-section">
-			<div class="container">
-				<header class="content-heading">
-					<h2 class="content-heading-title">Challenges</h2>
-					<p class="content-heading-subtitle">Choose any ongoing challenge and take part to win</p>
-				</header>
-				<div class="challenges-list">
-					<div class="challenge">
-						<div class="challenge-content">
-							<div class="challenge-image">
-								<a href="#">
-									<img alt="CG Furniture-set Challenge" src="https://img1.cgtrader.com/challenges/grid_e07bcee0-50aa-4630-9b35-8c6d717761ec.png">
-								</a>
-							</div>
-							<div class="challenge-inner">
-								<h3 class="challenge-title">
-									<a href="#"><span>CG Furniture-set Challenge</span></a>
-								</h3>
-								<div class="challenge-description">We're back with a new furniture-set challenge. ​Just when you thought you couldn't chair less...​Yes, that's right. Never did we have a contest like this - and that is exactly why we're doing it! Time to get of your couch and start modelling a full set of them. We're giving a little more than full two months to come up with a furniture set of your (or someone else's) dreams. 5 quality winners will be awarded after the competition, and we have a record number of sponsors to increase your set of available 3D tools. ​Choose your sort of side - whether it's dining room, kitchen, office  or bathroom - quality works will be appreciated and rated at the end of the competition. Think you can be crowned a king of furniture sets?</div>
-								<div class="challenge-info">
-									<div class="challenge-deadline">
-										<span>Ends in: <b>13 days</b></span>
-									</div>
-									<div class="challenge-action">
-										<button class="button">Join Challenge</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="challenge">
-						<div class="challenge-content">
-							<div class="challenge-image">
-								<a href="#">
-									<img alt="Low Poly Challenge - Vehicles From The Future" src="https://img1.cgtrader.com/challenges/grid_d762f74e-cb5d-4753-9e9e-ccc0383bce40.png">
-								</a>
-							</div>
-							<div class="challenge-inner">
-								<h3 class="challenge-title">
-									<a href="#">
-										<span>Low Poly Challenge - Vehicles From The Future</span>
-									</a>
-								</h3>
-								<div class="challenge-description">All of us have a car that we've dreamed of from an early childhood. Well, at least most of us do! And although the "flying car"​ concept looks out of question, there will still be many, many designs that we're going to love. But why not make a concept or two ourselves? 3D Modeling is a perfect solution for that. Keep in mind, this is a vehicle challenge, which means you're free to make cars, motorcycles, tanks, buses, trucks, trains or whatever - just make sure it actually looks like it can do whatever it is vehicles usually do. The concept of future belongs to you here - whether it's an apocalypse-themed, heavily armored Truck, or a glow-in-the-dark motorcycle with three wheels - it counts as an entry - as long as it is original, it works for us. It will be a Low Poly challenge - so the 50,000 polygon is a limit. ​Time to show us what the future will look like! </div>
-								<div class="challenge-info">
-									<div class="challenge-deadline">
-										<span>Ends in: <b>about 2 months</b></span>
-									</div><div class="challenge-action">
-										<button class="button">Join Challenge</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<p class="u-text-right"><a class="button button-forward" href="#">View more challenges <i class="fa fa-chevron-right"></i> </a></p>
-			</div>
-		</section>
+		<?php echo get_template_part('challenge/index'); ?>
+		
 		<section class="content-section light">
 			<div class="container">
 				<header class="content-heading">

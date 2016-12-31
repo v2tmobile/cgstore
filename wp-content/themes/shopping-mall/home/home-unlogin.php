@@ -4,7 +4,7 @@
       <div class="section__content">
          <div class="section__text">
             <h3 class="title">Low Poly 3D Models ready for video games, VR &amp; AR real-time applications</h3>
-            <a class="button button--big button--full button--big-text" href="<?php echo bloginfo('home')?>/product-category/vr-low-poly-models/" >Low poly 3D models</a>
+            <a class="button button--big button--full button--big-text" href="<?php echo HOME_URL; ?>/product-category/vr-low-poly-models/" >Low poly 3D models</a>
          </div>
       </div>
    </div>
@@ -16,7 +16,7 @@
       <div class="section__content">
          <div class="section__text">
             <h3 class="title">Buy professional 3D Models for your project</h3>
-            <a class="button button--big button--full button--big-text" href="<?php echo bloginfo('home')?>/product-category/3d-models/" id="46ff685891ca1cb2674cbaa12c238c5f">Buy 3D models</a>
+            <a class="button button--big button--full button--big-text" href="<?php echo HOME_URL; ?>/product-category/3d-models/" id="">Buy 3D models</a>
          </div>
       </div>
    </div>
@@ -34,7 +34,7 @@
             </div>
          </div>
       </div>
-      <p><a class="button button--big button--big-text button--longer" href="<?php echo bloginfo('home')?>/jobs/">Post or find 3D jobs</a></p>
+      <p><a class="button button--big button--big-text button--longer" href="<?php echo HOME_URL; ?>/jobs/">Post or find 3D jobs</a></p>
    </div>
 </div>
 <div class="section section--community">
@@ -60,6 +60,6 @@
             </div>
          </div>
       </div>
-      <p><a class="button button--big button--big-text button--longer" href="<?php echo bloginfo('home')?>/3d-community" id="eae20b6f120267b2675a8f586425f8cf">Join the Community!</a></p>
+      <p><a class="button button--big button--big-text button--longer" href="<?php echo HOME_URL; ?>/3d-community/" id="">Join the Community!</a></p>
    </div>
 </div>
