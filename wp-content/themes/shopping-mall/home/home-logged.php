@@ -76,21 +76,8 @@
 		<?php echo get_template_part('challenge/index'); ?>
 		
 		<?php echo get_template_part('tutorial/index'); ?>
-		<section class="content-section">
-			<div class="container">
-				<header class="content-heading">
-					<h2 class="content-heading-title">3D Modelling Jobs</h2>
-					<p class="content-heading-subtitle">Browse job offers below and make a 3D model for someone else!.</p>
-				</header>
-				<div class="jobs-list">
-					<div class="job"><h3 class="job-title"><a href="#">3D design for Yamaha MT-07 bike engine</a></h3><div class="job-deadline">Valid until: <b>2017-01-07</b></div></div>
-					<div class="job"><h3 class="job-title"><a href="#">Neighborhood 3D Model </a></h3><div class="job-deadline">Valid until: <b>2017-01-05</b></div></div>
-					<div class="job"><h3 class="job-title"><a href="#">anillo de jeep</a></h3><div class="job-deadline">Valid until: <b>2016-12-13</b></div></div>
-					<div class="job"><h3 class="job-title"><a href="#">3D Low poly Cartoon character</a></h3><div class="job-deadline">Valid until: <b>2016-12-19</b></div></div>
-					<div class="job"><h3 class="job-title"><a href="#">Ferrari 312 PB</a></h3><div class="job-deadline">Valid until: <b>2016-12-20</b></div></div></div>
-				<p class="u-text-right"><a class="button button-forward" href="#">Find jobs <i class="fa fa-chevron-right"></i> </a></p>
-			</div>
-		</section>
+		
+		<?php echo get_template_part('job/index'); ?>
 		<section class="content-section light">
 			<div class="container">
 				<header class="content-heading">
