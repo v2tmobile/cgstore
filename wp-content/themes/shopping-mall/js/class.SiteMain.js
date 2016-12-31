@@ -11,6 +11,11 @@ var SiteMain = (function() {
 	function createRadio(){
 		$('.jobs-form__category input[type="radio"], .jobs-form__offer input[type="radio"], input.iCheckRadio').iCheck();
 		$('input.iCheckBox').iCheck();
+
+		$('input.iCheckBox').on('ifChanged', function (event) { 
+			//$(event.target).trigger('change'); 
+			$("#woocommerce-filter").submit();
+		});
 	}
 	
 	function createSelectBox(){
