@@ -68,7 +68,7 @@
 						</ul>
 					<?php } else { ?>
 						<ul class="sign-box">
-						   <li class="notification-item js-cart-trigger"><a class="has-indicator" href="#"><i class="fa fa-shopping-cart fa-24"></i><span class="cart-indicator indicator is-sticky"><?php echo $cart_total; ?></span></a>
+						   <li class="notification-item js-cart-trigger"><a class="has-indicator" id="linkCartPopup" href="#"><i class="fa fa-shopping-cart fa-24"></i><span class="cart-indicator indicator is-sticky"><?php echo $cart_total; ?></span></a>
                              <?php echo get_template_part('list-cart/list-cart'); ?>
 						   </li>
 						   <li class="notification-item is-flexible"><a class="site-notification-nav__link" href="<?php HOME_URL;?>/login/" ><i class="fa fa-user fa-24"></i> Sign in</a></li>

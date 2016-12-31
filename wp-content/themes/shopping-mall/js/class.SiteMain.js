@@ -9,7 +9,7 @@ var SiteMain = (function() {
 	}
 	
 	function createRadio(){
-		$('input.iCheckRadio').iCheck();
+		$(' input.iCheckRadio').iCheck();
 		$('input.iCheckBox').iCheck();
 	}
 	
