@@ -6,6 +6,7 @@ var SiteMain = (function() {
 		createSelectBox();
 		createRangePrice();
 		openCartPopup();
+		openRegister();
 	}
 	
 	function createRadio(){
@@ -168,8 +169,16 @@ var SiteMain = (function() {
 		
 	}
 
+	function openRegister(){
+		$('a#create-account').on('click', function(){
+			openPopup('.register-popup');
+		});
+		$('a.close').on('click', function(){
+			closePopup('.register-popup');
+		});
+	}
 	function openPopup(idDiv){
-		$('.popover-box').css('display','none')
+		$('.popover-box, .register-popup').css('display','none')
 		$(idDiv).css('display','block');	
 	}
 	function closePopup(idDiv){

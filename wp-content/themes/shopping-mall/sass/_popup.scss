@@ -1,0 +1,60 @@
+.register-popup{
+	display: none;
+	position: fixed;
+		left: 0;
+		width: 100%;
+		top: 0;
+		height: 100%;
+		    z-index: 100;
+	.overlay{
+		background: #000;
+		opacity: 0.7;
+		position: fixed;
+		left: 0;
+		width: 100%;
+		top: 0;
+		height: 100%;
+	}
+	.register-content{
+		    width: 60%;
+		    position: relative;
+		    margin: 0 auto;
+		    background: #fff;
+		    padding: 20px;
+		    margin-top: -210px;
+    top: 50%;
+		    border-radius: 10px;
+		    h2{
+			    font-weight: bold;
+			    font-size: 24px;
+			    padding-bottom: 15px;
+		    }
+		    p{
+		    	label{
+		    		display: block;
+		    		padding-bottom: 5px;
+		    	}
+		    }
+		    .form-row{
+		    	input[name="apply_for_vendor"]{
+		    		    float: left;
+				    margin-right: 10px;
+				    position: relative;
+				    top: 3px;
+		    	}
+		    }
+		    input[type="submit"]{
+		    	margin-top: 20px;
+		    }
+		    .woocommerce-password-strength{
+		    	padding-top: 10px;
+		    }
+		    .close{
+				font-size: 27px;
+			    font-weight: bold;
+			    position: absolute;
+			    right: 19px;
+			    top: 13px;
+			}
+	}
+}
