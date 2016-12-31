@@ -19,7 +19,7 @@ remove_action('woocommerce_sidebar','woocommerce_get_sidebar',10);
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 
-add_action('wc_cpdf_init', 'prefix_custom_product_data_tab_init', 10, 0);
+//add_action('wc_cpdf_init', 'prefix_custom_product_data_tab_init', 10, 0);
 
 if(!function_exists('prefix_custom_product_data_tab_init')) :
 

@@ -53,7 +53,7 @@
 							<li class="notification-item">
 								<a class="has-indicator" href="#">
 									<i class="fa fa-bell fa-24"></i>
-									<span class="cart-indicator indicator is-sticky ">1</span>
+									<span class="cart-indicator indicator is-sticky ">0</span>
 								</a>
 							</li>
 							<li class="notification-item">
@@ -71,7 +71,7 @@
 						   <li class="notification-item js-cart-trigger"><a class="has-indicator" id="linkCartPopup" href="#"><i class="fa fa-shopping-cart fa-24"></i><span class="cart-indicator indicator is-sticky"><?php echo $cart_total; ?></span></a>
                              <?php echo get_template_part('list-cart/list-cart'); ?>
 						   </li>
-						   <li class="notification-item is-flexible"><a class="site-notification-nav__link" href="<?php HOME_URL;?>/login/" ><i class="fa fa-user fa-24"></i> Sign in</a></li>
+						   <li class="notification-item is-flexible"><a class="site-notification-nav__link" href="<?php echo HOME_URL;?>/login/" ><i class="fa fa-user fa-24"></i> Sign in</a></li>
 						</ul>
 					<?php }?>
 				</div>
@@ -80,6 +80,7 @@
 			
 		</header>
 	</div>
+ <?php if( !is_account_page()) {?>
 	<div class="header-search <?php if( is_user_logged_in() ) echo 'header-login';?>">
 			<div class="header-content ">
 				<?php if( !is_user_logged_in() ) {?>
@@ -103,4 +104,5 @@
 				</div>
 			</div>
 		</div>
+	<?php } ?>
 	<div class="main">

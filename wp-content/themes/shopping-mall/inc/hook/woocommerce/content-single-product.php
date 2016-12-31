@@ -31,13 +31,19 @@ add_action('woocommerce_before_single_product', function () {
                     <div class="like-button-counter">225</div>
                 </div>
             </div>
+            <?php
+              $post_author_id = get_post_field( 'post_author', get_the_ID());
+
+             ?>
             <div class="product-header-author"><span>by</span>
                 <div class="author author-small">
-                    <a href="#" title="fisherman3d">
-                        <img alt="fisherman3d" class="avatar avatar-with-name author-avatar" src="https://assets.cgtrader.com/assets/avatar/small_avatar-04ef157a5b11c33ad48fe0d8dee962db9a781ddb0c5eed3c4023767c3bfa7827.png">
+                    <a href="<?php echo get_author_posts_url($post_author_id); ?>" title="<?php the_author_meta( 'user_nicename', $post_author_id );?>">
+                      <?php echo bp_displayed_user_avatar($post_author_id); ?>
                     </a>
                     <div class="author-name">
-                        <a class="js-author-link" href="#" itemprop="creator" title="fisherman3d">fisherman3d</a>
+                      
+                        <a class="js-author-link" href="<?php echo get_author_posts_url($post_author_id); ?>" itemprop="creator" title="<?php the_author_meta( 'user_nicename', $post_author_id );?>">
+                        <?php the_author_meta( 'user_nicename', $post_author_id );?></a>
                     </div>
                 </div>
             </div>
@@ -67,7 +73,7 @@ add_action('woocommerce_after_add_to_cart_button', function () {
         <span class="icon"></span>Offer your price
     </a>
     <?php
-       $buy_now = do_shortcode('[add_to_cart_url id="'.get_the_ID().'"]');
+       $buy_now = do_shortcode('[wc_quick_buy_link  label=" Quick Buy" qty="1" type="link"]');
      ?>
     <a class="btn buy-now" href="<?php echo $buy_now; ?>">Buy Now</a>
     <?php
@@ -138,21 +144,33 @@ add_action('woocommerce_share', function () {
 add_action('woocommerce_single_product_summary', function (){
     global $product;
     global $wc_cpdf;
+    $id = $product->get_id();
+
     ?>
     <div class="details-box card has-padding">
         <div class="details-box-title">More Details</div>
         <ul class="details-box-list">
-            <li>Animated <span class="val-negative"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_animated'); ?></span></li>
-            <li>Rigged <span class="val-positive"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_rigged'); ?></span></li>
-            <li>VR / AR / Low-poly <span class="val-negative"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_low_poly'); ?></span></li>
-            <li>Geometry <span class=""><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_geometry'); ?></span></li>
-            <li>Polygons <span class=""><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_polygons'); ?></span></li>
-            <li>Vertices <span class=""><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_vertices'); ?></span></li>
-            <li>Textures <span class="val-positive"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_textures'); ?></span></li>
-            <li>Materials <span class="val-positive"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_materials'); ?></span></li>
-            <li>UV Mapping <span class="val-positive"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_uvw_mapping'); ?></span></li>
-            <li>Collection <span><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_collection'); ?></span></li>
-            <li>Plugins used <span class="val-negative"><?php echo $wc_cpdf->get_value($product->get_id(), '_shopping_mall_plugins_used'); ?></span></li>
+            <li>Animated <span class="val-negative">
+            <?php echo get_field('_shopping_mall_animated',$id); ?></span></li>
+            <li>Rigged <span class="val-positive">
+            <?php echo get_field('_shopping_mall_rigged',$id); ?></span></li>
+            <li>VR / AR / Low-poly <span class="val-negative">
+            <?php echo get_field('_shopping_mall_low_poly',$id); ?></span></li>
+            <li>Geometry <span class="">
+            <?php echo get_field('_shopping_mall_geometry',$id); ?></span></li>
+            <li>Polygons <span class="">
+            <?php echo get_field('_shopping_mall_polygons',$id); ?></span></li>
+            <li>Vertices <span class="">
+            <?php echo get_field('_shopping_mall_vertices',$id); ?></span></li>
+            <li>Textures <span class="val-positive">
+            <?php echo get_field('_shopping_mall_textures',$id); ?></span></li>
+            <li>Materials <span class="val-positive">
+            <?php echo get_field('_shopping_mall_materials',$id); ?></span></li>
+            <li>UV Mapping <span class="val-positive">
+            <?php echo get_field('_shopping_mall_uvw_mapping',$id); ?></span></li>
+            <li>Collection <span><?php echo get_field('_shopping_mall_collection',$id); ?></span></li>
+            <li>Plugins used <span class="val-negative">
+            <?php echo get_field('_shopping_mall_plugins_used',$id); ?></span></li>
         </ul>
     </div>
 <?php
