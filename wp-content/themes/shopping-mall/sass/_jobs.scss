@@ -38,9 +38,7 @@
 	.checkbox {
 		float: left;
 	}
-	span{
-		float: right;
-	}
+
 	.jobs__content {
 	    width: 74.78109%;
 	    float: right;
@@ -394,3 +392,100 @@
 	    margin-top: 10px;
 	}
 
+	.jobs-header .button {
+	    width: 160px;
+	    height: 40px;
+	    padding: 3px;
+	    font-size: 20px;
+	    margin-top: -7px;
+	}
+	.jobs-form__block--left {
+	    width: 68.47636%;
+	    float: left;
+	    margin-right: 0.87566%;
+	}
+	.jobs-form__content-title {
+	    font-weight: 300;
+	    color: #212121;
+	    font-size: 24px;
+	}
+	.jobs-form__label:before {
+	    display: inline-block;
+	    margin-right: 5px;
+	    width: 11px;
+	    height: 12px;
+	    background: url(../images/hexagon_tiny.png) no-repeat;
+	    position: relative;
+	    top: 0;
+	    right: 0;
+	    content: ' ';
+	}
+	.jobs-form__label {
+	    display: block;
+	    padding-bottom: 8px;
+	    color: #131518;
+	        
+	}
+	.jobs-form__category-block{
+		label{
+			font-weight: bold;
+    font-size: 18px;
+		}
+	}
+	.jobs-form__block--left .input-container{
+		padding-bottom: 12px;
+	}
+	.jobs-form__block--half {
+	    width: 49.56217%;
+	    float: left;
+	    margin-right: 0.87566%;
+	}
+	.jobs-form__block--half.is-last {
+	    width: 49.56217%;
+	    float: right;
+	    margin-right: 0;
+	}
+	.jobs-form__list-title {
+	        display: block;
+	    padding: 10px;
+	    float: left;
+	    background: #efefef;
+	    width: 100%;
+	}
+	.jobs-form__offer {
+	    clear: both;
+	    width: 100%;
+	}
+	.jobs-form__deadline {
+	    width: 24.34326%;
+	    float: left;
+	    margin-right: 0.87566%;
+	}
+	.deadline_line {
+	    margin: 19px 0px;
+	    width: 100%;
+	    border-bottom: 1px solid #d5d1c3;
+	}
+	.jobs-offer__visibility {
+	    margin-left: 12.60946%;
+	    width: 62.17163%;
+	    float: right;
+	    margin-right: 0;
+	    float: left;
+	}
+	.jobs-form__offer-item {
+	    display: inline-block;
+	    float: left;
+	    margin-right: 40px;
+	    label{
+	    	    font-size: 18px;
+	    	font-weight: bold;
+	    }
+	}
+	.jobs-offer__visibility small {
+	    display: block;
+	    font-weight: normal;
+	}
+	.jobs-offer__budget--small-col{
+		padding-top: 20px;
+	}
