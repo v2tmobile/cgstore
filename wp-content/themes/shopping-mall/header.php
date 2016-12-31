@@ -53,7 +53,7 @@
 							<li class="notification-item">
 								<a class="has-indicator" href="#">
 									<i class="fa fa-bell fa-24"></i>
-									<span class="cart-indicator indicator is-sticky ">1</span>
+									<span class="cart-indicator indicator is-sticky ">0</span>
 								</a>
 							</li>
 							<li class="notification-item">
