@@ -128,19 +128,7 @@ function add_subcat_for_product_cat(){
         </ul>
         </div>
      <div class="filter-block">
-             <ul class="cat-list-filter">
-              <?php
-                  wp_list_categories( array(
-                  'orderby'    => 'name',
-                  'show_count' => true,
-                  'child_of'    =>$curent_term_id,
-                  'taxonomy'=>'product_cat',
-                  'hide_empty'=>false,
-                  'title_li'=>'',
-                  'show_option_none'=>''
-               ) ); 
-              ?> 
-        </ul>
+            
      <form class="woocommerce-ordering hasborder" method="get" id="woocommerce-filter">
             <div class="price-range aleft">
               <input type="hidden" name="min_price" class="pricemin" value="<?php echo ($_GET['min_price']) ? $_GET['mix_price'] : 0;  ?>"/>
@@ -149,34 +137,39 @@ function add_subcat_for_product_cat(){
             </div>
             <div class="freeCk aleft">
               <label>
-                <input type="checkbox" value="1" name="free" class="iCheckBox"/>
+                <input type="checkbox" <?php echo ($_GET['product_free']) ? 'checked' : ''; ?> value="1" name="product_free" class="iCheckBox"/>
                 <span>Free</span>
               </label>
             </div>
             <div class="filterSelect aleft">
-              <select name="product_format">
-                <option value="">Formats</option>
-                <option value="3D-Studio-Max">3D Studio Max</option>
-                <option value="Auto-Desk">Auto Desk</option>
-                <option value="Blender">Blender</option>
-              </select>
+             <?php 
+                 $tax_format = 'product_format';
+                 $tax_formats = get_terms( $tax_format, 'orderby=title&hide_empty=0');
+                 if($tax_formats){
+                    echo '<select name="product_format"><option value="">Formats</option>';
+                    $selected = '';
+                    foreach ($tax_formats as $format) {
+                        if($_GET['product_format']){
+                           $selected = ($_GET['product_format'] == $format->slug) ? 'selected': '';  
+                        }
+                        echo '<option value="'.$format->slug.'"'.$selected.'>'.$format->name.'</option>';
+                    }
+
+                    echo '</select>';
+                 }
+             ?>
+              
             </div>
             <div class="filterSelect aleft">
-              <select name="poly" >
+              <select name="product_poly" >
                 <option value="">Poly Count</option>
-                <option value="0-5">Up to 5k</option>
-                <option value="5-10">5K to 10k</option>
-                <option value="10k-50k">10k to 50k</option>
+                <option value="0-50000" <?php echo ($_GET['product_poly'] =='0-50000') ? 'selected' : ''; ?>>Up to 5k</option>
+                <option value="50000-100000" <?php echo ($_GET['product_poly'] =='50000-100000') ? 'selected' : ''; ?>>5K to 10k</option>
+                <option value="10000-50000" <?php echo ($_GET['product_poly'] =='10000-50000') ? 'selected' : ''; ?>>10k to 50k</option>
               </select>
             </div>       
             <div class="filterSelect aright sort-by">
-              <select name="orderby" >
-                <option value="menu_order" selected="selected">Default sorting</option>
-                <option value="popularity">Sort by popularity</option>
-                <option value="date">Sort by newness</option>
-                <option value="price">Sort by price: low to high</option>
-                <option value="price-desc">Sort by price: high to low</option>
-              </select>
+              <?php echo woocommerce_catalog_ordering(); ?>
             </div> 
            <div class="clear"></div>
 
