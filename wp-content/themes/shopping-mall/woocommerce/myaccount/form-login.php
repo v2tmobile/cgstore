@@ -50,7 +50,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<label for="password"><?php _e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label>
 							<input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" />
 						</p>
-
+						<div class="form-row">
+							<script src='https://www.google.com/recaptcha/api.js'></script>
+                          	<div class="g-recaptcha" data-sitekey="6LdHvQ8UAAAAAEDL16kUGT1ZsFDxhY8FCxEfkn01"></div>
+						</div>
 						<?php do_action( 'woocommerce_login_form' ); ?>
 
 						<p class="form-row">
@@ -60,10 +63,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<input class="woocommerce-Input woocommerce-Input--checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'woocommerce' ); ?>
 							</label>
 						</p>
-						<p class="woocommerce-LostPassword lost_password">
-							<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
-						</p>
 
+						<div class="u-text-center"><a class="button button--compact button--facebook" href="/users/auth/facebook" id="48b3e1b595ca2649ec1d9f9ce49be6aa">Sign in with Facebook</a> <a class="button button--compact button--gplus" href="/users/auth/google_oauth2" id="0a70e64ce28feb74d76b9a9d4aa48b78">Sign in with Google</a></div>
+	                    <ul class="session-links">
+	                       <li><a href="/users/registration" id="8109fe54bca2fc24b4068764724ab92e">Create account</a></li>
+	                       <li><a href="<?php echo esc_url( wp_lostpassword_url() ); ?>">Forgot your password?</a></li>
+	                    </ul>
+						
 						<?php do_action( 'woocommerce_login_form_end' ); ?>
 
 					</form>
