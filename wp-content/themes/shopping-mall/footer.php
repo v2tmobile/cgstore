@@ -98,7 +98,7 @@
 	</div>
 	<hr>
 	<ul class="vertical-menu">
-		<li><a href="#" rel="nofollow">Sign Out</a></li>
+		<li><a href="<?php echo wp_logout_url(HOME_URL); ?>" rel="nofollow">Sign Out</a></li>
 	</ul>
 </div>
 </div>

@@ -11,7 +11,16 @@ include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
 include_once 'socials/login_socials.php';
 
- function current_user_has_avatar() {
+
+add_filter('woocommerce_login_redirect', 'wc_login_redirect');
+ 
+function wc_login_redirect( $redirect_to ) {
+     $redirect_to = HOME_URL;
+     return $redirect_to;
+}
+
+
+function current_user_has_avatar() {
 
 global $bp;
 
