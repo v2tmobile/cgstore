@@ -23,15 +23,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post, $product;
 ?>
 <div class="product-preview is-with-border">
+	<div class="overlay-button overlay-button--zoom js-zoom-in"><i class="fa fa-arrows-alt fa-lg fa-not-spaced"></i></div>
 	<div class="product-preview-image card has-padding shadow">
 		<?php
 		if ( has_post_thumbnail() ) {
 			$attachment_ids = $product->get_gallery_attachment_ids();
 			foreach( $attachment_ids as $attachment_id )
 			{
+
 				$image_link = wp_get_attachment_url( $attachment_id );
+
 				echo '<div>';
-				echo '<img src="'. $image_link . '"/>';
+				echo '<a href="'. $image_link . '" class="lightbox"><img src="'. $image_link . '" /></a>';
 				echo '</div>';
 			}
 		} else {

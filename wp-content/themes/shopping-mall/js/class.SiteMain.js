@@ -7,6 +7,7 @@ var SiteMain = (function() {
 		createRangePrice();
 		openCartPopup();
 		openRegister();
+		imageZoomSinglePage();
 	}
 	
 	function createRadio(){
@@ -16,6 +17,20 @@ var SiteMain = (function() {
 		$('input.iCheckBox').on('ifChanged', function (event) { 
 			//$(event.target).trigger('change'); 
 			$("#woocommerce-filter").submit();
+		});
+	}
+
+	function imageZoomSinglePage(){
+		$('.lightbox').imageLightbox({
+			onStart:function(){
+				return $("body").append('<div class="product-slideshow-overlay "></div>')
+			},
+			onEnd:function(){
+				return $(".product-slideshow-overlay").fadeOut({duration:800,easing:"easeInOutCirc"})
+			}
+		});
+		$('.overlay-button--zoom').click(function(){
+			$('.slick-current.slick-active a').trigger('click');
 		});
 	}
 	

@@ -6,7 +6,7 @@ function cgstore_add_scripts(){
    wp_enqueue_script('jquery','https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
    
    wp_enqueue_script('cgstore-tooltip-js',TEMPLATE_PATH.'/js/tooltipster.bundle.js',array('jquery'));
-  
+    wp_enqueue_script('cgstore-imagelightbox-js',TEMPLATE_PATH.'/js/imagelightbox.js',array('jquery'));
    wp_enqueue_script('cgstore-icheck-js',TEMPLATE_PATH.'/js/icheck.js',array('jquery'));
    wp_enqueue_script('cgstore-select2-js',TEMPLATE_PATH.'/js/select2.js',array('jquery'));
    wp_enqueue_script('cgstore-nouislider-js',TEMPLATE_PATH.'/js/nouislider.min.js',array('jquery'));
