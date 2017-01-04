@@ -1213,3 +1213,16 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
    		line-height: 30px;
 	}
 }
+
+.files p {
+    width: 100%;
+    color: #6d6d6d;
+    padding: 10px;
+    background: white;
+    border: 1px solid #dfdcd2;
+    margin-top: 10px;
+    margin-bottom: 0;
+    border-radius: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
