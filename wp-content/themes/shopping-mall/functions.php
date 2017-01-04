@@ -3,7 +3,7 @@ define('TEMPLATE_PATH',get_bloginfo('template_url'));
 define('HOME_URL',get_home_url());
 define('BlOG_NAME',get_bloginfo('blog_name'));
 define('SLOGAN', get_bloginfo('description'));
-
+define('PREFIX_WEBSITE','cgs_');
 //add_image_size( 'thumb-service',225,230,true);
 
 include_once 'inc/add-scripts.php';

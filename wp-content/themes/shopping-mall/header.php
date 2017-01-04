@@ -43,17 +43,25 @@
 								</a>
 							</li>
 							<li class="notification-item">
-								<a href="#"><img alt="v2tmobile_it" class="avatar avatar-small" src="https://assets.cgtrader.com/assets/avatar/small_avatar-04ef157a5b11c33ad48fe0d8dee962db9a781ddb0c5eed3c4023767c3bfa7827.png"></a>
+								<a href="<?php echo bp_loggedin_user_domain(); ?>"> <?php bp_loggedin_user_avatar( 'type=thumb&width=26&height=30' );?></a>
 							</li>
 							<li class="notification-item">
 								<a class="has-indicator" href="#">
 									<i class="fa fa-envelope fa-24"></i>
+									<span class="cart-indicator indicator is-sticky ">0</span>
 								</a>
 							</li>
+							<?php
+                               $notifications = bp_notifications_get_notifications_for_user( bp_loggedin_user_id(), 'object' );
+            					$count = ! empty( $notifications ) ? count( $notifications ) : 0;
+            					$noti_link = trailingslashit( bp_loggedin_user_domain() . bp_get_notifications_slug() );
+							 ?>
 							<li class="notification-item">
-								<a class="has-indicator" href="#">
+								<a class="has-indicator" href="<?php echo $noti_link; ?>">
 									<i class="fa fa-bell fa-24"></i>
-									<span class="cart-indicator indicator is-sticky ">0</span>
+									<span class="cart-indicator indicator is-sticky ">
+										<?php echo $count; ?>
+									</span>
 								</a>
 							</li>
 							<li class="notification-item">

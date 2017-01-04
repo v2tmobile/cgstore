@@ -19,16 +19,37 @@ add_filter( 'woocommerce_product_tabs', function ($tabs) {
 }, 98 );
 
 add_action('woocommerce_before_single_product', function () {
-    $product = new WC_Product(get_the_ID());
+    $id = get_the_ID();
+    $product = new WC_Product($id);
+    
     ?>
     <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class('product-container'); ?>>
         <div class="product-content">
         <div class="product-header">
             <?php woocommerce_template_single_title() ?>
+            <?php 
+                  $liked = ''; 
+                  $onclick = 'ats_load_form();'; 
+                  $total_like = get_post_meta($id,PREFIX_WEBSITE.'total_like',true);
+                 if(is_user_logged_in()): 
+                  $key = wp_create_nonce('cgs-security-like');  
+                  $current_user = wp_get_current_user();
+                  $likes  = get_user_meta($current_user->ID,PREFIX_WEBSITE.'likes',true);
+                  if(!is_array($likes)) $likes = (array) $likes;
+                  if(in_array($id,(array)$likes)) :
+                      $liked = 'liked'; 
+                      $key = wp_create_nonce('cgs-security-unlike'); 
+                      $onclick ='cgs_on_unlike(\''.$key.'\',\''.$id.'\',this)';
+                   else: 
+                     $onclick ='cgs_on_like(\''.$key.'\',\''.$id.'\',this)';
+                    endif;
+
+                 endif;
+        ?>
             <div class="product-interaction">
-                <div class="like-button js-auth-control js-like" data-item-id="162179" data-item-type="Item">
-                    <div class="like-button-text">Like this</div>
-                    <div class="like-button-counter">225</div>
+                <div class="like-button js-auth-control js-like" data-item-id="" data-item-type="Item">
+                    <div class="like-button-text" onclick="<?php echo $onclick; ?>">Like this</div>
+                    <div class="like-button-counter total-like"><?php echo ($total_like) ? $total_like : 0 ; ?></div>
                 </div>
             </div>
             <?php
@@ -38,7 +59,9 @@ add_action('woocommerce_before_single_product', function () {
             <div class="product-header-author"><span>by</span>
                 <div class="author author-small">
                     <a href="<?php echo get_author_posts_url($post_author_id); ?>" title="<?php the_author_meta( 'user_nicename', $post_author_id );?>">
-                      <?php echo bp_displayed_user_avatar($post_author_id); ?>
+                      <?php 
+                         echo bp_core_fetch_avatar('item_id='.$post_author_id);
+                      ?>
                     </a>
                     <div class="author-name">
                       
@@ -52,10 +75,10 @@ add_action('woocommerce_before_single_product', function () {
         <div class="product-main">
             <ul class="product-stats">
                 <li class="has-tooltip tooltipstered" content="3.96k Views" itemprop="interactionCount">
-                    <i class="fa fa-eye fa-lg"></i>3.96k
+                    <i class="fa fa-eye fa-lg"></i><?php echo do_shortcode('[post-views]'); ?>
                 </li>
                 <li class="has-tooltip tooltipstered" content="225 Likes" itemprop="interactionCount">
-                    <i class="fa fa-heart"></i>225
+                    <i class="fa fa-heart"></i><span class="total-like"><?php echo ($total_like) ? $total_like : 0; ?></span>
                 </li>
             </ul>
     <?php

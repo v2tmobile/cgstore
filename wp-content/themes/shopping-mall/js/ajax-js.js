@@ -1,12 +1,12 @@
 
-function ats_on_like(key,PID,e){
+function cgs_on_like(key,PID,e){
 
    if(typeof CGSTORE_VARS.UID !=='undefined' && typeof PID !=='undefined'){
        $.ajax({
              type: "POST",
              url: CGSTORE_VARS.AJAX_URL,
              data:{
-               action:'ats-send-like',
+               action:'cgs-send-like',
                security:key,
                data:{UID:CGSTORE_VARS.UID,PID:PID}
              },
@@ -18,12 +18,11 @@ function ats_on_like(key,PID,e){
             {
                  
                 if(res.success === true){
-                  console.log(res);
-                    //$(e).addClass('liked');   
-                   //$(e).attr('onclick',res.onclick); 
-                    //$('.my-like-total').html(res.total_like); 
+                   $('.total-like').text(res.total_like);
+                    $(e).addClass('liked');   
+                    $(e).attr('onclick',res.onclick);
                  }else{
-                   alert('Không thể xử lý được. Vui lòng thử lại!');
+                     alert('Error. Please try again!');
                  }
               }
            });
@@ -32,14 +31,14 @@ function ats_on_like(key,PID,e){
 
 }
 
-function ats_on_unlike(key,PID,e){
+function cgs_on_unlike(key,PID,e){
 
    if(typeof CGSTORE_VARS.UID !=='undefined'){
        $.ajax({
              type: "POST",
              url: CGSTORE_VARS.AJAX_URL,
              data:{
-               action:'ats-send-unlike',
+               action:'cgs-send-unlike',
                security:key,
                data:{UID:CGSTORE_VARS.UID,PID:PID}
              },
@@ -51,9 +50,11 @@ function ats_on_unlike(key,PID,e){
             {
                  
                 if(res.success === true){
-                    console.log(res);  
+                    $('.total-like').text(res.total_like);
+                    $(e).removeClass('liked');   
+                    $(e).attr('onclick',res.onclick);
                  }else{
-                   alert('Không thể xử lý được. Vui lòng thử lại!');
+                   alert('Error. Please try again!');
                  }
               }
            });

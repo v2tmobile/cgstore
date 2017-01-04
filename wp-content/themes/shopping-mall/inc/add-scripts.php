@@ -23,6 +23,12 @@ function cgstore_add_scripts(){
          'AJAX_URL'=> admin_url( 'admin-ajax.php' ),
          'SECURITY' => wp_create_nonce('ats-security-load')
       );
+   
+   if(is_user_logged_in()){
+        $current_user = wp_get_current_user();
+        $vars['UID'] = $current_user->ID;
+     }
+
     wp_localize_script('cgstore-sitemain-js','CGSTORE_VARS',$vars);
 
    wp_enqueue_script('cgstore-ajax-js',TEMPLATE_PATH.'/js/ajax-js.js',array('jquery','cgstore-sitemain-js'));
