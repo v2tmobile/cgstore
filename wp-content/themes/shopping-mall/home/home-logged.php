@@ -137,7 +137,9 @@
 			</div>
 			<p class="u-text-right"><a class="button button-forward" href="#">Read more blog posts <i class="fa fa-chevron-right"></i> </a></p>
 		</section>
+
 		<section class="content-section light">
+			<hr class="split">
 			<div class="container">
 				<header class="content-heading">
 					<h2 class="content-heading-title">Galleries</h2>

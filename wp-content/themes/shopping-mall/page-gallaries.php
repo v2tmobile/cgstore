@@ -64,12 +64,104 @@ get_header(); ?>
 
 		<div class="tabs-container">
 			<div class="gallery-items">
-				<article class="gallery-item js-gallery-item" data-item-id="5683" style="position: absolute; left: 0px; top: 0px;">
+				<article class="gallery-item js-gallery-item" data-item-id="5683" >
 				   <div class="box">
 				      <div class="l-inner-compact">
-				         <h3 class="gallery-item__title"><a id="44bdaa129b28aad6bebf8a7c2fdb6b08" href="https://www.cgtrader.com/gallery/project/kowloon-alley">Kowloon Alley</a></h3>
-				         <div class="gallery-item__image"><a id="9e980980d7ef9a595abc2ee85fefbe7c" href="https://www.cgtrader.com/gallery/project/kowloon-alley"><img alt="Kowloon Alley" src="https://img1.cgtrader.com/galleries/5683/listing_b7925be0-bb9b-477c-8bbb-f8cc94e8bdc2.jpg"></a></div>
-				         <div class="gallery-item__author">by <a id="c96704f1f67ae37f78972772aa5bfded" href="https://www.cgtrader.com/lstirk">lstirk</a></div>
+				         <h3 class="gallery-item__title"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley">Kowloon Alley</a></h3>
+				         <div class="gallery-item__image"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley"><img alt="Kowloon Alley" src="https://img1.cgtrader.com/galleries/5683/listing_b7925be0-bb9b-477c-8bbb-f8cc94e8bdc2.jpg"></a></div>
+				         <div class="gallery-item__author">by <a id="" href="https://www.cgtrader.com/lstirk">lstirk</a></div>
+				         <div class="gallery-item__info">
+				            <div class="gallery-item__like">
+				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
+				                  <div class="like-button__text">Like this</div>
+				                  <div class="like-button__counter">147</div>
+				               </div>
+				            </div>
+				            <div class="gallery-item__stats">
+				               <ul class="list list--inline">
+				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>830</b></li>
+				                  <li><i class="fa fa-commenting-o fa-lg fa-red"></i> <b>17</b></li>
+				               </ul>
+				            </div>
+				         </div>
+				      </div>
+				   </div>
+				</article>
+				<article class="gallery-item js-gallery-item" data-item-id="5683" >
+				   <div class="box">
+				      <div class="l-inner-compact">
+				         <h3 class="gallery-item__title"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley">Kowloon Alley</a></h3>
+				         <div class="gallery-item__image"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley"><img alt="Kowloon Alley" src="https://img2.cgtrader.com/galleries/4099/listing_6d2bfa1c-f056-44f5-93e7-d2c753f82112.jpg"></a></div>
+				         <div class="gallery-item__author">by <a id="" href="https://www.cgtrader.com/lstirk">lstirk</a></div>
+				         <div class="gallery-item__info">
+				            <div class="gallery-item__like">
+				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
+				                  <div class="like-button__text">Like this</div>
+				                  <div class="like-button__counter">147</div>
+				               </div>
+				            </div>
+				            <div class="gallery-item__stats">
+				               <ul class="list list--inline">
+				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>830</b></li>
+				                  <li><i class="fa fa-commenting-o fa-lg fa-red"></i> <b>17</b></li>
+				               </ul>
+				            </div>
+				         </div>
+				      </div>
+				   </div>
+				</article>
+				<article class="gallery-item js-gallery-item" data-item-id="5683" >
+				   <div class="box">
+				      <div class="l-inner-compact">
+				         <h3 class="gallery-item__title"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley">Kowloon Alley</a></h3>
+				         <div class="gallery-item__image"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley"><img alt="Kowloon Alley" src="https://assets.cgtrader.com/assets/parental_lock/listing-748ba35d4c23c92ba6272c9b7b641a0a9a3ce35c0a4dde3dfd738a4ca04e987d.png"></a></div>
+				         <div class="gallery-item__author">by <a id="" href="https://www.cgtrader.com/lstirk">lstirk</a></div>
+				         <div class="gallery-item__info">
+				            <div class="gallery-item__like">
+				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
+				                  <div class="like-button__text">Like this</div>
+				                  <div class="like-button__counter">147</div>
+				               </div>
+				            </div>
+				            <div class="gallery-item__stats">
+				               <ul class="list list--inline">
+				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>830</b></li>
+				                  <li><i class="fa fa-commenting-o fa-lg fa-red"></i> <b>17</b></li>
+				               </ul>
+				            </div>
+				         </div>
+				      </div>
+				   </div>
+				</article>
+				<article class="gallery-item js-gallery-item" data-item-id="5683" >
+				   <div class="box">
+				      <div class="l-inner-compact">
+				         <h3 class="gallery-item__title"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley">Kowloon Alley</a></h3>
+				         <div class="gallery-item__image"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley"><img alt="Kowloon Alley" src="https://img1.cgtrader.com/galleries/540/listing_29679854-a2d3-48e9-b59f-a504c6f877d9.jpg"></a></div>
+				         <div class="gallery-item__author">by <a id="" href="https://www.cgtrader.com/lstirk">lstirk</a></div>
+				         <div class="gallery-item__info">
+				            <div class="gallery-item__like">
+				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
+				                  <div class="like-button__text">Like this</div>
+				                  <div class="like-button__counter">147</div>
+				               </div>
+				            </div>
+				            <div class="gallery-item__stats">
+				               <ul class="list list--inline">
+				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>830</b></li>
+				                  <li><i class="fa fa-commenting-o fa-lg fa-red"></i> <b>17</b></li>
+				               </ul>
+				            </div>
+				         </div>
+				      </div>
+				   </div>
+				</article>
+				<article class="gallery-item js-gallery-item" data-item-id="5683" >
+				   <div class="box">
+				      <div class="l-inner-compact">
+				         <h3 class="gallery-item__title"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley">Kowloon Alley</a></h3>
+				         <div class="gallery-item__image"><a id="" href="https://www.cgtrader.com/gallery/project/kowloon-alley"><img alt="Kowloon Alley" src="https://img-new.cgtrader.com/galleries/7067/listing_ec67d589-2bf1-4f84-b71a-4690566fe83a.png"></a></div>
+				         <div class="gallery-item__author">by <a id="" href="https://www.cgtrader.com/lstirk">lstirk</a></div>
 				         <div class="gallery-item__info">
 				            <div class="gallery-item__like">
 				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
@@ -88,6 +180,7 @@ get_header(); ?>
 				   </div>
 				</article>
 			</div>
+
 		</div>
 	</div>
 </div>

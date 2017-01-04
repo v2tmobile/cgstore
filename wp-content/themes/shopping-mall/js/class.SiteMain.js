@@ -8,8 +8,36 @@ var SiteMain = (function() {
 		openCartPopup();
 		openRegister();
 		imageZoomSinglePage();
+		displayFilesUpload();
+		createMasonry();
 	}
 	
+	function createMasonry(){
+		var $boxes = $('.gallery-items .gallery-item');
+		  $boxes.hide();
+
+		  var $container = $('.gallery-items');
+		  $container.imagesLoaded( function() {
+		    $boxes.fadeIn();
+
+		    $container.masonry({
+		        itemSelector : '.gallery-items .gallery-item',
+		        isAnimated: !Modernizr.csstransitions
+		    });    
+		  });
+	}
+
+	function displayFilesUpload(){
+		$(".button-upload input.file-upload--jobs").change(function(){
+		    var names = [];
+		    for (var i = 0; i < $(this).get(0).files.length; ++i) {
+		        names.push($(this).get(0).files[i].name);
+		        console.log($(this).get(0).files[i]);
+		        $('#files').append('<div class="file"><div class="js-file-wrap"><p><a href="">'+names[0]+'</a></p></div></div>')
+		    }
+		})
+	}
+
 	function createRadio(){
 		$('.jobs-form__category input[type="radio"], .jobs-form__offer input[type="radio"], input.iCheckRadio').iCheck();
 		$('input.iCheckBox').iCheck();
