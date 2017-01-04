@@ -2,6 +2,22 @@
 /* ! PRIMARY STYLES */
 html, body{width:100%;}
 a{text-decoration: none;}
+.split {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background: url(../images/hexagon.png) no-repeat center;
+    position: relative;
+    &:before, &:after {
+	    display: block;
+	    width: 46%;
+	    height: 1px;
+	    background: #d5d1c3;
+	    position: absolute;
+	    top: 50%;
+	    content: "";
+	}
+}
 .clear{clear:both;}
 
 .container{
