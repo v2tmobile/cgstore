@@ -10,6 +10,7 @@ include_once 'inc/add-scripts.php';
 include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
 include_once 'socials/login_socials.php';
+include_once 'inc/add-like.php';
 
 
 add_filter('woocommerce_login_redirect', 'wc_login_redirect');
@@ -17,6 +18,25 @@ add_filter('woocommerce_login_redirect', 'wc_login_redirect');
 function wc_login_redirect( $redirect_to ) {
      $redirect_to = HOME_URL;
      return $redirect_to;
+}
+
+// add parent taxonomy product cat
+add_filter( 'body_class', 'add_class_product_cat_parent' );
+
+function add_class_product_cat_parent($classes){
+
+   if(is_tax('product_cat')){
+   	   $queried_object = get_queried_object();
+
+   	   $parent  = get_ancestors( $queried_object->term_taxonomy_id, $queried_object->taxonomy);
+       if($parent){
+       	  $tax = get_term($parent[0],$queried_object->taxonomy);
+   	      $classes[] ='parent-cat-'.$tax->slug;
+   	  }
+   }
+  
+  return $classes;
+
 }
 
 

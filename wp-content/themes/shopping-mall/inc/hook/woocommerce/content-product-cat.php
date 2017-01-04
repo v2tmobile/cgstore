@@ -40,6 +40,7 @@ remove_action('woocommerce_shop_loop_subcategory_title', 'woocommerce_template_l
 add_action('woocommerce_shop_loop_subcategory_title', function ($category) {
     $root_category = explode('/',get_category_parents($category));
     $root_category = $root_category[0];
+
     ?>
     <div class="category-main-content">
         <h3 class="category-title">
@@ -129,7 +130,7 @@ function add_subcat_for_product_cat(){
         </div>
      <div class="filter-block">
             
-     <form class="woocommerce-ordering hasborder" method="get" id="woocommerce-filter">
+     <form class="woocommerce-ordering hasborder" action="" method="get" id="woocommerce-filter">
             <div class="price-range aleft">
               <input type="hidden" name="min_price" class="pricemin" value="<?php echo ($_GET['min_price']) ? $_GET['mix_price'] : 0;  ?>"/>
               <input type="hidden" name="max_price" class="pricemax" value="<?php echo ($_GET['min_price']) ? $_GET['max_price'] : 5000;  ?>"/>
@@ -167,14 +168,51 @@ function add_subcat_for_product_cat(){
                 <option value="50000-100000" <?php echo ($_GET['product_poly'] =='50000-100000') ? 'selected' : ''; ?>>5K to 10k</option>
                 <option value="10000-50000" <?php echo ($_GET['product_poly'] =='10000-50000') ? 'selected' : ''; ?>>10k to 50k</option>
               </select>
-            </div>       
+            </div> 
+            <div class="filterSelect aleft">
+             <?php 
+                 $type_product = 'type_product';
+                 $type_products = get_terms( $type_product, 'orderby=title&hide_empty=0');
+                 if($type_products){
+                    $selected = '';
+                    foreach ($type_products as $type_product) {
+                        if($_GET['type_product']){
+                           $selected = ($_GET['product_format'] == $type_product->slug) ? 'selected': '';  
+                        }
+                        echo '<input type="checkbox" name="type_product[]" value="'.$type_product->slug.'"'.$selected.'>'.$type_product->name.'</input>';
+                    }
+
+                   
+                 }
+             ?>
+              
+            </div>      
             <div class="filterSelect aright sort-by">
               <?php echo woocommerce_catalog_ordering(); ?>
             </div> 
            <div class="clear"></div>
-
+           
           </form>
       </div> 
+
+    <div class="filter-show-list">
+    <a href="#">
+     <?php echo $term->name; ?> <span class="delete">X</span>   
+     </a>
+     <?php if($_GET['product_free']){ ?> 
+         <a href="#">Free <span class="delete">X</span></a>
+     <?php } ?>
+      <?php if($_GET['product_format']){ 
+            $fm = get_term_by('slug',$_GET['product_format'],'product_format');
+            if($fm){
+        ?> 
+         <a href="#"><?php echo $fm->name; ?><span class="delete">X</span></a>
+     <?php 
+         } 
+       }
+     ?>
+      
+    </div>
    
    <?php 
           
