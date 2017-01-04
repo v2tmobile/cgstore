@@ -97,7 +97,7 @@ add_action('woocommerce_share', function () {
              foreach ($downloads as $download) {
                   $info     = pathinfo($download["file"]);
                   $ext      = $info['extension'];
-                 
+                  
                echo '<li><a href="#">'.$download['name'].'</a>(.'.$ext.')<span>2.4MB</span></li>';
              }
 

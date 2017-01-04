@@ -111,6 +111,7 @@ var SiteMain = (function() {
 					var imagelist = $(this).find('.tooltip-data').val();
 					var productname = $(this).find('.content-box-title').html();
 					var extension = $(this).find('.content-box-file-extensions').html();
+					var price = $(this).find('.content-box-price .woocommerce-Price-amount').html();
 
 					$this = $(this);
 					imagelist = JSON.parse(imagelist);
@@ -119,7 +120,8 @@ var SiteMain = (function() {
 					    list += "<li><img src=" + imagelist[i] + " /></li>"
 					}
 					list += "</ul>";
-					list += "<div class='product-name'>" + productname + "</div> <div class='extension'>"+ extension +"</div>";
+					list += "<div class='product-name'>" + productname + "</div> <div class='extension'>"+ extension +"</div><div class='product-price'>"+price+"</div>";
+
 					return list;
 				},
 				open: function (elem,ui) {
