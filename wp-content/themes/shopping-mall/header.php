@@ -71,13 +71,13 @@
 						   <li class="notification-item js-cart-trigger"><a class="has-indicator" id="linkCartPopup" href="#"><i class="fa fa-shopping-cart fa-24"></i><span class="cart-indicator indicator is-sticky"><?php echo $cart_total; ?></span></a>
                              <?php echo get_template_part('list-cart/list-cart'); ?>
 						   </li>
-						   <li class="notification-item is-flexible"><a class="site-notification-nav__link" href="<?php echo HOME_URL;?>/login/" ><i class="fa fa-user fa-24"></i> Sign in</a></li>
+						   <li class="notification-item is-flexible"><a class="site-notification-nav__link" href="<?php echo HOME_URL;?>/my-account/" ><i class="fa fa-user fa-24"></i> Sign in</a></li>
 						</ul>
 					<?php }?>
 				</div>
 				</div>
 			</div>
-			
+		
 		</header>
 	</div>
  <?php if( !is_account_page()) {?>

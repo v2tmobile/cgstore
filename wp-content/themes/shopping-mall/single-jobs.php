@@ -15,7 +15,12 @@ get_header(); ?>
 		   <div class="jobs-application__job">
 		      <div class="jobs__item">
 		         <div class="jobs-item__image">
-		         	<?php echo get_the_post_thumbnail(get_the_ID());?>
+		         	<?php if ( has_post_thumbnail() ) : ?>
+				      		<?php echo get_the_post_thumbnail(get_the_ID());?>
+				      	<?php else: ?>
+				      		<img src="<?php echo TEMPLATE_PATH ?>/images/no_image_thumb.png"/>
+				      <?php endif; ?>
+		         	
 		         </div>
 		         <div class="jobs-item__content">
 		            <h3 class="jobs__title"><?php the_title();?></h3>
@@ -42,11 +47,22 @@ get_header(); ?>
 		         <div class="jobs-application-text">
 		         	<?php the_content();?>
 		         </div>
-		         <a class="button button-primary view-attached-files"><i class="fa fa-file-text"></i>View attached files (1)</a>
+		         <?php
+		         	if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+						//print_r(get_the_post_thumbnail(get_the_ID()));
+		         	?>
+		         		<a target="_blank" class="button button-primary view-attached-files" href="<?php the_post_thumbnail_url();?>"><i class="fa fa-file-text"></i>View attached files (1)</a>
+		         	<?php } ?>
+		         
 		         <ul class="attached-files-container is-hidden">
-		            <a target="_blank" id="332fbd4668b94659922f32cfc6b0b59a" href="/attachments/33967">
+		         	<?php
+		         	if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+						print_r(get_the_post_thumbnail(get_the_ID()));
+		         	?>
+		            <a target="_blank" href="<?php echo the_post_thumbnail_url();?>">
 		               <li><span>Redoubt_5.jpg</span></li>
 		            </a>
+		            <?php } ?>
 		         </ul>
 		      </div>
 		   </div>

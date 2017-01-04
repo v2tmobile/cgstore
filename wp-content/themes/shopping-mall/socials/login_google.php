@@ -94,10 +94,10 @@ function ats_add_google_login(){
 
 					// We can also pass the url value separately from ajaxurl for front end AJAX implementations
 
-				jQuery.post(ATS_VARS.AJAX_URL, data, function(response) {
+				jQuery.post(CGSTORE_VARS.AJAX_URL, data, function(response) {
 
 					if(response=='success'){
-							 window.location.reload();
+							 window.location.href= CGSTORE_VARS.SITE_URL;
 					    }
 					
 				});
