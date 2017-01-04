@@ -40,6 +40,7 @@ remove_action('woocommerce_shop_loop_subcategory_title', 'woocommerce_template_l
 add_action('woocommerce_shop_loop_subcategory_title', function ($category) {
     $root_category = explode('/',get_category_parents($category));
     $root_category = $root_category[0];
+    
     ?>
     <div class="category-main-content">
         <h3 class="category-title">

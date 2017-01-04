@@ -19,6 +19,25 @@ function wc_login_redirect( $redirect_to ) {
      return $redirect_to;
 }
 
+// add parent taxonomy product cat
+add_filter( 'body_class', 'add_class_product_cat_parent' );
+
+function add_class_product_cat_parent($classes){
+
+   if(is_tax('product_cat')){
+   	   $queried_object = get_queried_object();
+
+   	   $parent  = get_ancestors( $queried_object->term_taxonomy_id, $queried_object->taxonomy);
+       if($parent){
+       	  $tax = get_term($parent[0],$queried_object->taxonomy);
+   	      $classes[] ='parent-cat-'.$tax->slug;
+   	  }
+   }
+  
+  return $classes;
+
+}
+
 
 function current_user_has_avatar() {
 
