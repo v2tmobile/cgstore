@@ -60,8 +60,64 @@ $args_format = array(
  register_taxonomy( 'product_format', 'product', $args_format );
  register_taxonomy_for_object_type( 'product_format', 'product' );
 
+  
+$labels_format_job = array(
+    'name'                       => 'Format',
+    'singular_name'              => 'Format',
+    'menu_name'                  => 'Format',
+    'all_items'                  => 'All Format',
+    'parent_item'                => 'Parent Format',
+    'parent_item_colon'          => 'Parent Format:',
+    'new_item_name'              => 'New Format',
+    'add_new_item'               => 'Add New Format',
+    'edit_item'                  => 'Edit Format',
+    'update_item'                => 'Update Format',
+    'separate_items_with_commas' => 'Separate Format with commas',
+    'search_items'               => 'Search Format',
+    'add_or_remove_items'        => 'Add or remove Format',
+    'choose_from_most_used'      => 'Choose from the most used Format',
+);
+$args_format_job = array(
+    'labels'                     => $labels_format_job,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
 
+ register_taxonomy( 'job_format', 'jobs', $args_format_job );
+ register_taxonomy_for_object_type( 'job_format', 'jobs' );
 
+$labels_type_job = array(
+    'name'                       => 'Type Job',
+    'singular_name'              => 'Type Job',
+    'menu_name'                  => 'Type Job',
+    'all_items'                  => 'All Type Job',
+    'parent_item'                => 'Parent Type Job',
+    'parent_item_colon'          => 'Parent Type Job:',
+    'new_item_name'              => 'New Type Job',
+    'add_new_item'               => 'Add New Type Job',
+    'edit_item'                  => 'Edit Type Job',
+    'update_item'                => 'Update Type Job',
+    'separate_items_with_commas' => 'Separate Type Job with commas',
+    'search_items'               => 'Search Type Job',
+    'add_or_remove_items'        => 'Add or remove Type Job',
+    'choose_from_most_used'      => 'Choose from the most used Type Job',
+);
+$args_type_job = array(
+    'labels'                     => $labels_type_job,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'type_job', 'jobs', $args_type_job );
+ register_taxonomy_for_object_type( 'type_job', 'jobs' );
 
 }
 
