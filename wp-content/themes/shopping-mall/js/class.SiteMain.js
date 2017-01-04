@@ -9,8 +9,24 @@ var SiteMain = (function() {
 		openRegister();
 		imageZoomSinglePage();
 		displayFilesUpload();
+		createMasonry();
 	}
 	
+	function createMasonry(){
+		var $boxes = $('.gallery-items .gallery-item');
+		  $boxes.hide();
+
+		  var $container = $('.gallery-items');
+		  $container.imagesLoaded( function() {
+		    $boxes.fadeIn();
+
+		    $container.masonry({
+		        itemSelector : '.gallery-items .gallery-item',
+		        isAnimated: !Modernizr.csstransitions
+		    });    
+		  });
+	}
+
 	function displayFilesUpload(){
 		$(".button-upload input.file-upload--jobs").change(function(){
 		    var names = [];
