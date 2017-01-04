@@ -24,6 +24,8 @@ function cgstore_add_scripts(){
          'SECURITY' => wp_create_nonce('ats-security-load')
       );
     wp_localize_script('cgstore-sitemain-js','CGSTORE_VARS',$vars);
+
+   wp_enqueue_script('cgstore-ajax-js',TEMPLATE_PATH.'/js/ajax-js.js',array('jquery','cgstore-sitemain-js'));
 }
 
 add_action('wp_enqueue_scripts', 'cgstore_add_scripts');
