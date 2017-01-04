@@ -10,8 +10,19 @@ var SiteMain = (function() {
 		imageZoomSinglePage();
 		displayFilesUpload();
 		createMasonry();
+		openForumTab();
 	}
 	
+	function openForumTab(){
+		$('.tabs li a').click(function(){
+			$('.tabs li').removeClass('is-active');
+			$(this).parent().addClass('is-active');
+			var tabid = $(this).attr('href');
+			$('.forum-tabs__content .forum-tab').removeClass('is-active');
+			$('.forum-tabs__content ' + tabid).addClass('is-active');
+			return false;
+		});
+	}
 	function createMasonry(){
 		var $boxes = $('.gallery-items .gallery-item');
 		  $boxes.hide();
@@ -113,7 +124,7 @@ var SiteMain = (function() {
 		
 	}
 	function createTooltip(){
-		var wElement = $('.content-box-wrapper .product-grid-item').width();
+		var wElement = $('.product-grid-item').width();
 		//var position = { my: 'left top', at: 'right+10 bottom-20' }; 
 		//position.collision = 'none';
 
@@ -162,7 +173,7 @@ var SiteMain = (function() {
 				    var topbottom = (top < bottom) ? bottom : top;
 				    var leftright = (left < right) ? right : left;
 
-				    var tooltiph = $(ui.tooltip).find('ul.slick').height()/2;
+				    var tooltiph = $(ui.tooltip).find('ul.slick').height();
 				    var tooltipw = $(ui.tooltip).find('ul.slick').width();
 				    if (topbottom == bottom && leftright == right) //done
 				    {
@@ -178,12 +189,14 @@ var SiteMain = (function() {
 				        ui.tooltip.css({ top: yPos, left:  'auto', right: xPos  }, "fast" );
 				    } else if (topbottom == top && leftright == right) //done
 				    {
-				    	
+				    	console.log(3);
 				        var xPos = left + proW + 10;
-				        var yPos = top;
+
+				        var yPos = top ;
+
 				        ui.tooltip.css({ top: yPos, left: xPos + 25  }, "fast" );
 				    } else if (topbottom == top && leftright == left) {
-				    	
+				    	console.log(4);
 				        var yPos = top ;
 				        var xPos = left - proW - (tooltipw/2);
 				        console.log(left- proW- tooltipw);
