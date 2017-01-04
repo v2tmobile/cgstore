@@ -7,6 +7,7 @@ var SiteMain = (function() {
 		createRangePrice();
 		openCartPopup();
 		openRegister();
+		imageZoomSinglePage();
 	}
 	
 	function createRadio(){
@@ -16,6 +17,20 @@ var SiteMain = (function() {
 		$('input.iCheckBox').on('ifChanged', function (event) { 
 			//$(event.target).trigger('change'); 
 			$("#woocommerce-filter").submit();
+		});
+	}
+
+	function imageZoomSinglePage(){
+		$('.lightbox').imageLightbox({
+			onStart:function(){
+				return $("body").append('<div class="product-slideshow-overlay "></div>')
+			},
+			onEnd:function(){
+				return $(".product-slideshow-overlay").fadeOut({duration:800,easing:"easeInOutCirc"})
+			}
+		});
+		$('.overlay-button--zoom').click(function(){
+			$('.slick-current.slick-active a').trigger('click');
 		});
 	}
 	
@@ -96,6 +111,7 @@ var SiteMain = (function() {
 					var imagelist = $(this).find('.tooltip-data').val();
 					var productname = $(this).find('.content-box-title').html();
 					var extension = $(this).find('.content-box-file-extensions').html();
+					var price = $(this).find('.content-box-price .woocommerce-Price-amount').html();
 
 					$this = $(this);
 					imagelist = JSON.parse(imagelist);
@@ -104,7 +120,8 @@ var SiteMain = (function() {
 					    list += "<li><img src=" + imagelist[i] + " /></li>"
 					}
 					list += "</ul>";
-					list += "<div class='product-name'>" + productname + "</div> <div class='extension'>"+ extension +"</div>";
+					list += "<div class='product-name'>" + productname + "</div> <div class='extension'>"+ extension +"</div><div class='product-price'>"+price+"</div>";
+
 					return list;
 				},
 				open: function (elem,ui) {

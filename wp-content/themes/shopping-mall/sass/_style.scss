@@ -328,6 +328,17 @@ div.ui-tooltip {
 		padding-top: 5px;
     	font-size: 12px;
 	}
+	.product-price{
+		padding-left: 10px;
+	    background: white;
+	    color: #67c4b0;
+	    font-size: 1rem;
+	    line-height: 30px;
+	    text-align: right;
+	    position: absolute;
+	    right: 11px;
+	    bottom: 5px;
+	}
 } 
 
 .product-container .product-content .product-header .product-header-title {
@@ -1139,4 +1150,41 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 			}
 		}
 	}
+}
+
+.woocommerce-account{
+	.entry-header{
+		h1.entry-title{
+			display: none;
+		}
+	}
+}
+.product-preview{
+	position: relative;
+}
+.product-preview .overlay-button {
+    position: absolute;
+    z-index: 103;
+    top: 10px;
+    right: 10px;
+    padding: 13px 6px 13px 13px;
+}
+
+.overlay-button {
+    display: inline-block;
+    padding: 10px 13px;
+    background: rgba(0,0,0,0.6);
+    font-size: 0.875rem;
+    color: white;
+    text-transform: uppercase;
+    text-align: left;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-transition: 0.15s ease-in-out background;
+    transition: 0.15s ease-in-out background;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+}
+.fa-arrows-alt:before {
+    content: "\f0b2";
 }

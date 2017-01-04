@@ -9,7 +9,7 @@
 remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
 
 add_action('woocommerce_before_shop_loop_item', function () {
-   echo '<div class="content-box content-box-interactive tooltipstered">';
+   echo '<div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">';
 });
 
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
@@ -29,8 +29,7 @@ add_action('woocommerce_before_shop_loop_item_title', function (){
             }
      
     ?>
-    <div class="content-box content-box-interactive tooltipstered tooltip" data-toggle="tooltip">
-        <input type="hidden" class="tooltip-data" value= '<?php echo json_encode($listImgs); ?>'>
+    <input type="hidden" class="tooltip-data" value= '<?php echo json_encode($listImgs); ?>'>
       <div class="content-box-content">
         <a class="content-box-link" href="<?php echo get_permalink(get_the_ID())?>" title="<?php echo get_the_title(get_the_ID())?>">
             <figure class="content-box-image">
@@ -64,7 +63,6 @@ add_action('woocommerce_before_shop_loop_item_title', function (){
      ?>
      <div class="content-box-file-extensions"><?php echo implode(', ',$ext);?></div>
      </div>
-    </div>
     <?php
 }, 10);
 

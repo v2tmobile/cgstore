@@ -103,7 +103,6 @@
 </div>
 </div>
 <?php wp_footer(); ?>
-<div class="tooltipImage"></div>
 </body>
 </html>
 <!-- SCRIPTS -->
