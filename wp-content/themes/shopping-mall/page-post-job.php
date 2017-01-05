@@ -7,43 +7,49 @@
 get_header(); ?>
 
 <div class="jobs-page">
-  <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
+  
 	<div class="content-area">
+
+         <?php
+           
+
+
+          ?>
+
+	      <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
 		<div class="jobs-application__content">
 		   <div class="jobs-application__application">
 		      <div class="jobs-form__block--left headline">
-				   <input type="hidden" name="job[designer_id]" id="job_designer_id">
 				   <h3 class="jobs-form__content-title">Post your 3D job </h3>
-				   <div class="input-container"><label class="jobs-form__label">Job Title</label><input placeholder="3D design of Audi Car" class="field field--colored" type="text" name="job[title]" id="job_title"></div>
-				   <div class="input-container"><label class="jobs-form__label">Detailed job description</label><textarea rows="4" class="field field--colored field--textbox" placeholder="What we need is a simple model of the car made by cinema 4d or any other 3d modeling tool" name="job[description]" id="job_description"></textarea></div>
+				   <div class="input-container">
+				   <label class="jobs-form__label">Job Title</label>
+				   <input placeholder="3D design of Audi Car" class="field field--colored" type="text" name="job[title]" id="job_title"></div>
+				   <div class="input-container">
+				   <label class="jobs-form__label">Detailed job description</label>
+				   <textarea rows="4" class="field field--colored field--textbox" placeholder="What we need is a simple model of the car made by cinema 4d or any other 3d modeling tool" name="job[description]" id="job_description"></textarea></div>
 				   <div class="jobs-form__block--half">
 				      <div class="input-container">
 				         <label class="jobs-form__label">Select category</label>
 				         <div class="jobs-form__category-block">
+				           <?php
+                              $type_job_tax = 'type_job';
+        					  $type_jobs = get_terms( $type_job_tax, 'orderby=count&hide_empty=0' );
+        					  if($type_jobs):
+        					  	foreach ($type_jobs as $type_job):
+                                  
+				            ?>
 				            <div class="jobs-form__category">
 				               <label>
-				                  <div class="radio"><input type="radio" value="1" name="job[category_id]" id="job_category_id_1" ></div>
-				                  3D Computer Graphics
+				                  <div class="radio">
+				                  <input type="radio" value="1" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
+				                  <?php echo $type_job->name; ?>
 				               </label>
 				            </div>
-				            <div class="jobs-form__category">
-				               <label>
-				                  <div class="radio"><input type="radio" value="2" name="job[category_id]" id="job_category_id_2" ></div>
-				                  3D Model for Printing
-				               </label>
-				            </div>
-				            <div class="jobs-form__category">
-				               <label>
-				                  <div class="radio"><input type="radio" value="3" name="job[category_id]" id="job_category_id_3" ></div>
-				                  3D Scanning / Repairing
-				               </label>
-				            </div>
-				            <div class="jobs-form__category">
-				               <label>
-				                  <div class="radio"><input type="radio" value="4" name="job[category_id]" id="job_category_id_4" ></div>
-				                  Low-poly
-				               </label>
-				            </div>
+
+				           <?php 
+                              endforeach;
+				           endif; ?>
+				            
 				         </div>
 				      </div>
 				      <div class="input-container">
@@ -53,7 +59,8 @@ get_header(); ?>
 				      </div>
 				   </div>
 				   <div class="jobs-form__block--half is-last">
-				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title"><input type="text" name="software_filter" id="software_filter" placeholder="Filter" class="field field--colored" data-path="/jobs/software" data-job="null"></span>
+				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title">
+				      <input type="text" name="job[format_job]" id="format_job" placeholder="Filter" class="field field--colored" data-path="" data-job="null"></span>
 				      <ul class="jobs-form__software-list"></ul>
 				   </div>
 				</div>
@@ -120,11 +127,12 @@ get_header(); ?>
 			      I agree with <a id="" href="/pages/3d-jobs-agreement">Terms and Conditions</a> including waiving 14-days withdrawal right regarding the digital content.
 			   </label>
 			</div>
-		      <input type="submit" name="commit" value="Apply for this job" class="button u-float-right">
+		      <input type="submit" name="commit" value="Post job offer" class="button u-float-right">
 		   </div>
 		</div>
+		<form>
 	</div>
-	<form>
+	
 </div>
 
 <?php get_footer(); ?>
