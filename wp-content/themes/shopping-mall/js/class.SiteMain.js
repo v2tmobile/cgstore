@@ -88,6 +88,9 @@ var SiteMain = (function() {
 		    //console.log($(this).val());
 		    $("#woocommerce-filter").submit();
 		});
+		$('.filter-show-list .active-filters__item span.delete').click(function(){
+			$("#woocommerce-filter").submit();
+		});
 	}
 
 	function createRangePrice(){
@@ -219,7 +222,6 @@ var SiteMain = (function() {
 
 					});
 
-					$(this).find('.content-box-controls .action .fa-chevron-left ')
 				}
 			});
 		});

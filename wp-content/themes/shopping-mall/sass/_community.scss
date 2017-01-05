@@ -341,3 +341,17 @@
 .content-box--interactive:hover {
     box-shadow: 0 2px 8px rgba(19,21,24,0.1);
 }
+.action {
+    font-size: 0.875rem;
+    border: 0;
+    background: none;
+    color: #131518;
+    opacity: 0.6;
+    -webkit-transition: 0.15s ease-in-out opacity;
+    transition: 0.15s ease-in-out opacity;
+}
+.users-list{
+    .box.user{
+        margin-bottom: 7px;
+    }
+}
