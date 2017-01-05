@@ -11,8 +11,14 @@ var SiteMain = (function() {
 		displayFilesUpload();
 		createMasonry();
 		openForumTab();
+		calHeightCatgory();
 	}
 	
+	function calHeightCatgory(){
+		var hCat = $('.page-title').innerHeight() + $('.term-description').innerHeight() + $('.list-cat').innerHeight();
+		console.log(hCat);
+		$('.parent-cat-3d-models .product-model .bg').height(hCat + 50);
+	}
 	function openForumTab(){
 		$('.tabs li a').click(function(){
 			$('.tabs li').removeClass('is-active');

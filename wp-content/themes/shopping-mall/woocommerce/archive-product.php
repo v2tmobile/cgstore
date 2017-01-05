@@ -22,15 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header( 'shop' ); ?>
 
-	<?php
-		/**
-		 * woocommerce_before_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked woocommerce_breadcrumb - 20
-		 */
-		do_action( 'woocommerce_before_main_content' );
-	?>
+	
 
 		
 <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
@@ -38,21 +30,24 @@ get_header( 'shop' ); ?>
 				<div class="product-model">
 					<div class="bg"></div>
 					<div class="model-header">
-						<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
+						<div class="content-area">
+							<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
 
-						<?php endif; ?>
+							<?php endif; ?>
 
-						<?php
-							/**
-							 * woocommerce_archive_description hook.
-							 *
-							 * @hooked woocommerce_taxonomy_archive_description - 10
-							 * @hooked woocommerce_product_archive_description - 10
-							 */
-							do_action( 'woocommerce_archive_description' );
-						?>
+							<?php
+								/**
+								 * woocommerce_archive_description hook.
+								 *
+								 * @hooked woocommerce_taxonomy_archive_description - 10
+								 * @hooked woocommerce_product_archive_description - 10
+								 */
+								do_action( 'woocommerce_archive_description' );
+							?>
+						</div>
 					</div>
 				</div>
+				<div class="content-area">
 		<?php if ( have_posts() ) : ?>
 
 			<?php
@@ -109,5 +104,5 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_sidebar' );
 	?>
-
+</div>
 <?php get_footer( 'shop' ); ?>

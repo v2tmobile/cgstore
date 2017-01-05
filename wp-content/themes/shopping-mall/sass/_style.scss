@@ -188,13 +188,44 @@ p {
 .filterSelect{
 	&.sort-by{
 		width: 200px!important;
+		margin-right: 0;
+	}
+	
+}
+.filterType {
+	    margin-top: 10px;
+	.labeltype{
+		margin-right: 12px;
 	}
 }
 .hasborder{
 	border-bottom: 1px solid #ccc;
 }
+.active-filters__item {
+    display: inline-block;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: #ce3c5c;
+    color: white;
+    font-size: 0.75rem;
+    line-height: 12px;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 4px 5px 3px 10px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    font-size: 0.875rem;
+    line-height: normal;
+    text-transform: capitalize;
+    position: relative;
+    .active-filters__item-remove{
+    	margin-left: 5px;
+    }
+}
 .filterSelect, .woocommerce-ordering{
-	width: 130px;margin-right: 40px;
+	margin-right: 25px;
 	.selection, .select2-selection{
 		display: block;
 		    padding-right: 15px;
@@ -1061,7 +1092,7 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 	min-height: 83px;
 }
 
-.term-3d-models{
+.term-3d-models, .parent-cat-3d-models{
 	#breadcrumb{
 		display: none;
 	}
@@ -1108,6 +1139,33 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 	}
 }
 
+.parent-cat-3d-models{
+	#primary{
+		margin-top: 60px;
+	}
+	#breadcrumb{
+		display: block;
+	}
+	.product-model {
+		.bg{
+
+		}
+	}
+	.filter-block{
+		margin-top: 10px;
+	}
+	.model-header{
+		.list-cat{
+			padding-bottom: 25px;
+		}
+	}
+}
+.filter-show-list{
+	padding-top: 20px;
+}
+.select2-container{
+	width: 200px;
+}
 .breadcrumb-wrapper{
 	.container{
 		padding-left: 0;

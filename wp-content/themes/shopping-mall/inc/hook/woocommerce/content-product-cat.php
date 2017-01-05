@@ -113,6 +113,7 @@ function add_subcat_for_product_cat(){
                 $curent_term_id = $term->term_id;
 
                 ?>
+
         <div class="list-cat clearfix">
           <ul class="cat-list-filter">
               <?php
@@ -128,6 +129,16 @@ function add_subcat_for_product_cat(){
               ?> 
         </ul>
         </div>
+
+        <?php
+    /**
+     * woocommerce_before_main_content hook.
+     *
+     * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+     * @hooked woocommerce_breadcrumb - 20
+     */
+    do_action( 'woocommerce_before_main_content' );
+  ?>
      <div class="filter-block">
             
      <form class="woocommerce-ordering hasborder" action="" method="get" id="woocommerce-filter">
@@ -169,7 +180,7 @@ function add_subcat_for_product_cat(){
                 <option value="10000-50000" <?php echo ($_GET['product_poly'] =='10000-50000') ? 'selected' : ''; ?>>10k to 50k</option>
               </select>
             </div> 
-            <div class="filterSelect aleft">
+            <div class="filterType aleft">
              <?php 
                  $type_product = 'type_product';
                  $type_products = get_terms( $type_product, 'orderby=title&hide_empty=0');
@@ -179,7 +190,7 @@ function add_subcat_for_product_cat(){
                         if($_GET['type_product']){
                            $selected = ($_GET['product_format'] == $type_product->slug) ? 'selected': '';  
                         }
-                        echo '<input type="checkbox" name="type_product[]" value="'.$type_product->slug.'"'.$selected.'>'.$type_product->name.'</input>';
+                        echo '<div class="labeltype aleft"><label><input class="iCheckBox" type="checkbox" name="type_product[]" value="'.$type_product->slug.'"'.$selected.'><span>'.$type_product->name.'</span></input></label></div>';
                     }
 
                    
@@ -196,17 +207,17 @@ function add_subcat_for_product_cat(){
       </div> 
 
     <div class="filter-show-list">
-    <a href="#">
-     <?php echo $term->name; ?> <span class="delete">X</span>   
+    <a href="#" class="active-filters__item">
+     <?php echo $term->name; ?> <span class="delete active-filters__item-remove js-reset"><i class="fa fa-times fa-not-spaced"></i></span>   
      </a>
      <?php if($_GET['product_free']){ ?> 
-         <a href="#">Free <span class="delete">X</span></a>
+         <a href="#" class="active-filters__item">Free <span class="delete active-filters__item-remove js-reset"><i class="fa fa-times fa-not-spaced"></i></span></a>
      <?php } ?>
       <?php if($_GET['product_format']){ 
             $fm = get_term_by('slug',$_GET['product_format'],'product_format');
             if($fm){
         ?> 
-         <a href="#"><?php echo $fm->name; ?><span class="delete">X</span></a>
+         <a href="#" class="active-filters__item"><?php echo $fm->name; ?><span class="delete active-filters__item-remove js-reset"><i class="fa fa-times fa-not-spaced"></i></span></a>
      <?php 
          } 
        }
