@@ -43,7 +43,7 @@
 								</a>
 							</li>
 							<li class="notification-item">
-								<a href="<?php echo bp_loggedin_user_domain(); ?>"> <?php bp_loggedin_user_avatar( 'type=thumb&width=26&height=30' );?></a>
+								<a href="<?php echo bp_loggedin_user_domain(); ?>"> <?php bp_loggedin_user_avatar( 'type=thumb&width=26&height=20' );?></a>
 							</li>
 							<li class="notification-item">
 								<a class="has-indicator" href="#">

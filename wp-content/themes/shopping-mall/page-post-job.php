@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Post Jobs Page */
+/* Template Name: Post Job Page */
 /**
  * @package Shopping_Mall
  */
@@ -7,6 +7,7 @@
 get_header(); ?>
 
 <div class="jobs-page">
+  <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
 	<div class="content-area">
 		<div class="jobs-application__content">
 		   <div class="jobs-application__application">
@@ -123,6 +124,7 @@ get_header(); ?>
 		   </div>
 		</div>
 	</div>
+	<form>
 </div>
 
 <?php get_footer(); ?>
