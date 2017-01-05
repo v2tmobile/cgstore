@@ -51,3 +51,32 @@ $colorBlack:#000;
 .radio{
     display: inline-block;
 }
+
+.pagination {
+    margin: 20px 0;
+    padding: 0;
+    color: #6d6d6d;
+    text-align: center;
+    li{
+
+    }
+}
+.pagination>li.is-current, .pagination>li.is-active, .pagination .pagination__item.is-current, .pagination .pagination__item.is-active {
+    padding: 3px 6px;
+    color: #131518;
+    font-weight: 700;
+
+}
+.pagination>li, .pagination .pagination__item {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 18px;
+}
+.pagination>li a, .pagination .pagination__item a {
+    display: block;
+    padding: 3px 6px;
+    text-decoration: none;
+    color: #67c4b0;
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+}
