@@ -60,8 +60,20 @@ get_header(); ?>
 				   </div>
 				   <div class="jobs-form__block--half is-last">
 				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title">
-				      <input type="text" name="job[format_job]" id="format_job" placeholder="Filter" class="field field--colored" data-path="" data-job="null"></span>
-				      <ul class="jobs-form__software-list"></ul>
+				      <select name="job[format_job]" id="format_job" class="field field--colored">
+				      <?php
+                          $format_job_tax = 'job_format';
+        				  $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0');
+        				  if($format_jobs):
+                               foreach ($format_jobs as $format) {
+                               	?>
+                               	 <option value="<?php echo $format->term_id; ?>"><?php echo $format->name; ?></option>
+                               	<?php 
+                               }
+        				  	endif;
+
+				       ?>
+				      </select> 
 				   </div>
 				</div>
 		      <div class="jobs-application__tips">
