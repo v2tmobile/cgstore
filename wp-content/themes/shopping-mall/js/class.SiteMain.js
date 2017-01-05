@@ -12,8 +12,13 @@ var SiteMain = (function() {
 		createMasonry();
 		openForumTab();
 		calHeightCatgory();
+		createDatepicker();
 	}
-	
+		
+	function createDatepicker(){
+		$('#datepicker, .datepicker').datepicker();
+	}
+
 	function calHeightCatgory(){
 		var hCat = $('.page-title').innerHeight() + $('.term-description').innerHeight() + $('.list-cat').innerHeight();
 		console.log(hCat);
