@@ -106,6 +106,7 @@
 	
 </div>
 <?php wp_footer(); ?>
+<?php //include('choose-model.php');?>
 </body>
 </html>
 <!-- SCRIPTS -->

@@ -68,3 +68,88 @@
     position: fixed;
     z-index: 899;
 }
+.site-publishing-overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-top: 5px solid #67c4b0;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    opacity: 0.95;
+        z-index: 900;
+    display: block;
+    background: url(../images/publishing_overlay_bg.jpg) no-repeat top center;
+    background-size: cover;
+}
+.site-publishing-overlay__header {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 1rem;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+}
+.site-publishing-overlay__close {
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+    cursor: pointer;
+    color: #Fff;
+    font-size: 25px;
+}
+.site-publishing-overlay__header {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 1rem;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+}
+.content-heading__title {
+    display: block;
+    margin: 0 0 5px 0;
+    font-size: 2rem;
+    line-height: 32px;
+    color: #131518;
+    font-weight: 300;
+}
+.content-heading--on-contrast .content-heading__title {
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+.site-publishing-overlay__body {
+    display: block;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+}
+.content-heading--on-contrast .content-heading__subtitle {
+    color: white;
+}
+.site-publishing-overlay__choices {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 50px;
+}
+.site-publishing-overlay__choices>li {
+    display: inline-block;
+    width: 208px;
+    height: 227px;
+    padding-top: 9px;
+    margin-right: 60px;
+    background: url(../images/publishing_choice_sprite.png) no-repeat 0 1px;
+    text-align: center;
+}
+.site-publishing-overlay__choices a {
+    text-decoration: none;
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+}
