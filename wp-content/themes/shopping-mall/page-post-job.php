@@ -12,8 +12,9 @@ get_header(); ?>
 
          <?php
            
+
            if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
-                print_r($_POST);
+               
                $job = $_POST['job'];
                $errors = [];
                if(empty($job['title'])) $errors[] = 'Title can\'t be blank'; else  $job_title = wp_strip_all_tags($job['title']);
@@ -55,9 +56,22 @@ get_header(); ?>
                           PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       )
                   );
+
+                 print_r($_FILES);
                
-                $job_id = wp_insert_post($job_ob);
-                if($job_id) echo $job_id; 
+                // $job_id = wp_insert_post($job_ob);
+                // if($job_id){
+                	
+                // 	if($_FILES['files']){
+                // 		print_r($_FILES['files']);
+                // 	   //include_once('inc/upload-file.php');
+                // 	    //$upload = cgstore_upload($job_id,$_FILES['files']);
+                //          //if($upload) print_r($upload);else echo 'uplaod success';
+                //    }else{
+
+                //    	  echo 'redirect';
+                //    }
+                // }
 
               }
 
@@ -66,7 +80,7 @@ get_header(); ?>
 
           ?>
 
-	      <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
+	   <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
 		<div class="jobs-application__content">
 		   <div class="jobs-application__application">
 		      <div class="jobs-form__block--left headline">
@@ -91,7 +105,7 @@ get_header(); ?>
 				            <div class="jobs-form__category">
 				               <label>
 				                  <div class="radio">
-				                  <input type="radio" value="<?php echo $format->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
+				                  <input type="radio" value="<?php echo $type_job->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
 				                  <?php echo $type_job->name; ?>
 				               </label>
 				            </div>
@@ -107,7 +121,8 @@ get_header(); ?>
 					        <div class="progress-bar progress-bar-success"></div>
 					    </div>
 				         <label class="jobs-form__label">Add related files or images</label>
-				         <div class="button-upload"><span>Browse</span><input class="file-upload--jobs" id="fileupload" multiple="" name="files[]" type="file"></div>
+				         <div class="button-upload"><span>Browse</span>
+				         <input class="file-upload--jobs" id="fileupload" multiple name="files[]" type="file"></div>
 				         <div class="files" id="files"></div>
 				         
 				      </div>
