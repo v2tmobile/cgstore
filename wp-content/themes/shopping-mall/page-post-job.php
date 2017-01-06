@@ -3,17 +3,9 @@
 /**
  * @package Shopping_Mall
  */
-
-get_header(); ?>
-
-<div class="jobs-page">
-  
-	<div class="content-area">
-
-         <?php
-           
-
-           if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
+         $html_ms = '';   
+        
+        if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
                
                $job = $_POST['job'];
                $errors = [];
@@ -33,11 +25,11 @@ get_header(); ?>
                else $job_agree = 1;
 
              if($errors && count($errors) >0 ){
-             	echo '<ul class="error">';
+             	 $html_ms .='<ul class="error">';
                  foreach ($errors as $error) {
-                    echo '<li>'.$error.'</li>';
+                     $html_ms .='<li>'.$error.'</li>';
                  } 
-                echo '</ul>';
+                 $html_ms .='</ul>';
               }else{
 
                  $job_ob = array(
@@ -56,30 +48,35 @@ get_header(); ?>
                           PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       )
                   );
-
-                 print_r($_FILES);
-               
-                // $job_id = wp_insert_post($job_ob);
-                // if($job_id){
+              
+                $job_id = wp_insert_post($job_ob);
+                if($job_id){
                 	
-                // 	if($_FILES['files']){
-                // 		print_r($_FILES['files']);
-                // 	   //include_once('inc/upload-file.php');
-                // 	    //$upload = cgstore_upload($job_id,$_FILES['files']);
-                //          //if($upload) print_r($upload);else echo 'uplaod success';
-                //    }else{
+                	 wp_redirect(get_permalink($job_id));
 
-                //    	  echo 'redirect';
-                //    }
-                // }
+                	// if($_FILES['files']){
+                	// 	//print_r($_FILES['files']);
+                	//    //include_once('inc/upload-file.php');
+                	//     //$upload = cgstore_upload($job_id,$_FILES['files']);
+                 //         //if($upload) print_r($upload);else echo 'uplaod success';
+                 //   }else{
+
+                 //   	  echo 'redirect';
+                 //   }
+                }
 
               }
 
            }
 
+ get_header();
 
-          ?>
+ ?>
 
+<div class="jobs-page">
+  
+	<div class="content-area">
+           <?php echo $html_ms; ?>
 	   <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
 		<div class="jobs-application__content">
 		   <div class="jobs-application__application">

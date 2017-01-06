@@ -2,7 +2,7 @@
    
    function cgstore_upload($postID = 0,$files){
 
-	    $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg"); 
+	    $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","xdoc"); 
 	    $max_file_size = 1024 * 500; // in kb
 	    $max_image_upload = 5;
 	    $wp_upload_dir = wp_upload_dir();
