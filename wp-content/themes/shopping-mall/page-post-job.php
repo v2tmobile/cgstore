@@ -12,6 +12,55 @@ get_header(); ?>
 
          <?php
            
+           if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
+                print_r($_POST);
+               $job = $_POST['job'];
+               $errors = [];
+               if(empty($job['title'])) $errors[] = 'Title can\'t be blank'; else  $job_title = wp_strip_all_tags($job['title']);
+               if(empty($job['description'])) $errors [] = 'Description can\'t be blank';else $job_des = $job['description'];
+               if(empty($job['type_job'])) $errors[] ='Category can\'t be blank'; else $type_job = $job['type_job'];
+               if(empty($job['job_format'])) $errors[] ='Software can\'t be blank'; else $job_format = $job['job_format'];
+               if(empty($job['deadline'])) $errors[] ='Deadline is invalid'; else $job_deadline = $job['deadline'];
+
+               if(empty($job['price'])) $errors [] = 'Please input price'; else {
+               	  $job_price = $job['price'];
+               } 
+
+               if(empty($job['status'])) $errors[] ='Please choose Status'; else $job_status = $job['status'];
+               if(empty($job['terms_of_use'])) $errors[] ='Please check agree with terms and conditions';
+               else $job_agree = 1;
+
+             if($errors && count($errors) >0 ){
+             	echo '<ul class="error">';
+                 foreach ($errors as $error) {
+                    echo '<li>'.$error.'</li>';
+                 } 
+                echo '</ul>';
+              }else{
+
+                 $job_ob = array(
+                     'post_title'=>$job_title,
+                     'post_content'=>$job_des,
+                     'post_status'=>$job_status,
+                     'post_type'=>'jobs',
+                     'post_author'=>get_current_user_id(),
+                     'tax_input'=>array(
+                          'type_job'=>$type_job,
+                          'job_format'=>$job_format
+                     	),
+                      'meta_input'=> array(
+                      	  PREFIX_WEBSITE.'deadline_job' =>$job_deadline,
+                      	  PREFIX_WEBSITE.'price_job'=>$job_price,
+                          PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
+                      )
+                  );
+
+
+                 print_r($job_ob);
+
+              }
+
+           }
 
 
           ?>
@@ -64,7 +113,7 @@ get_header(); ?>
 				   </div>
 				   <div class="jobs-form__block--half is-last">
 				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title">
-				      <select name="job[format_job]" id="format_job" class="field field--colored">
+				      <select name="job[job_format]" id="format_job" class="field field--colored">
 				      <?php
                           $format_job_tax = 'job_format';
         				  $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0');
@@ -119,13 +168,13 @@ get_header(); ?>
 			      <label class="jobs-form__label">Type of your job offer</label>
 			      <div class="jobs-form__offer-item">
 			         <label class="">
-			            <div class="radio is-checked"><input type="radio" value="true" name="job[public]" id="job_public_true" checked="checked"></div>
+			            <div class="radio is-checked"><input type="radio" value="true" name="job[status]" id="job_public_true" checked="checked"></div>
 			            Public<small>(Everyone will be able to see the offer)</small>
 			         </label>
 			      </div>
 			      <div class="jobs-form__offer-item">
 			         <label class="">
-			            <div class="radio"><input type="radio" value="false" name="job[public]" id="job_public_false" ></div>
+			            <div class="radio"><input type="radio" value="false" name="job[status]" id="job_public_false" ></div>
 			            Private<small>(Only invited designers will see the offer)</small>
 			         </label>
 			      </div>
@@ -135,14 +184,16 @@ get_header(); ?>
 
 		<div class="jobs-application__content jobs-application__content--footer">
 		   <div class="jobs-application__earnings">
-		      <label class="label--with-hexagon">Budget:</label><input value="100.0" class="field field--colored cgtrader_price" data-job-id="1105" data-application-id="null" data-country-code="DK" type="text" name="job_application[cgtrader_price]" id="job_application_cgtrader_price" style="text-align: right;">
+		      <label class="label--with-hexagon">Budget:</label><input value="100.0" class="field field--colored cgtrader_price" data-job-id="1105" data-application-id="null" data-country-code="DK" type="text" name="job[price]" id="job_application_cgtrader_price" style="text-align: right;">
 		      <div class="jobs-offer__budget--small-col">
 			   <label class="jobs-form__term-of-use">
-			      <input name="job[agreed_to_terms_of_use]" type="hidden" value="0">
-			      <div class="checkbox"><input type="checkbox" class="iCheckBox" value="1" name="job[agreed_to_terms_of_use]" id="job_agreed_to_terms_of_use" ></div>
+			      
+			      <div class="checkbox">
+			      <input type="checkbox" class="iCheckBox" value="1" name="job[terms_of_use]" id="job_agreed_to_terms_of_use" ></div>
 			      I agree with <a id="" href="/pages/3d-jobs-agreement">Terms and Conditions</a> including waiving 14-days withdrawal right regarding the digital content.
 			   </label>
 			</div>
+			  <?php wp_nonce_field('post_job_action','post_job'); ?>
 		      <input type="submit" name="commit" value="Post job offer" class="button u-float-right">
 		   </div>
 		</div>
