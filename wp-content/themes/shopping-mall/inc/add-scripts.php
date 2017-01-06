@@ -13,6 +13,9 @@ function cgstore_add_scripts(){
    wp_enqueue_script('cgstore-jquery-ui-js',TEMPLATE_PATH.'/js/jquery-ui.js',array('jquery'));
    wp_enqueue_script('cgstore-masonry-js',TEMPLATE_PATH.'/js/masonry.pkgd.js',array('jquery'));
    wp_enqueue_script('cgstore-imagesloaded-js',TEMPLATE_PATH.'/js/imagesloaded.pkgd.js',array('jquery'));
+
+   wp_enqueue_script('cgstore-fileupload-js',TEMPLATE_PATH.'/js/jquery.fileupload.js',array('jquery'));
+
    wp_enqueue_script('cgstore-sitemain-js',TEMPLATE_PATH.'/js/class.SiteMain.js',array('jquery'));
    $vars = array(
          'SITE_URL'=> HOME_URL,

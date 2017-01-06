@@ -53,9 +53,13 @@ get_header(); ?>
 				         </div>
 				      </div>
 				      <div class="input-container">
+				      	<div id="progress" class="progress">
+					        <div class="progress-bar progress-bar-success"></div>
+					    </div>
 				         <label class="jobs-form__label">Add related files or images</label>
-				         <div class="button-upload"><span>Browse</span><input class="file-upload--jobs" data-url="/attachments" id="fileupload" multiple="" name="files[]" type="file"></div>
+				         <div class="button-upload"><span>Browse</span><input class="file-upload--jobs" id="fileupload" multiple="" name="files[]" type="file"></div>
 				         <div class="files" id="files"></div>
+				         
 				      </div>
 				   </div>
 				   <div class="jobs-form__block--half is-last">

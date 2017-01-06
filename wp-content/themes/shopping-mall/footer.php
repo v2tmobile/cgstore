@@ -102,6 +102,9 @@
 	</ul>
 </div>
 </div>
+<div class="tooltip-html">
+	
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>
