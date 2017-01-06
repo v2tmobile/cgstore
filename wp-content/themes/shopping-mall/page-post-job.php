@@ -3,17 +3,10 @@
 /**
  * @package Shopping_Mall
  */
-
-get_header(); ?>
-
-<div class="jobs-page">
-  
-	<div class="content-area">
-
-         <?php
-           
-           if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
-                print_r($_POST);
+         $html_ms = '';   
+        
+        if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
+               
                $job = $_POST['job'];
                $errors = [];
                if(empty($job['title'])) $errors[] = 'Title can\'t be blank'; else  $job_title = wp_strip_all_tags($job['title']);
@@ -32,11 +25,11 @@ get_header(); ?>
                else $job_agree = 1;
 
              if($errors && count($errors) >0 ){
-             	echo '<ul class="error">';
+             	 $html_ms .='<ul class="error">';
                  foreach ($errors as $error) {
-                    echo '<li>'.$error.'</li>';
+                     $html_ms .='<li>'.$error.'</li>';
                  } 
-                echo '</ul>';
+                 $html_ms .='</ul>';
               }else{
 
                  $job_ob = array(
@@ -55,18 +48,36 @@ get_header(); ?>
                           PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       )
                   );
-               
+              
                 $job_id = wp_insert_post($job_ob);
-                if($job_id) echo $job_id; 
+                if($job_id){
+                	
+                	 wp_redirect(get_permalink($job_id));
+
+                	// if($_FILES['files']){
+                	// 	//print_r($_FILES['files']);
+                	//    //include_once('inc/upload-file.php');
+                	//     //$upload = cgstore_upload($job_id,$_FILES['files']);
+                 //         //if($upload) print_r($upload);else echo 'uplaod success';
+                 //   }else{
+
+                 //   	  echo 'redirect';
+                 //   }
+                }
 
               }
 
            }
 
+ get_header();
 
-          ?>
+ ?>
 
-	      <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
+<div class="jobs-page">
+  
+	<div class="content-area">
+           <?php echo $html_ms; ?>
+	   <form method="post" action="" enctype="multipart/form-data" id="form-post-job">
 		<div class="jobs-application__content">
 		   <div class="jobs-application__application">
 		      <div class="jobs-form__block--left headline">
@@ -91,7 +102,7 @@ get_header(); ?>
 				            <div class="jobs-form__category">
 				               <label>
 				                  <div class="radio">
-				                  <input type="radio" value="<?php echo $format->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
+				                  <input type="radio" value="<?php echo $type_job->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
 				                  <?php echo $type_job->name; ?>
 				               </label>
 				            </div>
@@ -107,7 +118,8 @@ get_header(); ?>
 					        <div class="progress-bar progress-bar-success"></div>
 					    </div>
 				         <label class="jobs-form__label">Add related files or images</label>
-				         <div class="button-upload"><span>Browse</span><input class="file-upload--jobs" id="fileupload" multiple="" name="files[]" type="file"></div>
+				         <div class="button-upload"><span>Browse</span>
+				         <input class="file-upload--jobs" id="fileupload" multiple name="files[]" type="file"></div>
 				         <div class="files" id="files"></div>
 				         
 				      </div>
