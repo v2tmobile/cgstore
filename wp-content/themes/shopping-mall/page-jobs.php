@@ -30,7 +30,7 @@ get_header(); ?>
 		   <div class="jobs-header__content">
 		      <p class="jobs-header__annotation">Looking for a custom 3D model? Post your job offer below and get automatically connected with thousands of designers on CGTrader.</p>
 		   </div>
-		   <a class="button button--longer u-float-right" id="468bd2291391c7776b3a410877737c41" href="/jobs/new">Post a job!</a>
+		   <a class="button button--longer u-float-right" id="" href="/jobs/new">Post a job!</a>
 		   <div class="clear"></div>
 		</div>
 		
