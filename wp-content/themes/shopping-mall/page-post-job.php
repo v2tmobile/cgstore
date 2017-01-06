@@ -26,7 +26,8 @@ get_header(); ?>
                	  $job_price = $job['price'];
                } 
 
-               if(empty($job['status'])) $errors[] ='Please choose Status'; else $job_status = $job['status'];
+               $job_status = ($job['status']) ? 'publish' : 'draft';
+               
                if(empty($job['terms_of_use'])) $errors[] ='Please check agree with terms and conditions';
                else $job_agree = 1;
 
@@ -45,8 +46,8 @@ get_header(); ?>
                      'post_type'=>'jobs',
                      'post_author'=>get_current_user_id(),
                      'tax_input'=>array(
-                          'type_job'=>$type_job,
-                          'job_format'=>$job_format
+                          'type_job'=>array($type_job),
+                          'job_format'=>array($job_format)
                      	),
                       'meta_input'=> array(
                       	  PREFIX_WEBSITE.'deadline_job' =>$job_deadline,
@@ -54,9 +55,9 @@ get_header(); ?>
                           PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       )
                   );
-
-
-                 print_r($job_ob);
+               
+                $job_id = wp_insert_post($job_ob);
+                if($job_id) echo $job_id; 
 
               }
 
@@ -90,7 +91,7 @@ get_header(); ?>
 				            <div class="jobs-form__category">
 				               <label>
 				                  <div class="radio">
-				                  <input type="radio" value="1" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
+				                  <input type="radio" value="<?php echo $format->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
 				                  <?php echo $type_job->name; ?>
 				               </label>
 				            </div>
@@ -168,13 +169,13 @@ get_header(); ?>
 			      <label class="jobs-form__label">Type of your job offer</label>
 			      <div class="jobs-form__offer-item">
 			         <label class="">
-			            <div class="radio is-checked"><input type="radio" value="true" name="job[status]" id="job_public_true" checked="checked"></div>
+			            <div class="radio is-checked"><input type="radio" value="1" name="job[status]" id="job_public_true" checked="checked"></div>
 			            Public<small>(Everyone will be able to see the offer)</small>
 			         </label>
 			      </div>
 			      <div class="jobs-form__offer-item">
 			         <label class="">
-			            <div class="radio"><input type="radio" value="false" name="job[status]" id="job_public_false" ></div>
+			            <div class="radio"><input type="radio" value="0" name="job[status]" id="job_public_false" ></div>
 			            Private<small>(Only invited designers will see the offer)</small>
 			         </label>
 			      </div>
