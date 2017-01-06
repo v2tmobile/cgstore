@@ -37,7 +37,7 @@
 	    -webkit-transition: 0.15s ease-in-out all;
 	    transition: 0.15s ease-in-out all;
 	    text-align: center;
-	}
+	} 
 	.fa-commenting-o:before {
 	    content: "\f27b";
 	}
@@ -47,7 +47,7 @@
 	    margin-right: 0.58207%;
 	}
 	.forum-board__title {
-	    margin: 0 0 5px;
+	    margin: 0 0 5px; 
 	    font-size: 24px;
 	    font-weight: normal;
 	}
@@ -354,4 +354,17 @@
     .box.user{
         margin-bottom: 7px;
     }
+}
+.blog-content__main {
+    width: 62.17163%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.blog-post {
+    margin-bottom: 20px;
+}
+.blog-post__title {
+    line-height: 130%;
+    font-size: 26px;
+    margin-bottom: 20px;
 }

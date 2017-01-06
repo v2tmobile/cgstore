@@ -13,10 +13,14 @@ var SiteMain = (function() {
 		openForumTab();
 		calHeightCatgory();
 		createDatepicker();
+		initSelectBootstrap();
 	}
 		
+	function initSelectBootstrap(){
+		$('select[multiple="multiple"]').multiselect();
+	}
 	function createDatepicker(){
-		$('#datepicker, .datepicker').datepicker();
+		$('#datepicker, .datepicker').datepicker({dateFormat: 'dd-mm-yyyy' });
 	}
 
 	function calHeightCatgory(){
