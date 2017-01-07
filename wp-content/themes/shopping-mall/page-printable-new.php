@@ -67,12 +67,13 @@ html{
                     <div id="submitbutton">
                         <button type="submit">Upload Files</button>
                     </div>
-                    <div id="messages">
-                        <p>Status Messages</p>
-                    </div>
-                    <div id="image-holder"></div>
+                    
                 </form>
             </div>
+            <div id="messages">
+                <p>Status Messages</p>
+            </div>
+            <div id="image-holder"></div>
             <div class="input-container files-count-label">
                 <label class="error">Please upload at least one file format of your 3D model.</label>
             </div>

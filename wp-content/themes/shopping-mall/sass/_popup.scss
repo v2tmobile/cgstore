@@ -389,6 +389,7 @@ a.button--icon.js-clear{
     cursor: pointer;
     input[type="file"]{
         position: absolute;
+            z-index: 100;
         height: 350px;
         width: 100%;
         left: 0;
