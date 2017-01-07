@@ -469,36 +469,38 @@ a.button--icon.js-clear{
     -webkit-transition: 0.15s ease-in-out all;
     transition: 0.15s ease-in-out all;
 }   
-.MultiFile-label{
-    display: block;
-    width: 100px;
-    height: 75px;
-    margin-right: 13px;
-    margin-bottom: 13px;
-    float: left;
-    border-radius: 3px;
-    background: #fbfaf9;
-    line-height: 75px;
-    text-align: center;
-    overflow: hidden;
-    cursor: move;
-    -webkit-transition: 0.15s ease-in-out all;
-    transition: 0.15s ease-in-out all;
-    -webkit-filter: brightness(100%) contrast(100%) sepia(0);
-    filter: brightness(100%) contrast(100%) sepia(0);
-    position: relative;
-    -webkit-backface-visibility: hidden;
-    &:hover{
-        .sortable__item-remove{
-            display: block;
-            .fa-times{
-                content: "\f00d";
+.visuals-panel{
+    .MultiFile-label{
+        display: block;
+        width: 100px;
+        height: 75px;
+        margin-right: 13px;
+        margin-bottom: 13px;
+        float: left;
+        border-radius: 3px;
+        background: #fbfaf9;
+        line-height: 75px;
+        text-align: center;
+        overflow: hidden;
+        cursor: move;
+        -webkit-transition: 0.15s ease-in-out all;
+        transition: 0.15s ease-in-out all;
+        -webkit-filter: brightness(100%) contrast(100%) sepia(0);
+        filter: brightness(100%) contrast(100%) sepia(0);
+        position: relative;
+        -webkit-backface-visibility: hidden;
+        &:hover{
+            .sortable__item-remove{
+                display: block;
+                .fa-times{
+                    content: "\f00d";
+                }
             }
         }
-    }
-    a.MultiFile-remove{
-        position: absolute;
-        top: 0;
-        right: 0;
+        a.MultiFile-remove{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     }
 }
