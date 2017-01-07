@@ -1278,7 +1278,7 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 	}
 }
 
-.files p {
+.files p, .files div.MultiFile-label {
     width: 100%;
     color: #6d6d6d;
     padding: 10px;
@@ -1289,6 +1289,13 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
     border-radius: 3px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.files{
+	.MultiFile-remove{
+		float: right;
+		font-weight: bold;
+		font-size: 17px;
+	}
 }
 .u-float-left{
 	float: left;
