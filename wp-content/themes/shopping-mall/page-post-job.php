@@ -13,18 +13,47 @@
          $job_price = 0;
          $job_status = 'publish';
          $job_update_id = '';
-
+         $job_format_ids = [];
+         $file_input = '';
+         $file_list = '';
+        
          if($job_id){
          	$job_ob  = get_post($job_id);
          	if($job_ob){
          	  $job_title =  $job_ob->post_title;
          	  $job_des = $job_ob->post_content;
          	  $job_price = get_field(PREFIX_WEBSITE.'price_job',$job_id);
-         	  $job_update_id ='<input type="hidden" name="job_id" value="'.$job_id.'">';
+         	  $job_update_id ='<input type="hidden" name="job[job_id]" value="'.$job_id.'">';
          	  $job_deadline = get_field(PREFIX_WEBSITE.'deadline_job',$job_id);
               $job_status = $job_ob->post_status;
               $type_job_data = get_the_terms($job_id,'type_job');
               $job_format_data = get_the_terms($job_id,'job_format');
+              if($job_format_data){
+               	  foreach ($job_format_data as $jf) {
+               	     $job_format_ids[] =$jf->term_id;
+               	  }
+               }
+
+			   $attachments = get_posts( array(
+			        'post_type'         => 'attachment',
+			        'posts_per_page'    => -1,
+			        'post_parent'       => $job_id,
+			        'exclude'           =>'',
+			    
+			      ) );
+              if($attachments){
+              	 $i = 0;
+              	 foreach ($attachments as $attachment) {
+              	  $attachmentID = $attachment->ID;
+              	  $attachment_mine = sanitize_title( $attachment->post_mime_type );
+              	   $attachment_title = $attachment->post_title;
+              	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
+              	   $i++;
+                   //$file_list .= '<div class="MultiFile-label"><a class="MultiFile-remove" href="#'.$id_delete.'">x</a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
+                  // $file_input .='<input class="file-upload--jobs MultiFile-applied MultiFile" id="fileupload_"'.$id_delete.'name="files[]" type="file" value="">';
+              	   
+              	 }
+              }
          	 
             }
          }
@@ -73,20 +102,29 @@
                       )
                   );
                 
-                $job_id = wp_insert_post($job_ob);
+              if($job_update_id && $job_id){
+                   if($job_id == $job['job_id']){
+                   	   $job_ob['ID'] = $job_id;
+                   	   
+                       wp_update_post($job_ob);
+                    }
+              }else{ 
+                  $job_id = wp_insert_post($job_ob);
+              }
+
                 if($job_id){
 
                 	if($_FILES['files']){
                 	   include_once('inc/upload-file.php');
                 	    $upload = cgstore_upload($job_id,$_FILES['files']);
                          if($upload) {
-                           wp_redirect(HOME_URL.'/post-job/?id='.$job_id);
+                          // wp_redirect(HOME_URL.'/post-job/?id='.$job_id);
                         }
                         else{
-                          wp_redirect(get_permalink($job_id));
+                         // wp_redirect(get_permalink($job_id));
                        }
                    }else{
-                   	   wp_redirect(get_permalink($job_id));
+                   	   //wp_redirect(get_permalink($job_id));
                    }
                 
               }
@@ -154,8 +192,11 @@
 				         <label class="jobs-form__label">Add related files or images</label>
 				         <div class="button-upload"><span>Browse</span>
 				         	<input class="file-upload--jobs" id="fileupload" name="files[]" type="file">
+				         	<?php echo $file_input; ?>
 				     	 </div>
-				         <div class="files" id="files"></div>
+				         <div class="files" id="files">
+				         	<?php echo $file_list; ?>
+				         </div>
 				         
 				      </div>
 				   </div>
@@ -166,9 +207,15 @@
                           $format_job_tax = 'job_format';
         				  $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0');
         				  if($format_jobs):
+        				  	  $selected = '';
                                foreach ($format_jobs as $format) {
+                               	  if(in_array($format->term_id, $job_format_ids)){
+                               	  	 $selected ='selected="selected"';
+                               	  }else{
+                               	  	$selected = '';
+                               	  }
                                	?>
-                               	 <option value="<?php echo $format->term_id; ?>"><?php echo $format->name; ?></option>
+                               	 <option <?php echo $selected; ?> value="<?php echo $format->term_id; ?>"><?php echo $format->name; ?></option>
                                	<?php 
                                }
         				  	endif;
@@ -199,7 +246,7 @@
 		               <li>CGTrader will pay out the royalties when the job is done and approved by client</li>
 		            </ul>
 		         </div>
-		         <div class="icon-question-sign u-float-right"><a href="javascript:$zopim.livechat.window.show()">Questions?</a></div>
+		         <div class="icon-question-sign u-float-right"><a href="#">Questions?</a></div>
 		      </div>
 		   </div>
 		   <div class="clear"></div>
@@ -209,7 +256,7 @@
 			   <div class="jobs-form__deadline">
 			      <div class="input-container">
 			         <label class="jobs-form__label">Date when job needs to be done</label>
-			         <div class="input-container--date"><input value="" class="field field--colored" id="datepicker" type="text" name="job[deadline]"></div>
+			         <div class="input-container--date"><input class="field field--colored" value="<?php echo $job_deadline; ?>" id="datepicker" type="text" name="job[deadline]"></div>
 			      </div>
 			   </div>
 			   <div class="jobs-offer__visibility">
@@ -232,7 +279,7 @@
 
 		<div class="jobs-application__content jobs-application__content--footer">
 		   <div class="jobs-application__earnings">
-		      <label class="label--with-hexagon">Budget:</label><input value="100.0" class="field field--colored cgtrader_price" data-job-id="1105" data-application-id="null" data-country-code="DK" type="text" name="job[price]" id="job_application_cgtrader_price" style="text-align: right;">
+		      <label class="label--with-hexagon">Budget:</label><input class="field field--colored cgtrader_price" type="text" name="job[price]" value="<?php echo $job_price; ?>" id="job_application_cgtrader_price" style="text-align: right;">
 		      <div class="jobs-offer__budget--small-col">
 			   <label class="jobs-form__term-of-use">
 			      
