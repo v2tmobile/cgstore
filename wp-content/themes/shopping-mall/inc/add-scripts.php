@@ -2,8 +2,8 @@
 // add script 
 function cgstore_add_scripts(){
   wp_deregister_script('jquery');
-   wp_enqueue_script('modernizr',TEMPLATE_PATH.'/js/2.8.3/modernizr.min.js');
-   wp_enqueue_script('jquery',TEMPLATE_PATH.'/js/1.11.0/jquery.min.js');
+   wp_enqueue_script('modernizr',TEMPLATE_PATH.'/js/modernizr.min.js');
+   wp_enqueue_script('jquery',TEMPLATE_PATH.'/js/jquery.min.js');
     wp_enqueue_script('cgstore-bootstrap-3.3.2-js',TEMPLATE_PATH.'/js/bootstrap-3.3.2.min.js',array('jquery'));
    wp_enqueue_script('cgstore-bootstrap-multiselect-js',TEMPLATE_PATH.'/js/bootstrap-multiselect.js',array('jquery'));
    wp_enqueue_script('cgstore-tooltip-js',TEMPLATE_PATH.'/js/tooltipster.bundle.js',array('jquery'));
@@ -15,10 +15,9 @@ function cgstore_add_scripts(){
    wp_enqueue_script('cgstore-jquery-ui-js',TEMPLATE_PATH.'/js/jquery-ui.js',array('jquery'));
    wp_enqueue_script('cgstore-masonry-js',TEMPLATE_PATH.'/js/masonry.pkgd.js',array('jquery'));
    wp_enqueue_script('cgstore-imagesloaded-js',TEMPLATE_PATH.'/js/imagesloaded.pkgd.js',array('jquery'));
-   wp_enqueue_script('cgstore-fileupload-js',TEMPLATE_PATH.'/js/jquery.fileupload.js',array('jquery'));
+   wp_enqueue_script('cgstore-MultiFile-js',TEMPLATE_PATH.'/js/jQuery.MultiFile.min.js',array('jquery'));
 
   
-  wp_enqueue_script('cgstore-filedrag-js',TEMPLATE_PATH.'/js/filedrag.js',array('jquery'));
    wp_enqueue_script('cgstore-popup-js',TEMPLATE_PATH.'/js/class.popup.js',array('jquery'));
    wp_enqueue_script('cgstore-sitemain-js',TEMPLATE_PATH.'/js/class.SiteMain.js',array('jquery'));
    $vars = array(

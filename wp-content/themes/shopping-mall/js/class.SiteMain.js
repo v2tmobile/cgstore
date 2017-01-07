@@ -1,5 +1,8 @@
 // JavaScript Document
 var SiteMain = (function() {
+
+	var inputFile = $('#fileupload');
+	var finalFiles = {};
 	function init(){
 		createTooltip();
 		createRadio();
@@ -51,19 +54,21 @@ var SiteMain = (function() {
 		    });    
 		  });
 	}
-	function removeFile(idfile){
-		$(idfile).closest('p').remove();
-	}
+	function removeLine(obj){
+      inputFile.val('');
+      var jqObj = $(obj);
+      var container = jqObj.closest('div');
+      var index = container.attr("id").split('_')[1];
+      container.remove(); 
+
+      delete finalFiles[index];
+    }
+	
 	function displayFilesUpload(){
-		$(".button-upload input.file-upload--jobs").change(function(){
-		    var names = [];
-		    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-		        names.push($(this).get(0).files[i].name);
-		        $('#files').append('<div class="file"><div class="js-file-wrap"><p>'+names[0]+'<a class="remove" onclick= "SiteMain.removeFile(this)" href="javascript:void(0);" data-method="delete" data-remote="true" rel="nofollow"><i class="fa fa-times fa-24 fa-pull-right"></i></a></p></div></div>')
-		    }
-		    console.log($(this)[0].files);
-		});
-		
+		$('#fileupload').MultiFile({
+	    	accept: 'jpg|png|gif',
+	    	list: '#files'
+	    });
 
 	}
 
@@ -267,7 +272,7 @@ var SiteMain = (function() {
 		init:init,
 		openPopup:openPopup,
 		closePopup:closePopup,
-		removeFile:removeFile
+		removeLine:removeLine
 	}
 	
 })();		

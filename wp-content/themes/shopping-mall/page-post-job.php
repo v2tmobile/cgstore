@@ -49,9 +49,10 @@
                       )
                   );
               
-                $job_id = wp_insert_post($job_ob);
-                if($job_id){
-                	print_r($_FILES['files']);
+                //$job_id = wp_insert_post($job_ob);
+                print_r($_FILES['files']);
+                /*if($job_id){
+                	
                 	 //wp_redirect(get_permalink($job_id));
 
                 	// if($_FILES['files']){
@@ -63,7 +64,7 @@
 
                  //   	  echo 'redirect';
                  //   }
-                }
+                }*/
 
               }
 
@@ -119,7 +120,8 @@
 					    </div>
 				         <label class="jobs-form__label">Add related files or images</label>
 				         <div class="button-upload"><span>Browse</span>
-				         <input class="file-upload--jobs" id="fileupload" multiple name="files[]" type="file"></div>
+				         	<input class="file-upload--jobs" id="fileupload" name="files[]" type="file">
+				     	 </div>
 				         <div class="files" id="files"></div>
 				         
 				      </div>
