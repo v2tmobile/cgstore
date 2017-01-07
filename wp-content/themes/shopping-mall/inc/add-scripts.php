@@ -17,7 +17,7 @@ function cgstore_add_scripts(){
    wp_enqueue_script('cgstore-imagesloaded-js',TEMPLATE_PATH.'/js/imagesloaded.pkgd.js',array('jquery'));
    wp_enqueue_script('cgstore-MultiFile-js',TEMPLATE_PATH.'/js/jQuery.MultiFile.min.js',array('jquery'));
 
-  
+   wp_enqueue_script('cgstore-validate-js',TEMPLATE_PATH.'/js/jquery.validate.js',array('jquery'));  
    wp_enqueue_script('cgstore-popup-js',TEMPLATE_PATH.'/js/class.popup.js',array('jquery'));
    wp_enqueue_script('cgstore-sitemain-js',TEMPLATE_PATH.'/js/class.SiteMain.js',array('jquery'));
    $vars = array(

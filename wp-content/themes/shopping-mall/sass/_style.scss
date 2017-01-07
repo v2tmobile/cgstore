@@ -1296,10 +1296,27 @@ section.content-section .challenges-list .challenge .challenge-content .challeng
 		font-weight: bold;
 		font-size: 17px;
 	}
+	.remove-string{
+	display: none;
+	}
 }
 .u-float-left{
 	float: left;
 }
 .u-float-right{
 	float: right;
+}
+.jobs-page{
+	ul.error{
+		padding: 20px 20px 0 20px;
+		li{
+			font-size: 14px;
+			color: red;
+		}
+	}
+}
+label.error{
+	color: red;
+	font-size: 12px;
+	padding-top: 5px;
 }

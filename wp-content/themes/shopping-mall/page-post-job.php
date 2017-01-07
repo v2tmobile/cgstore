@@ -149,10 +149,10 @@
 				   <?php echo $job_update_id; ?>
 				   	
 				   <label class="jobs-form__label">Job Title</label>
-				   <input placeholder="3D design of Audi Car" class="field field--colored" value="<?php echo $job_title; ?>" type="text" name="job[title]" id="job_title"></div>
+				   <input placeholder="3D design of Audi Car" class="field field--colored" value="<?php echo $job_title; ?>" type="text" name="job[title]" id="job_title" required></div>
 				   <div class="input-container">
 				   <label class="jobs-form__label">Detailed job description</label>
-				   <textarea rows="4" class="field field--colored field--textbox" placeholder="What we need is a simple model of the car made by cinema 4d or any other 3d modeling tool" name="job[description]" id="job_description"><?php echo $job_des; ?></textarea></div>
+				   <textarea rows="4" class="field field--colored field--textbox" placeholder="What we need is a simple model of the car made by cinema 4d or any other 3d modeling tool" name="job[description]" id="job_description" required><?php echo $job_des; ?></textarea></div>
 				   <div class="jobs-form__block--half">
 				      <div class="input-container">
 				         <label class="jobs-form__label">Select category</label>
@@ -298,3 +298,9 @@
 </div>
 
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#form-post-job").validate();
+	});
+</script>
