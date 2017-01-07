@@ -3,7 +3,31 @@
 /**
  * @package Shopping_Mall
  */
-         $html_ms = '';   
+         $html_ms = '';  
+         $job_id = ($_GET['id']) ? $_GET['id'] : '';
+         $job_title  = '';
+         $job_des = '';
+         $job_format_data = '';
+         $type_job_data = '';
+         $job_deadline = '';
+         $job_price = 0;
+         $job_status = 'publish';
+         $job_update_id = '';
+
+         if($job_id){
+         	$job_ob  = get_post($job_id);
+         	if($job_ob){
+         	  $job_title =  $job_ob->post_title;
+         	  $job_des = $job_ob->post_content;
+         	  $job_price = get_field(PREFIX_WEBSITE.'price_job',$job_id);
+         	  $job_update_id ='<input type="hidden" name="job_id" value="'.$job_id.'">';
+         	  $job_deadline = get_field(PREFIX_WEBSITE.'deadline_job',$job_id);
+              $job_status = $job_ob->post_status;
+              $type_job_data = get_the_terms($job_id,'type_job');
+              $job_format_data = get_the_terms($job_id,'job_format');
+         	 
+            }
+         }
         
         if( wp_verify_nonce($_POST['post_job'],'post_job_action') && isset($_POST['job'])){
                
@@ -49,22 +73,26 @@
                       )
                   );
                 
-                $job_id = 1; //wp_insert_post($job_ob);
+                $job_id = wp_insert_post($job_ob);
                 if($job_id){
-                	
+
                 	if($_FILES['files']){
                 	   include_once('inc/upload-file.php');
                 	    $upload = cgstore_upload($job_id,$_FILES['files']);
-                         if($upload) echo $upload ;else wp_redirect(get_permalink($job_id));
+                         if($upload) {
+                           wp_redirect(HOME_URL.'/post-job/?id='.$job_id);
+                        }
+                        else{
+                          wp_redirect(get_permalink($job_id));
+                       }
                    }else{
                    	   wp_redirect(get_permalink($job_id));
                    }
-                }
-
-
+                
               }
 
-           }
+            } 
+          }
 
  get_header();
 
@@ -80,11 +108,13 @@
 		      <div class="jobs-form__block--left headline">
 				   <h3 class="jobs-form__content-title">Post your 3D job </h3>
 				   <div class="input-container">
+				   <?php echo $job_update_id; ?>
+				   	
 				   <label class="jobs-form__label">Job Title</label>
-				   <input placeholder="3D design of Audi Car" class="field field--colored" type="text" name="job[title]" id="job_title"></div>
+				   <input placeholder="3D design of Audi Car" class="field field--colored" value="<?php echo $job_title; ?>" type="text" name="job[title]" id="job_title"></div>
 				   <div class="input-container">
 				   <label class="jobs-form__label">Detailed job description</label>
-				   <textarea rows="4" class="field field--colored field--textbox" placeholder="What we need is a simple model of the car made by cinema 4d or any other 3d modeling tool" name="job[description]" id="job_description"></textarea></div>
+				   <textarea rows="4" class="field field--colored field--textbox" placeholder="What we need is a simple model of the car made by cinema 4d or any other 3d modeling tool" name="job[description]" id="job_description"><?php echo $job_des; ?></textarea></div>
 				   <div class="jobs-form__block--half">
 				      <div class="input-container">
 				         <label class="jobs-form__label">Select category</label>
@@ -93,13 +123,20 @@
                               $type_job_tax = 'type_job';
         					  $type_jobs = get_terms( $type_job_tax, 'orderby=count&hide_empty=0' );
         					  if($type_jobs):
+        					  	
+        					    $checked ='';
         					  	foreach ($type_jobs as $type_job):
-                                  
+                                  if($type_job_data){
+                                  	if($type_job->term_id == $type_job_data[0]->term_id) {
+                                  		$checked ='checked="checked"'; 
+                                  	}
+                                  	else $checked = '';
+                                  }
 				            ?>
 				            <div class="jobs-form__category">
 				               <label>
-				                  <div class="radio">
-				                  <input type="radio" value="<?php echo $type_job->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
+				                  <div class="radio <?php echo $checked; ?>">
+				                  <input <?php echo $checked; ?> type="radio" value="<?php echo $type_job->term_id; ?>" name="job[type_job]" id="<?php echo $type_job->term_id; ?>"></div>
 				                  <?php echo $type_job->name; ?>
 				               </label>
 				            </div>
