@@ -40,7 +40,7 @@
                      'post_author'=>get_current_user_id(),
                      'tax_input'=>array(
                           'type_job'=>array($type_job),
-                          'job_format'=>array($job_format)
+                          'job_format'=>(!is_array($job_format)) ? (array) $job_format: $job_format  
                      	),
                       'meta_input'=> array(
                       	  PREFIX_WEBSITE.'deadline_job' =>$job_deadline,
@@ -48,21 +48,17 @@
                           PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       )
                   );
-              
-                $job_id = wp_insert_post($job_ob);
+                
+                $job_id = 1; //wp_insert_post($job_ob);
                 if($job_id){
-                	print_r($_FILES['files']);
-                	 //wp_redirect(get_permalink($job_id));
-
-                	// if($_FILES['files']){
-                	// 	//print_r($_FILES['files']);
-                	//    //include_once('inc/upload-file.php');
-                	//     //$upload = cgstore_upload($job_id,$_FILES['files']);
-                 //         //if($upload) print_r($upload);else echo 'uplaod success';
-                 //   }else{
-
-                 //   	  echo 'redirect';
-                 //   }
+                	
+                	if($_FILES['files']){
+                	   include_once('inc/upload-file.php');
+                	    $upload = cgstore_upload($job_id,$_FILES['files']);
+                         if($upload) echo $upload ;else wp_redirect(get_permalink($job_id));
+                   }else{
+                   	   wp_redirect(get_permalink($job_id));
+                   }
                 }
 
               }
@@ -126,7 +122,7 @@
 				   </div>
 				   <div class="jobs-form__block--half is-last">
 				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title">
-				      <select name="job[job_format]" id="format_job" class="field field--colored" multiple>
+				      <select name="job[job_format][]" id="format_job" class="field field--colored" multiple>
 				      <?php
                           $format_job_tax = 'job_format';
         				  $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0');

@@ -19,11 +19,11 @@
      if( ( count( $attachments ) + count( $files['name'] ) ) > $max_image_upload ) {
             $upload_message[] = "Sorry you can only upload " . $max_image_upload . " images for each Ad";
         } else {
-           
+            
             foreach ( $files['name'] as $f => $name ) {
                 $extension = pathinfo( $name, PATHINFO_EXTENSION );
                 // Generate a randon code for each file name
-                $new_filename = cvf_td_generate_random_code( 20 ) . '.' . $extension;
+                $new_filename =  PREFIX_WEBSITE.$name;
                 
                 if ( $files['error'][$f] == 4 ) {
                     continue; 
@@ -45,7 +45,6 @@
                         if( move_uploaded_file( $files["tmp_name"][$f], $path.$new_filename ) ) {
                             
                             $count++; 
-                            die();
                             $filename = $path.$new_filename;
                             $filetype = wp_check_filetype( basename( $filename ), null );
                             $wp_upload_dir = wp_upload_dir();
@@ -57,7 +56,7 @@
                                 'post_status'    => 'inherit'
                             );
                             // Insert attachment to the database
-                            $attach_id = wp_insert_attachment( $attachment, $filename, $parent_post_id );
+                            $attach_id = wp_insert_attachment( $attachment, $filename, $postID );
 
                             require_once( ABSPATH . 'wp-admin/includes/image.php' );
                             
@@ -71,7 +70,6 @@
             }
       }
        
-    print_r($upload_message);
      if( isset( $upload_message ) ) :
               return $upload_message;
       endif;
