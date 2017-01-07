@@ -60,7 +60,7 @@
 <div class="user-menu" id="user-menu">
 	<div class="user-menu-section is-closed-off">
 		<div class="user-menu-content">
-			<button class="button big full">Upload product</button>
+			<button class="button big full" id="uploadProduct">Upload product</button>
 		</div>
 	</div>
 	<div class="user-menu-section">
@@ -106,7 +106,7 @@
 	
 </div>
 <?php wp_footer(); ?>
-<?php //include('choose-model.php');?>
+<?php include('choose-model.php');?>
 </body>
 </html>
 <!-- SCRIPTS -->
