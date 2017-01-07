@@ -3,6 +3,7 @@ var Popup = (function() {
 	function init(){
 		openPostProduct();
 		hidePostProduct();
+		displayFilesUpload();
 		
 	}
 	function openPostProduct(){
@@ -11,6 +12,21 @@ var Popup = (function() {
 			$('body').removeClass('is-pushed');
 		});
 	}
+
+	function displayFilesUpload(){
+		$('#fileUploadNew').MultiFile({
+	    	accept: 'jpg|png|gif',
+	    	list: '#messages',
+	    	STRING: {
+	    		remove: '<span class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span>'
+	    	},
+	    	onFileAppend: function(){
+	    		$('.visuals-panel').show();
+	    	}
+	    });
+
+	}
+
 	function getMultiFiles(){
 		 $("#fileUploadNew").on('change', function () {
 
@@ -35,7 +51,7 @@ var Popup = (function() {
                                      "class": "thumb-image"
                              }).appendTo(image_holder);
                          }
-
+                         $('.visuals-panel').show();
                          image_holder.show();
                          reader.readAsDataURL($(this)[0].files[i]);
                      }

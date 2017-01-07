@@ -359,6 +359,10 @@
 	    margin-left: 10px;
 	        margin-right: 3px;
     font-size: 18px;
+    	&.error{
+    		    color: red;
+    		font-size: 12px;
+    	}
 	}
 	.jobs-application__earnings input[type=text] {
 	    display: inline-block;

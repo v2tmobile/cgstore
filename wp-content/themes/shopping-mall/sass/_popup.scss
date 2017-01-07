@@ -255,7 +255,9 @@
     height: 60px;
     background: #67c4b0;
     color: white;
+    left: 0;
     line-height: 57px;
+    z-index: 10;
     overflow: hidden;
 }
 .site-page--product-publisher .publishing-steps>li.is-active a {
@@ -396,5 +398,107 @@ a.button--icon.js-clear{
         top: 0;
         opacity: 0;
         cursor: pointer;
+    }
+}
+.visuals-panel{
+    display: none;
+}
+.input-container {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d5d1c3;
+    position: relative;
+}
+.printable-new{
+    padding: 0 20px;
+}
+#messages{
+    li{
+        display: block;
+        width: 100px;
+        height: 75px;
+        margin-right: 13px;
+        margin-bottom: 13px;
+        float: left;
+        border-radius: 3px;
+        background: #fbfaf9;
+        line-height: 75px;
+        text-align: center;
+        overflow: hidden;
+        cursor: move;
+        -webkit-transition: 0.15s ease-in-out all;
+        transition: 0.15s ease-in-out all;
+        -webkit-filter: brightness(100%) contrast(100%) sepia(0);
+        filter: brightness(100%) contrast(100%) sepia(0);
+        position: relative;
+        -webkit-backface-visibility: hidden;
+        img{
+            width: 100%;
+        }
+    }
+}
+.visuals-panel{
+    #messages{
+        span.MultiFile-title{
+            display: none;
+        }
+
+    }
+    .fa-remove:before, .fa-close:before, .fa-times:before {
+        content: "\f00d";
+    }
+    .fa-times:before{
+        display: none;
+    }
+}
+.sortable__item-remove {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background: #131518;
+    color: white;
+    text-align: center;
+    line-height: 14px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0.8;
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+}   
+.MultiFile-label{
+    display: block;
+    width: 100px;
+    height: 75px;
+    margin-right: 13px;
+    margin-bottom: 13px;
+    float: left;
+    border-radius: 3px;
+    background: #fbfaf9;
+    line-height: 75px;
+    text-align: center;
+    overflow: hidden;
+    cursor: move;
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+    -webkit-filter: brightness(100%) contrast(100%) sepia(0);
+    filter: brightness(100%) contrast(100%) sepia(0);
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    &:hover{
+        .sortable__item-remove{
+            display: block;
+            .fa-times{
+                content: "\f00d";
+            }
+        }
+    }
+    a.MultiFile-remove{
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }

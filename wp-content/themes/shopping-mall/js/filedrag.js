@@ -51,13 +51,10 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 	     	 
 	         
 	         Output(
-	         	"<img src="+ e.target.result +" />" +
-				"<p>File information: <strong>" + file.name +
-				"</strong> type: <strong>" + file.type +
-				"</strong> size: <strong>" + file.size +
-				"</strong> bytes</p>"
+	         	"<li><img src="+ e.target.result +" /></li>" 
 			);
 	     }
+	     $('.visuals-panel').css('display', 'block');
 	     reader.readAsDataURL(file);
 		
 

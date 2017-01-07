@@ -57,25 +57,25 @@ html{
 
             <div class="upload-area">
                 <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                    <input type="file" id="fileUploadNew" name="fileselect[]" multiple="multiple" />
+                    <input type="file" class="with-preview" id="fileUploadNew" name="fileselect[]" multiple="multiple" />
                     <div id="filedrag">
                         <div class="upload-area__text">
                             Drag &amp; Drop
                             <span>model files and images or <b>browse files</b></span>
                         </div>
                     </div>
-                    <div id="submitbutton">
-                        <button type="submit">Upload Files</button>
-                    </div>
-                    
+                   
                 </form>
             </div>
-            <div id="messages">
-                <p>Status Messages</p>
-            </div>
+            
             <div id="image-holder"></div>
             <div class="input-container files-count-label">
                 <label class="error">Please upload at least one file format of your 3D model.</label>
+            </div>
+            <div  class="visuals-panel">
+                <h2 class="heading heading--compact">Previews</h2>
+                <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
+                <ul id="messages"></ul>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@ html{
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/filedrag.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/jQuery.MultiFile.min.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/class.popup.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){

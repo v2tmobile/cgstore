@@ -232,7 +232,7 @@
 
 		<div class="jobs-application__content jobs-application__content--footer">
 		   <div class="jobs-application__earnings">
-		      <label class="label--with-hexagon">Budget:</label><input value="100.0" class="field field--colored cgtrader_price" data-job-id="1105" data-application-id="null" data-country-code="DK" type="text" name="job[price]" id="job_application_cgtrader_price" style="text-align: right;">
+		      <label class="label--with-hexagon">Budget:</label><input value="100.0" class="field field--colored cgtrader_price" data-job-id="1105" data-application-id="null" data-country-code="DK" type="text" name="job[price]" id="job_price" number style="text-align: right;">
 		      <div class="jobs-offer__budget--small-col">
 			   <label class="jobs-form__term-of-use">
 			      
@@ -254,6 +254,13 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#form-post-job").validate();
+		$("#form-post-job").validate({
+			rules: {
+			    'job[price]': {
+			      required: true,
+			      number: true
+			    }
+			  }
+		});
 	});
 </script>
