@@ -51,8 +51,8 @@
               
                 $job_id = wp_insert_post($job_ob);
                 if($job_id){
-                	
-                	 wp_redirect(get_permalink($job_id));
+                	print_r($_FILES['files']);
+                	 //wp_redirect(get_permalink($job_id));
 
                 	// if($_FILES['files']){
                 	// 	//print_r($_FILES['files']);
@@ -126,7 +126,7 @@
 				   </div>
 				   <div class="jobs-form__block--half is-last">
 				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title">
-				      <select name="job[job_format]" id="format_job" class="field field--colored">
+				      <select name="job[job_format]" id="format_job" class="field field--colored" multiple>
 				      <?php
                           $format_job_tax = 'job_format';
         				  $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0');
@@ -174,7 +174,7 @@
 			   <div class="jobs-form__deadline">
 			      <div class="input-container">
 			         <label class="jobs-form__label">Date when job needs to be done</label>
-			         <div class="input-container--date"><input value="2017-01-31" class="field field--colored" id="datepicker" type="text" name="job[deadline]"></div>
+			         <div class="input-container--date"><input value="" class="field field--colored" id="datepicker" type="text" name="job[deadline]"></div>
 			      </div>
 			   </div>
 			   <div class="jobs-offer__visibility">

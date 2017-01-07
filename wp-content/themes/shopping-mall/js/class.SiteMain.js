@@ -17,10 +17,10 @@ var SiteMain = (function() {
 	}
 		
 	function initSelectBootstrap(){
-		$('select[multiple="multiple"]').multiselect();
+		$('select#format_job').multiselect();
 	}
 	function createDatepicker(){
-		$('#datepicker, .datepicker').datepicker({dateFormat: 'dd-mm-yyyy' });
+		$('#datepicker, .datepicker').datepicker({dateFormat: 'dd-mm-yy' });
 	}
 
 	function calHeightCatgory(){
@@ -51,46 +51,20 @@ var SiteMain = (function() {
 		    });    
 		  });
 	}
-
+	function removeFile(idfile){
+		$(idfile).closest('p').remove();
+	}
 	function displayFilesUpload(){
-		
-		var url = CGSTORE_VARS.TEMPLATE_PATH+'/server/php/';
-		console.log(123);
-	    $('#fileupload').fileupload({
-	        url: url,
-	        dataType: 'json',
-	        done: function (e, data) {
-	            $.each(data.result.files, function (index, file) {
-	            	console.log(file);
-	            	$('#files').append('<p><a href="'+ file.url +'">'+ file.name + '</a><a class="remove" data-url="'+ file.deleteUrl +'" href="'+ file.deleteUrl +'" data-method="delete" data-remote="true" rel="nofollow"><i class="fa fa-times fa-24 fa-pull-right"></i></p>');
-	                //$('<p/>').text(file.name).appendTo('#files');
-	            });
-	        },
-	        progressall: function (e, data) {
-	            var progress = parseInt(data.loaded / data.total * 100, 10);
-	            $('#progress .progress-bar').css(
-	                'width',
-	                progress + '%'
-	            );
-	        }
-	    }).prop('disabled', !$.support.fileInput)
-	        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-
-        $('#files').on('click', 'a.remove', function (e) {
-		  e.preventDefault();
-
-		  var $link = $(this);
-
-		  var req = $.ajax({
-		    dataType: 'json',
-		    url: $link.data('url'),
-		    type: 'DELETE'
-		  });
-
-		  req.success(function () {
-		    $link.closest('p').remove();
-		  });
+		$(".button-upload input.file-upload--jobs").change(function(){
+		    var names = [];
+		    for (var i = 0; i < $(this).get(0).files.length; ++i) {
+		        names.push($(this).get(0).files[i].name);
+		        $('#files').append('<div class="file"><div class="js-file-wrap"><p>'+names[0]+'<a class="remove" onclick= "SiteMain.removeFile(this)" href="javascript:void(0);" data-method="delete" data-remote="true" rel="nofollow"><i class="fa fa-times fa-24 fa-pull-right"></i></a></p></div></div>')
+		    }
+		    console.log($(this)[0].files);
 		});
+		
+
 	}
 
 	function createRadio(){
@@ -292,7 +266,8 @@ var SiteMain = (function() {
 	return {
 		init:init,
 		openPopup:openPopup,
-		closePopup:closePopup
+		closePopup:closePopup,
+		removeFile:removeFile
 	}
 	
 })();		
