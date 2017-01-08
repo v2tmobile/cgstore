@@ -33,6 +33,7 @@
 	                 $applicant = get_field(PREFIX_WEBSITE.'applicant_job',$id);
 	                 $job_date = get_field(PREFIX_WEBSITE.'deadline_job',$id);
 	                 $number_day = getNumberDay($job_date); 
+	                 
 	              // list challenge;
 				?>
 				<div class="jobs__content">

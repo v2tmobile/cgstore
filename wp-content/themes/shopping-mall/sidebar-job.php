@@ -22,12 +22,14 @@
          $is_checked ="checked='checked'";
          if($type_jobs):
              if($get_type_job) $is_checked = '';
+              $jobs = wp_count_posts('jobs');
+              
          	?>
 		     <a href="<?php echo HOME_URL; ?>/jobs">
 			      <div class="section__item">
 			         <div class="checkbox is-checked">
 			         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
-			         <label>All types</label><span>0</span>
+			         <label>All types</label><span><?php echo $jobs->publish; ?></span>
 			      </div>
 			   </a>
            <?php

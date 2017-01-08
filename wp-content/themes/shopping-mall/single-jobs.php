@@ -40,14 +40,22 @@ get_header(); ?>
 		                  <div class="jobs__software"></div>
 		               </li>
 		            </ul>
-		            <div class="tag-list">
-		               <ul>
-		                  <li>OBJ</li>
-		               </ul>
-		            </div>
+		            <?php 
+                            $job_formats = get_the_terms($id,'job_format');
+                            if($job_formats):
+				         ?>
+				         <div class="tag-list">
+				            <ul>
+				               <?php foreach ($job_formats as $fomat):?>
+				               <li><?php echo $fomat->name; ?></li>
+				               <?php endforeach; ?>
+				              
+				            </ul>
+				         </div>
+				     <?php endif; ?>
 		         </div>
 		         <div class="jobs-price__content">
-		            <h3 class="jobs__price u-text-right">$<?php echo $price_job; ?></h3>
+		            <h3 class="jobs__price u-text-right">$<?php echo ($price_job) ? $price_job : 0 ; ?></h3>
 		         </div>
 		         <div class="jobs-application-text">
 		         	<?php the_content();?>
