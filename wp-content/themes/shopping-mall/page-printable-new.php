@@ -45,11 +45,10 @@ html{
                                 Preview
                               </button>
 
-                              <button class="button button--dark button--compact publish-button js-action is-disabled">
+                              <div class="inlineblock btn-box">
                                 <i class="fa fa-rocket fa-lg"></i>
-
-                                Publish
-                              </button>
+                                <input type="submit" class="button button--dark button--compact publish-button js-action" value="Publish">
+                              </div>
                       </div>
                   </div>
               </div>
@@ -267,7 +266,7 @@ html{
                         </p>
                       </div>
                     </div>
-                    <div class="help-bubble is-left help-bubble--product-price" id="help-price" style="display: none;">
+                    <div class="help-bubble is-left help-bubble--product-price" id="help-price" style="display: none;top: 460px; ">
                       <h4 class="help-bubble__title">Product price</h4>
                       <div class="help-bubble__content">
                         <p>Choose this option if you would like to sell or share 3D model source files. Note that people will be able to purchase and download 3D source files for the price that you specify.</p>
@@ -315,11 +314,11 @@ html{
                                 Preview
                               </button>
 
-                              <button class="button button--dark button--compact publish-button js-action is-disabled">
+                              <div class="inlineblock btn-box">
                                 <i class="fa fa-rocket fa-lg"></i>
-
-                                Publish
-                              </button>
+                                <input type="submit" class="button button--dark button--compact publish-button js-action" value="Publish">
+                              </div>
+                            
                       </div>
                   </div>
               </div>
