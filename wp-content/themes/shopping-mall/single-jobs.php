@@ -74,9 +74,9 @@ get_header(); ?>
 		         	if ( $attachments) { 
 
 		         	?>
-		         		<a target="_blank" class="button button-primary view-attached-files" href="#"><i class="fa fa-file-text"></i>View attached files (<?php echo count($attachments); ?>)</a>
+		         		<a class="button button-primary view-attached-files" href="javascript:void(0)"><i class="fa fa-file-text"></i>View attached files (<?php echo count($attachments); ?>)</a>
 		         	
-                       <ul class="attached-files-container is-hidden">
+                       <ul class="attached-files-container is-hidden" id="attached-job-files">
 		         	<?php
 		         	   foreach ( $attachments as $attachment){
 		         	     $attachment_link = $attachment->guid;     

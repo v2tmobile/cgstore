@@ -47,6 +47,19 @@ p {
 		margin: 0 auto;
 	}
 }
+.section__item{
+	span{
+	float: right;
+	margin-top: 2px;
+	font-weight: bold;
+	}
+}
+#attached-job-files{
+	&.opened{
+		display: block!important; 
+		    margin: 10px;
+	}
+}
 .login-container{
 	h2{
 		font-size: 30px;

@@ -17,6 +17,13 @@ var SiteMain = (function() {
 		calHeightCatgory();
 		createDatepicker();
 		initSelectBootstrap();
+		toogleViewFilesJob();
+	}
+
+	function toogleViewFilesJob(){
+		$('a.view-attached-files').click(function(){
+			$('#attached-job-files').toggleClass('opened');
+		});
 	}
 		
 	function initSelectBootstrap(){
