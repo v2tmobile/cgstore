@@ -532,10 +532,10 @@ a.button--icon.js-clear{
 }
 
 .site-page--product-publisher .sectioned-content {
-    width: 74.78109%;
+    width: 72.78109%;
     float: left;
     margin-right: 0.87566%;
-    padding-top: 20px;
+    padding-top: 75px;
     padding-right: 15px;
     border-right: 1px solid #eae8e1;
 }
@@ -582,4 +582,164 @@ a.button--icon.js-clear{
     -ms-user-select: none;
     user-select: none;
     text-align: left;
+}
+
+.site-page--product-publisher .block-label {
+    display: block;
+    margin-bottom: 5px;
+}
+.site-page--product-publisher{
+    .tagsinput {
+        width: 100%;
+        padding: 3px 5px 5px 35px;
+        border: 1px solid #e4e1d8;
+        border-radius: 3px;
+        background: #fff url(../images/icon_tag.png) no-repeat 7px 9px;
+        color: #3f444c;
+        font-size: 1rem;
+        line-height: 24px;
+        -webkit-transition: 0.15s ease-in-out opacity;
+        transition: 0.15s ease-in-out opacity;
+        -webkit-font-smoothing: antialiased;
+    }
+    .tagsinput div {
+        display: block;
+        float: left;
+    }
+    .tagsinput input {
+        width: 80px;
+        margin: 2px;
+        border: 0;
+        background: none;
+        color: #a0a0a0;
+        line-height: 20px;
+        outline: 0;
+    }
+    .tagsinput .tag {
+        display: block;
+        padding: 1px 8px 2px; 
+        margin: 2px;
+        border-radius: 15px;
+        background: #67c4b0;
+        color: white;
+        font-size: 0.875rem;
+        line-height: 20px;
+        float: left;
+    }
+    .tagsinput .tag a {
+        font-weight: 700;
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+    }
+}
+.site-page--product-publisher .pricing-options__price {
+    width: 15.69087%;
+    float: left;
+    margin-right: 1.17096%;
+}
+.site-page--product-publisher .field {
+    border-width: 3px;
+}
+.publisher-container{
+    padding-bottom: 150px; 
+}
+.site-page--product-publisher .publisher-container .heading {
+    margin-top: 20px;
+}
+.field-wrapper .field-suffix {
+    display: block;
+    width: 40px;
+    padding-right: 3px;
+    border-left: 1px solid #e4e1d8;
+    color: #6d6d6d;
+    text-align: center;
+    line-height: 37px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.field-wrapper {
+    width: 100%;
+    position: relative;
+}
+.site-page--product-publisher .pricing-options__free {
+    width: 83.13817%;
+    float: left;
+    margin-right: 1.17096%;
+    float: right;
+    margin-right: 0;
+    line-height: 38px;
+    .checkbox {
+        margin-top: 11px;
+    }
+}
+.site-page--product-publisher .inline-label {
+    display: inline-block;
+    margin-right: 10px;
+}
+.site-page--product-publisher .license-options {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+label[for="adult_content"]{
+    font-weight: bold;
+}
+.site-page--product-publisher .sensitive-content-explanation, .site-page--product-publisher .challenges-explanation {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    line-height: 18px;
+    color: #939393;
+}
+.uploads-tab{
+    display: none;
+    &.is-active{
+        display: block;
+    }
+}
+.site-page--product-publisher .help-section {
+    width: 24.34326%;
+    float: left;
+    margin-right: 0.87566%;
+    float: right;
+    margin-right: 0;
+    padding-top: 20px;
+    position: relative;
+}
+.help-bubble {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    background: white;
+    color: #878787;
+    font-size: 0.875rem;
+    line-height: 18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+.help-bubble__title {
+    margin: 0 0 10px 0;
+    font-size: 1.125rem;
+    line-height: 24px;
+    font-weight: 400;
+    color: #ce3c5c;
+}
+.help-bubble__content p {
+    margin-bottom: 10px;
+}
+.help-bubble:after {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+.help-bubble.is-left:after {
+    top: 13px;
+    left: -10px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid white;
+    border-bottom: 10px solid transparent;
 }

@@ -53,7 +53,7 @@ html{
                       </div>
                   </div>
               </div>
-              <div class="uploads-tab is-active">
+              <div class="uploads-tab is-active" id="step-presentation">
                 <div class="upload-area">
                     <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
                       <input type="file" class="with-preview" id="fileUploadNew" name="fileselect[]" multiple="multiple" />
@@ -74,9 +74,10 @@ html{
                     <h2 class="heading heading--compact">Previews</h2>
                     <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
                     <ul id="messages"></ul>
+                    <div class="clear"></div>
                 </div>
               </div>
-              <div class="uploads-tab details-tab">
+              <div class="uploads-tab details-tab" id="step-details">
                   <div class="sectioned-content">
                       <form action="" novalidate="novalidate">
                         <div class="input-container js-help-trigger" data-target="#help-title">
@@ -127,14 +128,8 @@ html{
 
                         <div class="input-container js-help-trigger" data-target="#help-tags">
                            <label for="tags" class="block-label">Tags <b>*</b></label>
-                           <input type="text" name="tags" required="required" class="field" id="tags" style="display: none;">
-                           <div id="tags_tagsinput" class="tagsinput" style="width: 100%; min-height: auto; height: 100%;">
-                              <div id="tags_addTag"><input id="tags_tag" value="" data-default="add a tag" style="width: 80px;"></div>
-                              <div class="tags_clear"></div>
-                           </div>
-                           <input type="hidden" name="tags_count" value="0">
-                           <div id="tags_errorbox"></div>
-                           <div class="tag-list"></div>
+                           <input type="text" name="tags" required="required" class="field" id="tags">
+                           
                         </div>
 
                         <section class="js-help-trigger" data-target="#help-price">
@@ -149,17 +144,20 @@ html{
                                </div>
                                <div class="pricing-options__free">
                                   <label for="free" class="">
-                                     <div class="checkbox is-checked"><input type="checkbox" name="free" id="free" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                     <div class="checkbox is-checked"><input type="checkbox" name="free" id="free" ></ins></div>
                                      Share for free
                                   </label>
                                </div>
+                               <div class="clear"></div>
                             </div>
                          </div>
                       </section>
                       <h2 class="heading">Challenges</h2>
                       <p class="challenges-explanation">If you have a right model for the challenge, simply check the box and you are
       in.</p>
-
+                      <div class="input-container">
+                        <div class="challenges-list"></div>
+                      </div>
                       <h2 class="heading">Licensing &amp; Legal Information</h2>
 
                       <div class="input-container">
@@ -197,7 +195,135 @@ html{
 
                       </form>
                   </div>
+
+                  <div class="help-section">
+                    <div class="help-bubble is-left help-bubble--product-title" id="help-title" style="display: block; top: 75px;">
+                      <h4 class="help-bubble__title">Product title</h4>
+
+                      <div class="help-bubble__content">
+                        <p>
+                          Title is the most important information for all search engines to find your model. Write 4-6 words that are
+                          relevant, specific and clearly represent your model.
+                        </p>
+
+                        <p>
+                          Write a few relevant and specific words that target your model, and a few category words which will generalize
+                          it. Also add certain characteristics which clearly distinguish it from the group it belongs to. Try always think
+                          how well the title characterize your model to a customer who might be looking for something like it.
+                        </p>
+
+                        <p>
+                          Examples:
+                          <br> * Wooden country villa house
+                          <br> * Ford Mondeo Sedan 2015
+                          <br> * V4 cylinder combustion car engine
+                          <br> * Modern commercial office skyscraper building
+                        </p>
+                      </div>
+                    </div>
+                    <div class="help-bubble is-left help-bubble--product-category" id="help-category" style="top: 136px; display: none;">
+                      <h4 class="help-bubble__title">Category</h4>
+
+                      <div class="help-bubble__content">
+                        <p>Choose the category which best fits your product. If it is difficult to put the product under one specific
+                          category, try to think of the category in which consumers are most likely to browse such products.</p>
+                      </div>
+                    </div>
+                    <div class="help-bubble is-left help-bubble--product-units" id="help-units" style="top: 136px; display: none;">
+                      <h4 class="help-bubble__title">Units of measure</h4>
+
+                      <div class="help-bubble__content">
+                        <p>Since not all 3D file formats contain information about units, it is necessary to define them here.</p>
+
+                        <p>Choose units which represent 3D object dimensions.</p>
+                      </div>
+                    </div>
+                    <div class="help-bubble is-left help-bubble--product-description" id="help-description" style="display: none; top: 246px;">
+                      <h4 class="help-bubble__title">Description</h4>
+
+                      <div class="help-bubble__content">
+                        <p>
+                          Products with a description of 50-100 word on average have 3 times more sales than models without the
+                          description. Write proper description with relevant technical information about the model and scene to drive
+                          more traffic and customers from Google. Products with short descriptions get much less pageviews and sales. Also
+                          rich description increase buyers' confidence to purchase your model. Check other models in the marketplace to
+                          get ideas for good descriptions.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="help-bubble is-left help-bubble--product-tags" id="help-tags" style="display: none;top:350px;">
+                      <h4 class="help-bubble__title">Tags</h4>
+
+                      <div class="help-bubble__content">
+                        <p>
+                          Tags help the customers discover your products. We highly recommend to write at least 10-15 tags that best
+                          define your product. Products with 20 tags on average have 2 times more sales than those with only 5 tags.
+                        </p>
+
+                        <p>
+                          Write specific words that target your model, broad words which will generalize it and qualities or
+                          characteristics (like color, material, condition, etc). However, avoid adding unrelated tags that have little to
+                          do with the given product. Use tag suggestions that will help you identify related tags.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="help-bubble is-left help-bubble--product-price" id="help-price" style="display: none;">
+                      <h4 class="help-bubble__title">Product price</h4>
+                      <div class="help-bubble__content">
+                        <p>Choose this option if you would like to sell or share 3D model source files. Note that people will be able to purchase and download 3D source files for the price that you specify.</p>
+                      </div>
+                    </div>
+                  </div>
+
               </div>
+
+              <div class="action-bar is-positioned js-sticky" style="position: fixed; bottom: 0px;">
+                  <div class="container" data-easytabs="true">
+                      <ul class="publishing-steps u-float-left">
+                        <li class="js-publishing-step-btn js-publishing-step-first is-active">
+                          <a href="#step-presentation" class="is-active">
+                            Files &amp; Previews
+                            <span>Upload files and images</span>
+                          </a>
+                        </li>
+                        <li class="js-publishing-step-btn js-publishing-step-second">
+                          <a href="#step-details">
+                            Details
+                            <span>Product details and information</span>
+                          </a>
+                        </li>
+                      </ul>
+
+                      <div class="u-float-right">
+                          <div class="publishing-status" style="display: none;">
+                            <span class="icon">
+                              <img src="https://assets.cgtrader.com/assets/preloader-2f402224caf664d169e63ee63eb94dc0129fdf7cf2be29f9adeea5f0e39df6bd.gif" alt="Preloader 2f402224caf664d169e63ee63eb94dc0129fdf7cf2be29f9adeea5f0e39df6bd">
+                            </span>
+
+                            Updating ..
+                          </div>
+
+                              <div class="button-section">
+                                <a href="/profile/items/672299" class="button button--transparent button--compact button--icon js-clear has-tooltip js-action tooltipstered" data-method="delete">
+                                  <i class="fa fa-trash-o fa-24"></i>
+                                </a>
+                              </div>
+
+                              <button class="button button--transparent button--compact js-preview js-action">
+                                <i class="fa fa-eye fa-24"></i>
+
+                                Preview
+                              </button>
+
+                              <button class="button button--dark button--compact publish-button js-action is-disabled">
+                                <i class="fa fa-rocket fa-lg"></i>
+
+                                Publish
+                              </button>
+                      </div>
+                  </div>
+              </div>
+
           </div>
       </div>
 </div>
@@ -207,6 +333,7 @@ html{
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/jQuery.MultiFile.min.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/icheck.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/select2.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/class.popup.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
