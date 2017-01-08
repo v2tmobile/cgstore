@@ -15,15 +15,17 @@
          $job_update_id = '';
          $job_format_ids = [];
          $file_input = '';
-         $file_list = '';
+         $$attachment_input = '';
         
          if($job_id){
          	$job_ob  = get_post($job_id);
          	if($job_ob){
+         	  //if ( !current_user_can( 'edit_post', $job_id ) ) return;
          	  $job_title =  $job_ob->post_title;
          	  $job_des = $job_ob->post_content;
          	  $job_price = get_field(PREFIX_WEBSITE.'price_job',$job_id);
          	  $job_update_id ='<input type="hidden" name="job[job_id]" value="'.$job_id.'">';
+         	  $attachment_input = '<input type="hidden" name="job[attachmentID][]" value="">';
          	  $job_deadline = get_field(PREFIX_WEBSITE.'deadline_job',$job_id);
               $job_status = $job_ob->post_status;
               $type_job_data = get_the_terms($job_id,'type_job');
@@ -49,8 +51,8 @@
               	   $attachment_title = $attachment->post_title;
               	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
               	   $i++;
-                   //$file_list .= '<div class="MultiFile-label"><a class="MultiFile-remove" href="#'.$id_delete.'">x</a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
-                  // $file_input .='<input class="file-upload--jobs MultiFile-applied MultiFile" id="fileupload_"'.$id_delete.'name="files[]" type="file" value="">';
+                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="deleteFile(\''.$attachmentID.'\');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
+                  
               	   
               	 }
               }
@@ -147,7 +149,7 @@
 				   <h3 class="jobs-form__content-title">Post your 3D job </h3>
 				   <div class="input-container">
 				   <?php echo $job_update_id; ?>
-				   	
+				   <?php echo $attachment_input; ?>
 				   <label class="jobs-form__label">Job Title</label>
 				   <input placeholder="3D design of Audi Car" class="field field--colored" value="<?php echo $job_title; ?>" type="text" name="job[title]" id="job_title" required></div>
 				   <div class="input-container">
