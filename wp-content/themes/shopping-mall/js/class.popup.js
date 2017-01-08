@@ -4,6 +4,8 @@ var Popup = (function() {
 		openPostProduct();
 		hidePostProduct();
 		displayFilesUpload();
+		createSelectBox();
+		createRadio();
 		
 	}
 	function openPostProduct(){
@@ -12,7 +14,14 @@ var Popup = (function() {
 			$('body').removeClass('is-pushed');
 		});
 	}
-
+	function createRadio(){
+		$('input[type="checkbox"], input[type="radio"]').iCheck();
+	}
+	function createSelectBox(){
+		$('select').select2({
+			minimumResultsForSearch: -1
+		});
+	}
 	function displayFilesUpload(){
 		$('#fileUploadNew').MultiFile({
 	    	accept: 'jpg|png|gif',

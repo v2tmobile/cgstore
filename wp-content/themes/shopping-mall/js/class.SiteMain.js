@@ -22,6 +22,8 @@ var SiteMain = (function() {
 	function initSelectBootstrap(){
 		$('select#format_job').multiselect();
 	}
+
+
 	function createDatepicker(){
 		$('#datepicker, .datepicker').datepicker({dateFormat: 'dd-mm-yy' });
 	}
@@ -54,7 +56,7 @@ var SiteMain = (function() {
 		    });    
 		  });
 	}
-	
+
 	var attachment_delete = [];
 	function deleteFile(fileid){
 		$('#attachment-' + fileid).remove();
@@ -87,6 +89,10 @@ var SiteMain = (function() {
 		$('input.iCheckBox').on('ifChanged', function (event) { 
 			//$(event.target).trigger('change'); 
 			$("#woocommerce-filter").submit();
+		});
+		$('.jobs-sidebar__section input.iCheckBox').on('ifChanged', function (event) { 
+			var href = $(this).closest('a').attr('href');
+			window.location.href = href;
 		});
 	}
 
