@@ -49,8 +49,8 @@
               	   $attachment_title = $attachment->post_title;
               	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
               	   $i++;
-                   //$file_list .= '<div class="MultiFile-label"><a class="MultiFile-remove" href="#'.$id_delete.'">x</a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
-                  // $file_input .='<input class="file-upload--jobs MultiFile-applied MultiFile" id="fileupload_"'.$id_delete.'name="files[]" type="file" value="">';
+                   $file_list .= '<div class="MultiFile-label"><a class="MultiFile-remove" href="#'.$id_delete.'">x</a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
+                   $file_input .='<input class="file-upload--jobs MultiFile-applied MultiFile" id="fileupload_"'.$id_delete.'name="files[]" type="file" value="">';
               	   
               	 }
               }

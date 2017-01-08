@@ -469,6 +469,9 @@ a.button--icon.js-clear{
     -webkit-transition: 0.15s ease-in-out all;
     transition: 0.15s ease-in-out all;
 }   
+.fa-times{
+    content: "\f00d";
+}
 .visuals-panel{
     .MultiFile-label{
         display: block;
@@ -492,10 +495,9 @@ a.button--icon.js-clear{
         &:hover{
             .sortable__item-remove{
                 display: block;
-                .fa-times{
-                    content: "\f00d";
-                }
+                
             }
+
         }
         a.MultiFile-remove{
             position: absolute;
