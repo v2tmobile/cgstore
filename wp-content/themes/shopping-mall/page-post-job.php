@@ -25,7 +25,8 @@
          	  $job_des = $job_ob->post_content;
          	  $job_price = get_field(PREFIX_WEBSITE.'price_job',$job_id);
          	  $job_update_id ='<input type="hidden" name="job[job_id]" value="'.$job_id.'">';
-         	  $attachment_input = '<input id="attachment-job" type="hidden" name="job[attachmentID][]" value="">';
+         	 $attachment_input = '<input id="attachment-job" type="hidden" name="job[attachmentID]" value="">';
+
          	  $job_deadline = get_field(PREFIX_WEBSITE.'deadline_job',$job_id);
               $job_status = $job_ob->post_status;
               $type_job_data = get_the_terms($job_id,'type_job');
@@ -107,8 +108,16 @@
               if($job_update_id && $job_id){
                    if($job_id == $job['job_id']){
                    	   $job_ob['ID'] = $job_id;
-                   	   
                        wp_update_post($job_ob);
+
+                       if($job['attachmentID']){
+                          $attachmentIDs = json_decode($job['attachmentID']);
+                          if($attachmentIDs){
+                          	 foreach ($attachmentIDs as $id) {
+                          	 	 wp_delete_attachment($id);
+                          	 }
+                          }	 
+                       }
                     }
               }else{ 
                   $job_id = wp_insert_post($job_ob);
