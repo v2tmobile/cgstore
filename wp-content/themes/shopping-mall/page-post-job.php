@@ -52,7 +52,7 @@
               	   $attachment_title = $attachment->post_title;
               	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
               	   $i++;
-                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="SiteMain.deleteFile(\''.$attachmentID.'\');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
+                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="SiteMain.deleteFile('.$attachmentID.');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
              
               	   
               	 }
