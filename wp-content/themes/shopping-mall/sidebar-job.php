@@ -1,13 +1,13 @@
 <div class="jobs-sidebar__content">
 	<h5 class="section__title">Sort by</h5>
 	<div class="jobs-sidebar__section">
-	   <a href="<?php echo HOME_URL ?>/jobs?created_at=desc">
+	   <a href="<?php echo HOME_URL ?>/jobs/?order_by=asc">
 	      <div class="button button--full">Newest</div>
 	   </a>
-	   <a href="<?php echo HOME_URL ?>/jobs?price=asc">
+	   <a href="<?php echo HOME_URL ?>/jobs/?job_price=asc">
 	      <div class="button button--full">Lowest Budget</div>
 	   </a>
-	   <a href="<?php echo HOME_URL ?>/jobs?price=desc">
+	   <a href="<?php echo HOME_URL ?>/jobs/?job_price=desc">
 	      <div class="button button--full">Highest Budget</div>
 	   </a>
 	</div>

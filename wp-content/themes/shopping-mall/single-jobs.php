@@ -7,7 +7,12 @@
 get_header(); ?>
 
 <?php
-	while ( have_posts() ) : the_post();
+	 if( have_posts() ) : the_post();
+	 $id = get_the_ID();
+	 $applicant = get_field(PREFIX_WEBSITE.'applicant_job',$id);
+     $job_date = get_field(PREFIX_WEBSITE.'deadline_job',$id);
+	 $number_day = getNumberDay($job_date);
+	 $price_job = get_field(PREFIX_WEBSITE.'price_job',$id);
 	?>
 <div class="jobs-page">
 	<div class="content-area">
@@ -26,10 +31,10 @@ get_header(); ?>
 		            <h3 class="jobs__title"><?php the_title();?></h3>
 		            <ul class="label-list">
 		               <li>
-		                  <div class="jobs__aplicants"><span class="label--hexagon">5 applicants</span></div>
+		                  <div class="jobs__aplicants"><span class="label--hexagon"><?php echo ($applicant) ? count($applicant) : 0; ?> applicants</span></div>
 		               </li>
 		               <li>
-		                  <div class="jobs__deadline"><span class="label--hexagon">30 days to finish</span></div>
+		                  <div class="jobs__deadline"><span class="label--hexagon"><?php echo $number_day; ?> days to finish</span></div>
 		               </li>
 		               <li>
 		                  <div class="jobs__software"></div>
@@ -42,28 +47,44 @@ get_header(); ?>
 		            </div>
 		         </div>
 		         <div class="jobs-price__content">
-		            <h3 class="jobs__price u-text-right">$100</h3>
+		            <h3 class="jobs__price u-text-right">$<?php echo $price_job; ?></h3>
 		         </div>
 		         <div class="jobs-application-text">
 		         	<?php the_content();?>
 		         </div>
 		         <?php
-		         	if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
-						//print_r(get_the_post_thumbnail(get_the_ID()));
+                  $attachments = get_posts( array(
+			        'post_type'         => 'attachment',
+			        'posts_per_page'    => -1,
+			        'post_parent'       => $id,
+			        'exclude'           => get_post_thumbnail_id(),
+			    
+			      ) );
+
+		          ?>
+		         <?php
+		         	if ( $attachments) { 
+
 		         	?>
-		         		<a target="_blank" class="button button-primary view-attached-files" href="<?php the_post_thumbnail_url();?>"><i class="fa fa-file-text"></i>View attached files (1)</a>
-		         	<?php } ?>
-		         
-		         <ul class="attached-files-container is-hidden">
+		         		<a target="_blank" class="button button-primary view-attached-files" href="#"><i class="fa fa-file-text"></i>View attached files (<?php echo count($attachments); ?>)</a>
+		         	
+                       <ul class="attached-files-container is-hidden">
 		         	<?php
-		         	if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
-						print_r(get_the_post_thumbnail(get_the_ID()));
+		         	   foreach ( $attachments as $attachment){
+		         	     $attachment_link = $attachment->guid;     
+		         	     $ext = wp_check_filetype($attachment_link);
+                         $attachment_mine = $ext['ext'];
+              	         $attachment_title = $attachment->post_title;
 		         	?>
-		            <a target="_blank" href="<?php echo the_post_thumbnail_url();?>">
-		               <li><span>Redoubt_5.jpg</span></li>
+		            <a target="_blank" href="<?php echo $attachment_link; ?>">
+		               <li><span><?php echo $attachment_title.'.'.$attachment_mine; ?></span></li>
 		            </a>
 		            <?php } ?>
 		         </ul>
+
+		         	<?php } ?>
+		         
+		        
 		      </div>
 		   </div>
 		</div>
@@ -122,6 +143,6 @@ get_header(); ?>
 	</div>
 </div>
 <?php
-		endwhile; // End of the loop.
+		endif; // End of the loop.
 		?>
 <?php get_footer(); ?>

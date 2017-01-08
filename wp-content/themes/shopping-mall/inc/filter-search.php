@@ -54,10 +54,28 @@ function add_filter_search($query){
     if($meta_query){
           
           $query->set("meta_query",$meta_query);  
-         //echo '<pre>';
-         //print_r($query);
       }
    }
   
     return $query;
+}
+
+add_filter('pre_get_posts','ags_sort_order',10,2);
+function ags_sort_order( $query ){
+    global $wpdb;
+    if(is_post_type_archive('jobs')){ 
+        if(isset($_GET['order_by'])){
+          $order_by = $_GET['order_by'];
+          $query->set('order', $order_by);
+      }elseif($_GET['job_price']) {
+         $price_order = $_GET['job_price'];
+         $query->set('post_type', 'jobs');
+         $query->set('meta_key', 'cgs_price_job' );
+         $query->set( 'orderby', 'meta_value_num' );
+         $query->set('order', $price_order);
+        
+      }
+     }
+     
+    return  $query;
 }

@@ -20,7 +20,11 @@
          if($job_id){
          	$job_ob  = get_post($job_id);
          	if($job_ob){
-         	  //if ( !current_user_can( 'edit_post', $job_id ) ) return;
+         	 if( !current_user_can( 'administrator') || !is_user_logged_in() || $job_ob->post_author != get_current_user_id())
+         	  {
+         	      wp_redirect(HOME_URL.'/jobs/');exit();
+              }
+             
          	  $job_title =  $job_ob->post_title;
          	  $job_des = $job_ob->post_content;
          	  $job_price = get_field(PREFIX_WEBSITE.'price_job',$job_id);
@@ -48,7 +52,8 @@
               	 $i = 0;
               	 foreach ($attachments as $attachment) {
               	  $attachmentID = $attachment->ID;
-              	  $attachment_mine = sanitize_title( $attachment->post_mime_type );
+              	   $ext = wp_check_filetype($attachment->guid);
+                   $attachment_mine = $ext['ext'];
               	   $attachment_title = $attachment->post_title;
               	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
               	   $i++;
@@ -71,8 +76,13 @@
                if(empty($job['job_format'])) $errors[] ='Software can\'t be blank'; else $job_format = $job['job_format'];
                if(empty($job['deadline'])) $errors[] ='Deadline is invalid'; else $job_deadline = $job['deadline'];
 
-               if(empty($job['price'])) $errors [] = 'Please input price'; else {
+               if(empty($job['price'])) $errors [] = 'Please input price'; 
+               // elseif(!is_numeric($job['job_price'])){
+               //    $errors[] ='Price only input number';
+               //  }
+               	else{
                	  $job_price = $job['price'];
+  
                } 
 
                $job_status = ($job['status']) ? 'publish' : 'draft';

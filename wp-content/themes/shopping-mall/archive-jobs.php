@@ -29,7 +29,10 @@
 				/* Start the Loop */
 					while ( have_posts() ) : the_post();
 	                 $id = get_the_ID();
-	                 $price_job = get_field('price_job',$id);
+	                 $price_job = get_field(PREFIX_WEBSITE.'price_job',$id);
+	                 $applicant = get_field(PREFIX_WEBSITE.'applicant_job',$id);
+	                 $job_date = get_field(PREFIX_WEBSITE.'deadline_job',$id);
+	                 $number_day = getNumberDay($job_date); 
 	              // list challenge;
 				?>
 				<div class="jobs__content">
@@ -55,11 +58,11 @@
 				               </div>
 				            </li>
 				            <li>
-				               <div class="jobs__deadline"><span class="label--hexagon">28 days to finish</span></div>
+				               <div class="jobs__deadline"><span class="label--hexagon"><?php echo $number_day; ?> day(s) to finish</span></div>
 				            </li>
 				            <li>
 				               <div class="jobs__aplicants">
-				                  <div class="label--hexagon"><span>1 applicant</span></div>
+				                  <div class="label--hexagon"><span><?php echo ($applicant) ? cout($applicant) : 0; ?> applicant</span></div>
 				               </div>
 				            </li>
 				         </ul>
@@ -80,9 +83,15 @@
 				      </div>
 				      <div class="jobs-price__content">
 				         <h3 class="jobs__price u-text-right">$<?php echo ($price_job)?  $price_job : 0; ?></h3>
+				       <?php if(!current_user_can( 'administrator') || !is_user_logged_in() || get_the_author_ID() != get_current_user_id() ):  ?>
 				         <a href="<?php the_permalink(); ?>">
 				            <div class="button button--longer u-float-right">View</div>
 				         </a>
+				       <?php else: ?>
+				       	<a href="<?php echo HOME_URL.'/post-job/?id='.$id; ?>">
+				            <div class="button button--longer u-float-right">Edit</div>
+				         </a>
+				       <?php endif; ?>
 				      </div>
 				   </div>
 				</div>

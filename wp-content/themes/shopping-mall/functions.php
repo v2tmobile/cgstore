@@ -11,7 +11,7 @@ include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
 include_once 'socials/login_socials.php';
 include_once 'inc/add-like.php';
-
+include_once 'inc/helper.php';
 
 add_filter('woocommerce_login_redirect', 'wc_login_redirect');
  
