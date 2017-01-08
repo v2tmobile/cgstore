@@ -6,13 +6,36 @@ var Popup = (function() {
 		displayFilesUpload();
 		createSelectBox();
 		createRadio();
-		
+		initTags();
+		stepPostProduct();
+		helperBubble();
+	}
+
+	function helperBubble(){
+		$('.js-help-trigger').hover(function(){
+			var id = $(this).attr('data-target');
+			$('.help-bubble').hide();
+			$(id).show();
+		});
+	}
+	function stepPostProduct(){
+		$('.publishing-steps li a').click(function(){
+			var tabid = $(this).attr('href');
+			$('.publishing-steps li').removeClass('is-active');
+			$(this).parent().addClass('is-active');
+			$('.publisher-container .uploads-tab').removeClass('is-active');
+			$(tabid).addClass('is-active');
+		});
 	}
 	function openPostProduct(){
 		$('#uploadProduct').click(function(){
 			openPopup('#chooseProductType');
 			$('body').removeClass('is-pushed');
 		});
+	}
+
+	function initTags(){
+		$('#tags').tagsInput({width:'auto'});
 	}
 	function createRadio(){
 		$('input[type="checkbox"], input[type="radio"]').iCheck();
