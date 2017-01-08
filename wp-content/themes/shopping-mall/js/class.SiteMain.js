@@ -18,6 +18,8 @@ var SiteMain = (function() {
 		createDatepicker();
 		initSelectBootstrap();
 		toogleViewFilesJob();
+		openPostProduct();
+		hidePostProduct();
 	}
 
 	function toogleViewFilesJob(){
@@ -88,7 +90,17 @@ var SiteMain = (function() {
 	    });
 
 	}
-
+	function hidePostProduct(){
+		$('.js-close').click(function(){
+			closePopup('#chooseProductType');
+		});
+	}
+	function openPostProduct(){
+		$('#uploadProduct').click(function(){
+			openPopup('#chooseProductType');
+			$('body').removeClass('is-pushed');
+		});
+	}
 	function createRadio(){
 		$('.jobs-form__category input[type="radio"], .jobs-form__offer input[type="radio"], input.iCheckRadio').iCheck();
 		$('input.iCheckBox').iCheck();
