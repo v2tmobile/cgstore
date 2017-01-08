@@ -54,6 +54,7 @@ var SiteMain = (function() {
 		    });    
 		  });
 	}
+	
 	var attachment_delete = [];
 	function deleteFile(fileid){
 		$('#attachment-' + fileid).remove();
