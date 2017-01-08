@@ -54,6 +54,13 @@ var SiteMain = (function() {
 		    });    
 		  });
 	}
+	var attachment_delete = [];
+	function deleteFile(fileid){
+		$('#attachment-' + fileid).remove();
+		attachment_delete.push(fileid);
+		$('#attachment-job').val(JSON.stringify(attachment_delete));
+	}
+
 	function removeLine(obj){
       inputFile.val('');
       var jqObj = $(obj);
@@ -272,7 +279,8 @@ var SiteMain = (function() {
 		init:init,
 		openPopup:openPopup,
 		closePopup:closePopup,
-		removeLine:removeLine
+		removeLine:removeLine,
+		deleteFile:deleteFile
 	}
 	
 })();		

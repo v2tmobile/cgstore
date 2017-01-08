@@ -25,7 +25,8 @@
          	  $job_des = $job_ob->post_content;
          	  $job_price = get_field(PREFIX_WEBSITE.'price_job',$job_id);
          	  $job_update_id ='<input type="hidden" name="job[job_id]" value="'.$job_id.'">';
-         	  $attachment_input = '<input type="hidden" name="job[attachmentID]" value="[204]">';
+         	 $attachment_input = '<input id="attachment-job" type="hidden" name="job[attachmentID]" value="">';
+
          	  $job_deadline = get_field(PREFIX_WEBSITE.'deadline_job',$job_id);
               $job_status = $job_ob->post_status;
               $type_job_data = get_the_terms($job_id,'type_job');
@@ -51,8 +52,8 @@
               	   $attachment_title = $attachment->post_title;
               	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
               	   $i++;
-                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="deleteFile(\''.$attachmentID.'\');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
-                  
+                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="SiteMain.deleteFile(\''.$attachmentID.'\');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
+             
               	   
               	 }
               }
