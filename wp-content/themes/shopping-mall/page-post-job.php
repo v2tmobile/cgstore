@@ -52,7 +52,7 @@
               	   $attachment_title = $attachment->post_title;
               	   $id_delete = ($i == 0) ? 'fileupload':'fileupload_F'.$i;
               	   $i++;
-                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="SiteMain.deleteFile(\''.$attachmentID.'\');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
+                   $file_list .= '<div id="attachment-'.$attachmentID.'" class="MultiFile-label"><a class="MultiFile-remove" onClick="SiteMain.deleteFile('.$attachmentID.');"><i class="fa fa-times fa-24 fa-pull-right"></i></a> <span><span class="MultiFile-label" title="File selected: 1.jpg"><span class="MultiFile-title">'.$attachment_title.'.'.$attachment_mine.'</span></span></span></div>';
              
               	   
               	 }
@@ -109,7 +109,6 @@
                    if($job_id == $job['job_id']){
                    	   $job_ob['ID'] = $job_id;
                        wp_update_post($job_ob);
-
                        if($job['attachmentID']){
                           $attachmentIDs = json_decode($job['attachmentID']);
                           if($attachmentIDs){
@@ -118,6 +117,7 @@
                           	 }
                           }	 
                        }
+                      wp_redirect(get_permalink($job_id));
                     }
               }else{ 
                   $job_id = wp_insert_post($job_ob);
@@ -129,13 +129,13 @@
                 	   include_once('inc/upload-file.php');
                 	    $upload = cgstore_upload($job_id,$_FILES['files']);
                          if($upload) {
-                          // wp_redirect(HOME_URL.'/post-job/?id='.$job_id);
+                           wp_redirect(HOME_URL.'/post-job/?id='.$job_id);
                         }
                         else{
-                         // wp_redirect(get_permalink($job_id));
+                          wp_redirect(get_permalink($job_id));
                        }
                    }else{
-                   	   //wp_redirect(get_permalink($job_id));
+                   	   wp_redirect(get_permalink($job_id));
                    }
                 
               }
