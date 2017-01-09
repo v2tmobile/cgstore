@@ -499,3 +499,107 @@
 	.page-template-page-post-job .ui-tooltip{
 	display: none!important;
 	}
+
+	section.content-section.blog-post{
+		.challenges-list {
+			.challenge {
+				width: 100%; 
+				.challenge-content .challenge-inner {
+					.challenge-title{
+						min-height: inherit;
+						a{
+							color: #27a885;
+							&:hover{
+								color: #131518;
+							}
+						}
+					}
+					.challenge-description{
+						margin-top: 15px;
+						margin-bottom: 10px;
+					}
+					.challenge-info{
+						padding-top: 0;
+					}
+				}
+
+			}
+			.blog-content__main {
+			    width: 62.17163%;
+			    float: left;
+			    margin-right: 0.87566%;
+			}
+		}
+		
+	} 	
+	.u-float-right{
+		float: right;
+	}
+	.blog-content__sidebar {
+	    width: 36.95271%;
+	    float: right;
+	    margin-right: 0;
+	}
+	.list--stats>li, .list--stats>.list__item {
+	    display: block;
+	    padding: 8px 0;
+	    border-bottom: 1px solid #e0ddd2;
+	    position: relative;
+	    a{
+	    	text-decoration: underline;
+	    }
+	}
+	.blog-content__main{
+		.tag-list{
+			&:before{
+				display: none;
+			}
+			span{
+				font-weight: bold;
+			}
+			ul{
+				li{
+					background: transparent;
+					a{
+						color: #878787;
+					}
+				}
+			}
+		}
+		.yourcomment{
+			.comment-form-comment textarea{
+				width: 100%;
+			}
+			.form-submit{
+				input[type="submit"]{
+					float: right;
+				}
+			}
+		}
+	}
+	.back-to-posts {
+	    margin: 20px 0;
+	    a{
+	    	text-decoration: underline;
+	    }
+	}
+	.blog-content__sidebar{
+		.content-heading{
+				margin: 2em 0 10px;
+			}
+			.product-share-old{
+				ul{
+					li{
+						.fa-stack-2x{
+							font-size: 2em;
+						}
+					}
+				}
+			}
+			.social-networks {
+    			padding-top: 20px;
+				.fa-social-share {
+				    font-size: 1.25rem;
+				}
+			}
+	}	
