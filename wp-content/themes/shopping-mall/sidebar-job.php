@@ -20,14 +20,17 @@
          $type_jobs = get_terms( $type_job_tax, 'orderby=count&hide_empty=0' );
          $get_type_job = ($_GET['type_job']) ? $_GET['type_job'] : '';
          $is_checked ="checked='checked'";
+         $jobs = wp_count_posts('jobs');
          if($type_jobs):
              if($get_type_job) $is_checked = '';
+              
+              
          	?>
 		     <a href="<?php echo HOME_URL; ?>/jobs">
 			      <div class="section__item">
 			         <div class="checkbox is-checked">
 			         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
-			         <label>All types</label><span>0</span>
+			         <label>All types</label><span><?php echo $jobs->publish; ?></span>
 			      </div>
 			   </a>
            <?php
@@ -62,7 +65,7 @@
 			      <div class="section__item">
 			         <div class="checkbox is-checked">
 			         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
-			         <label>All Formats</label><span>0</span>
+			         <label>All Formats</label><span><?php echo $jobs->publish; ?></span>
 			      </div>
 			   </a>
            <?php

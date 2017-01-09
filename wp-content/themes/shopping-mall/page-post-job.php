@@ -9,13 +9,16 @@
          $job_des = '';
          $job_format_data = '';
          $type_job_data = '';
-         $job_deadline = '';
+         $job_deadline = date('m-d-Y');
          $job_price = 0;
          $job_status = 'publish';
          $job_update_id = '';
          $job_format_ids = [];
          $file_input = '';
          $$attachment_input = '';
+         if(!is_user_logged_in()){
+         	wp_redirect(get_permalink(get_option('woocommerce_myaccount_page_id')));exit();
+         }
         
          if($job_id){
          	$job_ob  = get_post($job_id);
@@ -114,6 +117,9 @@
                           PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       )
                   );
+
+                 print_r($job_ob);
+                 die();
                 
               if($job_update_id && $job_id){
                    if($job_id == $job['job_id']){
