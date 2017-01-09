@@ -49,7 +49,8 @@
 								<a class="has-indicator" href="#">
 									<i class="fa fa-envelope fa-24"></i>
 									<span class="cart-indicator indicator is-sticky ">
-										<?php //echo messages_get_unread_count(); ?>
+										<?php 
+										echo messages_get_unread_count(); ?>
 									</span>
 								</a>
 							</li>

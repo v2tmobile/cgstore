@@ -30,7 +30,7 @@
 					while ( have_posts() ) : the_post();
 	                 $id = get_the_ID();
 	                 $price_job = get_field(PREFIX_WEBSITE.'price_job',$id);
-	                 $applicant = get_field(PREFIX_WEBSITE.'applicant_job',$id);
+	                 $applicant = getApplicants($id);
 	                 $job_date = get_field(PREFIX_WEBSITE.'deadline_job',$id);
 	                 $number_day = getNumberDay($job_date); 
 	                 
@@ -63,7 +63,7 @@
 				            </li>
 				            <li>
 				               <div class="jobs__aplicants">
-				                  <div class="label--hexagon"><span><?php echo ($applicant) ? cout($applicant) : 0; ?> applicant</span></div>
+				                  <div class="label--hexagon"><span><?php echo ($applicant) ? count($applicant) : 0; ?> applicant</span></div>
 				               </div>
 				            </li>
 				         </ul>
