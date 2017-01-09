@@ -1,8 +1,8 @@
 // JavaScript Document
 var Popup = (function() {
 	function init(){
-		openPostProduct();
-		hidePostProduct();
+		
+		
 		displayFilesUpload();
 		createSelectBox();
 		createRadio();
@@ -27,12 +27,7 @@ var Popup = (function() {
 			$(tabid).addClass('is-active');
 		});
 	}
-	function openPostProduct(){
-		$('#uploadProduct').click(function(){
-			openPopup('#chooseProductType');
-			$('body').removeClass('is-pushed');
-		});
-	}
+	
 
 	function initTags(){
 		$('#tags').tagsInput({width:'auto'});
@@ -41,7 +36,7 @@ var Popup = (function() {
 		$('input[type="checkbox"], input[type="radio"]').iCheck();
 	}
 	function createSelectBox(){
-		$('select').select2({
+		$('.site-page--product-publisher select').select2({
 			minimumResultsForSearch: -1
 		});
 	}
@@ -97,11 +92,7 @@ var Popup = (function() {
          });
 	}
 
-	function hidePostProduct(){
-		$('.js-close').click(function(){
-			closePopup('#chooseProductType');
-		});
-	}
+	
 	function openPopup(idDiv){
 		$('.hidepopup').css('display','none')
 		$(idDiv).css('display','block');	
