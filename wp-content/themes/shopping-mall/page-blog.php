@@ -7,58 +7,60 @@
 get_header(); ?>
 
 <?php 
-    //query_posts(array('post_type'=>'challenge','posts_per_page'=>2));
-    //if(have_posts()){
+    query_posts(array('post_type'=>'post','posts_per_page'=>1));
+    if(have_posts()){
           
  ?>
-  <section class="content-section">
-			<div class="container">
-				<header class="content-heading">
-					<h2 class="content-heading-title">3D Model Platform Blog</h2>
-					<p class="content-heading-subtitle">News, insights and inspiration of 3D modeling.</p>
-				</header>
-				<div class="challenges-list">
-				  <?php  while( have_posts()) {
-           	               the_post();
-                   ?>
-					<div class="challenge">
-						<div class="challenge-content">
-							<div class="challenge-image">
-							<?php if ( has_post_thumbnail() ) : ?>
-								    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-								        <?php the_post_thumbnail('large'); ?>
-								    </a>
-								<?php endif; ?>
-							</div>
-							<div class="challenge-inner">
-								<h3 class="challenge-title">
-									<a href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a>
-								</h3>
-								<div class="challenge-description">
-								<?php
-                                      the_content();
-								 ?></div>
-								<div class="challenge-info">
-									<div class="challenge-deadline">
-									 <?php 
-                                       $date = get_field('challenge_date',get_the_ID());
-									 ?>
-										<span>Ends in: <b><?php echo $date; ?></b></span>
-									</div>
-									<div class="challenge-action">
-										<a href="<?php the_permalink(); ?>"><button class="button">Join Challenge</button>
-										</a>
-									</div>
-								</div>
+  <div class="content-area">
+  	<section class="content-section blog-post">
+		<div class="container">
+			<header class="content-heading">
+				<h2 class="content-heading-title">3D Model Platform Blog</h2>
+				<p class="content-heading-subtitle">News, insights and inspiration of 3D modeling.</p>
+			</header>
+
+			<div class="challenges-list">
+				<div class="blog-content__main">
+			  <?php  while( have_posts()) {
+       	               the_post();
+               ?>
+				<div class="challenge ">
+					<div class="challenge-content">
+						<div class="challenge-image">
+						<?php if ( has_post_thumbnail() ) : ?>
+							    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+							        <?php the_post_thumbnail('large'); ?>
+							    </a>
+							<?php endif; ?>
+						</div>
+						<div class="challenge-inner">
+							<p class="muted text-flat"><?php the_time('F jS, Y'); ?></p>
+							<h3 class="challenge-title">
+								<a href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a>
+							</h3>
+
+							<div class="challenge-description">
+							<?php
+                                  wp_trim_words(the_content(), 300);
+							 ?></div>
+							<div class="challenge-info">
+								<i class="icon-comments"></i>
+								<i class="fa fa-commenting-o fa-lg"></i>
+								<?php echo get_comments_number();?>
+								<a class="u-float-right" href="<?php the_permalink(); ?>" style="text-decoration: underline;">Read article</a>
 							</div>
 						</div>
 					</div>
-					<?php } ?>
-					
 				</div>
-				<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL; ?>/challenge/">View more challenges <i class="fa fa-chevron-right"></i> </a></p>
+				<?php } ?>
+				</div>
+				<?php get_sidebar('blog');?>
+				
 			</div>
-</section>
-<?php //} ?>
+		</div>
+	</section>
+
+  </div>
+<?php } ?>
 
 <?php get_footer(); ?>
