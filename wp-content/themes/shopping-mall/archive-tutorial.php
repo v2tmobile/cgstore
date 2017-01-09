@@ -34,7 +34,7 @@ get_header(); ?>
 			   <div class="jobs-header__content">
 			      <p class="jobs-header__annotation">Quality 3D content and examples to learn from.</p>
 			   </div>
-			   <a class="button button--longer u-float-right" href="<?php echo HOME_URL; ?>/post-jobs/">Create tutorial</a>
+			   <a class="button button--longer u-float-right" href="<?php echo HOME_URL; ?>/post-tutorial/">Create tutorial</a>
 			   <div class="clear"></div>
 			</div>
 			

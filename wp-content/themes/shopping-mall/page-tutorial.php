@@ -30,7 +30,7 @@ get_header(); ?>
 		   <div class="jobs-header__content">
 		      <p class="jobs-header__annotation">Quality 3D content and examples to learn from.</p>
 		   </div>
-		   <a class="button button--longer u-float-right" href="/jobs/new">Create Tutorial</a>
+		   <a class="button button--longer u-float-right" href="">Create Tutorial</a>
 		   <div class="clear"></div>
 		</div>
 		

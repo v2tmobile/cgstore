@@ -22,6 +22,20 @@ var SiteMain = (function() {
 		hidePostProduct();
 	}
 
+	function createCategorySelect(){
+		$('.tutorial_multi_select').select2();
+	}
+	function createEditor(){
+		$('.tutorial-editor')
+          .on('froalaEditor.initialized', function (e, editor) {
+            /*$('#edit').parents('form').on('submit', function () {
+              console.log($('this').val());
+              return false;
+            })*/
+          })
+          .froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+	}
+
 	function toogleViewFilesJob(){
 		$('a.view-attached-files').click(function(){
 			$('#attached-job-files').toggleClass('opened');
@@ -88,8 +102,15 @@ var SiteMain = (function() {
 	    	accept: 'jpg|png|gif',
 	    	list: '#files'
 	    });
-
 	}
+
+	function previewTutorialFile(){
+		$('#fileUploadTutorial').MultiFile({
+	    	accept: 'jpg|png|gif',
+	    	list: '#fileTutorial'
+	    });
+	}
+
 	function hidePostProduct(){
 		$('.js-close').click(function(){
 			closePopup('#chooseProductType');
@@ -306,7 +327,10 @@ var SiteMain = (function() {
 		openPopup:openPopup,
 		closePopup:closePopup,
 		removeLine:removeLine,
-		deleteFile:deleteFile
+		deleteFile:deleteFile,
+		createEditor :createEditor,
+		createCategorySelect:createCategorySelect,
+		previewTutorialFile:previewTutorialFile
 	}
 	
 })();		

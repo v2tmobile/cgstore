@@ -603,3 +603,65 @@
 				}
 			}
 	}	
+
+
+.site-page--tutorial-form .tutorial-form__title {
+    margin-bottom: 25px;
+    margin-top: 25px;
+        font-size: 36px;
+}
+.site-page--tutorial-form .tutorial-form__label {
+    color: #131518;
+    display: block;
+    margin-bottom: 3px;
+    cursor: default;
+}
+.site-page--tutorial-form .tutorial-form__label:before {
+    top: 0;
+    right: 0;
+    margin-right: 5px;
+    height: 12px;
+    width: 11px;
+    background: url(../images/hexagon_tiny.png) no-repeat;
+    content: ' ';
+    display: inline-block;
+    position: relative;
+}
+.site-page--tutorial-form .tutorial-form__content {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px;
+    background: #fff;
+    padding-top: 0;
+}
+.site-page--tutorial-form .tutorial-form__block--left {
+    width: 68.47636%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--tutorial-form .tutorial-form__block--right {
+    width: 27.49562%;
+    float: right;
+    margin-right: 0;
+}
+.site-page--tutorial-form .field, .site-page--tutorial-form .select2-container, .site-page--tutorial-form .select2-choices {
+    background: #f7f6f3;
+}
+.tutorial-editor{
+	height: 300px;
+}
+.site-page--tutorial-form .fr-box.fr-basic .fr-element{
+	min-height: 350px;	
+}
+.tutorial-form__block--right{
+	.upload-area{
+		position: relative;
+		height: 250px;
+		background: #f3f3f3;
+		#filedrag{
+			font-size: 18px;
+		}
+	}
+}
