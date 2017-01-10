@@ -78,65 +78,9 @@
 		<?php echo get_template_part('tutorial/index'); ?>
 		
 		<?php echo get_template_part('job/index'); ?>
-		<section class="content-section light">
-			<div class="container">
-				<header class="content-heading">
-					<h2 class="content-heading-title">Looking for inspiration?</h2>
-					<p class="content-heading-subtitle">Hand-picked stories, news and inspiration of 3D modelling world</p>
-				</header>
-				<div class="blog-posts">
-					<div class="blog-post">
-						<div class="blog-post-content">
-							<div class="blog-post-image">
-								<img alt="​Marek Denko - pragmatic family guy, an artist picturing nostalgia, and mature CG professional" src="https://img2.cgtrader.com/uploads/blog/posts/546/head_c7e150fd-c4e3-4c36-9616-87f0ea5142a4.jpg">
-							</div>
-							<h3 class="blog-post-title">
-								<a href="#" title="​Marek Denko - pragmatic family guy, an artist picturing nostalgia, and mature CG professional">
-									<span>​Marek Denko - pragmatic family guy, an artist picturing nostalgia, and ...</span>
-								</a>
-							</h3>
-						</div>
-					</div>
-					<div class="blog-post">
-						<div class="blog-post-content">
-							<div class="blog-post-image">
-								<img alt="VR Watercraft Competition Winners Revealed!" src="https://img-new.cgtrader.com/uploads/blog/posts/545/head_be9d1724-6b2b-4c2d-acaf-4d0ebcc9586a.png">
-							</div>
-							<h3 class="blog-post-title">
-								<a href="#" title="VR Watercraft Competition Winners Revealed!">
-									<span>VR Watercraft Competition Winners Revealed!</span>
-								</a>
-							</h3>
-						</div>
-					</div>
-					<div class="blog-post">
-						<div class="blog-post-content">
-							<div class="blog-post-image">
-								<img alt="Infographic: Tapping Into Massive VR Potential In 2016" src="https://img-new.cgtrader.com/uploads/blog/posts/544/head_4cefc2c0-dadc-4eef-8fcb-639fa8e523fa.jpg">
-							</div>
-							<h3 class="blog-post-title">
-								<a href="#" title="Infographic: Tapping Into Massive VR Potential In 2016">
-									<span>Infographic: Tapping Into Massive VR Potential In 2016</span>
-								</a>
-							</h3>
-						</div>
-					</div>
-					<div class="blog-post">
-						<div class="blog-post-content">
-							<div class="blog-post-image">
-								<img alt="CG Architectural Details Challenge Is Finished -  Winners Revealed!" src="https://img2.cgtrader.com/uploads/blog/posts/542/head_605a595a-d753-4427-89e5-5172ada09d81.jpg">
-							</div>
-							<h3 class="blog-post-title">
-								<a href="#" title="CG Architectural Details Challenge Is Finished -  Winners Revealed!">
-									<span>CG Architectural Details Challenge Is Finished -  Winners Revealed!</span>
-								</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<p class="u-text-right"><a class="button button-forward" href="#">Read more blog posts <i class="fa fa-chevron-right"></i> </a></p>
-		</section>
+
+		<?php echo get_template_part('blog/index'); ?>
+		
 
 		<section class="content-section light">
 			<hr class="split">
