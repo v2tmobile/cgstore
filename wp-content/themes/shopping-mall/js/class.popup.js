@@ -3,10 +3,10 @@ var Popup = (function() {
 	function init(){
 		
 		
-		displayFilesUpload();
-		createSelectBox();
+		//displayFilesUpload();
+		//createSelectBox();
 		createRadio();
-		initTags();
+		//initTags();
 		stepPostProduct();
 		helperBubble();
 	}
@@ -33,7 +33,16 @@ var Popup = (function() {
 		$('#tags').tagsInput({width:'auto'});
 	}
 	function createRadio(){
-		$('input[type="checkbox"], input[type="radio"]').iCheck();
+		$('input[name="_downloadable"]').iCheck();
+		$('input[name="_downloadable"]').on('ifChanged', function (event) { 
+			//$(event.target).trigger('change'); 
+			$(".show_if_downloadable").show();
+		});
+		$('input[name="_downloadable"]').on('ifUnchecked', function (event) { 
+			//$(event.target).trigger('change'); 
+			$(".show_if_downloadable").hide();
+		});
+
 	}
 	function createSelectBox(){
 		$('.site-page--product-publisher select').select2({

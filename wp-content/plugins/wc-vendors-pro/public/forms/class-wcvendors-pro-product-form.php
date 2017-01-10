@@ -8,7 +8,7 @@
  * @subpackage WCVendors_Pro/public/forms
  * @author     Jamie Madden <support@wcvendors.com>
  */
-class WCVendors_Pro_Product_Form {
+class WCVendors_Pro_Product_Form { 
 
 	/**
 	 * The ID of this plugin.
@@ -267,12 +267,15 @@ class WCVendors_Pro_Product_Form {
 		WCVendors_Pro_Form_Helper::input( apply_filters( 'wcv_product_title', array( 
 		 	'post_id' 			=> $post_id, 
 		 	'id'	 			=> 'post_title', 
-		 	'label' 			=> __( 'Product Name', 'wcvendors-pro' ),
+		 	'label' 			=> __( 'Product Title', 'wcvendors-pro' ),
 		 	'value' 			=> $product_title, 
+		 	'class'				=> 'js-help-trigger',
+		 	'placeholder' 		=> __( 'Keep the title informative and simple', 'wcvendors-pro' ),
 		 	'custom_attributes' => array( 
 		 			'data-rules' => 'required|max_length[100]', 
-		 			'data-error' => __( 'Product name is required or is too long.', 'wcvendors-pro' ), 
-		 			'data-label' => __( 'Product Name', 'wcvendors-pro' ),
+		 			'data-error' => __( 'Product Title is required or is too long.', 'wcvendors-pro' ), 
+		 			'data-label' => __( 'Product Title', 'wcvendors-pro' ),
+		 			'data-target' => '#help-title'
 
 		 		)
 		 	) )
@@ -295,11 +298,12 @@ class WCVendors_Pro_Product_Form {
 			 	'id' 		=> 'post_content', 
 			 	'label'	 	=> __( 'Product Description', 'wcvendors-pro' ), 
 			 	'value' 	=> $product_description, 
+			 	'class'		=> 'js-help-trigger',
 			 	'placeholder' 		=> __( 'Please add a full description of your product here', 'wcvendors-pro' ), 
 			 	'custom_attributes' => array( 
 		 			'data-rules' => 'required', 
-		 			'data-error' => __( 'Product description is required.', 'wcvendors-pro' )
-
+		 			'data-error' => __( 'Product description is required.', 'wcvendors-pro' ),
+		 			'data-target' => '#help-description'
 		 		)
 			 	) )
 			 );
@@ -694,10 +698,10 @@ class WCVendors_Pro_Product_Form {
 			),
 			'downloadable' => array(
 				'id'            => '_downloadable',
-				'wrapper_class' => 'show_if_simple',
+				'wrapper_class' => 'show_if_simple hidden',
 				'label'         => __( 'Downloadable', 'wcvendors-pro' ),
 				'description'   => __( 'Downloadable products give access to a file upon purchase.', 'wcvendors-pro' ),
-				'default'       => 'no'
+				'default'       => 'yes'
 			)
 		) );
 
@@ -754,7 +758,7 @@ class WCVendors_Pro_Product_Form {
 			WCVendors_Pro_Form_Helper::input( apply_filters( 'wcv_product_price', array( 
 				'post_id'		=> $post_id, 
 				'id' 			=> '_regular_price', 
-				'label' 		=> __( 'Regular Price', 'wcvendors-pro' ) . ' (' . get_woocommerce_currency_symbol() . ')', 
+				'label' 		=> __( '<h2 class="heading">Pricing</h2>', 'wcvendors-pro' ) . ' <span class="symbol">' . get_woocommerce_currency_symbol() . '</span>', 
 				'data_type' 	=> 'price', 
 				'wrapper_start' => $wrapper_start, 
 				'wrapper_end' 	=> '</div>', 
