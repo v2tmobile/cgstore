@@ -6,7 +6,6 @@
 ?>   
 <?php get_header();?>
 <div class="jobs-page site-page--tutorial-form">
-  
 	<div class="content-area">
 	   <form method="post" action="" enctype="multipart/form-data" id="form-post-tutorial">
 		    <div class="tutorial-form__content">
@@ -28,16 +27,10 @@
                <div class="input-container">
                   <label class="tutorial-form__label">Steps</label>
                   <div class="js-steps">
-                      <div class="nested-fields">
-                        <div class="input-container">
-                          <input class="step-position field" value="Step 1" maxlength="110" size="110" type="text" name="tutorial[tutorial_steps_attributes][title]" id="tutorial_tutorial_steps_attributes__title">
-                        </div>
-                        <div class="redactor_box">
-                          <textarea name="tutorial[tutorial_steps_attributes][description]" class="tutorial-editor"></textarea>
-                        </div>
-                        <a class="button button--alt remove_fields dynamic" href="#">Remove step</a>
+                      <div class="js-insert-steps">
+                        <?php get_template_part('steps/step');?>
                       </div>
-
+                      <div class="links"><a href="javascript:void(0)" class="addStep button button--small add_fields">Add step</a></div>
                   </div>
                </div>
              </div>
@@ -138,6 +131,7 @@
     SiteMain.createEditor();
     SiteMain.createCategorySelect();
     SiteMain.previewTutorialFile();
+    SiteMain.insertAndDeteleStep();
     $('#tags').tagsInput({width:'auto'});
 	});
 </script>

@@ -1,6 +1,6 @@
 // JavaScript Document
 var SiteMain = (function() {
-
+	//
 	var inputFile = $('#fileupload');
 	var finalFiles = {};
 	function init(){
@@ -20,8 +20,29 @@ var SiteMain = (function() {
 		toogleViewFilesJob();
 		openPostProduct();
 		hidePostProduct();
+		removeStep();
 	}
 
+	function removeStep(){
+		$('.nested-fields .remove_fields').click(function(){
+			$(this).parent().remove();
+		});
+	}
+	function insertAndDeteleStep(){
+		$('#form-post-tutorial a.addStep').click(function(){
+			var stepnumber = $('.js-insert-steps .nested-fields').length;
+			$.ajax({
+				url: CGSTORE_VARS.TEMPLATE_PATH + '/steps/step.php'
+			}).done(function(html){
+                $('.js-insert-steps').append(html);
+                $('.step-position').val('Step ' + length);
+                createEditor();
+                removeStep();
+            });
+		});
+
+
+	}
 	function createCategorySelect(){
 		$('.tutorial_multi_select').select2();
 	}
@@ -107,7 +128,13 @@ var SiteMain = (function() {
 	function previewTutorialFile(){
 		$('#fileUploadTutorial').MultiFile({
 	    	accept: 'jpg|png|gif',
-	    	list: '#fileTutorial'
+	    	list: '#fileTutorial',
+	    	onFileAppend: function(){
+	    		$('#fileTutorial').show();
+	    	},
+	    	afterFileRemove: function(){
+	    		$('#fileTutorial').hide();	
+	    	}
 	    });
 	}
 
@@ -330,7 +357,8 @@ var SiteMain = (function() {
 		deleteFile:deleteFile,
 		createEditor :createEditor,
 		createCategorySelect:createCategorySelect,
-		previewTutorialFile:previewTutorialFile
+		previewTutorialFile:previewTutorialFile,
+		insertAndDeteleStep:insertAndDeteleStep
 	}
 	
 })();		

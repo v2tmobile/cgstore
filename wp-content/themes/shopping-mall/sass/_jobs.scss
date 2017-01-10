@@ -659,9 +659,40 @@
 	.upload-area{
 		position: relative;
 		height: 250px;
-		background: #f3f3f3;
+		background: #f7f6f3 url(../images/upload_area_bg.png) no-repeat 50% 20%;
 		#filedrag{
 			font-size: 18px;
 		}
+		input[type="file"]{
+			height: 250px;
+		    width: 100%;
+		    opacity: 0;
+		    cursor: pointer;
+		}
 	}
+	#fileTutorial{
+		display: none;
+			    position: absolute;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    .remove-string, .MultiFile-title{
+	    	display: none;
+	    }
+	    .MultiFile-label{
+	    	height: 100%;
+	    	img.MultiFile-preview{
+	    		    max-width: 100%!important;
+    				max-height: 100%!important;
+	    	}
+	    }
+	    a.MultiFile-remove{
+	        position: absolute;
+		    right: 5px;
+		    top: 5px;
+	    }
+	}
+}
+.nested-fields{
+	margin-bottom: 25px;
 }
