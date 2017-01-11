@@ -119,6 +119,68 @@ $args_type_job = array(
  register_taxonomy( 'type_job', 'jobs', $args_type_job );
  register_taxonomy_for_object_type( 'type_job', 'jobs' );
 
+ // tax for tutorial
+
+$labels_cat_tutorial = array(
+    'name'                       => 'Tutorial Category',
+    'singular_name'              => 'Tutorial Category',
+    'menu_name'                  => 'Tutorial Category',
+    'all_items'                  => 'All Tutorial Category',
+    'parent_item'                => 'Parent Tutorial Category',
+    'parent_item_colon'          => 'Parent Tutorial Category:',
+    'new_item_name'              => 'New Tutorial Category',
+    'add_new_item'               => 'Add New Tutorial Category',
+    'edit_item'                  => 'Edit Tutorial Category',
+    'update_item'                => 'Update Tutorial Category',
+    'separate_items_with_commas' => 'Separate Tutorial Category with commas',
+    'search_items'               => 'Search Tutorial Category',
+    'add_or_remove_items'        => 'Add or remove Tutorial Category',
+    'choose_from_most_used'      => 'Choose from the most used Tutorial Category',
+);
+$args_cat_tutorial = array(
+    'labels'                     => $labels_cat_tutorial,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'tutorial_cat', 'tutorial', $args_cat_tutorial );
+ register_taxonomy_for_object_type( 'tutorial_cat', 'tutorial' );
+
+//software
+
+$labels_software_tutorial = array(
+    'name'                       => 'Tutorial Software',
+    'singular_name'              => 'Tutorial Software',
+    'menu_name'                  => 'Tutorial Software',
+    'all_items'                  => 'All Tutorial Software',
+    'parent_item'                => 'Parent Tutorial Software',
+    'parent_item_colon'          => 'Parent Tutorial Software:',
+    'new_item_name'              => 'New Tutorial Software',
+    'add_new_item'               => 'Add New Tutorial Software',
+    'edit_item'                  => 'Edit Tutorial Software',
+    'update_item'                => 'Update Tutorial Software',
+    'separate_items_with_commas' => 'Separate Tutorial Software with commas',
+    'search_items'               => 'Search Tutorial Software',
+    'add_or_remove_items'        => 'Add or remove Tutorial Software',
+    'choose_from_most_used'      => 'Choose from the most used Tutorial Software',
+);
+$args_software_tutorial = array(
+    'labels'                     => $labels_software_tutorial,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'tutorial_software', 'tutorial', $args_software_tutorial );
+ register_taxonomy_for_object_type( 'tutorial_software', 'tutorial' );
+
 }
 
 

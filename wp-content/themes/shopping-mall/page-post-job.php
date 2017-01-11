@@ -118,8 +118,6 @@
                       )
                   );
 
-                 print_r($job_ob);
-                 die();
                 
               if($job_update_id && $job_id){
                    if($job_id == $job['job_id']){
@@ -185,7 +183,7 @@
 				         <label class="jobs-form__label">Select category</label>
 				         <div class="jobs-form__category-block">
 				           <?php
-                              $type_job_tax = 'type_job';
+                    $type_job_tax = 'type_job';
         					  $type_jobs = get_terms( $type_job_tax, 'orderby=count&hide_empty=0' );
         					  if($type_jobs):
         					  	
@@ -231,7 +229,7 @@
 				      <label class="jobs-form__label">Select or enter software needed</label><span class="jobs-form__list-title">
 				      <select name="job[job_format][]" id="format_job" class="field field--colored" multiple>
 				      <?php
-                          $format_job_tax = 'job_format';
+                  $format_job_tax = 'job_format';
         				  $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0');
         				  if($format_jobs):
         				  	  $selected = '';

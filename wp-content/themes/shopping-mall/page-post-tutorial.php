@@ -7,21 +7,43 @@
 <?php get_header();?>
 <div class="jobs-page site-page--tutorial-form">
 	<div class="content-area">
-	   <form method="post" action="" enctype="multipart/form-data" id="form-post-tutorial">
+   <?php
+      $tu_title = '';
+      $tu_des = '';
+      $tu_tags = '';
+      $tu_cat = 0;
+      $tu_software = 0;
+      $errors = [];
+       if( wp_verify_nonce($_POST['post_tutorial'],'post_tutorial_action') && isset($_POST['tu'])){
+         $tutorial = $_POST['tu'];
+         $tu_title = ($tutorial['title']) ? $tutorial['title'] :'';
+         if(empty($tu_title)) $errors[] = 'Please input title';
+         $tu_des = ($tutorial['des']) ? wp_strip_all_tags($tu_de['des']) :'';
+         if(empty($tu_des)) $errors[] ='Please input description';
+         $tu_cat = ($tutorial['cat']) ? $tutorial['cat'] ? 0;
+         $tu_software ($tutorial['software']) ? $tutorial['software'] :'';
+         $tu_tags = ($tutorial['tags']) ? $tutorial['tags'] :'';
+         
+         
+
+       }    
+
+    ?>
+	<form method="post" action="" enctype="multipart/form-data" id="form-post-tutorial">
 		    <div class="tutorial-form__content">
             <h1 class="tutorial-form__title">Post your Tutorial</h1>
              <div class="tutorial-form__block--left headline">
                 <div class="input-container">
                   <label class="tutorial-form__label">Tutorial</label>
-                  <input placeholder="How to make a 3D car model" class="field" type="text" name="tutorial[title]" id="tutorial_title">
+                  <input placeholder="How to make a 3D car model" class="field" type="text" name="tu[title]" id="tutorial_title">
                 </div>
                 <div class="input-container">
                   <label class="tutorial-form__label">Description</label>
-                  <textarea class="field field--colored field--text tutorial-form__description" placeholder="We will build a beautiful car model" name="tutorial[description]" id="tutorial_description"></textarea>
+                  <textarea class="field field--colored field--text tutorial-form__description" placeholder="We will build a beautiful car model" name="tu[des]" id="tutorial_description"></textarea>
                 </div>
                 <div class="input-container">
                   <label class="tutorial-form__label">Tags</label>
-                  <input type="text" name="tags" required="required" class="field" id="tags">
+                  <input type="text" name="tu[tags][]" required="required" class="field" id="tags">
                   <div class="input-container__note">Tags should be separated by entering key.</div>
                </div>
                <div class="input-container">
@@ -33,84 +55,75 @@
                       <div class="links"><a href="javascript:void(0)" class="addStep button button--small add_fields">Add step</a></div>
                   </div>
                </div>
+               
              </div>
              <div class="tutorial-form__block--right">
                 <div class="input-container">
                     <label class="tutorial-form__label">Categories</label>
-                    <select multiple="multiple" name="tutorial[categories][]" class="tutorial_multi_select" id="tutorial_categories">
-                       <option value="3D Animation">3D Animation</option>
-                       <option value="3D Modeling">3D Modeling</option>
-                       <option value="Low-poly 3D Modeling">Low-poly 3D Modeling</option>
-                       <option value="3D Print Modeling">3D Print Modeling</option>
-                       <option value="Game Development">Game Development</option>
-                       <option value="Texturing">Texturing</option>
-                       <option value="Matte Painting">Matte Painting</option>
-                       <option value="Lighting">Lighting</option>
-                       <option value="Rendering">Rendering</option>
-                       <option value="Rigging">Rigging</option>
-                       <option value="Beginner">Beginner</option>
-                       <option value="Post-Production">Post-Production</option>
-                       <option value="Video">Video</option>
-                       <option value="Sculpting">Sculpting</option>
-                       <option value="Intermediate">Intermediate</option>
-                       <option value="Advanced">Advanced</option>
+                    <select multiple="multiple" name="tu[cat]" class="tutorial_multi_select" id="tutorial_categories">
+                       <?php
+                        $tutorial_cat = 'tutorial_cat';
+                        $tutorial_cats = get_terms( $tutorial_cat, 'orderby=count&hide_empty=0');
+                       if($tutorial_cats):
+                           $selected = '';
+                               foreach ($tutorial_cats as $cat) {
+                                  //if(in_array($cat->term_id, )){
+                                   //  $selected ='selected="selected"';
+                                  //}else{
+                                   // $selected = '';
+                                  //}
+                         ?>
+                                 <option <?php echo $selected; ?> value="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></option>
+                                 <?php 
+                               }
+                    endif;
+
+               ?>
                     </select>
                 </div>
                 <div class="input-container">
                     <label class="tutorial-form__label">Software</label>
-                    <select multiple="multiple" name="tutorial[software][]" class="tutorial_multi_select" id="tutorial_software" >
-                       <option value="3ds Max">3ds Max</option>
-                       <option value="Blender">Blender</option>
-                       <option value="Cinema 4D">Cinema 4D</option>
-                       <option value="Cryengine">Cryengine</option>
-                       <option value="Element 3D">Element 3D</option>
-                       <option value="Lightwave">Lightwave</option>
-                       <option value="Mari">Mari</option>
-                       <option value="Marmoset">Marmoset</option>
-                       <option value="Maya">Maya</option>
-                       <option value="Modo">Modo</option>
-                       <option value="Motion Builder">Motion Builder</option>
-                       <option value="Mudbox">Mudbox</option>
-                       <option value="Photoshop">Photoshop</option>
-                       <option value="Quixel Suite">Quixel Suite</option>
-                       <option value="Sketchup">Sketchup</option>
-                       <option value="Stringray">Stringray</option>
-                       <option value="Substance Designer">Substance Designer</option>
-                       <option value="Substance Painter">Substance Painter</option>
-                       <option value="Unity 3D">Unity 3D</option>
-                       <option value="Unreal Engine">Unreal Engine</option>
-                       <option value="ZBrush">ZBrush</option>
-                       <option value="After Effects">After Effects</option>
-                       <option value="Vue">Vue</option>
-                       <option value="AutoCAD">AutoCAD</option>
-                       <option value="Inventor">Inventor</option>
-                       <option value="Revit">Revit</option>
-                       <option value="SolidWorks">SolidWorks</option>
-                       <option value="Other">Other</option>
-                       <option value="Vray">Vray</option>
-                       <option value="Creo Parametric">Creo Parametric</option>
-                       <option value="Pro/ENGINEER">Pro/ENGINEER</option>
+                    <select multiple="multiple" name="tu[software]" class="tutorial_multi_select" id="tutorial_software" >
+                        <?php
+                        $tutorial_software = 'tutorial_software';
+                        $tutorial_softwares = get_terms( $tutorial_software, 'orderby=count&hide_empty=0');
+                       if($tutorial_softwares):
+                           $selected = '';
+                               foreach ($tutorial_softwares as $cat) {
+                                  //if(in_array($cat->term_id, )){
+                                   //  $selected ='selected="selected"';
+                                  //}else{
+                                   // $selected = '';
+                                  //}
+                                ?>
+                                <option <?php echo $selected; ?> value="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></option>
+                               <?php 
+                              }
+                     endif;
+
+               ?>
                     </select>
                 </div>
                 <div class="primary-image-form__upload">
                   <label class="tutorial-form__label">Preview image</label>
                   <div class="upload-area">
-                        <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                          <input type="file" class="with-preview" id="fileUploadTutorial" name="fileselect[]" />
+                        
+                          <input type="file" class="with-preview" id="fileUploadTutorial" name="files[]" />
                           <div id="filedrag">
                               <div class="upload-area__text">
                                   Drag &amp; Drop
                                   <span>Browse Files</span>
                               </div>
                           </div>
-                        </form>
+                       
                         <div id="fileTutorial"></div>
                     </div>
                     <p>Image will be cropped into a square.</p>
                 </div>
             </div>
+<?php //wp_nonce_field('post_tutorial_action','post_tutorial'); ?>
+          <input type="submit" name="submit" value="Post job tutorial" class="button u-float-right">
         </div>
-        
 		<form>
 	</div>
 	
