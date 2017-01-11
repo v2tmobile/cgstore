@@ -46,7 +46,6 @@ var SiteMain = (function() {
                 if(stepnumber>1){
                 	$('.nested-fields .remove_fields').css('display','inline-block');
                 }
-                console.log(stepnumber);
                 $('.step-'+stepnumber+' .step-position').val('Step ' + stepnumber);
                 createEditor();
                 removeStep();
