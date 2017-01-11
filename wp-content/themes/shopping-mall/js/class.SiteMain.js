@@ -22,22 +22,36 @@ var SiteMain = (function() {
 		hidePostProduct();
 		removeStep();
 	}
-
+	var stepnumber = 0;
 	function removeStep(){
 		$('.nested-fields .remove_fields').click(function(){
+			stepnumber--;
+			$('.js-insert-steps').attr('data-number-step', stepnumber);
+			if(stepnumber==0){
+            	$('.nested-fields .remove_fields').css('display','inline-block');
+            }
 			$(this).parent().remove();
 		});
 	}
 	function insertAndDeteleStep(){
+		
 		$('#form-post-tutorial a.addStep').click(function(){
-			var stepnumber = $('.js-insert-steps .nested-fields').length;
+			stepnumber = $('.js-insert-steps').attr('data-number-step');
 			$.ajax({
 				url: CGSTORE_VARS.TEMPLATE_PATH + '/steps/step.php'
 			}).done(function(html){
-                $('.js-insert-steps').append(html);
-                $('.step-position').val('Step ' + length);
+                
+                stepnumber++;
+                $('.js-insert-steps').append('<div class="nested-fields step-'+stepnumber+'">' + html + '</div>');
+                if(stepnumber>1){
+                	$('.nested-fields .remove_fields').css('display','inline-block');
+                }
+                console.log(stepnumber);
+                $('.step-'+stepnumber+' .step-position').val('Step ' + stepnumber);
                 createEditor();
                 removeStep();
+                $('.js-insert-steps').attr('data-number-step', stepnumber);
+                
             });
 		});
 
