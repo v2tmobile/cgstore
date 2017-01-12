@@ -49,8 +49,10 @@
                <div class="input-container">
                   <label class="tutorial-form__label">Steps</label>
                   <div class="js-steps">
-                      <div class="js-insert-steps">
-                        <?php get_template_part('steps/step');?>
+                      <div class="js-insert-steps" data-number-step = "1">
+                        <div class="nested-fields">
+                          <?php get_template_part('steps/step');?>
+                        </div>
                       </div>
                       <div class="links"><a href="javascript:void(0)" class="addStep button button--small add_fields">Add step</a></div>
                   </div>

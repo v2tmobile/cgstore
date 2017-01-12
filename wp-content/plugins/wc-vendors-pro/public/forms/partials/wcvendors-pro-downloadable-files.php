@@ -15,12 +15,13 @@
 
 <div class="show_if_downloadable">
 	<div class="form-field downloadable_files">
+		<h2 class="heading heading--compact">Upload Files</h2>
 		<table >
 			<thead>
 				<tr>
 					<th class="sort">&nbsp;</th>
-					<th><?php _e( 'Name', 'wcvendors-pro' ); ?> <span class="tips" data-tip="<?php _e( 'This is the name of the download shown to the customer.', 'wcvendors-pro' ); ?>">[?]</span></th>
-					<th colspan="2"><?php _e( 'File ', 'wcvendors-pro' ); ?></th>
+					<th>&nbsp;</th>
+					<th colspan="2">&nbsp;</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>

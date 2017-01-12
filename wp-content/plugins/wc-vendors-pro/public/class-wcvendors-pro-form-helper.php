@@ -9,7 +9,7 @@
  * @subpackage WCVendors_Pro/public
  * @author     Jamie Madden <support@wcvendors.com>
  */
-class WCVendors_Pro_Form_Helper {
+class WCVendors_Pro_Form_Helper { 
 
 	/**
 	 * The ID of this plugin.
@@ -617,9 +617,14 @@ class WCVendors_Pro_Form_Helper {
 
 		if ( ! $media_options[ 'featured' ]  ) {
 
-			echo '<div class="all-33 small-100 tiny-100">'; 
-
-			echo '<h6>'.__('Featured Image', 'wcvendors-pro').'</h6>';
+			// echo div upload-area
+			echo '<div class="upload-area">';
+			echo '<a class="wcv-media-uploader-featured-add ' . ( $post_thumb ? 'hidden' : '' ) . '" href="#" >'.__('<span class="feature-text">Drag & Drop
+                               <span>model files and images or <b>browse files</b></span></span>', 'wcvendors-pro').'</a><br />'; 
+			echo '</div>';
+			// echo /div upload-area
+			echo '<div class="all-100 small-100 tiny-100">'; 
+			echo '<h2 class="heading heading--compact">'.__('Featured Previews', 'wcvendors-pro').'</h2>';
 			$post_thumb 	= has_post_thumbnail( $post_id ); 
 
 		  	echo '<div class="wcv-featuredimg" data-title="'.__('Select or Upload a Feature Image', 'wcvendors-pro').'" data-button_text="'.__('Set Product Feature Image', 'wcvendors-pro').'">'; 
@@ -632,7 +637,7 @@ class WCVendors_Pro_Form_Helper {
 
 
 		    // echo '<p>'; 
-		  	echo '<a class="wcv-media-uploader-featured-add ' . ( $post_thumb ? 'hidden' : '' ) . '" href="#" >'.__('Set featured image', 'wcvendors-pro').'</a><br />'; 
+		  	
 		  	echo '<a class="wcv-media-uploader-featured-delete ' . ( !$post_thumb ? 'hidden' : '' )  . '" href="#" >'.__('Remove featured image', 'wcvendors-pro').'</a><br />'; 
 		  	// echo '</p>'; 
 
@@ -651,9 +656,9 @@ class WCVendors_Pro_Form_Helper {
 			 		)
 			 	); 
 
-			 	echo '<div class="all-66 small-100 tiny-100" >'; 
+			 	echo '<div class="all-100 small-100 tiny-100" >'; 
 
-			 	echo '<h6>'.__('Gallery', 'wcvendors-pro').'</h6>';
+			 	echo '<h2 class="heading heading--compact">'.__('Gallery', 'wcvendors-pro').'</h2>';
 			   	
 			   	echo '<div id="product_images_container" data-gallery_max_upload="'. $gallery_options[ 'max_upload' ] .'" data-gallery_max_notice="'.$gallery_options[ 'notice' ].'">'; 
 			   	echo '<ul class="product_images inline">';

@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_PATH;?>/css/all.css">
 <style type="text/css">
-html{
+html{ 
     background: #f7f6f3 ;
 }
 </style>

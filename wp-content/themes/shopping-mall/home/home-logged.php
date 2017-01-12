@@ -237,6 +237,7 @@
 							</div>
 						</div>
 					</article>
+					
 					<article class="showcase-item">
 						<div class="showcase-item-content">
 							<header class="showcase-item-header">
@@ -258,6 +259,7 @@
 							</div>
 						</div>
 					</article>
+
 					<article class="showcase-item">
 						<div class="showcase-item-content">
 							<header class="showcase-item-header">
