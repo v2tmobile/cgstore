@@ -63,3 +63,58 @@ ul.bbp-forums{
 	float: right;
 	font-size: 15px;
 }
+.notifications, .activity {
+	.entry-header{
+		h1{
+			font-size: 36px;
+			padding-bottom: 20px;
+		}
+	}
+	#buddypress #item-header-cover-image #item-header-avatar{
+		margin-top: 0;
+	}
+	#buddypress div#item-header #item-header-cover-image #item-header-content{
+		    margin-left: 50px;
+    		margin-top: -60px;
+	}
+	#buddypress #header-cover-image{
+		background: transparent;
+	}
+	#buddypress div#item-header-cover-image .user-nicename{
+		margin-bottom: 5px;
+	}
+	#item-body{
+		    padding: 20px 20px 40px 20px;
+    margin-bottom: 20px;
+    background:#fff;
+	}
+	table.notifications{
+
+		tr{
+			th.title{
+				background-position: left center;
+			}
+			td.notification-actions{
+				text-align: center;
+			}
+			td.bulk-select-check{
+				text-align: center;
+			}
+		}
+	}
+	.notifications-options-nav{
+		select{
+		height: 35px;
+		}
+		input[type="submit"]{
+			    color: #000;
+		    line-height: 27px;
+		    height: 36px;
+		}
+	}
+	.activity-meta{
+		a{
+			    line-height: 25px;
+		}
+	}
+}
