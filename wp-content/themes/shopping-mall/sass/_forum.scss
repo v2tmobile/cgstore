@@ -41,7 +41,7 @@ ul.bbp-forums{
 	}
 }
 .bbp-topic-form{
-	.bbp-form{
+	.bbp-form{ 
 		font-size: 14px;
 	}
 	label{
@@ -49,6 +49,7 @@ ul.bbp-forums{
 	}
 	input[type="text"]{
 		height: 35px;
+		padding-left: 15px;
 	}
 
 }
