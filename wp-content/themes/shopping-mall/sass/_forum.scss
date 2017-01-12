@@ -79,6 +79,7 @@ ul.bbp-forums{
 	}
 	#buddypress #header-cover-image{
 		background: transparent;
+		display: none;
 	}
 	#buddypress div#item-header-cover-image .user-nicename{
 		margin-bottom: 5px;
@@ -115,6 +116,36 @@ ul.bbp-forums{
 	.activity-meta{
 		a{
 			    line-height: 25px;
+		}
+	}
+}
+#header-cover-image{
+	
+}
+#item-nav{
+	ul{
+		li{
+			font-size: 0.875rem;
+		    display: block;
+		    float: left;
+		    line-height: 20px;
+		    text-transform: uppercase;
+		    color: #ce3c5c;
+		    position: relative;
+		    &.current{
+		    	background: #f5f4f0;
+			    color: black;
+			    font-weight: normal;
+			    
+		    }
+			a{
+				color: #ce3c5c;
+    			display: block;
+			    padding: 10px 7px;
+			    border: 1px solid transparent;
+			    border-bottom: 0;
+			    text-decoration: none;
+			}
 		}
 	}
 }
