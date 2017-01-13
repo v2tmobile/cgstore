@@ -16,8 +16,10 @@ var Popup = (function() {
 	function helperBubble(){
 		$('.js-help-trigger').hover(function(){
 			var id = $(this).attr('data-target');
+			var offsetTop = $(this).offset().top;
+			
 			$('.help-bubble').hide();
-			$(id).show();
+			$(id).css('top', offsetTop - 100).show();
 		});
 
 	}
