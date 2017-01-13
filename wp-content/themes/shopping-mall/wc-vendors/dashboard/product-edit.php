@@ -99,10 +99,61 @@ html{
 						<div class="wcv-product-basic wcv-product"> 
 							<!-- Product Title -->
 							<?php WCVendors_Pro_Product_Form::title( $object_id, $product_title ); ?>
+					<?php
+                        $cat = isset($_GET['cat']) ? $_GET['cat'] : 0;
+                        $catID = 25;
+                        if($cat) {
+                        	$catID = 24;  
+                         ?>
+                         <ul>
+                         	<li><input type="checkbox" name=""><label>Animated</label></li>
+                         	<li><input type="checkbox" name=""><label> Low-poly (game-ready)</label></li>
+                         	<li><input type="checkbox" name=""><label>Textures</label></li>
+                         	<li><input type="checkbox" name=""><label>Materials</label></li>
+                         	<li><input type="checkbox" name=""><label>Rigged</label></li>
+                         	<li><input type="checkbox" name=""><label>Plugins used</label></li>
+                         	<li><input type="checkbox" name=""><label>Collection</label></li>
+                         </ul>
+                         <div>
+                         	<div class="col-1"><input type="checkbox" name=""><label>UVW mapping</label>
+                         	</div>
+                         	<div class="col-2">
+                         		Unwrapped UVs:
+                         		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
+				                  <option value="unknown">Unknown</option>
+				                  <option value="non_overlapping">Non-overlapping</option>
+				                  <option value="overlapping">Overlapping</option>
+				                  <option value="mixed">Mixed</option>
+				                  <option value="no">No</option>
+              					</select>
+                         	</div>
+                         </div>
+                         <div>
+                         	<div class="col-1">
+                         		Geometry:
+                         		<select name="geometry_type" id="geometry_type">
+					                <option>Choose geometry</option>
+					                <option value="polygon_mesh">Polygon mesh</option>
+					                <option value="subdivision_ready">Subdivision-ready</option>
+					                <option value="nurbs">Nurbs</option>
+					                <option value="other">Other</option>
+           					 </select>
+                         	</div>
+                         	<div class="col-2">
+                         		<input type="text" name="polygons" placeholder="polygons" class="field" number="true" min="0">
+                         		<input type="text" name="vertices" placeholder="vertices" class="field" number="true" min="0">
+                         	</div>
+                         </div>
+                         <?php 
+                          
+                        }
+					 ?>
+
 							<!-- Product Categories -->
 							<div class="category-block">
 								<div class="u-float-left u-left-category js-help-trigger wcv-product-basic wcv-product" data-target="#help-category">
-		             <?php WCVendors_Pro_Product_Form::categories( $object_id, true ,25); ?>
+					
+		             <?php WCVendors_Pro_Product_Form::categories( $object_id, true ,$catID); ?>
 								</div>
 								<div class="">
 									<select id="product_cat" name="product_cat[]">
@@ -166,6 +217,18 @@ html{
 	                  <h2 class="heading">Challenges</h2>
 	                  <p class="challenges-explanation">If you have a right model for the challenge, simply check the box and you are
 	  in.</p>
+
+	    <?php if($cat){
+                $challenges = get_posts('post_type=challenge&posts_per_page=-1');
+                if($challenges){
+                	echo '<ul>';
+                	foreach ($challenges as $challenge) {
+                		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenge[]"><label>'.$challenge->post_title.'</label><div class="right"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
+                	}
+                   echo '</ul>';
+                }
+
+	    	} ?>
 	                  <div class="input-container">
 	                    <div class="challenges-list"></div>
 	                  </div>
