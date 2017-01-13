@@ -107,13 +107,13 @@ html{
                          ?>
                          <div class="input-container">
 	                         <ul class="product-cat-list">
-	                         	<li><input type="checkbox" name="animated"><label>Animated</label></li>
-	                         	<li><input type="checkbox" name="low_poly"><label> Low-poly (game-ready)</label></li>
-	                         	<li><input type="checkbox" name="textures"><label>Textures</label></li>
-	                         	<li><input type="checkbox" name="materials"><label>Materials</label></li>
-	                         	<li><input type="checkbox" name="rigged"><label>Rigged</label></li>
-	                         	<li><input type="checkbox" name="plugins_used"><label>Plugins used</label></li>
-	                         	<li><input type="checkbox" name="collection"><label>Collection</label></li>
+	                         	<li><input type="checkbox" name="animated" id="ckanimated"><label for="ckanimated">Animated</label></li>
+	                         	<li><input type="checkbox" name="low_poly" id="cklow_poly"><label for="cklow_poly"> Low-poly (game-ready)</label></li>
+	                         	<li><input type="checkbox" name="textures" id="cktextures"><label for="cktextures">Textures</label></li>
+	                         	<li><input type="checkbox" name="materials" id="ckmaterials"><label for="ckmaterials">Materials</label></li>
+	                         	<li><input type="checkbox" name="rigged" id="ckrigged"><label for="ckrigged">Rigged</label></li>
+	                         	<li><input type="checkbox" name="plugins_used" id="ckplugins_used"><label for="ckplugins_used">Plugins used</label></li>
+	                         	<li><input type="checkbox" name="collection" id="cklow_poly"><label for="cklow_poly">Collection</label></li>
 	                         </ul>
 	                     </div>
                          <div class="input-container">
