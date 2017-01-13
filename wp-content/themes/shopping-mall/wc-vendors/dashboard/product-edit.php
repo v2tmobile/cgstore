@@ -422,7 +422,8 @@ html{
 	  </div>
 	</div>
 </form>
-
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/product-preview.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/dmuploader.min.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/class.popup.js"></script>
 <script type="text/javascript">
 
@@ -491,6 +492,8 @@ html{
    });
 
  });	
+
+
 
   $('#drag-and-drop-zone').dmUploader({
         url:CGSTORE_VARS.AJAX_URL,
