@@ -97,6 +97,9 @@ html{
 				          </div>
 				        </div>
 					</div>
+					<input type="hidden" id="_featured_image_id" name="_featured_image_id" value="">
+					<input type="hidden" id="product_image_gallery" name="product_image_gallery" value="">
+
 					<div class="show_if_downloadable" id="files_download">
 									<!-- Downloadable files -->
 						<?php //WCVendors_Pro_Product_Form::download_files( $object_id ); ?>
@@ -550,6 +553,17 @@ html{
           $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
 
           $.danidemo.updateFileProgress(id, '100%');
+          var ext = ['jpg','jpeg','gif'];
+          if(id == 0){
+          	 console.log(id);
+          	$('#_featured_image_id').val(data.data.attachmentID);
+          }else{
+          	 var ids = $('#product_image_gallery').val();
+          	 var list_id = '';
+          	 if(ids) list_id = ids +',' + data.data.attachmentID;
+          	 else list_id = ids;
+          	 $('#product_image_gallery').val(list_id);
+          }
         },
         onUploadError: function(id, message){
           $.danidemo.updateFileStatus(id, 'error', message);
