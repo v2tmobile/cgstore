@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 	<?php
 		while ( have_posts() ) : the_post();
+		$post_author_id = get_post_field( 'post_author', get_the_ID());
 		?>
 	<div class="content-area site-page--gallery">
 	  	<section class="content-section blog-post">
@@ -14,7 +15,7 @@
 								<div class="avatar avatar--small">
 									<a href="<?php echo bp_loggedin_user_domain(); ?>"> <?php bp_loggedin_user_avatar( 'type=thumb&width=30&height=30' );?></a>
 									</div>
-									<a href="<?php echo bp_loggedin_user_domain(); ?>"><?php bp_get_displayed_user_fullname() ?></a>
+									<a href="<?php echo bp_loggedin_user_domain(); ?>"><?php the_author_meta( 'user_nicename', $post_author_id ) ?></a>
 								</div>
 							</div>
 							<div class="clear"></div>
