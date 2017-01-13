@@ -105,19 +105,21 @@ html{
                         if($cat) {
                         	$catID = 24;  
                          ?>
-                         <ul>
-                         	<li><input type="checkbox" name=""><label>Animated</label></li>
-                         	<li><input type="checkbox" name=""><label> Low-poly (game-ready)</label></li>
-                         	<li><input type="checkbox" name=""><label>Textures</label></li>
-                         	<li><input type="checkbox" name=""><label>Materials</label></li>
-                         	<li><input type="checkbox" name=""><label>Rigged</label></li>
-                         	<li><input type="checkbox" name=""><label>Plugins used</label></li>
-                         	<li><input type="checkbox" name=""><label>Collection</label></li>
-                         </ul>
-                         <div>
-                         	<div class="col-1"><input type="checkbox" name=""><label>UVW mapping</label>
+                         <div class="input-container">
+	                         <ul class="product-cat-list">
+	                         	<li><input type="checkbox" name=""><label>Animated</label></li>
+	                         	<li><input type="checkbox" name=""><label> Low-poly (game-ready)</label></li>
+	                         	<li><input type="checkbox" name=""><label>Textures</label></li>
+	                         	<li><input type="checkbox" name=""><label>Materials</label></li>
+	                         	<li><input type="checkbox" name=""><label>Rigged</label></li>
+	                         	<li><input type="checkbox" name=""><label>Plugins used</label></li>
+	                         	<li><input type="checkbox" name=""><label>Collection</label></li>
+	                         </ul>
+	                     </div>
+                         <div class="input-container">
+                         	<div class="col-1 uvw-mapping"><input type="checkbox" name=""><label>UVW mapping</label>
                          	</div>
-                         	<div class="col-2">
+                         	<div class="col-2" id="uvw-mapping-block" style="margin-top: 10px;">
                          		Unwrapped UVs:
                          		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
 				                  <option value="unknown">Unknown</option>
@@ -128,8 +130,8 @@ html{
               					</select>
                          	</div>
                          </div>
-                         <div>
-                         	<div class="col-1">
+                         <div class="input-container">
+                         	<div class="geometry-type">
                          		Geometry:
                          		<select name="geometry_type" id="geometry_type">
 					                <option>Choose geometry</option>
@@ -139,10 +141,16 @@ html{
 					                <option value="other">Other</option>
            					 </select>
                          	</div>
-                         	<div class="col-2">
+                         	<div class="geometry-values">
+                         		<img class="icon" src="<?php echo TEMPLATE_PATH; ?>/images/polygon.png" alt="Polygon">
                          		<input type="text" name="polygons" placeholder="polygons" class="field" number="true" min="0">
+                         		
+                         	</div>
+                         	<div class="geometry-values is-last">
+                         		<img class="icon" src="<?php echo TEMPLATE_PATH; ?>/images/vertices.png" alt="Polygon">
                          		<input type="text" name="vertices" placeholder="vertices" class="field" number="true" min="0">
                          	</div>
+                         	<div class="clear"></div>
                          </div>
                          <?php 
                           
@@ -221,18 +229,19 @@ html{
 	                  <h2 class="heading">Challenges</h2>
 	                  <p class="challenges-explanation">If you have a right model for the challenge, simply check the box and you are
 	  in.</p>
-
+	  				<div class="input-container ul-challenge">	
 	    <?php if($cat){
                 $challenges = get_posts('post_type=challenge&posts_per_page=-1');
                 if($challenges){
                 	echo '<ul>';
                 	foreach ($challenges as $challenge) {
-                		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenge[]"><label>'.$challenge->post_title.'</label><div class="right"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
+                		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenge[]"><label>'.$challenge->post_title.'</label><div class="pull-right" style="position: relative;top:-2px;text-decoration: underline;"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
                 	}
                    echo '</ul>';
                 }
 
 	    	} ?>
+	    </div>
 	                  <div class="input-container">
 	                    <div class="challenges-list"></div>
 	                  </div>

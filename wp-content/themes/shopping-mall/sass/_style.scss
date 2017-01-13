@@ -726,12 +726,14 @@ input.input-text {
 	}
 }
 .select2-container .select2-choice{
-	border: none;
+	height: 35px;
+	line-height: 35px;
 }
-
+.site-page--product-publisher .inline-label {
+    display: inline-block;
+    margin-right: 10px;
+}
 .select2-dropdown-open .select2-choice{
-	background: transparent;
-	box-shadow: none;
 }
 section.content-section .tutorials .tutorial .tutorial-content .tutorials-title{
 	line-height: 46px;

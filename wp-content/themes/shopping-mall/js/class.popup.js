@@ -9,15 +9,24 @@ var Popup = (function() {
 		//initTags();
 		stepPostProduct();
 		helperBubble();
+		openLienceOption();
+		openUVW();
 	}
 
 	function helperBubble(){
 		$('.js-help-trigger').hover(function(){
 			var id = $(this).attr('data-target');
+			var offsetTop = $(this).offset().top;
+			
 			$('.help-bubble').hide();
-			$(id).show();
+			$(id).css('top', offsetTop - 100).show();
 		});
 
+	}
+	function openUVW(){
+		$('.uvw-mapping .icheckbox').click(function(){
+			$('#uvw-mapping-block').toggleClass('opened');
+		});
 	}
 	function stepPostProduct(){
 		$('.publishing-steps li a').click(function(){
@@ -27,9 +36,32 @@ var Popup = (function() {
 			$('.publisher-container .uploads-tab').removeClass('is-active');
 			$(tabid).addClass('is-active');
 			$('input[type="checkbox"]').iCheck();
+			$('input[type="checkbox"]').on('ifChanged', function (event) { 
+				var parent = $(this).parent().parent();
+				if($(parent).hasClass('uvw-mapping')){
+					$('#uvw-mapping-block').addClass('opened');
+				}
+				console.log(parent);
+			});
+			$('input[type="checkbox"]').on('ifUnchecked', function (event) { 
+				var parent = $(this).parent().parent();
+				if($(parent).hasClass('uvw-mapping')){
+					$('#uvw-mapping-block').removeClass('opened');
+				}
+				console.log(parent);
+			});
 		});
 	}
 	
+	function openLienceOption(){
+		$('.license-options input[type="radio"]').change(function(){
+			if($(this).val()== 'custom'){
+				$('.custom-license-container').show();
+			}else{
+				$('.custom-license-container').hide();
+			}
+		});
+	}
 
 	function initTags(){
 		$('#tags').tagsInput({width:'auto'});

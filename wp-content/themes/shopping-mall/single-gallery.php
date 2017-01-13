@@ -17,6 +17,7 @@
 									<a href="<?php echo bp_loggedin_user_domain(); ?>"><?php bp_get_displayed_user_fullname() ?></a>
 								</div>
 							</div>
+							<div class="clear"></div>
 						</div>
 						<div class="box gallery__images">
 							<div class="l-inner-compact">
