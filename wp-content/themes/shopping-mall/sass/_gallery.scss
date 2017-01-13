@@ -377,3 +377,84 @@ a.button {
     -webkit-transform: scale(1.03);
     transform: scale(1.03);
 }
+.site-page--profile-gallery-form .upload-dropzone {
+    padding: 40px;
+    border: 2px solid #e4e1d8;
+    text-align: center;
+    background: #f5f4f0;
+    position: relative;
+    .jobs-form__label:before{
+    	display: none;
+    }
+    .button-upload{
+    	position: inherit;
+    	background: #67c4b0;
+    	display: table;
+    	margin: 0 auto;
+    	width: auto;
+    	color: #fff;
+    	input[type="file"]{
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    	}
+    	span{
+    		font-size: 14px;
+    	}
+    }
+
+}
+#gallery-form-container{
+	display: none;
+	padding-top: 25px;	
+}
+.gallery-form{
+	margin-bottom: 20px;
+}
+
+.site-page--profile-gallery-form .gallery-form__title {
+    width: 74.78109%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--profile-gallery-form .gallery-form__category {
+    width: 24.34326%;
+    float: right;
+    margin-right: 0;
+    label{
+    	display: block;
+    }
+    .select2-container{
+    	width:100%!important;
+    	
+    	.select2-selection--single{
+    		border: 1px solid #e4e1d8;
+    		height: 36px;
+    	}
+    }
+}
+.site-page--profile-gallery-form{
+	textarea{
+	    	min-height: 150px;
+	}
+	label{
+		display: block;
+		padding-bottom: 5px;
+	}
+}
+.input-container__note{
+	font-size: 14px;
+	padding-top: 5px;
+}
+#fileGallery{
+	.MultiFile-label{
+		width: 93px;
+		float: left;
+    	margin-right: 10px
+	}
+	.MultiFile-title{
+		display: none;
+	}
+}
