@@ -107,27 +107,28 @@ html{
                          ?>
                          <div class="input-container">
 	                         <ul class="product-cat-list">
-	                         	<li><input type="checkbox" name="animated"><label>Animated</label></li>
-	                         	<li><input type="checkbox" name="low_poly"><label> Low-poly (game-ready)</label></li>
-	                         	<li><input type="checkbox" name="textures"><label>Textures</label></li>
-	                         	<li><input type="checkbox" name="materials"><label>Materials</label></li>
-	                         	<li><input type="checkbox" name="rigged"><label>Rigged</label></li>
-	                         	<li><input type="checkbox" name="plugins_used"><label>Plugins used</label></li>
-	                         	<li><input type="checkbox" name="collection"><label>Collection</label></li>
+	                         	<li><input type="checkbox" name="animated" id="ckanimated"><label for="ckanimated">Animated</label></li>
+	                         	<li><input type="checkbox" name="low_poly" id="cklow_poly"><label for="cklow_poly"> Low-poly (game-ready)</label></li>
+	                         	<li><input type="checkbox" name="textures" id="cktextures"><label for="cktextures">Textures</label></li>
+	                         	<li><input type="checkbox" name="materials" id="ckmaterials"><label for="ckmaterials">Materials</label></li>
+	                         	<li><input type="checkbox" name="rigged" id="ckrigged"><label for="ckrigged">Rigged</label></li>
+	                         	<li><input type="checkbox" name="plugins_used" id="ckplugins_used"><label for="ckplugins_used">Plugins used</label></li>
+	                         	<li><input type="checkbox" name="collection" id="cklow_poly"><label for="cklow_poly">Collection</label></li>
 	                         </ul>
 	                     </div>
                          <div class="input-container">
-                         	<div class="col-1 uvw-mapping"><input type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
-                         	</div>
-                         	<div class="col-2" id="uvw-mapping-block" style="margin-top: 10px;">
-                         		Unwrapped UVs:
-                         		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
-				                  <option value="unknown">Unknown</option>
-				                  <option value="non_overlapping">Non-overlapping</option>
-				                  <option value="overlapping">Overlapping</option>
-				                  <option value="mixed">Mixed</option>
-				                  <option value="no">No</option>
-              					</select>
+                         	<div class="col-1 uvw-mapping">
+                         		<input type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
+                         		<div class="pull-right" id="uvw-mapping-block" style="margin-top: -7px;">
+	                         		Unwrapped UVs:
+	                         		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
+					                  <option value="unknown">Unknown</option>
+					                  <option value="non_overlapping">Non-overlapping</option>
+					                  <option value="overlapping">Overlapping</option>
+					                  <option value="mixed">Mixed</option>
+					                  <option value="no">No</option>
+	              					</select>
+	                         	</div>
                          	</div>
                          </div>
                          <div class="input-container">
