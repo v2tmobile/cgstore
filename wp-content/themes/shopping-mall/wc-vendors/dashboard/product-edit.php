@@ -493,7 +493,10 @@ html{
  });	
 
   $('#drag-and-drop-zone').dmUploader({
-        url: '/demos/dnd/upload.php',
+        url:CGSTORE_VARS.AJAX_URL,
+        extraData:{
+          action:'cgs-upload-file',
+        },
         dataType: 'json',
         allowedTypes: 'image/*',
         onInit: function(){

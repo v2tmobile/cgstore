@@ -52,3 +52,13 @@ function cgs_load_sub_cat(){
     die(); 
 
 }
+
+add_action( 'wp_ajax_nopriv_cgs-upload-file', 'uploadAjaxFile' );
+add_action( 'wp_ajax_cgs-upload-file', 'uploadAjaxFile' );
+
+function uploadAjaxFile(){
+
+   $result = array('success'=>false,'msg'=>'Error');
+   echo json_encode(array('status' => 'ok'));
+   die();
+}
