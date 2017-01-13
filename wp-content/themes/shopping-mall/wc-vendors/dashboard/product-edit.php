@@ -542,7 +542,7 @@ html{
 
 </script>
 <style type="text/css">
-	.uploader
+.uploader
 {
 	border: 2px dotted #A5A5C7;
 	width: 100%;
