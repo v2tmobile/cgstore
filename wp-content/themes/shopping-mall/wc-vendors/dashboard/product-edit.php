@@ -160,7 +160,7 @@ html{
 										<option>Choose sub category</option>
 									</select>
 								</div>
-
+                           <?php if(!$cat){ ?>
 							    <div class="units-container u-float-right js-help-trigger" data-target="#help-units">
 			                         <label for="units" class="inline-label" data-position="inline">Units </label>
 			                         <div class="category-container" id="unit_select_container">
@@ -172,6 +172,7 @@ html{
 			                            </select>
 			                         </div>
 			                      </div>
+			                   <?php } ?>
 			                      <div class="clear"></div>
 							</div>
 						    <!--<div class="product-type-select wcv-product-type">
