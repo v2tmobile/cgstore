@@ -117,17 +117,18 @@ html{
 	                         </ul>
 	                     </div>
                          <div class="input-container">
-                         	<div class="col-1 uvw-mapping"><input type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
-                         	</div>
-                         	<div class="col-2" id="uvw-mapping-block" style="margin-top: 10px;">
-                         		Unwrapped UVs:
-                         		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
-				                  <option value="unknown">Unknown</option>
-				                  <option value="non_overlapping">Non-overlapping</option>
-				                  <option value="overlapping">Overlapping</option>
-				                  <option value="mixed">Mixed</option>
-				                  <option value="no">No</option>
-              					</select>
+                         	<div class="col-1 uvw-mapping">
+                         		<input type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
+                         		<div class="pull-right" id="uvw-mapping-block" style="margin-top: -7px;">
+	                         		Unwrapped UVs:
+	                         		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
+					                  <option value="unknown">Unknown</option>
+					                  <option value="non_overlapping">Non-overlapping</option>
+					                  <option value="overlapping">Overlapping</option>
+					                  <option value="mixed">Mixed</option>
+					                  <option value="no">No</option>
+	              					</select>
+	                         	</div>
                          	</div>
                          </div>
                          <div class="input-container">
