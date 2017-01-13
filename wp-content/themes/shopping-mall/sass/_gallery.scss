@@ -486,3 +486,9 @@ a.button {
     margin-right: 0;
     padding-top: 72px;
 }
+.site-page--gallery .gallery__header:after {
+    clear: both;
+}
+.l-inner-compact {
+    padding: 10px;
+}
