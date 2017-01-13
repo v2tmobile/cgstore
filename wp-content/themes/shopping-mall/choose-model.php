@@ -7,10 +7,13 @@
 	      <h4 class="content-heading__title">Choose what you wish to publish</h4>
 	      <p class="content-heading__subtitle">Publish 3D models to our marketplace or showcase your artwork</p>
 	   </div>
+	   <?php
+          $dashboard_link = WCVendors_Pro_Dashboard::get_dashboard_page_url();
+	    ?>
 	   <ul class="site-publishing-overlay__choices">
-	      <li><a id="" href="<?php echo esc_url( home_url( '/' ) ); ?>printable-new"><img alt="" src="<?php echo TEMPLATE_PATH; ?>/images/publishing_choice_print.png"><span class="site-publishing-overlay__choice">3D printable model<span>publish a 3D model which is suited for 3D printing.</span></span></a></li>
-	      <li><a id="" href="https://www.cgtrader.com/profile/items/cg/new"><img alt="" src="<?php echo TEMPLATE_PATH; ?>/images/publishing_choice_cg.png"><span class="site-publishing-overlay__choice">Regular 3D model<span>CG 3D models used for games, advertising, science etc.</span></span></a></li>
-	      <li><a id="" href="https://www.cgtrader.com/profile/gallery/new"><img alt="" src="<?php echo TEMPLATE_PATH; ?>/images/publishing_choice_portfolio.png"><span class="site-publishing-overlay__choice">Gallery Showcase<span>Build your portfolio and show off your work!</span></span></a></li>
+	      <li><a id="" href="<?php echo $dashboard_link; ?>/product/edit/"><img alt="" src="<?php echo TEMPLATE_PATH; ?>/images/publishing_choice_print.png"><span class="site-publishing-overlay__choice">3D printable model<span>publish a 3D model which is suited for 3D printing.</span></span></a></li>
+	      <li><a id="" href="<?php echo $dashboard_link; ?>/product/edit/?cat=2"><img alt="" src="<?php echo TEMPLATE_PATH; ?>/images/publishing_choice_cg.png"><span class="site-publishing-overlay__choice">Regular 3D model<span>CG 3D models used for games, advertising, science etc.</span></span></a></li>
+	      <li><a id="" href="<?php echo HOME_URL; ?>/post-gallery/"><img alt="" src="<?php echo TEMPLATE_PATH; ?>/images/publishing_choice_portfolio.png"><span class="site-publishing-overlay__choice">Gallery Showcase<span>Build your portfolio and show off your work!</span></span></a></li>
 	   </ul>
 	</div>
 </div>

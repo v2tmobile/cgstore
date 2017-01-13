@@ -3,8 +3,8 @@
 /**
  * @package Shopping_Mall
  */
-?>   
-<?php get_header();?>
+ get_header();
+ ?>
 <div class="jobs-page site-page--tutorial-form">
 	<div class="content-area">
    <?php
@@ -14,19 +14,57 @@
       $tu_cat = 0;
       $tu_software = 0;
       $errors = [];
+      $html_ms = '';
        if( wp_verify_nonce($_POST['post_tutorial'],'post_tutorial_action') && isset($_POST['tu'])){
          $tutorial = $_POST['tu'];
+         print_r($tutorial);
          $tu_title = ($tutorial['title']) ? $tutorial['title'] :'';
          if(empty($tu_title)) $errors[] = 'Please input title';
-         $tu_des = ($tutorial['des']) ? wp_strip_all_tags($tu_de['des']) :'';
+         $tu_des = ($tutorial['des']) ? wp_strip_all_tags($tutorial['des']) :'';
          if(empty($tu_des)) $errors[] ='Please input description';
-         $tu_cat = ($tutorial['cat']) ? $tutorial['cat'] ? 0;
-         $tu_software ($tutorial['software']) ? $tutorial['software'] :'';
-         $tu_tags = ($tutorial['tags']) ? $tutorial['tags'] :'';
+         $tu_cat = ($tutorial['cat']) ? $tutorial['cat'] : 0;
+         $tu_software = ($tutorial['software']) ? $tutorial['software'] :'';
+         $tu_tags = ($tutorial['tags']) ? wp_strip_all_tags($tutorial['tags']) :'';
+         $step_title = isset($tutorial['step']['title']) ? $tutorial['step']['title'] : [];
+         $step_des = isset($tutorial['step']['content']) ? $tutorial['step']['content'] : [];
+         if(empty($tu_cat)) $errors[] ='Please choose category';
+         if(empty($tu_software)) $errors[] ='Please choose Software';
+         if(empty($tu_tags)) $errors[] ='Please choose software';
+         if(empty($step_title)) $errors[] ='Please input step title';
+         if(empty($step_des)) $errors[] ='Please input step content';
+         if($errors && count($errors)>0){
+          $html_ms .='<ul class="error">';
+                 foreach ($errors as $error) {
+                     $html_ms .='<li>'.$error.'</li>';
+                 } 
+            $html_ms .='</ul>';
+         }else{
+               
+               $tutorial_ob = array(
+                     'post_title'=>$tu_title,
+                     'post_content'=>$tu_des,
+                     'post_status'=>'publish',
+                     'post_type'=>'tutorial',
+                     'post_author'=>get_current_user_id(),
+                     'tax_input'=>array(
+                          'tutorial_cat'=>array($tu_cat),
+                          'tutorial_software'=>array($tu_software),
+                          //'tutorial_tags'=>$tu_tags  
+                      ),
+                      // 'meta_input'=> array(
+                      //     PREFIX_WEBSITE.'deadline_job' =>$job_deadline,
+                      //     PREFIX_WEBSITE.'price_job'=>$job_price,
+                      //     PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
+                      // )
+                  );
+              
+         }
          
          
 
-       }    
+       }
+
+       echo $html_ms;    
 
     ?>
 	<form method="post" action="" enctype="multipart/form-data" id="form-post-tutorial">
@@ -43,7 +81,7 @@
                 </div>
                 <div class="input-container">
                   <label class="tutorial-form__label">Tags</label>
-                  <input type="text" name="tu[tags][]" required="required" class="field" id="tags">
+                  <input type="text" name="tu[tags]" required="required" class="field" id="tags">
                   <div class="input-container__note">Tags should be separated by entering key.</div>
                </div>
                <div class="input-container">
@@ -123,7 +161,7 @@
                     <p>Image will be cropped into a square.</p>
                 </div>
             </div>
-<?php //wp_nonce_field('post_tutorial_action','post_tutorial'); ?>
+        <?php  wp_nonce_field('post_tutorial_action','post_tutorial'); ?>
           <input type="submit" name="submit" value="Post job tutorial" class="button u-float-right">
         </div>
 		<form>

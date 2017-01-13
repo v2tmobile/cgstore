@@ -77,9 +77,6 @@
 	    if( $count != 0 ){
 	       return false;  
 	    }
-
-  
-
 }
 
 function cvf_td_generate_random_code($length=10) {

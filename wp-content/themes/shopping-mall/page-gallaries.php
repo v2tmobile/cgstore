@@ -78,7 +78,7 @@ get_header(); ?>
 							    </a>
 							<?php endif; ?>
 				         </div>
-				         <div class="gallery-item__author">by <a id="" href="<?php echo get_the_author_link(the_ID());?>"><?php echo get_author_name(the_ID());?></a></div>
+				         <div class="gallery-item__author">by <a id="" href="<?php echo get_the_author_link(the_ID());?>"><?php echo get_the_author_meta('display_name') ;?></a></div>
 				         <div class="gallery-item__info">
 				            <div class="gallery-item__like">
 				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
