@@ -181,7 +181,35 @@ $args_software_tutorial = array(
  register_taxonomy( 'tutorial_software', 'tutorial', $args_software_tutorial );
  register_taxonomy_for_object_type( 'tutorial_software', 'tutorial' );
 
+
+$labels_category_gallery = array(
+    'name'                       => 'Gallery Category',
+    'singular_name'              => 'Gallery Category',
+    'menu_name'                  => 'Gallery Category',
+    'all_items'                  => 'All Gallery',
+    'parent_item'                => 'Parent Gallery',
+    'parent_item_colon'          => 'Parent Gallery',
+    'new_item_name'              => 'New Gallery',
+    'add_new_item'               => 'Add New Gallery Category',
+    'edit_item'                  => 'Edit Gallery Category',
+    'update_item'                => 'Update Gallery Category',
+    'separate_items_with_commas' => 'Separate Gallery with commas',
+    'search_items'               => 'Search Gallery Category',
+    'add_or_remove_items'        => 'Add or remove Gallery Category',
+    'choose_from_most_used'      => 'Choose from the most used Gallery Category',
+);
+$args_category_gallery = array(
+    'labels'                     => $labels_category_gallery,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'category_gallery', 'gallery', $args_category_gallery );
+ register_taxonomy_for_object_type( 'category_gallery', 'gallery' );
+
 }
-
-
  ?>

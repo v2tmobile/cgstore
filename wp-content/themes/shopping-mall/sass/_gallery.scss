@@ -458,3 +458,31 @@ a.button {
 		display: none;
 	}
 }
+.gallery{
+    padding-top: 25px;
+}
+.gallery__title{
+        margin-bottom: 20px;
+    font-weight: 300;
+    font-size: 24px;
+}
+.site-page--gallery .gallery__header {
+    margin-bottom: 10px;
+}
+.site-page--gallery .gallery__info {
+    margin-right: 15px;
+    float: left;
+    font-size: 0.875rem;
+    color: #6d6d6d;
+}
+.site-page--gallery .gallery__main {
+    width: 74.78109%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--gallery .gallery__sidebar {
+    width: 24.34326%;
+    float: right;
+    margin-right: 0;
+    padding-top: 72px;
+}
