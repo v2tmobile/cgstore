@@ -156,10 +156,7 @@ html{
 									<!-- Price and Sale Price -->
 									<?php WCVendors_Pro_Product_Form::prices( $object_id ); ?>
 								</div>
-
-								
-
-								
+								<input type="checkbox" name="_sale_price" value="0"><label>Share for free</label>
 							</div>
 
 							<?php WCVendors_Pro_Product_Form::form_data( $object_id, $post_status ); ?>
