@@ -107,17 +107,17 @@ html{
                          ?>
                          <div class="input-container">
 	                         <ul class="product-cat-list">
-	                         	<li><input type="checkbox" name=""><label>Animated</label></li>
-	                         	<li><input type="checkbox" name=""><label> Low-poly (game-ready)</label></li>
-	                         	<li><input type="checkbox" name=""><label>Textures</label></li>
-	                         	<li><input type="checkbox" name=""><label>Materials</label></li>
-	                         	<li><input type="checkbox" name=""><label>Rigged</label></li>
-	                         	<li><input type="checkbox" name=""><label>Plugins used</label></li>
-	                         	<li><input type="checkbox" name=""><label>Collection</label></li>
+	                         	<li><input type="checkbox" name="animated"><label>Animated</label></li>
+	                         	<li><input type="checkbox" name="low_poly"><label> Low-poly (game-ready)</label></li>
+	                         	<li><input type="checkbox" name="textures"><label>Textures</label></li>
+	                         	<li><input type="checkbox" name="materials"><label>Materials</label></li>
+	                         	<li><input type="checkbox" name="rigged"><label>Rigged</label></li>
+	                         	<li><input type="checkbox" name="plugins_used"><label>Plugins used</label></li>
+	                         	<li><input type="checkbox" name="collection"><label>Collection</label></li>
 	                         </ul>
 	                     </div>
                          <div class="input-container">
-                         	<div class="col-1 uvw-mapping"><input type="checkbox" name=""><label>UVW mapping</label>
+                         	<div class="col-1 uvw-mapping"><input type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
                          	</div>
                          	<div class="col-2" id="uvw-mapping-block" style="margin-top: 10px;">
                          		Unwrapped UVs:
@@ -133,7 +133,7 @@ html{
                          <div class="input-container">
                          	<div class="geometry-type">
                          		Geometry:
-                         		<select name="geometry_type" id="geometry_type">
+                         		<select name="geometry" id="geometry_type">
 					                <option>Choose geometry</option>
 					                <option value="polygon_mesh">Polygon mesh</option>
 					                <option value="subdivision_ready">Subdivision-ready</option>
