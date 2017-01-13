@@ -13,6 +13,10 @@
     
     $license = isset($product_post['license']) ? $product_post['license']: 'general';
      update_field($prefix.'license',$license,$product_id);
+    if($license == 'custom'){
+    	$custom_license = isset($product_post['custom_license']) ? $product_post['custom_license']: '';
+       update_field($prefix.'custom_license',$custom_license,$product_id);
+    }
     $adult_content = isset($product_post['adult_content']) ? $product_post['adult_content'] : 0;
    
      if($adult_content){
@@ -77,7 +81,7 @@
     	 update_field($prefix.'vertices',$vertices,$product_id);
      }  
       
-    $challenge = isset($product_post['challenge']) ? $product_post['challenge'] : '';
+    $challenge = isset($product_post['challenges']) ? $product_post['challenges'] : '';
     if($challenge){
     	 update_field($prefix.'challenge',$challenge,$product_id);
      }

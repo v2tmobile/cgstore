@@ -235,7 +235,7 @@ html{
                 if($challenges){
                 	echo '<ul>';
                 	foreach ($challenges as $challenge) {
-                		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenge[]"><label>'.$challenge->post_title.'</label><div class="pull-right" style="position: relative;top:-2px;text-decoration: underline;"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
+                		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenges[]"><label>'.$challenge->post_title.'</label><div class="pull-right" style="position: relative;top:-2px;text-decoration: underline;"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
                 	}
                    echo '</ul>';
                 }

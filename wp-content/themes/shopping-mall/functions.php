@@ -9,7 +9,7 @@ define('PREFIX_WEBSITE','cgs_');
 include_once 'inc/add-scripts.php';
 include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
-include_once 'socials/login_socials.php';
+//include_once 'socials/login_socials.php';
 include_once 'inc/add-like.php';
 include_once 'inc/helper.php';
 include_once 'inc/post-product.php';
