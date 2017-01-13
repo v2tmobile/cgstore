@@ -67,15 +67,34 @@ html{
 	              </div>
 	          </div>
 	          <div class="uploads-tab is-active" id="step-presentation">
-	            
+	               <div id="drag-and-drop-zone" class="uploader">
+			            <div>Drag &amp; Drop Images Here</div>
+			            <div class="or">-or-</div>
+			            <div class="browser">
+			              <label>
+			                <span>Click to open the file Browser</span>
+			                <input type="file" name="files[]" multiple="multiple" title='Click to add Files'>
+			              </label>
+			            </div>
+          			</div>
+          			<div class="col-md-6">
+			          <div class="panel panel-default">
+			            <div class="panel-heading">
+			              <h3 class="panel-title">Uploads</h3>
+			            </div>
+			            <div class="panel-body demo-panel-files" id='demo-files'>
+			              <span class="demo-note">No Files have been selected/droped yet...</span>
+			            </div>
+			          </div>
+			        </div>
 	            	<div class="wcv-product-media">
-						<?php do_action( 'wcv_before_media', $object_id ); ?>
-							<?php WCVendors_Pro_Form_helper::product_media_uploader( $object_id ); ?>
-						<?php do_action( 'wcv_after_media', $object_id ); ?>
+						<?php //do_action( 'wcv_before_media', $object_id ); ?>
+							<?php //WCVendors_Pro_Form_helper::product_media_uploader( $object_id ); ?>
+						<?php //do_action( 'wcv_after_media', $object_id ); ?>
 					</div>
 					<div class="show_if_downloadable" id="files_download">
 									<!-- Downloadable files -->
-						<?php WCVendors_Pro_Product_Form::download_files( $object_id ); ?>
+						<?php //WCVendors_Pro_Product_Form::download_files( $object_id ); ?>
 						<!-- Download Limit -->
 						<?php //WCVendors_Pro_Product_Form::download_limit( $object_id ); ?>
 						<!-- Download Expiry -->
@@ -468,5 +487,129 @@ html{
 
  });	
 
+  $('#drag-and-drop-zone').dmUploader({
+        url: '/demos/dnd/upload.php',
+        dataType: 'json',
+        allowedTypes: '*',
+        /*extFilter: 'jpg;png;gif',*/
+        onInit: function(){
+          $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');
+        },
+        onBeforeUpload: function(id){
+          $.danidemo.addLog('#demo-debug', 'default', 'Starting the upload of #' + id);
+
+          $.danidemo.updateFileStatus(id, 'default', 'Uploading...');
+        },
+        onNewFile: function(id, file){
+          $.danidemo.addFile('#demo-files', id, file);
+        },
+        onComplete: function(){
+          $.danidemo.addLog('#demo-debug', 'default', 'All pending tranfers completed');
+        },
+        onUploadProgress: function(id, percent){
+          var percentStr = percent + '%';
+
+          $.danidemo.updateFileProgress(id, percentStr);
+        },
+        onUploadSuccess: function(id, data){
+          $.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
+
+          $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
+
+          $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
+
+          $.danidemo.updateFileProgress(id, '100%');
+        },
+        onUploadError: function(id, message){
+          $.danidemo.updateFileStatus(id, 'error', message);
+
+          $.danidemo.addLog('#demo-debug', 'error', 'Failed to Upload file #' + id + ': ' + message);
+        },
+        onFileTypeError: function(file){
+          $.danidemo.addLog('#demo-debug', 'error', 'File \'' + file.name + '\' cannot be added: must be an image');
+        },
+        onFileSizeError: function(file){
+          $.danidemo.addLog('#demo-debug', 'error', 'File \'' + file.name + '\' cannot be added: size excess limit');
+        },
+        /*onFileExtError: function(file){
+          $.danidemo.addLog('#demo-debug', 'error', 'File \'' + file.name + '\' has a Not Allowed Extension');
+        },*/
+        onFallbackMode: function(message){
+          $.danidemo.addLog('#demo-debug', 'info', 'Browser not supported(do something else here!): ' + message);
+        }
+      });
+
 
 </script>
+<style type="text/css">
+	.uploader
+{
+	border: 2px dotted #A5A5C7;
+	width: 100%;
+	color: #92AAB0;
+	text-align: center;
+	vertical-align: middle;
+	padding: 30px 0px;
+	margin-bottom: 10px;
+	font-size: 200%;
+
+	cursor: default;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.uploader div.or {
+	font-size: 50%;
+	font-weight: bold;
+	color: #C0C0C0;
+	padding: 10px;
+}
+
+.uploader div.browser label {
+	background-color: #5a7bc2;
+	padding: 5px 15px;
+	color: white;
+	padding: 6px 0px;
+	font-size: 40%;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 2px;
+	position: relative;
+	overflow: hidden;
+	display: block;
+	width: 300px;
+	margin: 20px auto 0px auto;
+
+	box-shadow: 2px 2px 2px #888888;
+}
+
+.uploader div.browser span {
+	cursor: pointer;
+}
+
+
+.uploader div.browser input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	border: solid transparent;
+	border-width: 0 0 100px 200px;
+	opacity: .0;
+	filter: alpha(opacity= 0);
+	-o-transform: translate(250px,-50px) scale(1);
+	-moz-transform: translate(-300px,0) scale(4);
+	direction: ltr;
+	cursor: pointer;
+}
+
+.uploader div.browser label:hover {
+	background-color: #427fed;
+}
+
+</style>
