@@ -57,8 +57,62 @@ add_action( 'wp_ajax_nopriv_cgs-upload-file', 'uploadAjaxFile' );
 add_action( 'wp_ajax_cgs-upload-file', 'uploadAjaxFile' );
 
 function uploadAjaxFile(){
+   $result = array('status'=>false,'msg'=>'Error');
+   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","xdoc"); 
+   $max_file_size = 1024 * 500;
+   $max_image_upload = 5;
+   $wp_upload_dir = wp_upload_dir();
+   $path = $wp_upload_dir['path'] . '/';
+   $file = $_FILES['file'];
+   if($file){
 
-   $result = array('success'=>false,'msg'=>'Error');
-   echo json_encode(array('status' => 'ok'));
+              $extension = pathinfo( $file['name'], PATHINFO_EXTENSION );
+              $new_filename =  PREFIX_WEBSITE.$file['name'];
+                
+              if ( $file['error'] != 0 ) {
+                    $result['msg'] =' File error!';
+                }else{
+                     
+                    if( $file['size'] > $max_file_size ) {
+                        $result['msg'] = "$name is too large!.";
+                   
+                    } elseif( ! in_array( strtolower( $extension ), $valid_formats ) ){
+                       $result['msg'] = "$name is not a valid format";
+     
+                    } else{ 
+                        // If no errors, upload the file...
+                        if( move_uploaded_file( $file["tmp_name"], $path.$new_filename ) ) {
+                            $filename = $path.$new_filename;
+                            $filetype = wp_check_filetype( basename( $filename ), null );
+                            $wp_upload_dir = wp_upload_dir();
+                            $attachment = array(
+                                'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ), 
+                                'post_mime_type' => $filetype['type'],
+                                'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+                                'post_content'   => '',
+                                'post_status'    => 'inherit'
+                            );
+                            // Insert attachment to the database
+                            $attach_id = wp_insert_attachment( $attachment, $filename, 0);
+
+                            require_once( ABSPATH . 'wp-admin/includes/image.php' );
+                            
+                            // Generate meta data
+                            $attach_data = wp_generate_attachment_metadata( $attach_id, $filename ); 
+                            wp_update_attachment_metadata( $attach_id, $attach_data );
+                            $result['status'] ='ok';
+                            $result['msg'] ='uploaded successful';
+                            $result['data'] = array(
+                               'attachmentID'=> $attach_id,
+                               'ext'=>$extension,
+                               'size'=>$file['size']
+                             );
+                            
+                        }
+                  }
+            }
+     }
+
+  echo wp_send_json($result);
    die();
 }
