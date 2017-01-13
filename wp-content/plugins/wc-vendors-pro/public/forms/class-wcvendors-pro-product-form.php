@@ -381,12 +381,12 @@ class WCVendors_Pro_Product_Form {
 	 * @param 	 int 	$post_id  post_id for this meta if any 
 	 * @param 	 bool 	$multiple allow mupltiple selection 
 	 */
-	public static function categories( $post_id, $multiple = false ) {
+	public static function categories( $post_id, $multiple = false,$cat_parentID = 0 ) {
 
 		if ( ! self::$basic_options[ 'categories' ] ) { 
 
 			if ( self::$category_display == 'select' ) { 
-				self::categories_dropdown( $post_id, $multiple ); 
+				self::categories_dropdown( $post_id, false,$cat_parentID ); 
 			} else { 
 				self::categories_checklist( $post_id ); 
 			}
@@ -401,7 +401,7 @@ class WCVendors_Pro_Product_Form {
 	 * @param 	 int 	$post_id  post_id for this meta if any 
 	 * @param 	 bool 	$multiple allow mupltiple selection 
 	 */
-	public static function categories_dropdown( $post_id, $multiple = false ) {
+	public static function categories_dropdown( $post_id, $multiple = false,$cat_parentID = 0 ) {
 
 		if ( ! self::$basic_options[ 'categories' ] ) { 
 
@@ -417,12 +417,13 @@ class WCVendors_Pro_Product_Form {
 			WCVendors_Pro_Form_Helper::select2( apply_filters( 'wcv_product_categories', 
 				array( 
 					'post_id'			=> $post_id, 
-					'id' 				=> 'product_cat[]', 
+					'id' 				=> 'product-cat-parent', 
 					'taxonomy'			=> 'product_cat', 
 					'show_option_none'	=> $show_option_none,
 					'taxonomy_args'		=> array( 
 											'hide_empty'	=> 0, 
-											'orderby'		=> 'order', 					
+											'orderby'		=> 'order', 		
+											'parent'=>$cat_parentID,			
 											'exclude'		=> $exclude, 
 										), 	
 					'label'	 			=> ( $multiple ) ? __( 'Categories', 'wcvendors-pro' ) : __( 'Category', 'wcvendors-pro' ), 

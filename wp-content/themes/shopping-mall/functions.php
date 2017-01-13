@@ -13,6 +13,7 @@ include_once 'socials/login_socials.php';
 include_once 'inc/add-like.php';
 include_once 'inc/helper.php';
 include_once 'inc/post-product.php';
+include_once 'inc/ajax.php';
 
 add_filter('woocommerce_login_redirect', 'wc_login_redirect');
  
