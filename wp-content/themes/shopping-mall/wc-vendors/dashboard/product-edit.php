@@ -155,7 +155,7 @@ html{
 					
 		             <?php WCVendors_Pro_Product_Form::categories( $object_id, true ,$catID); ?>
 								</div>
-								<div class="">
+								<div class="chosen-container">
 									<select id="product_cat" name="product_cat[]">
 										<option>Choose sub category</option>
 									</select>
@@ -207,7 +207,10 @@ html{
 									<!-- Price and Sale Price -->
 									<?php WCVendors_Pro_Product_Form::prices( $object_id ); ?>
 								</div>
-								<input type="checkbox" name="_sale_price" value="0"><label>Share for free</label>
+								<div class="shareforfree">
+									<label for="share-for-free"><input id="share-for-free" type="checkbox" name="_sale_price" value="0">Share for free</label>
+								</div>
+								<div class="Clear"></div>
 							</div>
 
 							<?php WCVendors_Pro_Product_Form::form_data( $object_id, $post_status ); ?>
