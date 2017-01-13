@@ -817,10 +817,10 @@
 	.price-block-js{
 		width: 15.69087%;
 		position: relative;
-		display: block!important;
+		display: inline-block!important;
 		span.symbol{
 			    position: absolute;
-		    top: 55px;
+		    top: 75px;
 		    right: 12px;
 		    z-index: 2;
 		    border-left: 1px solid #ccc;
@@ -832,7 +832,15 @@
 			padding-right: 30px;
 		}
 	}
+	
 }
+.show_if_downloadable{
+		display: block!important;
+	}
+	.shareforfree{
+		    display: inline-block;
+    margin-left: 20px;
+	}
 .btn-control-product{
 	input[type="submit"]{
 		background: transparent!important;

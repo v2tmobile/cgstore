@@ -17,6 +17,7 @@ var Popup = (function() {
 			$('.help-bubble').hide();
 			$(id).show();
 		});
+
 	}
 	function stepPostProduct(){
 		$('.publishing-steps li a').click(function(){
@@ -25,12 +26,14 @@ var Popup = (function() {
 			$(this).parent().addClass('is-active');
 			$('.publisher-container .uploads-tab').removeClass('is-active');
 			$(tabid).addClass('is-active');
+			$('input[type="checkbox"]').iCheck();
 		});
 	}
 	
 
 	function initTags(){
 		$('#tags').tagsInput({width:'auto'});
+
 	}
 	function createRadio(){
 		$('input[name="_downloadable"]').iCheck();
