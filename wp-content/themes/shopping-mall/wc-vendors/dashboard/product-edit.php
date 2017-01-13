@@ -67,30 +67,35 @@ html{
 	              </div>
 	          </div>
 	          <div class="uploads-tab is-active" id="step-presentation">
-	               <div id="drag-and-drop-zone" class="uploader">
-			            <div>Drag &amp; Drop Images Here</div>
-			            <div class="or">-or-</div>
-			            <div class="browser">
-			              <label>
-			                <span>Click to open the file Browser</span>
-			                <input type="file" name="files[]" multiple="multiple" title='Click to add Files'>
-			              </label>
-			            </div>
-          			</div>
-          			<div class="col-md-6">
-			          <div class="panel panel-default">
-			            <div class="panel-heading">
-			              <h3 class="panel-title">Uploads</h3>
-			            </div>
-			            <div class="panel-body demo-panel-files" id='demo-files'>
-			              <span class="demo-note">No Files have been selected/droped yet...</span>
-			            </div>
-			          </div>
-			        </div>
+	               
 	            	<div class="wcv-product-media">
 						<?php //do_action( 'wcv_before_media', $object_id ); ?>
 							<?php //WCVendors_Pro_Form_helper::product_media_uploader( $object_id ); ?>
 						<?php //do_action( 'wcv_after_media', $object_id ); ?>
+						<div id="drag-and-drop-zone" class="upload-area">
+				            <div id="filedrag">
+			                      <div class="upload-area__text">
+			                          Drag &amp; Drop
+			                          <span>model files and images or <b>browse files</b></span>
+			                      </div>
+			                  </div>
+				            <div class="browser">
+				              <label>
+				                <input type="file" name="files[]" multiple="multiple" title='Click to add Files'>
+				              </label>
+				            </div>
+	          			</div>
+	          			<div class="col-md-6">
+				          <div class="panel panel-default">
+				            <div class="panel-heading">
+				              <h3 class="panel-title">Uploads</h3>
+				            </div>
+				            <div id="demo-files"></div>
+				            <div class="panel-body demo-panel-files" id='demo-files'>
+				              <span class="demo-note">No Files have been selected/droped yet...</span>
+				            </div>
+				          </div>
+				        </div>
 					</div>
 					<div class="show_if_downloadable" id="files_download">
 									<!-- Downloadable files -->
@@ -490,8 +495,7 @@ html{
   $('#drag-and-drop-zone').dmUploader({
         url: '/demos/dnd/upload.php',
         dataType: 'json',
-        allowedTypes: '*',
-        /*extFilter: 'jpg;png;gif',*/
+        allowedTypes: 'image/*',
         onInit: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');
         },
@@ -502,6 +506,27 @@ html{
         },
         onNewFile: function(id, file){
           $.danidemo.addFile('#demo-files', id, file);
+
+          /*** Begins Image preview loader ***/
+          if (typeof FileReader !== "undefined"){
+            
+            var reader = new FileReader();
+
+            // Last image added
+            var img = $('#demo-files').find('.demo-image-preview').eq(0);
+
+            reader.onload = function (e) {
+              img.attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(file);
+
+          } else {
+            // Hide/Remove all Images if FileReader isn't supported
+            $('#demo-files').find('.demo-image-preview').remove();
+          }
+          /*** Ends Image preview loader ***/
+
         },
         onComplete: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'All pending tranfers completed');
@@ -531,9 +556,6 @@ html{
         onFileSizeError: function(file){
           $.danidemo.addLog('#demo-debug', 'error', 'File \'' + file.name + '\' cannot be added: size excess limit');
         },
-        /*onFileExtError: function(file){
-          $.danidemo.addLog('#demo-debug', 'error', 'File \'' + file.name + '\' has a Not Allowed Extension');
-        },*/
         onFallbackMode: function(message){
           $.danidemo.addLog('#demo-debug', 'info', 'Browser not supported(do something else here!): ' + message);
         }
