@@ -417,7 +417,7 @@ class WCVendors_Pro_Product_Form {
 			WCVendors_Pro_Form_Helper::select2( apply_filters( 'wcv_product_categories', 
 				array( 
 					'post_id'			=> $post_id, 
-					'id' 				=> 'product-cat-parent', 
+					'id' 				=> 'product_cat[]',
 					'taxonomy'			=> 'product_cat', 
 					'show_option_none'	=> $show_option_none,
 					'taxonomy_args'		=> array( 

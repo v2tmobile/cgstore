@@ -57,8 +57,8 @@ add_action( 'wp_ajax_nopriv_cgs-upload-file', 'uploadAjaxFile' );
 add_action( 'wp_ajax_cgs-upload-file', 'uploadAjaxFile' );
 
 function uploadAjaxFile(){
-   $result = array('status'=>false,'msg'=>'Error');
-   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","docx", "txt"); 
+   $result = array('status'=>false,'success'=>false,'msg'=>'Error','data'=>'');
+   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","docx", "txt","rar",'xlsx','zip'); 
    $max_file_size = 1024 * 500;
    $max_image_upload = 5;
    $wp_upload_dir = wp_upload_dir();
@@ -67,7 +67,7 @@ function uploadAjaxFile(){
    if($file){
 
               $extension = pathinfo( $file['name'], PATHINFO_EXTENSION );
-              $new_filename =  $file['name'];
+              $new_filename =  generate_random_filename().'_'.$file['name'];
                 
               if ( $file['error'] != 0 ) {
                     $result['msg'] =' File error!';
@@ -97,6 +97,7 @@ function uploadAjaxFile(){
                             $attach_id = wp_insert_attachment( $attachment, $filename, 0);
 
                             require_once( ABSPATH . 'wp-admin/includes/image.php' );
+                       
                             
                             // Generate meta data
                             $attach_data = wp_generate_attachment_metadata( $attach_id, $filename ); 
@@ -107,13 +108,14 @@ function uploadAjaxFile(){
                                $type ='file';
                             }
                             $result['status'] ='ok';
+                            $result['success'] = true;
                             $result['msg'] ='uploaded successful';
                             $result['data'] = array(
                                'attachmentID'=> $attach_id,
                                'ext'=>$extension,
                                'size'=>$file['size'],
                                'type'=>$type,
-                               'name'=>$post_title,
+                               'name'=>$file['name'],
                                'url'=>wp_get_attachment_url($attach_id)
                              );
                             
@@ -125,3 +127,4 @@ function uploadAjaxFile(){
   echo wp_send_json($result);
    die();
 }
+

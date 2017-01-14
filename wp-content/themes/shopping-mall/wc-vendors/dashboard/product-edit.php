@@ -20,6 +20,7 @@ $product_title     			= ( isset($product) && null !== $product ) ? $product->pos
 $product_description        = ( isset($product) && null !== $product ) ? $product->post->post_content  : ''; 
 $product_short_description  = ( isset($product) && null !== $product ) ? $product->post->post_excerpt  : ''; 
 $post_status				= ( isset($product) && null !== $product ) ? $product->post->post_status   : ''; 
+ $prefix ='_shopping_mall_';
 
 /**
  *  Ok, You can edit the template below but be careful!
@@ -92,47 +93,59 @@ html{
 	          			<div class="input-container files-count-label">
 						    <label class="error">Please upload at least one file format of your 3D model.</label>
 						</div>
-						<div class="files-panel">
+						<?php 
+               			  $downloads= $product->get_files();
+         
+       					?>
+						<div class="files-panel" <?php echo ($downloads) ? 'style="display: block;"' : ''; ?> >
 							<h2 class="heading heading--compact heading--files">Files</h2>
-							<div class="files" id="file-display"></div>
+						
+							<div class="files" id="file-display" file-counter>
+						<?php
+                             if($downloads){
+						            
+						             foreach ($downloads as $download) {
+						             	  
+						                 echo '<div class="file__info" id="file-'.$download['id'].'"> Uploaded file: <span class="file__filename">'.$download['name'].'</span><a href="javascript:;" onclick="$.danidemo.removeFile('.$download['id'].')" class="file__remove remove-file js-remove-file"><i class="fa fa-trash fa-24"></i>Remove</a><input type="hidden" name="_wc_file_names[]" value="'.$download['name'].'"><input type="hidden" name="_wc_file_ids[]" value="'.$download['id'].'"><input type="hidden" name="_wc_file_urls[]" value="'.$download['file'].'"></div>';
+						             }
+
+						             
+         						}
+								 ?>
+							</div>
 						</div>
 						<div class="input-container images-count-label">
 						    <label class="error">Please upload at least one preview image.</label>
 						</div>
-	          			<div class="visuals-panel">
+	          			<div class="visuals-panel" style="display:block;">
 				          <div class="panel panel-default">
 				            <div class="panel-heading">
 				              <h2 class="heading heading--compact">Previews</h2>
 				              <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
 				            </div>
-				            <div class="visuals" id='demo-files'>
-				              <ul class="sortable"></ul>
-				            </div>
+				    <?php
+                       $attachment_ids = $product->get_gallery_attachment_ids();
+
+					 ?>
+				            <ul class="visuals" id='demo-files' file-counter="<?php echo count($attachment_ids); ?>">
+				              	<?php 
+                   			if ( sizeof( $attachment_ids ) > 0 ) {   	
+					          foreach( $attachment_ids as $attachment_id ) {
+                                      
+                                  echo '<li class="sortable__item" id="gallery-'.$attachment_id.'">
+                                       '.wp_get_attachment_image( $attachment_id, array(150,150)).'<span onclick="$.danidemo.removeImage('.$attachment_id.')" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span></li>'; 
+					                 }
+				                  }
+				              	?>
+				              
+				            </ul>
 				          </div>
 				        </div>
 					</div>
-					<input type="hidden" id="_featured_image_id" name="_featured_image_id" value="">
-					<input type="hidden" id="product_image_gallery" name="product_image_gallery" value="">
-
-					<div class="show_if_downloadable" id="files_download">
-									<!-- Downloadable files -->
-						<?php //WCVendors_Pro_Product_Form::download_files( $object_id ); ?>
-						<!-- Download Limit -->
-						<?php //WCVendors_Pro_Product_Form::download_limit( $object_id ); ?>
-						<!-- Download Expiry -->
-						<?php //WCVendors_Pro_Product_Form::download_expiry( $object_id ); ?>
-						<!-- Download Type -->
-						<?php //WCVendors_Pro_Product_Form::download_type( $object_id ); ?>
-					</div>
-	                <!-- <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-	                  <input type="file" class="with-preview" id="fileUploadNew" name="fileselect[]" multiple="multiple" />
-	                  <div id="filedrag">
-	                      <div class="upload-area__text">
-	                          Drag &amp; Drop
-	                          <span>model files and images or <b>browse files</b></span>
-	                      </div>
-	                  </div>
-	                </form> -->
+					
+					<input type="hidden" id="product_image_gallery" name="product_image_gallery" value="<?php echo ( ( sizeof( $attachment_ids ) > 0 ) ? '['.($product->product_image_gallery).']' : '' ); ?>">
+					<input type="hidden" name="_downloadable" value="1">
+					
 	          </div>
 	          <div class="uploads-tab details-tab" id="step-details">
 	              <div class="sectioned-content">
@@ -207,7 +220,17 @@ html{
 		             <?php WCVendors_Pro_Product_Form::categories( $object_id, true ,$catID); ?>
 								</div>
 								<div class="chosen-container">
-									<select id="product_cat" name="product_cat[]">
+									<select id="product_cat_sub" name="product_cat[]">
+									  <?php
+									   if( isset($product) && null !== $product ){
+
+                                         // $sub_cats = get_terms($tax,array(
+									           //'hide_empty'=>0,
+									          // 'parent'=>$catID
+									        //));
+                                              
+                                       }
+									   ?>
 										<option>Choose sub category</option>
 									</select>
 								</div>
@@ -216,10 +239,24 @@ html{
 			                         <label for="units" class="inline-label" data-position="inline">Units </label>
 			                         <div class="category-container" id="unit_select_container">
 			                            <select name="units" id="units" data-placeholder="Choose units" required="required">
-			                               <option value="mm">millimeters (mm)</option>
-			                               <option value="cm">centimeters (cm)</option>
-			                               <option value="in">inches (in)</option>
-			                               <option value="m">meters (m)</option>
+			                            <?php
+			                              
+                                        $units = ( isset($product) && null !== $product ) ? get_field($prefix.'units',$object_id) : '';
+                                        $ar_units = array(
+                                              'mm'=>'millimeters (mm)',
+                                              'cm'=>'centimeters (cm)',
+                                              'in'=>'inches (in)',
+                                              'm'=>'meters (m)'
+                                          	);
+                                          $checked = '';
+                                           foreach ($ar_units as $key => $value) {
+                                           	 if($units == $key) $checked ="checked='checked'"; else $checked ='';
+
+                                           	 echo '<option '.$checked.' value="'.$key.'">'.$value.'</option>';
+                                           }
+
+			                             ?>
+			                               
 			                            </select>
 			                         </div>
 			                      </div>
@@ -232,7 +269,7 @@ html{
 							<!-- Product Description -->
 							<?php WCVendors_Pro_Product_Form::description( $object_id, $product_description );  ?>
 							<!-- Product Short Description -->
-							<?php WCVendors_Pro_Product_Form::short_description( $object_id, $product_short_description );  ?>
+							<?php //WCVendors_Pro_Product_Form::short_description( $object_id, $product_short_description );  ?>
 							
 						    <!-- Product Tags -->
 						    <div class="tag-block js-help-trigger" data-target="#help-tags">
@@ -272,19 +309,19 @@ html{
 	                  <h2 class="heading">Challenges</h2>
 	                  <p class="challenges-explanation">If you have a right model for the challenge, simply check the box and you are
 	  in.</p>
-	  				<div class="input-container ul-challenge">	
+	  				
 	    <?php if($cat){
                 $challenges = get_posts('post_type=challenge&posts_per_page=-1');
                 if($challenges){
-                	echo '<ul>';
+                	echo '<div class="input-container ul-challenge"><ul>';
                 	foreach ($challenges as $challenge) {
                 		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenges[]"><label>'.$challenge->post_title.'</label><div class="pull-right" style="position: relative;top:-2px;text-decoration: underline;"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
                 	}
-                   echo '</ul>';
+                   echo '</ul></div>';
                 }
 
 	    	} ?>
-	    </div>
+	    
 	                  <div class="input-container">
 	                    <div class="challenges-list"></div>
 	                  </div>
@@ -481,7 +518,7 @@ html{
             }
         }
 	});*/
-   $('#product-cat-parent').on("change", function(e) {
+   $('select.select2').on("change", function(e) {
    	  var catid = $(this).val();
    	  if(catid && catid !== 'undefined'){
        $.ajax({
@@ -498,7 +535,7 @@ html{
              success: function(res)
             {
                 if(res.success === true){
-                    $('#product_cat').html(res.data);
+                    $('#product_cat_sub').html(res.data);
                  }else{
                    alert('Error. Please try again!');
                  }

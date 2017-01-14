@@ -343,15 +343,18 @@ class WCVendors_Pro_Product_Controller {
 		// // Gallery Images 
 		if ( isset( $_POST[ 'product_image_gallery' ] ) && '' !== $_POST[ 'product_image_gallery' ] ) {
 			  $gallery_json = json_decode(
-			  	wc_clean($_POST[ 'product_image_gallery' ]));
-			  if($gallery_json){
+			  	wc_clean($_POST[ 'product_image_gallery' ]),true);
+			  
+			 if($gallery_json){
+			  	 set_post_thumbnail( $product_id,$gallery_json[0]);
 			  	 $gallery_json  = implode(',',$gallery_json);
+			  	  
 			  }
-				update_post_meta( $product_id, '_product_image_gallery', $gallery_json );
+		  update_post_meta( $product_id, '_product_image_gallery', $gallery_json );
 		} else { 
 			update_post_meta( $product_id, '_product_image_gallery', '' );
 		}
-		
+        
 		// Categories 
 		if ( isset( $_POST[ 'product_cat' ] ) && is_array( $_POST[ 'product_cat' ] ) ) { 
 			$categories = array_map( 'intval', $_POST[ 'product_cat' ] ); 

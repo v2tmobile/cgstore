@@ -6,6 +6,7 @@ define('SLOGAN', get_bloginfo('description'));
 define('PREFIX_WEBSITE','cgs_');
 //add_image_size( 'thumb-service',225,230,true);
 
+
 include_once 'inc/add-scripts.php';
 include_once 'inc/filter-search.php';
 include_once 'inc/my-custom.php';
@@ -59,6 +60,19 @@ function wc_cp_show_zero_min_quantity( $value, $min, $max, $product, $component_
 		$value = 1;
 	}
 	return $value;
+}
+
+function generate_random_filename($length=10) {
+ 
+   $string = '';
+   $characters = "23456789ABCDEFHJKLMNPRTVWXYZabcdefghijklmnopqrstuvwxyz";
+ 
+   for ($p = 0; $p < $length; $p++) {
+       $string .= $characters[mt_rand(0, strlen($characters)-1)];
+   }
+ 
+   return $string;
+ 
 }
 
 
