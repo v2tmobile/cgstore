@@ -58,7 +58,7 @@ add_action( 'wp_ajax_cgs-upload-file', 'uploadAjaxFile' );
 
 function uploadAjaxFile(){
    $result = array('status'=>false,'msg'=>'Error');
-   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","docx"); 
+   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","docx", "txt"); 
    $max_file_size = 1024 * 500;
    $max_image_upload = 5;
    $wp_upload_dir = wp_upload_dir();

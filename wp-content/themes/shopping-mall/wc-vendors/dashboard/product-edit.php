@@ -81,18 +81,31 @@ html{
 			                  </div>
 				            <div class="browser">
 				              <label>
-				                <input type="file" name="files[]" multiple="multiple" title='Click to add Files'>
+				                <input type="file" name="files[]" multiple="multiple">
 				              </label>
 				            </div>
 	          			</div>
-	          			<div class="col-md-6">
+	          			<div class="upload-progress">
+	          				
+	          			</div>
+	          			<div class="input-container files-count-label">
+						    <label class="error">Please upload at least one file format of your 3D model.</label>
+						</div>
+						<div class="files-panel">
+							<h2 class="heading heading--compact heading--files">Files</h2>
+							<div class="files" id="file-display"></div>
+						</div>
+						<div class="input-container images-count-label">
+						    <label class="error">Please upload at least one preview image.</label>
+						</div>
+	          			<div class="visuals-panel">
 				          <div class="panel panel-default">
 				            <div class="panel-heading">
-				              <h3 class="panel-title">Uploads</h3>
+				              <h2 class="heading heading--compact">Previews</h2>
+				              <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
 				            </div>
-				            <div id="demo-files"></div>
-				            <div class="panel-body demo-panel-files" id='demo-files'>
-				              <span class="demo-note">No Files have been selected/droped yet...</span>
+				            <div class="visuals" id='demo-files'>
+				              <ul class="sortable"></ul>
 				            </div>
 				          </div>
 				        </div>
@@ -498,7 +511,7 @@ html{
  });	
 
 
-
+var attachment_id = [];
   $('#drag-and-drop-zone').dmUploader({
         url:CGSTORE_VARS.AJAX_URL,
         extraData:{
@@ -515,10 +528,10 @@ html{
           $.danidemo.updateFileStatus(id, 'default', 'Uploading...');
         },
         onNewFile: function(id, file){
-          $.danidemo.addFile('#demo-files', id, file);
-
+          $.danidemo.addProgressBar();
+          //$('.upload-progress div.progress ').show();
           /*** Begins Image preview loader ***/
-          if (typeof FileReader !== "undefined"){
+          /*if (typeof FileReader !== "undefined"){
             
             var reader = new FileReader();
 
@@ -534,12 +547,13 @@ html{
           } else {
             // Hide/Remove all Images if FileReader isn't supported
             $('#demo-files').find('.demo-image-preview').remove();
-          }
+          }*/
           /*** Ends Image preview loader ***/
 
         },
         onComplete: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'All pending tranfers completed');
+         
         },
         onUploadProgress: function(id, percent){
           var percentStr = percent + '%';
@@ -550,26 +564,28 @@ html{
          // $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
           $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
           $.danidemo.updateFileProgress(id, '100%');
+
           if(data.data.type =='image'){
-          	  var featured_id = $('#_featured_image_id').val();
-          	  if(!featured_id){
-          	    $('#_featured_image_id').val(data.data.attachmentID);
+          	$('.images-count-label').hide();
+          	 $('.visuals-panel').show();
+          	 
+          	  $.danidemo.addImageFile('#demo-files', id, data);
+          	  var gallery = $('#product_image_gallery').val();
+          	  if(gallery == ''){
+          	  	gallery = [];
           	  }else{
-          	  	var gallery = $('#product_image_gallery').val();
-          	 	var list_id = '';
-          	 	if(gallery) list_id = gallery +',' + data.data.attachmentID;
-          	 	else list_id = data.data.attachmentID;
-          	 	console.log(list_id);
-          	 	$('#product_image_gallery').val(list_id);
+          	  	gallery = JSON.parse(gallery);
           	  }
+          	  console.log(gallery);
+	      	 	gallery.push(data.data.attachmentID);
+	      	 	$('#product_image_gallery').val(JSON.stringify(gallery));
+
           }else{
           	 // add file
-			var input_name ='<input type="hidden" name="_wc_file_names[]" value="'+data.data.name+'">';
-			var input_file_id = '<input type="hidden" name="_wc_file_ids[]" value="'+data.data.attachmentID +'">';
-			var input_file_url ='<input type="hidden" name="_wc_file_urls[]" value="'+data.data.url+'">';
-             
-                   
-          	 
+          	 $('.files-panel').show();
+          	 $('.files-count-label').hide();
+			
+            $.danidemo.addFile('#file-display', id, data); 
           }
         },
         onUploadError: function(id, message){
