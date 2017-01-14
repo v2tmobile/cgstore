@@ -57,14 +57,21 @@
                       //     PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       // )
                   );
-              
+            //$tutorial_id = wp_insert_post($tutorial_ob);
+             foreach ($step_title as $key=>$step) {
+                 $step_data = array(
+                    'step_title'=>$step,
+                    'step_content'=>$step_des[$key]
+                  );
+                print_r($step_data);
+               // add_row(PREFIX_WEBSITE.'step_tutorial',$step_data,$tutorial_id); 
+
+             }
+             
+                                   
          }
-         
-         
-
-       }
-
-       echo $html_ms;    
+      }
+    echo $html_ms;    
 
     ?>
 	<form method="post" action="" enctype="multipart/form-data" id="form-post-tutorial">

@@ -272,7 +272,7 @@ class WCVendors_Pro_Product_Form {
 		 	'class'				=> 'js-help-trigger',
 		 	'placeholder' 		=> __( 'Keep the title informative and simple', 'wcvendors-pro' ),
 		 	'custom_attributes' => array( 
-		 			'data-rules' => 'required|max_length[100]', 
+		 			'data-rules' => 'required|max_length[300]', 
 		 			'data-error' => __( 'Product Title is required or is too long.', 'wcvendors-pro' ), 
 		 			'data-label' => __( 'Product Title', 'wcvendors-pro' ),
 		 			'data-target' => '#help-title'

@@ -342,7 +342,12 @@ class WCVendors_Pro_Product_Controller {
 
 		// // Gallery Images 
 		if ( isset( $_POST[ 'product_image_gallery' ] ) && '' !== $_POST[ 'product_image_gallery' ] ) {
-				update_post_meta( $product_id, '_product_image_gallery', $_POST[ 'product_image_gallery' ] );
+			  $gallery_json = json_decode(
+			  	wc_clean($_POST[ 'product_image_gallery' ]));
+			  if($gallery_json){
+			  	 $gallery_json  = implode(',',$gallery_json);
+			  }
+				update_post_meta( $product_id, '_product_image_gallery', $gallery_json );
 		} else { 
 			update_post_meta( $product_id, '_product_image_gallery', '' );
 		}

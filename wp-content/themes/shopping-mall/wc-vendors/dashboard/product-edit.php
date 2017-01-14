@@ -126,6 +126,7 @@ html{
 						<div class="wcv-product-basic wcv-product"> 
 							<!-- Product Title -->
 							<?php WCVendors_Pro_Product_Form::title( $object_id, $product_title ); ?>
+				
 					<?php
                         $cat = isset($_GET['cat']) ? $_GET['cat'] : 0;
                         $catID = 25;
