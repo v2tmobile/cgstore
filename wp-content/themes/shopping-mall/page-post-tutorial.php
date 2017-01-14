@@ -88,7 +88,7 @@
                 </div>
                 <div class="input-container">
                   <label class="tutorial-form__label">Tags</label>
-                  <input type="text" name="tu[tags]" required="required" class="field" id="tags">
+                  <input type="text" name="tu[tags]" class="field" id="tags">
                   <div class="input-container__note">Tags should be separated by entering key.</div>
                </div>
                <div class="input-container">
