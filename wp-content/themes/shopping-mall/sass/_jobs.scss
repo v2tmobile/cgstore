@@ -1020,3 +1020,53 @@
     content: " ";
     display: table;
 }
+
+.error-upload-file{
+	color: red;
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+.site-page--gallery .product-share-old .list-item {
+        margin: 0 5px 5px 0;
+    padding: 0;
+}
+.site-page--gallery .product-share-old{
+	margin-top: 25px;
+}
+.card__heading {
+    margin: 0 0 5px;
+    padding: 0;
+    font-size: 1.125rem;
+    line-height: 26px;
+    font-weight: normal;
+    color: black;
+}
+.site-page--gallery .galleries>li {
+    width: 49.56217%;
+    float: left;
+    margin-bottom: 5px;
+}
+.site-page--gallery .galleries>li:nth-child(2n+1) {
+    margin-left: 0;
+    margin-right: -100%;
+    clear: both;
+    margin-left: 0;
+}
+.site-page--gallery .galleries:after {
+    clear: both;
+}
+.site-page--gallery .galleries:before, .site-page--gallery .galleries:after {
+    content: " ";
+    display: table;
+}
+.site-page--gallery .gallery__like {
+    margin-bottom: 10px;
+}
+.gallery__header{
+	.avatar {
+		    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 4px;
+	}
+}

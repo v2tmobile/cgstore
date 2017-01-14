@@ -65,6 +65,23 @@ get_header(); ?>
 				    if(have_posts()){
 				        while( have_posts()) {
            	               the_post();
+           	               $liked = ''; 
+		                  $onclick = 'ats_load_form();'; 
+		                  $total_like = get_post_meta(get_the_ID(),PREFIX_WEBSITE.'total_like',true);
+		                 if(is_user_logged_in()): 
+		                  $key = wp_create_nonce('cgs-security-like');  
+		                  $current_user = wp_get_current_user();
+		                  $likes  = get_user_meta($current_user->ID,PREFIX_WEBSITE.'likes',true);
+		                  if(!is_array($likes)) $likes = (array) $likes;
+		                  if(in_array($id,(array)$likes)) :
+		                      $liked = 'liked'; 
+		                      $key = wp_create_nonce('cgs-security-unlike'); 
+		                      $onclick ='cgs_on_unlike(\''.$key.'\',\''.$id.'\',this)';
+		                   else: 
+		                     $onclick ='cgs_on_like(\''.$key.'\',\''.$id.'\',this)';
+		                    endif;
+
+		                 endif;
                    		?>
 				 ?>
 				<article class="gallery-item js-gallery-item" data-item-id="<?php the_ID()?>" >
@@ -83,7 +100,7 @@ get_header(); ?>
 				            <div class="gallery-item__like">
 				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
 				                  <div class="like-button__text">Like this</div>
-				                  <div class="like-button__counter">147</div>
+				                  <div class="like-button__counter"><?php echo ($total_like) ? $total_like : 0 ; ?></div>
 				               </div>
 				            </div>
 				            <div class="gallery-item__stats">

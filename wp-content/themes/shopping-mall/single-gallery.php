@@ -2,6 +2,7 @@
 	<?php
 		while ( have_posts() ) : the_post();
 		$post_author_id = get_post_field( 'post_author', get_the_ID());
+		$permalink = get_the_permalink(get_the_ID());
 		?>
 	<div class="content-area site-page--gallery">
 	  	<section class="content-section blog-post">
@@ -79,6 +80,40 @@
 						         <li><img alt="Comments" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/conversation.png"> <span><?php echo get_comments_number();?></span></li>
 						      </ul>
 						   </div>
+						</div>
+						<div class="card">
+						   <div class="card__content">
+						      <div class="details-box-title">Share gallery</div>
+						        <div class="product-share-old">
+						            <ul class="list list-inline u-text-center social-networks">
+						                <li class="list-item">
+						                    <a class="social-icon facebook" href="https://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" target="_blank">
+						                        <span class="fa-stack fa-social-share fa-facebook-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-inverse fa-stack-1x"></i></span>
+						                    </a>
+						                </li>
+						                <li class="list-item">
+						                    <a class="social-icon linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink ?>&title=<?php echo $post_title ?>&summary=<?php echo $post->post_excerpt ?>" target="_blank">
+						                        <span class="fa-stack fa-social-share fa-linkedin-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-inverse fa-stack-1x"></i></span>
+						                    </a>
+						                </li>
+						                <li class="list-item">
+						                    <a class="social-icon twitter" href="https://twitter.com/share?url=<?php echo $permalink; ?>" target="_blank">
+						                        <span class="fa-stack fa-social-share fa-twitter-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-inverse fa-stack-1x"></i></span>
+						                    </a>
+						                </li>
+						                <li class="list-item">
+						                    <a class="social-icon google-plus" href="https://plus.google.com/share?url=<?php echo $permalink; ?>" target="_blank">
+						                        <span class="fa-stack fa-social-share fa-google-plus-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google-plus fa-inverse fa-stack-1x"></i></span>
+						                    </a>
+						                </li>
+						                <li class="list-item is-last">
+						                    <a class="social-icon pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo $permalink; ?>&amp;media=<?php echo $featured_image_2; ?>&amp;description=<?php echo $post_title; ?>" target="_blank">
+						                        <span class="fa-stack fa-social-share fa-pinterest-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-pinterest fa-inverse fa-stack-1x"></i></span>
+						                    </a>
+						                </li>
+						            </ul>
+						        </div>
+						  </div>
 						</div>
 						<div class="card">
 						   <div class="card__content">
