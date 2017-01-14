@@ -85,6 +85,7 @@ html{
 				              </label>
 				            </div>
 	          			</div>
+	          			<div class="error-upload-file"></div>
 	          			<div class="upload-progress">
 	          				
 	          			</div>
@@ -564,7 +565,7 @@ var attachment_id = [];
          // $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
           $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
           $.danidemo.updateFileProgress(id, '100%');
-
+          if(data.status){
           if(data.data.type =='image'){
           	$('.images-count-label').hide();
           	 $('.visuals-panel').show();
@@ -586,7 +587,10 @@ var attachment_id = [];
           	 $('.files-count-label').hide();
 			
             $.danidemo.addFile('#file-display', id, data); 
-          }
+           }
+         }else{
+         	$('.error-upload-file').html(data.msg);
+         }
         },
         onUploadError: function(id, message){
           $.danidemo.updateFileStatus(id, 'error', message);
