@@ -504,7 +504,7 @@ html{
           action:'cgs-upload-file',
         },
         dataType: 'json',
-        allowedTypes: 'image/*',
+        allowedTypes: '*',
         onInit: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');
         },
@@ -542,27 +542,33 @@ html{
         },
         onUploadProgress: function(id, percent){
           var percentStr = percent + '%';
-
           $.danidemo.updateFileProgress(id, percentStr);
         },
         onUploadSuccess: function(id, data){
-          $.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
-
-          $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
-
+          //$.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
+         // $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
           $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
-
           $.danidemo.updateFileProgress(id, '100%');
-          var ext = ['jpg','jpeg','gif'];
-          if(id == 0){
-          	 console.log(id);
-          	$('#_featured_image_id').val(data.data.attachmentID);
+          if(data.data.type =='image'){
+          	  var featured_id = $('#_featured_image_id').val();
+          	  if(!featured_id){
+          	    $('#_featured_image_id').val(data.data.attachmentID);
+          	  }else{
+          	  	var gallery = $('#product_image_gallery').val();
+          	 	var list_id = '';
+          	 	if(gallery) list_id = gallery +',' + data.data.attachmentID;
+          	 	else list_id = data.data.attachmentID;
+          	 	console.log(list_id);
+          	 	$('#product_image_gallery').val(list_id);
+          	  }
           }else{
-          	 var ids = $('#product_image_gallery').val();
-          	 var list_id = '';
-          	 if(ids) list_id = ids +',' + data.data.attachmentID;
-          	 else list_id = ids;
-          	 $('#product_image_gallery').val(list_id);
+          	 // add file
+			var input_name ='<input type="hidden" name="_wc_file_names[]" value="'+data.data.name+'">';
+			var input_file_id = '<input type="hidden" name="_wc_file_ids[]" value="'+data.data.attachmentID +'">';
+			var input_file_url ='<input type="hidden" name="_wc_file_urls[]" value="'+data.data.url+'">';
+             
+                   
+          	 
           }
         },
         onUploadError: function(id, message){
