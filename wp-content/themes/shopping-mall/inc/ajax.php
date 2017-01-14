@@ -58,7 +58,7 @@ add_action( 'wp_ajax_cgs-upload-file', 'uploadAjaxFile' );
 
 function uploadAjaxFile(){
    $result = array('status'=>false,'msg'=>'Error');
-   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","xdoc"); 
+   $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","doc","xls","docx", "txt"); 
    $max_file_size = 1024 * 500;
    $max_image_upload = 5;
    $wp_upload_dir = wp_upload_dir();
@@ -67,7 +67,7 @@ function uploadAjaxFile(){
    if($file){
 
               $extension = pathinfo( $file['name'], PATHINFO_EXTENSION );
-              $new_filename =  PREFIX_WEBSITE.$file['name'];
+              $new_filename =  $file['name'];
                 
               if ( $file['error'] != 0 ) {
                     $result['msg'] =' File error!';
@@ -85,10 +85,11 @@ function uploadAjaxFile(){
                             $filename = $path.$new_filename;
                             $filetype = wp_check_filetype( basename( $filename ), null );
                             $wp_upload_dir = wp_upload_dir();
+                            $post_title = preg_replace( '/\.[^.]+$/', '', basename( $filename ));
                             $attachment = array(
                                 'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ), 
                                 'post_mime_type' => $filetype['type'],
-                                'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+                                'post_title'     =>$post_title,
                                 'post_content'   => '',
                                 'post_status'    => 'inherit'
                             );
@@ -100,12 +101,20 @@ function uploadAjaxFile(){
                             // Generate meta data
                             $attach_data = wp_generate_attachment_metadata( $attach_id, $filename ); 
                             wp_update_attachment_metadata( $attach_id, $attach_data );
+                            $img_ext = array('jpg','jpeg','gif');
+                            $type = 'image';
+                            if(!in_array($extension, $img_ext)){
+                               $type ='file';
+                            }
                             $result['status'] ='ok';
                             $result['msg'] ='uploaded successful';
                             $result['data'] = array(
                                'attachmentID'=> $attach_id,
                                'ext'=>$extension,
-                               'size'=>$file['size']
+                               'size'=>$file['size'],
+                               'type'=>$type,
+                               'name'=>$post_title,
+                               'url'=>wp_get_attachment_url($attach_id)
                              );
                             
                         }

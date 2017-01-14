@@ -85,7 +85,9 @@ html{
 				              </label>
 				            </div>
 	          			</div>
-	          			<div class="upload-progress"></div>
+	          			<div class="upload-progress">
+	          				
+	          			</div>
 	          			<div class="input-container files-count-label">
 						    <label class="error">Please upload at least one file format of your 3D model.</label>
 						</div>
@@ -103,7 +105,7 @@ html{
 				              <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
 				            </div>
 				            <div class="visuals" id='demo-files'>
-				              <span class="demo-note">No Files have been selected/droped yet...</span>
+				              <ul class="sortable"></ul>
 				            </div>
 				          </div>
 				        </div>
@@ -508,14 +510,14 @@ html{
  });	
 
 
-
+var attachment_id = [];
   $('#drag-and-drop-zone').dmUploader({
         url:CGSTORE_VARS.AJAX_URL,
         extraData:{
           action:'cgs-upload-file',
         },
         dataType: 'json',
-        allowedTypes: 'image/*',
+        allowedTypes: '*',
         onInit: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');
         },
@@ -525,10 +527,10 @@ html{
           $.danidemo.updateFileStatus(id, 'default', 'Uploading...');
         },
         onNewFile: function(id, file){
-          $.danidemo.addFile('#demo-files', id, file);
-
+          $.danidemo.addProgressBar();
+          //$('.upload-progress div.progress ').show();
           /*** Begins Image preview loader ***/
-          if (typeof FileReader !== "undefined"){
+          /*if (typeof FileReader !== "undefined"){
             
             var reader = new FileReader();
 
@@ -544,7 +546,7 @@ html{
           } else {
             // Hide/Remove all Images if FileReader isn't supported
             $('#demo-files').find('.demo-image-preview').remove();
-          }
+          }*/
           /*** Ends Image preview loader ***/
 
         },
@@ -554,28 +556,35 @@ html{
         },
         onUploadProgress: function(id, percent){
           var percentStr = percent + '%';
-          $('.visuals-panel').show();
-          $('.images-count-label').hide();
           $.danidemo.updateFileProgress(id, percentStr);
         },
         onUploadSuccess: function(id, data){
-          $.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
-
-          $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
-
+          //$.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
+         // $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
           $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
-
           $.danidemo.updateFileProgress(id, '100%');
-          var ext = ['jpg','jpeg','gif'];
-          if(id == 0){
-          	 console.log(id);
-          	$('#_featured_image_id').val(data.data.attachmentID);
+
+          if(data.data.type =='image'){
+          	$('.images-count-label').hide();
+          	 $('.visuals-panel').show();
+          	 
+          	  $.danidemo.addImageFile('#demo-files', id, data);
+          	  var gallery = $('#product_image_gallery').val();
+          	  if(gallery == ''){
+          	  	gallery = [];
+          	  }else{
+          	  	gallery = JSON.parse(gallery);
+          	  }
+          	  console.log(gallery);
+	      	 	gallery.push(data.data.attachmentID);
+	      	 	$('#product_image_gallery').val(JSON.stringify(gallery));
+
           }else{
-          	 var ids = $('#product_image_gallery').val();
-          	 var list_id = '';
-          	 if(ids) list_id = ids +',' + data.data.attachmentID;
-          	 else list_id = ids;
-          	 $('#product_image_gallery').val(list_id);
+          	 // add file
+          	 $('.files-panel').show();
+          	 $('.files-count-label').hide();
+			
+            $.danidemo.addFile('#file-display', id, data); 
           }
         },
         onUploadError: function(id, message){
