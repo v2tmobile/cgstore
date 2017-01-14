@@ -81,17 +81,28 @@ html{
 			                  </div>
 				            <div class="browser">
 				              <label>
-				                <input type="file" name="files[]" multiple="multiple" title='Click to add Files'>
+				                <input type="file" name="files[]" multiple="multiple">
 				              </label>
 				            </div>
 	          			</div>
-	          			<div class="col-md-6">
+	          			<div class="upload-progress"></div>
+	          			<div class="input-container files-count-label">
+						    <label class="error">Please upload at least one file format of your 3D model.</label>
+						</div>
+						<div class="files-panel">
+							<h2 class="heading heading--compact heading--files">Files</h2>
+							<div class="files" id="file-display"></div>
+						</div>
+						<div class="input-container images-count-label">
+						    <label class="error">Please upload at least one preview image.</label>
+						</div>
+	          			<div class="visuals-panel">
 				          <div class="panel panel-default">
 				            <div class="panel-heading">
-				              <h3 class="panel-title">Uploads</h3>
+				              <h2 class="heading heading--compact">Previews</h2>
+				              <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
 				            </div>
-				            <div id="demo-files"></div>
-				            <div class="panel-body demo-panel-files" id='demo-files'>
+				            <div class="visuals" id='demo-files'>
 				              <span class="demo-note">No Files have been selected/droped yet...</span>
 				            </div>
 				          </div>
@@ -539,10 +550,12 @@ html{
         },
         onComplete: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'All pending tranfers completed');
+         
         },
         onUploadProgress: function(id, percent){
           var percentStr = percent + '%';
-
+          $('.visuals-panel').show();
+          $('.images-count-label').hide();
           $.danidemo.updateFileProgress(id, percentStr);
         },
         onUploadSuccess: function(id, data){
