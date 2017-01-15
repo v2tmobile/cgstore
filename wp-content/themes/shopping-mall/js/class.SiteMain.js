@@ -21,6 +21,7 @@ var SiteMain = (function() {
 		openPostProduct();
 		hidePostProduct();
 		removeStep();
+		openTabSingleProduct();
 	}
 	var stepnumber = 0;
 	function removeStep(){
@@ -78,7 +79,7 @@ var SiteMain = (function() {
 		
 	function initSelectBootstrap(){
 		$('select#format_job').multiselect();
-	}
+	} 
 
 
 	function createDatepicker(){
@@ -113,7 +114,13 @@ var SiteMain = (function() {
 		    });    
 		  });
 	}
-
+	function openTabSingleProduct(){
+		$('.product-tabs .tabs-item a').click(function(){
+			var tabid = $(this).attr('href');
+			$('.tabs-container .tab-pane').removeClass('is-active');
+			$('.tabs-container ' + tabid).addClass('is-active');
+		});
+	}
 	var attachment_delete = [];
 	function deleteFile(fileid){
 		$('#attachment-' + fileid).remove();
