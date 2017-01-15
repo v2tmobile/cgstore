@@ -93,8 +93,11 @@ html{
 	          			<div class="input-container files-count-label">
 						    <label class="error">Please upload at least one file format of your 3D model.</label>
 						</div>
-						<?php 
-               			  $downloads= $product->get_files();
+						<?php
+						   $download = ''; 
+						  if( isset($product) && null !== $product ){
+               			     $downloads= $product->get_files();
+               			  }
          
        					?>
 						<div class="files-panel" <?php echo ($downloads) ? 'style="display: block;"' : ''; ?> >
@@ -124,10 +127,13 @@ html{
 				              <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
 				            </div>
 				    <?php
-                       $attachment_ids = $product->get_gallery_attachment_ids();
+				       $attachment_ids = [];
+				        if( isset($product) && null !== $product ){
+                          $attachment_ids = $product->get_gallery_attachment_ids();
+                       }
 
 					 ?>
-				            <ul class="visuals" id='demo-files' file-counter="<?php echo count($attachment_ids); ?>">
+				            <ul class="visuals" id='demo-files' file-counter="<?php echo ($attachment_ids) ? count($attachment_ids) : 0; ?>">
 				              	<?php 
                    			if ( sizeof( $attachment_ids ) > 0 ) {   	
 					          foreach( $attachment_ids as $attachment_id ) {

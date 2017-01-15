@@ -120,8 +120,9 @@ add_action('woocommerce_share', function () {
              foreach ($downloads as $download) {
                   $info     = pathinfo($download["file"]);
                   $ext      = $info['extension'];
-                  
-               echo '<li><a href="#">'.$download['name'].'</a>(.'.$ext.')<span>2.4MB</span></li>';
+                  $size =  size_format(filesize( get_attached_file( $download['id'] )));
+                 
+               echo '<li><a href="#">'.$download['name'].'</a>(.'.$ext.')<span>'.$size.'</span></li>';
              }
 
              echo '</ul>';
@@ -168,7 +169,19 @@ add_action('woocommerce_single_product_summary', function (){
     global $product;
     global $wc_cpdf;
     $id = $product->get_id();
+    $terms = get_the_terms($id,'product_cat');
+    $term_id = 0;
+    $model3dprint_id = 25;
+    if($terms) {
+        if($terms[0]->parent > 0){
+          $term_id = get_ancestors($terms[0]->parent,'product_cat','taxonomy')[0]; 
+        }else{
+            $term_id = $terms[0]->term_id;
+        }
+    }
 
+    if($term_id == $model3dprint_id) return '';
+     
     ?>
     <div class="details-box card has-padding">
         <div class="details-box-title">More Details</div>
