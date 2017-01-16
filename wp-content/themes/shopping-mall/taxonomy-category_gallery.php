@@ -25,7 +25,8 @@ get_header(); ?>
 
 		<div class="content-heading">
 		   <h2 class="content-heading__title">Community Showcase</h2>
-		   <p class="content-heading__subtitle">Showcase your creative work or discover other designers and their work - it's a perfect opportunity to get exposure and respect that you deserve! And it's absolutely free! <a class="js-auth-control" data-referer="gallery upload" id="817744576d30c9f66f0b33b88995f24f" href="/profile/gallery/new">Upload project today</a>! </p>
+		   <p class="content-heading__subtitle">Showcase your creative work or discover other designers and their work - it's a perfect opportunity to get exposure and respect that you deserve! And it's absolutely free! 
+		   	<a class="js-auth-control" data-referer="gallery upload" href="<?php echo HOME_URL?>/gallery-new/">Upload project today</a>! </p>
 		</div>
 
 		<h4>Categories</h4>
@@ -59,25 +60,18 @@ get_header(); ?>
 		<div class="tabs-container">
 			<div class="gallery-items">
 				<?php 
-					$arg = (
+					$args = array(
 					    'post_type' => 'gallery',
-					    'posts_per_page'=>15,
+					    'posts_per_page' => 15,
 					    'tax_query' => array(
 						  array(
 						   'taxonomy' => 'category_gallery',
 						   'field'    => 'slug',
-						   'terms'    => array($queried_object->slug),
-						  ),
-						 ),
+						   'terms'    => array($queried_object->slug)
+						  )
+						 )
 					);
-					 query_posts(
-					 	array(
-					 		'post_type'=>'gallery',
-
-					 		'category' => $queried_object->term_id, 
-					 		'posts_per_page'=>10
-					 	)
-					 );
+					 query_posts($args);
 				    if(have_posts()){
 				        while( have_posts()) {
            	               the_post();
@@ -96,9 +90,7 @@ get_header(); ?>
 		                   else: 
 		                     $onclick ='cgs_on_like(\''.$key.'\',\''.$id.'\',this)';
 		                    endif;
-
 		                 endif;
-                   		?>
 				 ?>
 				<article class="gallery-item js-gallery-item" data-item-id="<?php the_ID()?>" >
 				   <div class="box">

@@ -615,3 +615,22 @@ a.button {
     color: #27a885;
     cursor: default;
 }
+#fileGallery{
+    .MultiFile-remove{
+        position: absolute;
+        right: 0;
+        top:0;
+            z-index: 2;
+    }
+    
+    .MultiFile-label{
+        position: relative;
+        img{
+            width: 73px;
+        }
+    }
+}
+.gallery-form__upload{
+    .files{
+    }
+}
