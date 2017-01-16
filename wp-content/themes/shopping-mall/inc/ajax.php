@@ -102,7 +102,7 @@ function uploadAjaxFile(){
                             // Generate meta data
                           $attach_data = wp_generate_attachment_metadata( $attach_id, $filename ); 
                           wp_update_attachment_metadata( $attach_id, $attach_data );
-                            $img_ext = array('jpg','jpeg','gif');
+                            $img_ext = array('jpg','jpeg','gif','png');
                             $type = 'image';
                             if(!in_array($extension, $img_ext)){
                                $type ='file';

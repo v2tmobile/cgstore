@@ -75,7 +75,7 @@
 						<div class="card">
 						   <div class="card__content">
 						      <ul class="list list--inline gallery__stats">
-						         <li><img alt="Views" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/eye.png"> <span>45</span></li>
+						         <li><img alt="Views" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/eye.png"> <span><?php echo do_shortcode('[post-views]'); ?></span></li>
 						         <li><img alt="Likes" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/heart.png"> <span><?php echo ($total_like) ? $total_like : 0 ; ?></span></li>
 						         <li><img alt="Comments" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/conversation.png"> <span><?php echo get_comments_number();?></span></li>
 						      </ul>
@@ -117,12 +117,23 @@
 						</div>
 						<div class="card">
 						   <div class="card__content">
-						      <h4 class="card__heading">More by PLC</h4>
+						      <h4 class="card__heading">More by <?php the_author_meta( 'user_nicename', $post_author_id ) ?></h4>
 						      <div class="card__wrapper">
 						         <ul class="galleries">
-						            <li><a class="js-tooltip tooltipstered" id="a038a0e80d88ce23f5cbb149c2ec12bc" href="https://www.cgtrader.com/gallery/project/car-rims-3-pieces"><img alt="Car Rims - 3 pieces" src="https://img-new.cgtrader.com/galleries/2625/thumb_29c66ca1-e79f-477e-9a3f-ed2057db2bbb.jpg"></a></li>
+						         	<?php
+						         		$args = array(
+										    'author'        =>  $post_author_id,
+										    'post_type' 	=>  'gallery',
+										    'posts_per_page' => 4
+									    );
+									    $current_posts = get_posts($args);
+									    foreach ( $current_posts as $g_current ) : setup_postdata( $g_current ); ?>
+											<li><a class="js-tooltip tooltipstered" href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail($g_current->ID)?></li>
+										<?php endforeach; 
+						         	?>
+						            
 						         </ul>
-						         <div class="u-text-right"><a id="393b54da54dc6725df030b07e8677e10" href="/gallery/author/PLC">More user projects <i class="fa fa-chevron-right"></i> </a></div>
+						         <div class="u-text-right"><a href="/gallery/author/PLC">More user projects <i class="fa fa-chevron-right"></i> </a></div>
 						      </div>
 						   </div>
 						</div>

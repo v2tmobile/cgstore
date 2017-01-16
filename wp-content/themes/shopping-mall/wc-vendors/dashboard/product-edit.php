@@ -96,11 +96,11 @@ html{
 						<?php
 						   $download = ''; 
 						  if( isset($product) && null !== $product ){
-               			     $downloads= $product->get_files();
+               			     $download= $product->get_files();
                			  }
          
        					?>
-						<div class="files-panel" <?php echo ($downloads) ? 'style="display: block;"' : ''; ?> >
+						<div class="files-panel" <?php echo ($download) ? 'style="display: block;"' : ''; ?> >
 							<h2 class="heading heading--compact heading--files">Files</h2>
 						
 							<div class="files" id="file-display" file-counter>
@@ -120,19 +120,20 @@ html{
 						<div class="input-container images-count-label">
 						    <label class="error">Please upload at least one preview image.</label>
 						</div>
-	          			<div class="visuals-panel" style="display:block;">
+						<?php
+					       $attachment_ids = [];
+					        if( isset($product) && null !== $product ){
+	                          $attachment_ids = $product->get_gallery_attachment_ids();
+	                       }
+
+						 ?>
+	          			<div class="visuals-panel" <?php if ( sizeof( $attachment_ids ) > 0 ) { echo 'style="display: block;"';} ?> >
 				          <div class="panel panel-default">
 				            <div class="panel-heading">
 				              <h2 class="heading heading--compact">Previews</h2>
 				              <p class="explanation">Product images and embedded previews (videos, 3D viewers, etc).</p>
 				            </div>
-				    <?php
-				       $attachment_ids = [];
-				        if( isset($product) && null !== $product ){
-                          $attachment_ids = $product->get_gallery_attachment_ids();
-                       }
-
-					 ?>
+				    
 				            <ul class="visuals" id='demo-files' file-counter="<?php echo ($attachment_ids) ? count($attachment_ids) : 0; ?>">
 				              	<?php 
                    			if ( sizeof( $attachment_ids ) > 0 ) {   	
