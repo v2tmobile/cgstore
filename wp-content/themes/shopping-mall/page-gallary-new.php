@@ -33,7 +33,7 @@ get_header(); ?>
 
 		<div class="content-heading">
 		   <h2 class="content-heading__title">Create New Project</h2>
-		   <p class="content-heading__subtitle">Use the publishing form down below to upload a new project. Your work will appear in CGTrader's <a id="" href="/gallery">gallery</a> among other top notch 3D designs! Note that this <b>IS NOT</b> the place to upload your saleable 3D models </p>
+		   <p class="content-heading__subtitle">Use the publishing form down below to upload a new project. Your work will appear in CGTrader's <a id="" href="<?php echo HOME_URL?>/gallery/">gallery</a> among other top notch 3D designs! Note that this <b>IS NOT</b> the place to upload your saleable 3D models </p>
 		</div>
 
 		<div class="box gallery-form">
