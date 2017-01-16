@@ -114,18 +114,19 @@ add_action('woocommerce_share', function () {
    <div class="list-files details-box">
        <h3>Available formats</h3>
        <?php 
-         $downloads= $product->get_files();
+
+         $downloads = $product->get_files();
          if($downloads){
             echo '<ul>';
-             foreach ($downloads as $download) {
+             foreach ($downloads as $key => $download) {
                   $info     = pathinfo($download["file"]);
                   $ext      = $info['extension'];
-                  $size =  size_format(filesize( get_attached_file( $download['id'] )));
+                $size =  size_format(filesize( get_attached_file( $download['id'] )));
                  
                echo '<li><a href="#">'.$download['name'].'</a>(.'.$ext.')<span>'.$size.'</span></li>';
              }
 
-             echo '</ul>';
+             echo '</ul>'; 
          }
        ?>
    </div>
@@ -170,7 +171,7 @@ add_action('woocommerce_single_product_summary', function (){
     global $wc_cpdf;
     $id = $product->get_id();
     $terms = get_the_terms($id,'product_cat');
-    $term_id = 0;
+    $term_id = 0; 
     $model3dprint_id = 25;
     if($terms) {
         if($terms[0]->parent > 0){
@@ -180,7 +181,7 @@ add_action('woocommerce_single_product_summary', function (){
         }
     }
 
-    if($term_id == $model3dprint_id) return '';
+    if($term_id != $model3dprint_id){
      
     ?>
     <div class="details-box card has-padding">
@@ -210,6 +211,7 @@ add_action('woocommerce_single_product_summary', function (){
         </ul>
     </div>
 <?php
+  }
 }, 55);
 
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
