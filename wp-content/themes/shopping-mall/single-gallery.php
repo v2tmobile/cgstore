@@ -128,12 +128,12 @@
 									    );
 									    $current_posts = get_posts($args);
 									    foreach ( $current_posts as $g_current ) : setup_postdata( $g_current ); ?>
-											<li><a class="js-tooltip tooltipstered" href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail($g_current->ID)?></li>
+											<li><a class="js-tooltip tooltipstered" href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail($g_current->ID)?></a></li>
 										<?php endforeach; 
 						         	?>
 						            
 						         </ul>
-						         <div class="u-text-right"><a href="/gallery/author/PLC">More user projects <i class="fa fa-chevron-right"></i> </a></div>
+						         <div class="u-text-right"><a href="<?php echo HOME_URL?>/gallery/?userid=<?php echo $post_author_id;?>">More user projects <i class="fa fa-chevron-right"></i> </a></div>
 						      </div>
 						   </div>
 						</div>

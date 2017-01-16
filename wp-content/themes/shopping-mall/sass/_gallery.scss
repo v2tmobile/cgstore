@@ -593,11 +593,25 @@ a.button {
     font-size: 1.125rem;
     line-height: 26px;
     font-weight: normal;
-    color: black;
+    color: black; 
 }
 .site-page--gallery .gallery__share {
     margin-top: 15px;
 }
 .site-page--gallery .gallery__share .list__item {
     margin: 0 5px 5px 0;
+}
+.site-page--gallery .galleries>li:nth-child(2n+2) {
+    margin-left: 50.43783%;
+    margin-right: -100%;
+    clear: none;
+}
+.site-page--gallery .galleries > li{
+	img{
+		height: 81px;
+	}
+}
+.category-cluster__item.is_active a {
+    color: #27a885;
+    cursor: default;
 }

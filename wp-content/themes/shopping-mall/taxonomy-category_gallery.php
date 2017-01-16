@@ -1,11 +1,9 @@
 <?php
-/* Template Name: Galleries Page */
-/**
- * @package Shopping_Mall
- */
 
 get_header(); ?>
-
+<?php
+	$queried_object = get_queried_object();
+?>
 <div class="galleries-page">
 	<div class="content-area">
 		<div class="breadcrumb-wrapper" id="breadcrumb">
@@ -40,7 +38,7 @@ get_header(); ?>
 			  if($type_galleries):
 			  	foreach ($type_galleries as $type_gallery):
             ?>
-	         	<li class="category-cluster__item"><a href="<?php echo get_category_link($type_gallery->term_id);?>"><?php echo $type_gallery->name;?></a></li>
+	         	<li class="category-cluster__item <?php if($queried_object->slug == $type_gallery->slug ) echo 'is_active';?>"><a href="<?php echo get_category_link($type_gallery->term_id);?>"><?php echo $type_gallery->name;?></a></li>
 
 	         <?php endforeach; endif; ?>
 		   	
@@ -61,12 +59,25 @@ get_header(); ?>
 		<div class="tabs-container">
 			<div class="gallery-items">
 				<?php 
-					$authorid = $_GET['userid'];
-					if(!empty($authorid)){
-					    query_posts(array('post_type'=>'gallery','author' =>  $authorid,'posts_per_page'=>10));
-					}else{
-						query_posts(array('post_type'=>'gallery','posts_per_page'=>10));
-					}
+					$arg = (
+					    'post_type' => 'gallery',
+					    'posts_per_page'=>15,
+					    'tax_query' => array(
+						  array(
+						   'taxonomy' => 'category_gallery',
+						   'field'    => 'slug',
+						   'terms'    => array($queried_object->slug),
+						  ),
+						 ),
+					);
+					 query_posts(
+					 	array(
+					 		'post_type'=>'gallery',
+
+					 		'category' => $queried_object->term_id, 
+					 		'posts_per_page'=>10
+					 	)
+					 );
 				    if(have_posts()){
 				        while( have_posts()) {
            	               the_post();
