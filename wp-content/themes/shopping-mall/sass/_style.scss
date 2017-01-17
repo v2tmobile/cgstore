@@ -2,6 +2,12 @@
 /* ! PRIMARY STYLES */
 html, body{width:100%;}
 a{text-decoration: none;}
+.showcase-item-author{
+	.avatar{
+		width: 26px;
+		height: 26px;
+	}
+}
 .split {
     display: block;
     width: 100%;

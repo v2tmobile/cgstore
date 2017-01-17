@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 	<?php
 		while ( have_posts() ) : the_post();
 		$post_author_id = get_post_field( 'post_author', get_the_ID());
@@ -12,7 +13,17 @@
 					<div class="gallery__main">
 						<h3 class="gallery__title"><?php echo get_the_title(get_the_ID()); ?></h3>
 						<div class="gallery__header">
-							<div class="gallery__info">Posted in <a href="/gallery/category/car">Car</a> 5 days ago<div class="gallery__author">by 
+							<?php 
+							$i=0;
+							$type_galleries = get_the_terms( get_the_ID(), 'category_gallery' );
+							 
+							?>
+							<div class="gallery__info">Posted in 
+								<?php foreach ($type_galleries as $type_gallery): $i++;?>
+									<a href="<?php echo get_category_link($type_gallery->term_id);?>"><?php echo $type_gallery->name;?></a> <?php if($i < count($type_galleries)) echo ',';?>
+								<?php endforeach;?>
+								<?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';?>
+							 	<div class="gallery__author">by 
 								<div class="avatar avatar--small">
 									<a href="<?php echo bp_loggedin_user_domain(); ?>"> <?php bp_loggedin_user_avatar( 'type=thumb&width=30&height=30' );?></a>
 									</div>
@@ -51,6 +62,7 @@
 							<?php 
 				                  $liked = ''; 
 				                  $onclick = 'ats_load_form();'; 
+				                  $id=get_the_ID();
 				                  $total_like = get_post_meta($id,PREFIX_WEBSITE.'total_like',true);
 				                 if(is_user_logged_in()): 
 				                  $key = wp_create_nonce('cgs-security-like');  

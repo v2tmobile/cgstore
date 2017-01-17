@@ -29,9 +29,8 @@
 			</div>
 			<?php } ?>
 		</div>
-			
-		</div>
+		<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL; ?>/blog/">Read more blog posts <i class="fa fa-chevron-right"></i> </a></p>	
 	</div>
-	<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL; ?>/blog/">Read more blog posts <i class="fa fa-chevron-right"></i> </a></p>
+	
 </section>
 <?php } ?>
