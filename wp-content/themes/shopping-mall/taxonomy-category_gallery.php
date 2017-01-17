@@ -76,8 +76,9 @@ get_header(); ?>
 				        while( have_posts()) {
            	               the_post();
            	               $liked = ''; 
+           	               $id=get_the_ID();
 		                  $onclick = 'ats_load_form();'; 
-		                  $total_like = get_post_meta(get_the_ID(),PREFIX_WEBSITE.'total_like',true);
+		                  $total_like = get_post_meta($id,PREFIX_WEBSITE.'total_like',true);
 		                 if(is_user_logged_in()): 
 		                  $key = wp_create_nonce('cgs-security-like');  
 		                  $current_user = wp_get_current_user();
