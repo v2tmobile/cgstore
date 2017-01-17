@@ -165,30 +165,61 @@ html{
                         $cat = isset($_GET['cat']) ? $_GET['cat'] : 0;
                         $catID = 25;
                         if($cat) {
-                        	$catID = 24;  
+                        	$catID = 24; 
+                        	$animated_checked = '';
+                        	$low_poly_checked ='';
+                        	$textures_checked ='';
+                        	$materials_checked ='';
+                        	$rigged_checked ='';
+                        	$plugins_used_checked ='';
+                        	$collection_checked ='';
+                        	$uvw_mapping_checked ='';
+                        	
+                        	if(isset($product) && null !== $product ){
+                        	  $animated_checked = (get_field($prefix.'animated',$object_id)) ? 'checked="checked"' :'';
+                        	  $low_poly_checked = (get_field($prefix.'low_poly',$object_id)) ? 'checked="checked"' :'';
+                        	  $textures_checked = (get_field($prefix.'textures',$object_id)) ? 'checked="checked"' :'';
+                        	  $materials_checked = (get_field($prefix.'materials',$object_id)) ? 'checked="checked"' :'';
+                        	  $rigged_checked = (get_field($prefix.'rigged',$object_id)) ? 'checked="checked"' :'';
+                        	 $collection_checked = (get_field($prefix.'collection',$object_id)) ? 'checked="checked"' :'';
+
+                        	  $plugins_used_checked = (get_field($prefix.'plugins_used',$object_id)) ? 'checked="checked"' :'';
+                        	   $uvw_mapping_checked = (get_field($prefix.'uvw_mapping',$object_id)) ? 'checked="checked"' :'';	
+                        	}
+
                          ?>
                          <div class="input-container">
 	                         <ul class="product-cat-list">
-	                         	<li><input type="checkbox" name="animated" id="ckanimated"><label for="ckanimated">Animated</label></li>
-	                         	<li><input type="checkbox" name="low_poly" id="cklow_poly"><label for="cklow_poly"> Low-poly (game-ready)</label></li>
-	                         	<li><input type="checkbox" name="textures" id="cktextures"><label for="cktextures">Textures</label></li>
-	                         	<li><input type="checkbox" name="materials" id="ckmaterials"><label for="ckmaterials">Materials</label></li>
-	                         	<li><input type="checkbox" name="rigged" id="ckrigged"><label for="ckrigged">Rigged</label></li>
-	                         	<li><input type="checkbox" name="plugins_used" id="ckplugins_used"><label for="ckplugins_used">Plugins used</label></li>
-	                         	<li><input type="checkbox" name="collection" id="cklow_poly"><label for="cklow_poly">Collection</label></li>
+	                         	<li><input <?php echo $animated_checked; ?> type="checkbox" name="animated" id="ckanimated"><label for="ckanimated">Animated</label></li>
+	                         	<li><input <?php echo $low_poly_checked; ?> type="checkbox" name="low_poly" id="cklow_poly"><label for="cklow_poly"> Low-poly (game-ready)</label></li>
+	                         	<li><input <?php echo $textures_checked; ?> type="checkbox" name="textures" id="cktextures"><label for="cktextures">Textures</label></li>
+	                         	<li><input <?php echo $materials_checked; ?> type="checkbox" name="materials" id="ckmaterials"><label for="ckmaterials">Materials</label></li>
+	                         	<li><input <?php echo $rigged_checked; ?> type="checkbox" name="rigged" id="ckrigged"><label for="ckrigged">Rigged</label></li>
+	                         	<li><input <?php echo $plugins_used_checked; ?> type="checkbox" name="plugins_used" id="ckplugins_used"><label for="ckplugins_used">Plugins used</label></li>
+	                         	<li><input <?php echo $collection_checked; ?> type="checkbox" name="collection" id="cklow_poly"><label for="cklow_poly">Collection</label></li>
 	                         </ul>
 	                     </div>
                          <div class="input-container">
                          	<div class="col-1 uvw-mapping">
-                         		<input type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
-                         		<div class="pull-right" id="uvw-mapping-block" style="margin-top: -7px;">
+                         		<input <?php echo $uvw_mapping_checked; ?> type="checkbox" name="uvw_mapping"><label>UVW mapping</label>
+                         		<div class="pull-right" id="uvw-mapping-block" style="margin-top: -7px;" <?php echo ($uvw_mapping_checked) ? 'style="display:block !important;"' :''; ?>>
 	                         		Unwrapped UVs:
 	                         		<select name="unwrapped_uvs" id="unwrapped_uvs" class="select">
-					                  <option value="unknown">Unknown</option>
-					                  <option value="non_overlapping">Non-overlapping</option>
-					                  <option value="overlapping">Overlapping</option>
-					                  <option value="mixed">Mixed</option>
-					                  <option value="no">No</option>
+	                         		  <?php
+                                         $arr_wrap = array(
+                                               'unknown'=>'unknown',
+                                               'non_overlapping'=>'Non-overlapping',
+                                               'overlapping'=>'Overlapping',
+                                               'mixed'=>'Mixed',
+                                               'no'=>'No'
+                                         	);
+                                         $wrap_out = (isset($product) && null !== $product) ? get_field($prefix.'unwrapped_uvs',$object_id) : '';
+                                         foreach ($arr_wrap as $key => $wrap) {
+                                         	$wrap_selected = ($wrap_out == $key) ? 'selected="selected"' : '';	
+                                         	echo '<option '.$wrap_selected.' value="'.$key.'">'.$wrap.'</option>';
+                                         }
+	                         		   ?>
+					                 
 	              					</select>
 	                         	</div>
                          	</div>
@@ -197,21 +228,37 @@ html{
                          	<div class="geometry-type">
                          		Geometry:
                          		<select name="geometry" id="geometry_type">
-					                <option>Choose geometry</option>
-					                <option value="polygon_mesh">Polygon mesh</option>
-					                <option value="subdivision_ready">Subdivision-ready</option>
-					                <option value="nurbs">Nurbs</option>
-					                <option value="other">Other</option>
+                         		 <option>Choose geometry</option>
+                         		   <?php
+                                       $ars_geo = array(
+                                           'polygon_mesh'=>'Polygon mesh',
+                                           'subdivision_ready'=>'Subdivision-ready',
+                                           'nurbs'=>'Nurbs',
+                                           'other'=>'Other'
+                                       	);
+                                      $geo_out = (isset($product) && null !== $product) ? get_field($prefix.'geometry',$object_id) : ''; 
+                                     foreach ($ars_geo as $key => $geo) {
+                                     	 $geo_selected = ($geo_out == $key) ? 'selected="selected"' : '';
+                                     	echo '<option '.$geo_selected.' value="'.$key.'">'.$geo.'</option>';
+                                     }
+                         		    ?>
+					                
            					 </select>
                          	</div>
                          	<div class="geometry-values">
                          		<img class="icon" src="<?php echo TEMPLATE_PATH; ?>/images/polygon.png" alt="Polygon">
-                         		<input type="text" name="polygons" placeholder="polygons" class="field" number="true" min="0">
+                         		<?php
+                                   $polygons = (isset($product) && null !== $product) ? get_field($prefix.'polygons',$object_id) : '';
+                         		 ?>
+                         		<input type="text" name="polygons" placeholder="polygons" class="field" number="true" min="0" value="<?php echo $polygons; ?>">
                          		
                          	</div>
                          	<div class="geometry-values is-last">
+                         	   <?php
+                                   $vertices = (isset($product) && null !== $product) ? get_field($prefix.'vertices',$object_id) : '';
+                         		 ?>
                          		<img class="icon" src="<?php echo TEMPLATE_PATH; ?>/images/vertices.png" alt="Polygon">
-                         		<input type="text" name="vertices" placeholder="vertices" class="field" number="true" min="0">
+                         		<input type="text" name="vertices" placeholder="vertices" class="field" number="true" min="0" value="<?php echo $vertices; ?>">
                          	</div>
                          	<div class="clear"></div>
                          </div>
@@ -230,15 +277,26 @@ html{
 									<select id="product_cat_sub" name="product_cat[]">
 									  <?php
 									   if( isset($product) && null !== $product ){
-
-                                         // $sub_cats = get_terms($tax,array(
-									           //'hide_empty'=>0,
-									          // 'parent'=>$catID
-									        //));
+                                         $term_cat = get_the_terms($object_id,'product_cat');
+                                         $parent_cat_id = ($term_cat) ? $term_cat[0]->term_id : '';
+                                         $sub_cats = get_terms('product_cat',array(
+									           'hide_empty'=>0,
+									           'parent'=>$parent_cat_id
+									       ));
+                                        
+                                          if($sub_cats){
+                                          	 $selected = '';
+                                          	 foreach ($sub_cats as $sub_cat) {
+                                          	 	$selected  = ($sub_cat->term_id == $term_cat[1]->term_id) ? 'selected="selected"' : '';
+                                          	 	echo '<option '.$selected.' value="'.$sub_cat->term_id.'">'.$sub_cat->name.'</option>';
+                                          	 }
+                                          }
                                               
-                                       }
+                                         }else{?>
+                                          
 									   ?>
 										<option>Choose sub category</option>
+										<?php } ?>
 									</select>
 								</div>
                            <?php if(!$cat){ ?>
@@ -304,7 +362,13 @@ html{
 									<?php WCVendors_Pro_Product_Form::prices( $object_id ); ?>
 								</div>
 								<div class="shareforfree">
-									<label for="share-for-free"><input id="share-for-free" type="checkbox" name="_sale_price" value="0">Share for free</label>
+									<label for="share-for-free">
+									<?php
+                                       $free_price = get_field('_sale_price',$object_id);
+                                       $checked = ($free_price == 0) ? 'checked="checked"' : '';
+
+									 ?>
+									<input id="share-for-free" <?php echo $checked; ?> type="checkbox" name="_sale_price" value="0">Share for free</label>
 								</div>
 								<div class="Clear"></div>
 							</div>
@@ -321,8 +385,11 @@ html{
                 $challenges = get_posts('post_type=challenge&posts_per_page=-1');
                 if($challenges){
                 	echo '<div class="input-container ul-challenge"><ul>';
+                	$challenge_out = ( isset($product) && null !== $product ) ? get_field($prefix.'challenge',$object_id) : [];
                 	foreach ($challenges as $challenge) {
-                		echo '<li><input type="checkbox" value="'.$challenge->ID.'" name="challenges[]"><label>'.$challenge->post_title.'</label><div class="pull-right" style="position: relative;top:-2px;text-decoration: underline;"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
+                		$checked =(in_array($challenge->ID, $challenge_out)) ? 'checked="checked"' : '';
+
+                		echo '<li><input type="checkbox" '.$checked.' value="'.$challenge->ID.'" name="challenges[]"><label>'.$challenge->post_title.'</label><div class="pull-right" style="position: relative;top:-2px;text-decoration: underline;"><a href="'.get_permalink($challenge->ID).'">details</a></div></li>';
                 	}
                    echo '</ul></div>';
                 }
@@ -337,27 +404,39 @@ html{
 	                  <div class="input-container">
 	                     <label for="license" class="inline-label">License <b>*</b></label>
 	                     <div class="license-options">
+	                      <?php 
+                             $license = get_field($prefix.'license',$object_id);
+                             $license_general_checked = ($license =='general') ? 'checked="checked"' :'';
+                             $license_editor_checked = ($license =='editorial') ? 'checked="checked"' :'';
+                             $license_custom_checked = ($license =='custom') ? 'checked="checked"' :'';    
+	                      ?>
 	                        <label for="license_general" class="inline-label">
-	                           <div class="radio is-checked"><input type="radio" name="license" value="general" id="license_general" checked></div>
+	                           <div class="radio is-checked"><input <?php echo $license_general_checked; ?> type="radio" name="license" value="general" id="license_general" checked></div>
 	                           General
 	                        </label>
 	                        <label for="license_editorial" class="inline-label">
-	                           <div class="radio"><input type="radio" name="license" value="editorial" id="license_editorial"></div>
+	                           <div class="radio"><input <?php echo $license_editor_checked; ?> type="radio" name="license" value="editorial" id="license_editorial"></div>
 	                           Editorial
 	                        </label>
 	                        <label for="license_custom" class="inline-label">
-	                           <div class="radio"><input type="radio" name="license" value="custom" id="license_custom"></div>
+	                           <div class="radio"><input <?php echo $license_custom_checked; ?> type="radio" name="license" value="custom" id="license_custom"></div>
 	                           Custom
 	                        </label>
 	                     </div>
-	                     <div class="custom-license-container" style="display: none;">
-	                        <textarea name="custom_license" class="field field--text"></textarea>
+	                     <?php
+                              $license_content = ( isset($product) && null !== $product ) ? get_field($prefix.'custom_license',$object_id) : '';
+
+	                      ?>
+	                     <div class="custom-license-container" <?php echo ($license_content) ? '' : 'style="display: none;"'; ?>>
+	                        <textarea name="custom_license" class="field field--text"><?php echo $license_content; ?></textarea>
 	                     </div>
 	                  </div>
 
 	                  <div class="input-container is-last">
 	                     <label for="adult_content" class="">
-	                        <div class="checkbox"><input type="checkbox" name="adult_content" value="1" id="adult_content" ></div>
+	                        <div class="checkbox">
+	                        <?php $agree = ( isset($product) && null !== $product ) ? get_field($prefix.'adult_content',$object_id) : '';  ?>
+	                        <input <?php echo ($agree) ? 'checked="checked"':''; ?> type="checkbox" name="adult_content" value="1" id="adult_content" ></div>
 	                        This item contains violence, nudity or sexual content
 	                     </label>
 	                     <p class="sensitive-content-explanation">All models with nudity or violent content will be reviewed by CGTrader
