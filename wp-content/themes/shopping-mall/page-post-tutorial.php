@@ -29,7 +29,7 @@
          $step_des = isset($tutorial['step']['content']) ? $tutorial['step']['content'] : [];
          if(empty($tu_cat)) $errors[] ='Please choose category';
          if(empty($tu_software)) $errors[] ='Please choose Software';
-         if(empty($tu_tags)) $errors[] ='Please choose software';
+         if(empty($tu_tags)) $errors[] ='Please add stag';
          if(empty($step_title)) $errors[] ='Please input step title';
          if(empty($step_des)) $errors[] ='Please input step content';
          if($errors && count($errors)>0){
@@ -57,17 +57,21 @@
                       //     PREFIX_WEBSITE.'terms_of_use_job'=>$job_agree
                       // )
                   );
-            //$tutorial_id = wp_insert_post($tutorial_ob);
-             foreach ($step_title as $key=>$step) {
+
+            $tutorial_id = wp_insert_post($tutorial_ob);
+            if($tutorial_id){
+                 wp_set_post_terms( $tutorial_id, $tu_tags, 'tutorial_tags' ); 
+             foreach ($step_title as $key => $step) {
                  $step_data = array(
                     'step_title'=>$step,
                     'step_content'=>$step_des[$key]
                   );
-                print_r($step_data);
-               // add_row(PREFIX_WEBSITE.'step_tutorial',$step_data,$tutorial_id); 
+                 add_row(PREFIX_WEBSITE.'step_tutorial',$step_data,$tutorial_id); 
+              }
 
-             }
+              echo 'successfull';
              
+           }
                                    
          }
       }
