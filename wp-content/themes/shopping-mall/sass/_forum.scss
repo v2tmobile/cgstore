@@ -64,6 +64,45 @@ ul.bbp-forums{
 	font-size: 15px;
 }
 .notifications, .activity {
+#buddypress div#item-header ul.social-networks{
+margin-top: 30px;
+	li{
+	padding: 10px;
+	}
+}
+	#buddypress div#item-header ul.social-networks span{
+		display: block;
+	}
+	#item-body, #item-nav{
+		width: 70.66356%;
+    float: right;
+    margin-right: 0;
+	}
+	#buddypress #item-header-cover-image #item-header-avatar{
+		display: table;
+	    margin: 0 auto;
+	        float: none;
+	}
+	#item-header{
+		width: 28.75437%;
+	    float: left;
+	    margin-right: 0.58207%;
+	    #item-header-cover-image{
+	    	    display: block;
+		    width: 100%;
+		    min-height: 250px;
+		    padding: 30px 0;
+		    background: #f5f4f0;
+		    text-align: center;
+	    }
+	    #item-header-avatar{
+	    
+	    }
+	    .avatar {
+    		width: 100px;
+		    height: 100px;
+		}
+	}
 	.entry-header{
 		h1{
 			font-size: 36px;
@@ -74,8 +113,9 @@ ul.bbp-forums{
 		margin-top: 0;
 	}
 	#buddypress div#item-header #item-header-cover-image #item-header-content{
-		    margin-left: 50px;
-    		margin-top: -60px;
+		    margin-left: 0;
+    margin-top: 0;
+    width: 100%;
 	}
 	#buddypress #header-cover-image{
 		background: transparent;
@@ -83,6 +123,8 @@ ul.bbp-forums{
 	}
 	#buddypress div#item-header-cover-image .user-nicename{
 		margin-bottom: 5px;
+		text-shadow: none;
+		color: #000;
 	}
 	#item-body{
 		    padding: 20px 20px 40px 20px;
