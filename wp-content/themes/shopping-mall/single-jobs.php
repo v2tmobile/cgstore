@@ -7,7 +7,7 @@
 get_header(); ?>
 
 <?php
-	 if( have_posts() ) : the_post();
+	 if( have_posts() ) : the_post(); 
 	 $id = get_the_ID();
 	 $applicant = getApplicants($id);
      $job_date = get_field(PREFIX_WEBSITE.'deadline_job',$id);

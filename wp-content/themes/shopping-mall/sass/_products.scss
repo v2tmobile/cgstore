@@ -1,0 +1,67 @@
+.site-page--my-items .product-search__field {
+    width: 36.95271%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--my-items .product-search__type {
+    width: 24.34326%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--my-items .product-search__category {
+    width: 24.34326%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--my-items .product-search__action {
+    width: 11.7338%;
+    float: right;
+    margin-right: 0;
+}
+.site-page--my-items{ 
+	.select2-container .select2-selection--single{
+		height: 36px;
+		width: 100%;
+	}	
+}
+.site-page--my-items .product-price-change__field {
+    width: 18.03853%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--my-items .product-price-change__action {
+    width: 11.7338%;
+    float: left;
+    margin-right: 0.87566%;
+}
+.site-page--my-items .product-price-change__note {
+    margin: 5px 0 20px;
+}
+.site-page--my-items .products-list {
+    position: relative;
+}
+.site-page--my-items .product-search {
+    margin-bottom: 20px;
+}
+.site-page--my-items .product-price-change__area:after {
+    clear: both;
+}
+.site-page--my-items .product-price-change__area:before, .site-page--my-items .product-price-change__area:after {
+    content: " ";
+    display: table;
+}
+.site-page--my-items .product-search:after {
+    clear: both;
+}
+.site-page--my-items .product-search:before, .site-page--my-items .product-search:after {
+    content: " ";
+    display: table;
+}
+.table th {
+    background: #f5f4f0;
+}
+
+.table td, .table th {
+    padding: 10px;
+    border: 1px solid #d5d1c3;
+}
