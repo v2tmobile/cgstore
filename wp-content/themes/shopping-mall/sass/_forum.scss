@@ -63,16 +63,45 @@ ul.bbp-forums{
 	float: right;
 	font-size: 15px;
 }
-.notifications, .activity {
-#buddypress div#item-header ul.social-networks{
-margin-top: 30px;
-	li{
-	padding: 10px;
-	    float: left;
+.bbpress  {
+	#buddypress .standard-form div.submit{
+		input[type="submit"]{
+			background: #67c4b0;
+		    display: inline-block;
+		    height: 33px;
+		    padding: 0 10px;
+		    border: 0;
+		    border-radius: 5px;
+		    color: white;
+		    font-size: 1rem;
+		    line-height: 33px;
+		    text-decoration: none;
+		    text-align: center;
+		    -webkit-transition: 0.15s ease-in-out background;
+		    transition: 0.15s ease-in-out background;
+		    cursor: pointer;
+		    vertical-align: middle;
+		    -webkit-font-smoothing: antialiased;
+		}
 	}
-}
+	
+	.main{
+		background: url(../images/polygon_bg.jpg) no-repeat top center;
+		background-size: cover;
+	}
+	#buddypress div#item-header ul.social-networks{
+	margin-top: 30px;
+		li{
+		padding: 4px;
+		    float: left;
+		}
+	}
 	#buddypress div#item-header ul.social-networks span{
 		display: block;
+		font-size: 1.5rem;
+		.fa{
+			top: 5px;
+		}
 	}
 	#item-body, #item-nav{
 		width: 70.66356%;
@@ -191,4 +220,16 @@ margin-top: 30px;
 			}
 		}
 	}
+
+}
+.bp_members {
+	.entry-header{
+		display: none;
+	}
+}
+#buddypress{
+	margin-top: 25px;
+}
+#buddypress .dir-search input[type=search], #buddypress .dir-search input[type=text], #buddypress .groups-members-search input[type=search], #buddypress .groups-members-search input[type=text], #buddypress .standard-form input[type=color], #buddypress .standard-form input[type=date], #buddypress .standard-form input[type=datetime-local], #buddypress .standard-form input[type=datetime], #buddypress .standard-form input[type=email], #buddypress .standard-form input[type=month], #buddypress .standard-form input[type=number], #buddypress .standard-form input[type=password], #buddypress .standard-form input[type=range], #buddypress .standard-form input[type=search], #buddypress .standard-form input[type=tel], #buddypress .standard-form input[type=text], #buddypress .standard-form input[type=time], #buddypress .standard-form input[type=url], #buddypress .standard-form input[type=week], #buddypress .standard-form select, #buddypress .standard-form textarea{
+	background: #fff;
 }
