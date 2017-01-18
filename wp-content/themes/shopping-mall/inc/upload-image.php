@@ -15,10 +15,10 @@
                 }else{
                      
                     if( $file['size'] > $max_file_size ) {
-                        $result['msg'] = "$file['name'] is too large!.";
+                        $result['msg'] = $file['name']." is too large!.";
                    
                     } elseif( ! in_array( strtolower( $extension ), $valid_formats ) ){
-                       $result['msg'] = "$file['name'] is not a valid format";
+                       $result['msg'] = $file['name']." is not a valid format";
      
                     } else{ 
                         // If no errors, upload the file...
@@ -39,7 +39,8 @@
                             require_once( ABSPATH . 'wp-admin/includes/image.php' );
                             // Generate meta data
                             $attach_data = wp_generate_attachment_metadata( $attach_id, $filename ); 
-                            wp_update_attachment_metadata( $attach_id, $attach_data ); 
+                            wp_update_attachment_metadata( $attach_id, $attach_data );
+                            set_post_thumbnail( $post_id, $attach_id ); 
                            return $attach_id; 
                         }
                   }

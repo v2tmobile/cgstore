@@ -150,6 +150,35 @@ $args_cat_tutorial = array(
  register_taxonomy( 'tutorial_cat', 'tutorial', $args_cat_tutorial );
  register_taxonomy_for_object_type( 'tutorial_cat', 'tutorial' );
 
+ $labels_tag_tutorial = array(
+    'name'                       => 'Tutorial Tags',
+    'singular_name'              => 'Tutorial Tags',
+    'menu_name'                  => 'Tutorial Tags',
+    'all_items'                  => 'All Tutorial Tags',
+    'parent_item'                => 'Parent Tutorial Tags',
+    'parent_item_colon'          => 'Parent Tutorial Tags:',
+    'new_item_name'              => 'New Tutorial Tags',
+    'add_new_item'               => 'Add New Tutorial Tags',
+    'edit_item'                  => 'Edit Tutorial Tags',
+    'update_item'                => 'Update Tutorial Tags',
+    'separate_items_with_commas' => 'Separate Tutorial Tags with commas',
+    'search_items'               => 'Search Tutorial Tags',
+    'add_or_remove_items'        => 'Add or remove Tutorial Tags',
+    'choose_from_most_used'      => 'Choose from the most used Tutorial Tags',
+);
+$args_tag_tutorial = array(
+    'labels'                     => $labels_tag_tutorial,
+    'hierarchical'               => false,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'tutorial_tag', 'tutorial', $args_tag_tutorial );
+ register_taxonomy_for_object_type( 'tutorial_tag', 'tutorial' );
+
 //software
 
 $labels_software_tutorial = array(
