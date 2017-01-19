@@ -28,8 +28,11 @@ var SiteMain = (function() {
 
 	function removeImageTutorial(){
 		$('#fileTutorial a.MultiFile-remove').click(function(){
+			$('input#fileUploadTutorial').attr('data-file','');
+			$(this).parent().parent().hide();
 			$(this).parent().remove();
-			$('#fileUploadTutorial').val('');
+
+			
 		});
 	}
 	function removeStep(){
@@ -159,9 +162,11 @@ var SiteMain = (function() {
 	    	list: '#fileTutorial',
 	    	onFileAppend: function(){
 	    		$('#fileTutorial').show();
+	    		$('input#fileUploadTutorial').attr('data-file','1');
 	    	},
 	    	afterFileRemove: function(){
 	    		$('#fileTutorial').hide();	
+	    		$('input#fileUploadTutorial').attr('data-file','');
 	    	}
 	    });
 	}

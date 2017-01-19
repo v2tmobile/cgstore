@@ -35,7 +35,7 @@
             $tu_title =  $tutorial_ob->post_title;
             $tu_des =    $tutorial_ob->post_content;
             $tutorial_step_data = get_post_meta($tutorial_id,PREFIX_WEBSITE.'tutorial_step');
-            $thumb_src  = wp_get_attachment_image_src(get_post_thumbnail_id($tutorial_id),array(100,100));
+            $thumb_src  = wp_get_attachment_image_src(get_post_thumbnail_id($tutorial_id),array(250,250));
             $thumb_src = isset($thumb_src) ? $thumb_src[0] : '';
             $thumb = '<div class="MultiFile-label"><a class="MultiFile-remove" href="#fileUploadTutorial"><i class="fa fa-times fa-24 fa-pull-right"></i><span class="remove-string">x</span></a> <span><span class="MultiFile-label" title=""><span class="MultiFile-title"></span><img class="MultiFile-preview" style="max-height:100px; max-width:100px;" src="'.$thumb_src.'"></span></span></div>';
 
@@ -214,8 +214,7 @@
                 <div class="primary-image-form__upload">
                   <label class="tutorial-form__label">Preview image</label>
                   <div class="upload-area">
-                          <?php print_r($thumb_src);?>
-                          <input type="file" class="with-preview" id="fileUploadTutorial" name="file" value="" />
+                          <input type="file" class="with-preview" id="fileUploadTutorial" name="file" value="" data-file="<?php echo $tutorial_id; ?>" />
                           <div id="filedrag">
                               <div class="upload-area__text">
                                   Drag &amp; Drop
@@ -229,7 +228,7 @@
                 </div>
             </div>
         <?php  wp_nonce_field('post_tutorial_action','post_tutorial'); ?>
-          <input type="submit" name="submit" value="Post job tutorial" class="button u-float-right">
+          <input type="submit" id="btnTutorial" name="submit" value="Post job tutorial" class="button u-float-right">
         </div>
 		<form>
 	</div>
@@ -242,14 +241,26 @@
 	$(document).ready(function(){
 		$("#form-post-tutorial").validate({
 			rules: {
-			    'file': {
-			      required: true
-			    },
           'tu[title]':{
             required: true
           }
-			  }
+			  },
+        submitHandler: function(form) {
+          //this runs when the form validated successfully
+          var fileedit = $('input#fileUploadTutorial').attr('data-file');
+          console.log(fileedit);
+          if(fileedit != ''){
+            form.submit(); //submit it the form  
+          }else{
+            $('#fileUploadTutorial').append('<p class="error">This field is required.</p>');
+          }
+        }
+
 		});
+
+    $('#btnTutorial').click(function(){
+
+    });
     SiteMain.createEditor();
     SiteMain.createCategorySelect();
     SiteMain.previewTutorialFile();

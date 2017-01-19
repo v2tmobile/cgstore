@@ -65,3 +65,23 @@
     padding: 10px;
     border: 1px solid #d5d1c3;
 }
+
+.tutorial-form__content{
+    #tags_tagsinput{
+        height: 35px!important;
+        min-height: 35px!important;
+            overflow-y: hidden;
+    }
+}
+.MultiFile-wrap{
+    position: relative;
+    z-index: 100;
+}
+.tutorial-form__block--right #fileTutorial .MultiFile-label img.MultiFile-preview{
+    width: 100%;
+}
+p.error{
+        color: red;
+    font-size: 14px;
+    padding-top: 21px;
+}
