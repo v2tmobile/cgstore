@@ -84,8 +84,13 @@
                      'post_author'=>get_current_user_id(),
                      
                   );
+            if(!$tutorial_id){
+              $tutorial_id = wp_insert_post($tutorial_ob);
+            }else{
+                $tutorial_ob['id'] = $tutorial_id;
+               $tutorial_id = wp_update_post($tutorial_ob);
+            }
 
-            $tutorial_id = wp_insert_post($tutorial_ob);
             $step_data = array();
             if($tutorial_id){
              wp_set_post_terms( $tutorial_id, array($tu_cat), 'tutorial_cat'); 
