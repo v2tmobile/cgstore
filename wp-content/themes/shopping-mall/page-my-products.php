@@ -143,7 +143,6 @@ get_header(); ?>
 		      		<td>dsa</td>
 		      		<td>$500</td>
 		      		<td>
-		      			<a href="#" class="btn">Delete</a>
 		      			<a href="#" class="btn">Edit</a>
 		      		</td>
 		      	</tr>

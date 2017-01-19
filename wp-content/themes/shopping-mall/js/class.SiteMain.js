@@ -22,8 +22,16 @@ var SiteMain = (function() {
 		hidePostProduct();
 		removeStep();
 		openTabSingleProduct();
+		removeImageTutorial();
 	}
 	var stepnumber = 0;
+
+	function removeImageTutorial(){
+		$('#fileTutorial a.MultiFile-remove').click(function(){
+			$(this).parent().remove();
+			$('#fileUploadTutorial').val('');
+		});
+	}
 	function removeStep(){
 		$('.nested-fields .remove_fields').click(function(){
 			stepnumber--;

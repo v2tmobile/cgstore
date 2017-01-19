@@ -122,7 +122,7 @@
                 </div>
                 <div class="input-container">
                   <label class="tutorial-form__label">Description</label>
-                  <textarea class="field field--colored field--text tutorial-form__description" placeholder="We will build a beautiful car model" name="tu[des]" id="tutorial_description"><?php echo $tu_des; ?></textarea>
+                  <textarea class="field field--colored field--text tutorial-form__description" placeholder="We will build a beautiful car model" name="tu[des]" id="tutorial_description"><?php echo wp_strip_all_tags($tu_des); ?></textarea>
                 </div>
                 <div class="input-container">
                   <label class="tutorial-form__label">Tags</label>
@@ -214,8 +214,8 @@
                 <div class="primary-image-form__upload">
                   <label class="tutorial-form__label">Preview image</label>
                   <div class="upload-area">
-                        
-                          <input type="file" class="with-preview" id="fileUploadTutorial" name="file" />
+                          <?php print_r($thumb_src);?>
+                          <input type="file" class="with-preview" id="fileUploadTutorial" name="file" value="" />
                           <div id="filedrag">
                               <div class="upload-area__text">
                                   Drag &amp; Drop
@@ -240,14 +240,16 @@
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		/*$("#form-post-job").validate({
+		$("#form-post-tutorial").validate({
 			rules: {
-			    'job[price]': {
-			      required: true,
-			      number: true
-			    }
+			    'file': {
+			      required: true
+			    },
+          'tu[title]':{
+            required: true
+          }
 			  }
-		});*/
+		});
     SiteMain.createEditor();
     SiteMain.createCategorySelect();
     SiteMain.previewTutorialFile();
