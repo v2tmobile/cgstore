@@ -114,7 +114,9 @@ get_header(); ?>
 		</div>
 		<div class="product-price-change__note"><b>Note:</b> It might take some time to update the product prices, especially if you have hundreds or thousands of models. Please be patient.</div>
 		<div class="products-list">
-		   <div class="products-list__select-menu js-menu"><button name="button" type="submit" class="button button--horizontally-spaced select-button js-select-all-in-page">Select all products in this page</button><button name="button" type="submit" class="button button--horizontally-spaced select-button js-select-filtered">Select all filtered models</button></div>
+		   <div class="products-list__select-menu js-menu">
+		   		<button name="button" type="submit" class="button button--horizontally-spaced select-button js-select-all-in-page">Check all to delete All</button>
+		   	</div>
 		   <table class="table">
 		      <colgroup>
 		         <col style="width: 3%;">
@@ -126,26 +128,38 @@ get_header(); ?>
 		      <thead>
 		         <tr>
 		            <th  style="width: 3%;" class="u-text-center">
-		               <div class="checkbox"><input type="checkbox" name="select_all" id="select_all" value="true" class="js-select-menu iCheckBox" ></div>
+		               <div class="checkbox"><input type="checkbox" name="select_all" id="select_all" value="true" class="js-select-menu check_all iCheckBoxProduct" ></div>
 		            </th>
-		            <th style="width: 40%;" class="u-text-center"></th>
-		            <th class="u-text-left" style="width: 20%;">Title</th>
-		            <th style="width: 10%;">Status</th>
+		            <th style="width: 70px;" class="u-text-center"></th>
+		            <th class="u-text-left" style="width: 45%;">Title</th>
+		            <th style="width: 20%;">Status</th>
 		            <th style="width: 10%;">Price</th>
 		            <th style="width: 15%;">Actions</th>
 		         </tr>
 		      </thead>
 		      <tbody>
-		      	<tr>
-		      		<td><div class="checkbox"><input type="checkbox" name="select_all" id="select_1" value="true" class="js-select-menu iCheckBox" ></div></td>
-		      		<td>abc</td>
-		      		<td>drf</td>
-		      		<td>dsa</td>
-		      		<td>$500</td>
-		      		<td>
-		      			<a href="#" class="btn">Edit</a>
-		      		</td>
-		      	</tr>
+		      	<?php 
+		      		$args = array(
+					    'author'        =>  get_current_user_id(),
+					    'post_type' 	=>  'product',
+					    'posts_per_page' => 15
+				    );
+				    $current_products = get_posts($args);
+				    foreach ( $current_products as $g_current ) : setup_postdata( $g_current );
+				    	$_product = wc_get_product( $g_current -> ID );
+				 ?>
+			      	<tr>
+			      		<td><div class="checkbox"><input type="checkbox" name="select_product[]" id="select_<?php echo $g_current->ID;?>" value="true" class="js-select-menu check_item iCheckBoxProduct" ></div></td>
+			      		<td style="width:70px"><?php echo get_the_post_thumbnail($g_current->ID, array(50,50))?></td>
+			      		<td><?php echo get_the_title($g_current->ID);?></td>
+			      		<td><?php echo $g_current->post_status; ?></td>
+			      		<td><?php echo get_woocommerce_currency_symbol().$_product->get_price(); ?></td>
+			      		<td class="tdaction">
+			      			<a href="#" class="btn delete"></a>
+			      			<a href="#" class="btn edit"></a>
+			      		</td>
+			      	</tr>
+		      	<?php endforeach; ?>
 		      </tbody>
 		   </table>
 		</div>

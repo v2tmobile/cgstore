@@ -39,6 +39,27 @@
 }
 .site-page--my-items .products-list {
     position: relative;
+    table{
+        table-layout: fixed;
+        td{
+            vertical-align: middle;
+        }
+        a{
+            width: 20px;
+            display: inline-block;
+            height: 22px;
+            &.delete{
+                background: url(../images/delete-icon.png) no-repeat;
+
+            }
+            &.edit{
+                background: url(../images/edit-icon.png) no-repeat;                
+            }
+        }
+        td.tdaction{
+                padding: 5px;
+        }
+    }
 }
 .site-page--my-items .product-search {
     margin-bottom: 20px;

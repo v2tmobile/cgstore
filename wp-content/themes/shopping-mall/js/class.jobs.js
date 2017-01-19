@@ -4,8 +4,30 @@ var Jobs = (function() {
 		galleries_upload();
 		initSelectGallery();
 		galleryTags();
+		checkAll();
 	}
+	function checkAll(){
+		var checkAll = $('input.check_all');
+		var checkboxes = $('input.check_item');
+		$('input.check_all, input.check_item').iCheck();
 
+		checkAll.on('ifChecked ifUnchecked', function(event) {        
+	        if (event.type == 'ifChecked') {
+	            checkboxes.iCheck('check');
+	        } else {
+	            checkboxes.iCheck('uncheck');
+	        }
+	    });
+
+	    checkboxes.on('ifChanged', function(event){
+	        if(checkboxes.filter(':checked').length == checkboxes.length) {
+	            checkAll.prop('checked', 'checked');
+	        } else {
+	            checkAll.removeProp('checked');
+	        }
+	        checkAll.iCheck('update');
+	    });
+	}
 	function openPopup(idDiv){
 		$('.hidepopup').css('display','none')
 		$(idDiv).css('display','block');	
