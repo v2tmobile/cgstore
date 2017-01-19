@@ -240,5 +240,35 @@ $args_category_gallery = array(
  register_taxonomy( 'category_gallery', 'gallery', $args_category_gallery );
  register_taxonomy_for_object_type( 'category_gallery', 'gallery' );
 
+ $labels_tag_gallery = array(
+    'name'                       => 'Gallery Tags',
+    'singular_name'              => 'Gallery Tags',
+    'menu_name'                  => 'Gallery Tags',
+    'all_items'                  => 'All Gallery Tags',
+    'parent_item'                => 'Parent Gallery Tags',
+    'parent_item_colon'          => 'Parent Gallery Tags:',
+    'new_item_name'              => 'New Gallery Tags',
+    'add_new_item'               => 'Add New Gallery Tags',
+    'edit_item'                  => 'Edit Gallery Tags',
+    'update_item'                => 'Update Gallery Tags',
+    'separate_items_with_commas' => 'Separate Gallery Tags with commas',
+    'search_items'               => 'Search Gallery Tags',
+    'add_or_remove_items'        => 'Add or remove Gallery Tags',
+    'choose_from_most_used'      => 'Choose from the most used Gallery Tags',
+);
+$args_tag_gallery = array(
+    'labels'                     => $labels_tag_gallery,
+    'hierarchical'               => false,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+
+ register_taxonomy( 'gallery_tag', 'gallery', $args_tag_gallery );
+ register_taxonomy_for_object_type( 'gallery_tag', 'gallery' );
+
+
 }
  ?>
