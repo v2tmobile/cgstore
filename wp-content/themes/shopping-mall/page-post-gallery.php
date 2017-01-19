@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Gallery New Page */
+/* Template Name: Post Gallery Page */
 /**
  * @package Shopping_Mall
  */
@@ -37,11 +37,27 @@ get_header(); ?>
 		</div>
 
 		<div class="box gallery-form">
+		 <?php
+              $gallery_cat_out = 0;
+              $gallery_title ='';
+              $gallery_des ='';
+              $gallery_cat  = 0;
+              $gallery_tags = '';
+             if( wp_verify_nonce($_POST['post_ga'],'post_ga_action') && isset($_POST['ga'])){
+                $ga = isset($_POST['ga']) ? $_POST['ga'] :'';
+                if($ga){
+                      print_r($ga);
+                 
+                }
+               
+             }
+ 
+		  ?>
 			<div class="l-inner">
-				<form id="gallery-form" class="new_gallery" action="" accept-charset="UTF-8" data-remote="true" method="post">
-					<div class="gallery-form__upload">
-						<div class="upload-dropzone">
-							 <label class="jobs-form__label">Drag files here to upload</label>
+	<form id="gallery-form" class="new_gallery" action="" method="post">
+		<div class="gallery-form__upload">
+			<div class="upload-dropzone">
+					 <label class="jobs-form__label">Drag files here to upload</label>
 					         <div class="button-upload"><span>Select files... </span>
 					         	<input class="file-upload--jobs with-preview" id="fileUploadGallery" name="files[]" type="file">
 					     	 </div>
@@ -51,45 +67,50 @@ get_header(); ?>
 				     	 		<div class="gallery-form__title">
 							         <div class="input-container">
 								         <label required="required" for="gallery_title">Title <b>*</b></label>
-								         <input class="field" type="text" name="gallery[title]" id="gallery_title">
+								         <input class="field" type="text" name="ga[title]" id="gallery_title">
 							         </div>
 							    </div>
 							    <div class="gallery-form__category">
 							    	<div class="input-container">
 							    		<label for="gallery_category">Category</label>
-							            <select class="select" name="gallery[category]" id="gallery_category">
-							               <option value="3">Scene</option>
-							               <option value="4">Abstract</option>
-							               <option value="5">Architecture</option>
-							               <option value="6">Car</option>
-							               <option value="7">Character</option>
-							               <option value="8">Creature</option>
-							               <option value="9">Fantasy</option>
-							               <option value="10">Interior</option>
-							               <option value="11">Industrial Design</option>
-							               <option value="12">Landscape</option>
-							               <option value="13">Realism</option>
-							               <option value="14">Sci-Fi</option>
-							               <option value="15">Surrealism</option>
-							               <option value="16">Vehicle</option>
-							               <option value="17">Electronics</option>
+							            <select class="select" name="gallery[cat]" id="gallery_category">
+							               <?php
+                        $gallery_cat = 'category_gallery';
+                        $gallery_cats = get_terms( $gallery_cat, 'orderby=count&hide_empty=0');
+
+                       if($gallery_cats):
+                           $selected = '';
+                               foreach ($gallery_cats as $cat) {
+                                  if($cat->term_id == $gallery_cat_out){
+                                    $selected ='selected="selected"';
+                                  }else{
+                                   $selected = '';
+                                  }
+                         ?>
+                                 <option <?php echo $selected; ?> value="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></option>
+                                 <?php 
+                               }
+                   			 endif;
+
+              			 ?>
 							            </select>
 							    	</div>
 							    </div>
 							    <div class="clear"></div>
 							    <div class="input-container">
 						    		<label for="gallery_description">Description</label>
-						    		<textarea class="field field--full field--text" cols="0" rows="0" name="gallery[description]" id="gallery_description"></textarea>
+						    		<textarea class="field field--full field--text" cols="0" rows="0" name="ga[des]" id="gallery_description"></textarea>
 						    	</div>
 						    	<div class="input-container">
 							      <label required="required" for="gallery_tags">Tags <b>*</b></label>
-							      <input class="field" type="text" name="gallery[tags]" id="gallery_tags">
+							      <input class="field" type="text" name="ga[tags]" id="gallery_tags">
 							      <div class="input-container__note">Tags should be separated by a single space. Min 3 tags.</div>
 							   </div>
 				     	 	</div>
 				     	 	<h4>Uploaded images</h4>
 				     	 	<div class="files" id="fileGallery"></div>
 				     	 	 <div class="u-text-right">
+				     	 	 <?php  wp_nonce_field('post_ga_action','post_ga'); ?>
 						      <p><button name="button" type="submit" class="button button--longer">Save </button> <a class="button button--dark" id="" href="/profile/gallery">Cancel</a></p>
 						      <p>By submitting this form, you indicate that you have read and agree to the <a id="" href="https://www.cgtrader.com/pages/gallery-rules">gallery rules</a>. </p>
 						   </div>
