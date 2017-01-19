@@ -52,9 +52,9 @@ get_header(); ?>
 
 		<div class="tabs-container">
 			<ul class="tabs">
-			   <li class="tabs__item is-active"><a href="/gallery">Popular</a></li>
-			   <li class="tabs__item"><a href="/gallery/newest">Newest</a></li>
-			   <li class="tabs__item"><a href="/gallery/lifetime">All time</a></li>
+			   <li class="tabs__item is-active"><a href="<?php echo HOME_URL?>/gallery/">Popular</a></li>
+			   <li class="tabs__item"><a href="<?php echo HOME_URL?>/gallery/?type=newest">Newest</a></li>
+			   <li class="tabs__item"><a href="<?php echo HOME_URL?>/gallery/?type=lifetime">All time</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -63,10 +63,16 @@ get_header(); ?>
 			<div class="gallery-items">
 				<?php 
 					$authorid = $_GET['userid'];
+					$type = $_GET['type'];
+
+					$array_gallery = array(
+						'post_type'=>'gallery','posts_per_page'=>10
+					);
 					if(!empty($authorid)){
 					    query_posts(array('post_type'=>'gallery','author' =>  $authorid,'posts_per_page'=>10));
 					}else{
-						query_posts(array('post_type'=>'gallery','posts_per_page'=>10));
+
+						query_posts($array_gallery);
 					}
 				    if(have_posts()){
 				        while( have_posts()) {
