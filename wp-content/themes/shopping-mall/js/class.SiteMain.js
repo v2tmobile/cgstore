@@ -59,9 +59,10 @@ var SiteMain = (function() {
                 	$('.nested-fields .remove_fields').css('display','inline-block');
                 }
                 $('.step-'+stepnumber+' .step-position').val('Step ' + stepnumber);
+                $('.js-insert-steps').attr('data-number-step', stepnumber);
                 createEditor();
                 removeStep();
-                $('.js-insert-steps').attr('data-number-step', stepnumber);
+                
                 
             });
 		});
