@@ -88,7 +88,6 @@ get_header(); ?>
 		                    endif;
 
 		                 endif;
-                   		?>
 				 ?>
 				<article class="gallery-item js-gallery-item" data-item-id="<?php the_ID()?>" >
 				   <div class="box">
