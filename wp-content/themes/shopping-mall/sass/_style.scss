@@ -3,6 +3,12 @@
 html, body{width:100%;}
 a{text-decoration: none;}
 
+
+ body.errorbody {
+  background: #d6d5d3 url(../images/404_bg.jpg) no-repeat center;
+  font-size: 16px;
+  font-family: Arial, Tahoma, Helvetica, sans-serif;
+}
 .error-404{
     text-align: center;
 	form[role="search"]{

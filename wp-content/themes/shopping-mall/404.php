@@ -1,65 +1,55 @@
-<?php
-/**
- * The template for displaying 404 pages (not found).
- *
- * @link https://codex.wordpress.org/Creating_an_Error_404_Page
- *
- * @package Shopping_Mall
- */
 
-get_header(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page does not exist - CGStore</title>
+  <link rel="stylesheet" href="<?php echo TEMPLATE_PATH?>/css/all.css"/>
+  <style type="text/css">
+   
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+    .content {
+      width: 1140px;
+      height: 600px;
+      margin: 0 auto;
+    }
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'shopping-mall' ); ?></h1>
-				</header><!-- .page-header -->
+    .button {
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 1.2em;
+      color: white;
+      border-color: #494133;
+      text-shadow: 0 0 2px #333;
+      background: #e4a500;
+      background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #cf6b00), color-stop(1, #e4a500));
+      background: -ms-linear-gradient(bottom, #cf6b00, #e4a500);
+      background: -moz-linear-gradient(center bottom, #cf6b00 0%, #e4a500 100%);
+      box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    }
 
-				<div class="page-content">
-					<img src="<?php echo TEMPLATE_PATH; ?>/images/404.png"/>
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'shopping-mall' ); ?></p>
+    .button:hover {
+      background: #d97409;
+      background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #d97409), color-stop(1, #ecad09));
+      background: -ms-linear-gradient(bottom, #d97409, #ecad09);
+      background: -moz-linear-gradient(center bottom, #d97409 0%, #ecad09 100%);
+    }
 
-					<?php
-						get_search_form();
+    .button.browse {
+      float: right;
+      margin-top: 320px;
+      margin-right: 220px;
+    }
+  </style>
+</head>
 
-						//the_widget( 'WP_Widget_Recent_Posts' );
+<body class="errorbody">
+  <div class="content">
 
-						// Only show the widget if site has multiple categories.
-						if ( shopping_mall_categorized_blog() ) :
-					?>
+    <a href="<?php echo HOME_URL?>" class="button browse">Browse 3D Models</a>
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'shopping-mall' ); ?></h2>
-						<ul>
-						<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-						?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-						endif;
-
-						/* translators: %1$s: smiley */
-						//$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'shopping-mall' ), convert_smilies( ':)' ) ) . '</p>';
-						//the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-
-						//the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_footer();
+  </div> <!--/ .content -->
+</body>
+</html>
