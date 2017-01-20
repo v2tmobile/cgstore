@@ -75,7 +75,7 @@ add_action('woocommerce_before_single_product', function () {
         <div class="product-main">
             <ul class="product-stats">
                 <li class="has-tooltip tooltipstered" content="3.96k Views" itemprop="interactionCount">
-                    <i class="fa fa-eye fa-lg"></i><?php echo do_shortcode('[post-views]'); ?>
+                    <i class="fa fa-eye fa-lg"></i><?php echo the_views(); ?>
                 </li>
                 <li class="has-tooltip tooltipstered" content="225 Likes" itemprop="interactionCount">
                     <i class="fa fa-heart"></i><span class="total-like"><?php echo ($total_like) ? $total_like : 0; ?></span>

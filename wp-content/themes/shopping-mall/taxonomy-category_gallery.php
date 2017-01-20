@@ -7,20 +7,13 @@ get_header(); ?>
 <div class="galleries-page">
 	<div class="content-area">
 		<div class="breadcrumb-wrapper" id="breadcrumb">
-			<ul class="breadcrumb" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList">
-               <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-	                <a href="http://localhost/cgstore" itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing" title="Home">
-	                    <span itemprop="name">Home</span>
-	                </a>
-	                <meta content="1" itemprop="position">
-            	</li>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-		            <span itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing">
-		              <span itemprop="name">Galleries</span>
-		            </span>
-		                <meta content="2" itemprop="position">
-		        </li>
-            </ul>
+			<?php 
+                    $args = array(
+							'delimiter' => '/',
+								'before' => '<span class="breadcrumb-title">' . __( '', 'woothemes' ) . '</span>'
+					);
+					echo woocommerce_breadcrumb($args);
+				?>
 		</div>
 
 		<div class="content-heading">
@@ -34,7 +27,7 @@ get_header(); ?>
 		<div class="category-cluster category-cluster--packed">
 		   <ul>
 		   	<?php
-	      		 $type_gallery_tax = 'category_gallery';
+	      	  $type_gallery_tax = 'category_gallery';
 			  $type_galleries = get_terms( $type_gallery_tax, 'orderby=count&hide_empty=0' );
 			  if($type_galleries):
 			  	foreach ($type_galleries as $type_gallery):
@@ -47,22 +40,28 @@ get_header(); ?>
 		   </ul>
 		   <div class="clear"></div>
 		</div>
+        <?php 
+         $current_link = get_term_link($queried_object);
+         $type = isset($_GET['type']) ? $_GET['type'] :''; 
 
+         ?>
 		<div class="tabs-container">
 			<ul class="tabs">
-			   <li class="tabs__item is-active"><a href="/gallery">Popular</a></li>
-			   <li class="tabs__item"><a href="/gallery/newest">Newest</a></li>
-			   <li class="tabs__item"><a href="/gallery/lifetime">All time</a></li>
+			   <li class="tabs__item <?php echo (!$type) ? 'is-active': ''; ?>"><a href="<?php echo $current_link ?>">Popular</a></li>
+			   <li class="tabs__item <?php echo ($type =='newest') ? 'is-active': ''; ?>"><a href="<?php echo $current_link ?>?type=newest">Newest</a></li>
+			   <li class="tabs__item <?php echo ($type =='all-time') ? 'is-active': ''; ?>"><a href="<?php echo $current_link ?>?type=all-time">All time</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
 
 		<div class="tabs-container">
-			<div class="gallery-items">
-				<?php 
-					$args = array(
+		    <?php 
+					$array_gallery = array(
 					    'post_type' => 'gallery',
-					    'posts_per_page' => 15,
+					    'posts_per_page' => 30,
+					    'orderby' => 'meta_value_num',
+						'order'  => 'desc',
+						'meta_key'=> 'views',
 					    'tax_query' => array(
 						  array(
 						   'taxonomy' => 'category_gallery',
@@ -71,12 +70,22 @@ get_header(); ?>
 						  )
 						 )
 					);
-					 query_posts($args);
-				    if(have_posts()){
-				        while( have_posts()) {
+					if($type =='newest'){
+                      unset($array_gallery['orderby'],$array_gallery['order'],$array_gallery['meta_key']);     
+					}elseif ($type =='all-time') {
+						unset($array_gallery['orderby'],$array_gallery['meta_key']);
+						$array_gallery['order'] = 'asc';
+					}
+					query_posts($array_gallery);
+				    if(have_posts()) :
+				        
+				 ?>
+			    <div class="gallery-items">
+			      <?php
+                    while( have_posts()) {
            	               the_post();
            	               $liked = ''; 
-           	               $id=get_the_ID();
+           	               $id = get_the_ID();
 		                  $onclick = 'ats_load_form();'; 
 		                  $total_like = get_post_meta($id,PREFIX_WEBSITE.'total_like',true);
 		                 if(is_user_logged_in()): 
@@ -92,7 +101,7 @@ get_header(); ?>
 		                     $onclick ='cgs_on_like(\''.$key.'\',\''.$id.'\',this)';
 		                    endif;
 		                 endif;
-				 ?>
+			       ?>
 				<article class="gallery-item js-gallery-item" data-item-id="<?php the_ID()?>" >
 				   <div class="box">
 				      <div class="l-inner-compact">
@@ -100,16 +109,16 @@ get_header(); ?>
 				         <div class="gallery-item__image">
 			         	<?php if ( has_post_thumbnail() ) : ?>
 							    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-							        <?php the_post_thumbnail('large'); ?>
+							        <?php the_post_thumbnail('medium'); ?>
 							    </a>
 							<?php endif; ?>
 				         </div>
 				         <div class="gallery-item__author">by <a id="" href="<?php echo get_the_author_link(the_ID());?>"><?php echo get_the_author_meta('display_name') ;?></a></div>
 				         <div class="gallery-item__info">
 				            <div class="gallery-item__like">
-				               <div class="like-button js-auth-control js-like" data-item-id="5683" data-item-type="Gallery">
-				                  <div class="like-button__text">Like this</div>
-				                  <div class="like-button__counter"><?php echo ($total_like) ? $total_like : 0 ; ?></div>
+				               <div class="like-button js-auth-control js-like" data-item-type="Gallery">
+				                  <div class="like-button__text" onclick="<?php echo $onclick; ?>">Like this</div>
+				                  <div class="like-button__counter"><span class="total-like-item"><?php echo ($total_like) ? $total_like : 0 ; ?></span></div>
 				               </div>
 				            </div>
 				            <div class="gallery-item__stats">
@@ -124,11 +133,13 @@ get_header(); ?>
 				      </div>
 				   </div>
 				</article>
-					<?php } ?>
 				<?php } ?>
-				
-			</div>
-
+			   </div>
+				<?php
+				the_posts_navigation();
+				else:
+				  get_template_part( 'template-parts/no', 'post' );
+			endif; ?>
 		</div>
 	</div>
 </div>

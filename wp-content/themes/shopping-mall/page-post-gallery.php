@@ -73,26 +73,13 @@ get_header(); ?>
 <div class="galleries-page site-page--profile-gallery-form">
 	<div class="content-area">
 		<div class="breadcrumb-wrapper" id="breadcrumb">
-			<ul class="breadcrumb" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList">
-               <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-	                <a href="http://localhost/cgstore" itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing" title="Home">
-	                    <span itemprop="name">Home</span>
-	                </a>
-	                <meta content="1" itemprop="position">
-            	</li>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-		            <span itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing">
-		              <span itemprop="name">Galleries</span>
-		            </span>
-		                <meta content="2" itemprop="position">
-		        </li>
-		        <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-		            <span itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing">
-		              <span itemprop="name">New Project</span>
-		            </span>
-		                <meta content="2" itemprop="position">
-		        </li>
-            </ul>
+			<?php 
+                    $args = array(
+							'delimiter' => '/',
+								'before' => '<span class="breadcrumb-title">' . __( '', 'woothemes' ) . '</span>'
+					);
+					echo woocommerce_breadcrumb($args);
+				?>
 		</div>
 
 		<div class="content-heading">

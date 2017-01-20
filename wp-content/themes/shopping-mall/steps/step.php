@@ -1,4 +1,6 @@
-
+ <?php
+  print_r($tutorial_step_data);
+  ?>
   <div class="input-container">
     <input class="step-position field" value="Step 1" maxlength="110" size="110" type="text" name="tu[step][title][]" id="tutorial_tutorial_steps_attributes__title">
   </div>

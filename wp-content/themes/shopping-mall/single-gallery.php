@@ -1,9 +1,11 @@
 <?php get_header(); ?>
 
 	<?php
-		while ( have_posts() ) : the_post();
-		$post_author_id = get_post_field( 'post_author', get_the_ID());
-		$permalink = get_the_permalink(get_the_ID());
+		if( have_posts() ) : the_post();
+		$id = get_the_ID();
+		$post_author_id = get_post_field( 'post_author', $id);
+		$permalink = get_the_permalink($id);
+
 		?>
 	<div class="content-area site-page--gallery">
 	  	<section class="content-section blog-post">
@@ -11,12 +13,12 @@
 				
 				<div class="gallery">
 					<div class="gallery__main">
-						<h3 class="gallery__title"><?php echo get_the_title(get_the_ID()); ?></h3>
+						<h3 class="gallery__title"><?php echo get_the_title($id); ?></h3>
 						<div class="gallery__header">
 							<?php 
 							$i=0;
-							$type_galleries = get_the_terms( get_the_ID(), 'category_gallery' );
-							 
+							$type_galleries = get_the_terms($id, 'category_gallery' );
+							 if($type_galleries):
 							?>
 							<div class="gallery__info">Posted in 
 								<?php foreach ($type_galleries as $type_gallery): $i++;?>
@@ -30,23 +32,24 @@
 									<a href="<?php echo bp_loggedin_user_domain(); ?>"><?php the_author_meta( 'user_nicename', $post_author_id ) ?></a>
 								</div>
 							</div>
+						<?php endif; ?>
 							<div class="clear"></div>
 						</div>
 						<div class="box gallery__images">
 							<div class="l-inner-compact">
 								<?php
-	                                  the_content()
+	                                  the_content();
 								 ?>
 							</div>
 						</div>
 						<div class="gallery__description"><?php echo get_the_excerpt();?></div>
 						<div class="tag-list">
 							<span>Tags:</span>
+							<ul>
 							<?php
-								if(get_the_tag_list()) {
-								    echo get_the_tag_list('<ul><li>','</li><li>','</li></ul>');
-								}
+								echo get_the_term_list($id,'gallery_tag','<li>','','</li>');
 							?>
+							</ul>
 						</div>
 						<div class="yourcomment">
 							<h3 class="content-heading__title">Comments</h3>
@@ -62,7 +65,7 @@
 							<?php 
 				                  $liked = ''; 
 				                  $onclick = 'ats_load_form();'; 
-				                  $id=get_the_ID();
+				                  $id= get_the_ID();
 				                  $total_like = get_post_meta($id,PREFIX_WEBSITE.'total_like',true);
 				                 if(is_user_logged_in()): 
 				                  $key = wp_create_nonce('cgs-security-like');  
@@ -80,15 +83,15 @@
 				                 endif;
 					        ?>
 							<div class="like-button js-auth-control js-like" data-item-id="8436" data-item-type="Gallery">
-								<div class="like-button__text" onclick="<?php echo $onclick; ?>">Like this</div>
-								<div class="like-button__counter"><?php echo ($total_like) ? $total_like : 0 ; ?></div>
+								<div class="like-button__text <?php echo $liked; ?>" onclick="<?php echo $onclick; ?>">Like this</div>
+								<div class="like-button__counter"><span class="total-like"><?php echo ($total_like) ? $total_like : 0 ; ?></span></div>
 							</div>
 						</div>
 						<div class="card">
 						   <div class="card__content">
 						      <ul class="list list--inline gallery__stats">
-						         <li><img alt="Views" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/eye.png"> <span><?php echo do_shortcode('[post-views]'); ?></span></li>
-						         <li><img alt="Likes" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/heart.png"> <span><?php echo ($total_like) ? $total_like : 0 ; ?></span></li>
+						         <li><img alt="Views" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/eye.png"> <span><?php echo the_views(); ?></span></li>
+						         <li><img alt="Likes" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/heart.png"> <span class="total-like"><?php echo ($total_like) ? $total_like : 0 ; ?></span></li>
 						         <li><img alt="Comments" class="js-tooltip tooltipstered" width="30" height="30" src="<?php echo TEMPLATE_PATH ?>/images/conversation.png"> <span><?php echo get_comments_number();?></span></li>
 						      </ul>
 						   </div>
@@ -156,10 +159,9 @@
 
 	  </div>
 	<?php
-		endwhile; // End of the loop.
-		?>
+		endif; // End of the loop.
+	?>
 
 
 <?php
-//get_sidebar();
 get_footer();

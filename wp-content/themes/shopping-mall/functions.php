@@ -249,4 +249,26 @@ foreach (scandir(get_template_directory() . '/inc/hook/woocommerce') as $filenam
 /**
 * Redux config panel
 */
-require_once (dirname(__FILE__) . '/inc/shopping-mall-config.php');
+//require_once (dirname(__FILE__) . '/inc/shopping-mall-config.php');
+
+if( function_exists('acf_add_options_page') ) {
+ 
+   acf_add_options_page(array(
+    'page_title'  => 'Theme Options',
+    'menu_title' => 'Theme Options',
+    'menu_slug'  => 'theme-general-settings'
+   ));
+ 
+     acf_add_options_sub_page(array(
+      'page_title'  => 'Header',
+      'menu_title' => 'Header',
+      'parent_slug' => 'theme-general-settings',
+     ));
+   acf_add_options_sub_page(array(
+    'page_title'  => 'Footer',
+    'menu_title' => 'Footer',
+    'parent_slug' => 'theme-general-settings',
+     ));
+  
+   
+}

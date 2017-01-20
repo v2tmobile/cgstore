@@ -1,6 +1,5 @@
 
 function cgs_on_like(key,PID,e){
-
    if(typeof CGSTORE_VARS.UID !=='undefined' && typeof PID !=='undefined'){
        $.ajax({
              type: "POST",
@@ -19,6 +18,8 @@ function cgs_on_like(key,PID,e){
                  
                 if(res.success === true){
                    $('.total-like').text(res.total_like);
+
+                   $(e).parents('.js-like').find('.total-like-item').text(res.total_like);
                     $(e).addClass('liked');   
                     $(e).attr('onclick',res.onclick);
                  }else{
@@ -51,6 +52,7 @@ function cgs_on_unlike(key,PID,e){
                  
                 if(res.success === true){
                     $('.total-like').text(res.total_like);
+                    $(e).parents('.js-like').find('.total-like-item').text(res.total_like);
                     $(e).removeClass('liked');   
                     $(e).attr('onclick',res.onclick);
                  }else{
