@@ -18,12 +18,13 @@ get_header(); ?>
 				</header><!-- .page-header -->
 
 				<div class="page-content">
+					<img src="<?php echo TEMPLATE_PATH; ?>/images/404.png"/>
 					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'shopping-mall' ); ?></p>
 
 					<?php
 						get_search_form();
 
-						the_widget( 'WP_Widget_Recent_Posts' );
+						//the_widget( 'WP_Widget_Recent_Posts' );
 
 						// Only show the widget if site has multiple categories.
 						if ( shopping_mall_categorized_blog() ) :
@@ -48,10 +49,10 @@ get_header(); ?>
 						endif;
 
 						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'shopping-mall' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
+						//$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'shopping-mall' ), convert_smilies( ':)' ) ) . '</p>';
+						//the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
 
-						the_widget( 'WP_Widget_Tag_Cloud' );
+						//the_widget( 'WP_Widget_Tag_Cloud' );
 					?>
 
 				</div><!-- .page-content -->
