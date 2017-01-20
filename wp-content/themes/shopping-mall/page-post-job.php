@@ -23,8 +23,8 @@
          if($job_id){
          	$job_ob  = get_post($job_id);
          	if($job_ob){
-         	 if( !current_user_can( 'administrator') || !is_user_logged_in() || $job_ob->post_author != get_current_user_id())
-         	  {
+         	 if( !is_user_logged_in() || $job_ob->post_author != get_current_user_id())
+         	   {
          	      wp_redirect(HOME_URL.'/jobs/');exit();
               }
              

@@ -3,11 +3,7 @@
 /**
  * @package Shopping_Mall
  */
- get_header();
- ?>
-<div class="jobs-page site-page--tutorial-form">
-	<div class="content-area">
-   <?php
+
       $tutorial_id = ($_GET['id']) ? $_GET['id'] : '';
       $tu_title = '';
       $tu_des = '';
@@ -20,16 +16,16 @@
       $tutorial_software_out = 0 ;
       $tutorial_cat_out = 0;
       $thumb = '';
-      $tutorial_step_data = array('sdsa');
+      $tutorial_step_data = array();
       if(!is_user_logged_in()){
-          //wp_redirect(get_permalink(get_option('woocommerce_myaccount_page_id')));exit();
+           wp_redirect(get_permalink(get_option('woocommerce_myaccount_page_id')));exit();
          }
       if($tutorial_id){
           $tutorial_ob  = get_post($tutorial_id);
           if($tutorial_ob){
-           if( !current_user_can( 'administrator') || !is_user_logged_in() || $tutorial_ob->post_author != get_current_user_id())
+           if( !is_user_logged_in() || $tutorial_ob->post_author != get_current_user_id())
               {
-                //wp_redirect(HOME_URL.'/tutorial/');exit();
+                 wp_redirect(HOME_URL.'/tutorial/');exit();
               }
              
             $tu_title =  $tutorial_ob->post_title;
@@ -87,7 +83,7 @@
             if(!$tutorial_id){
               $tutorial_id = wp_insert_post($tutorial_ob);
             }else{
-                $tutorial_ob['id'] = $tutorial_id;
+                $tutorial_ob['ID'] = $tutorial_id;
                $tutorial_id = wp_update_post($tutorial_ob);
             }
 
@@ -114,9 +110,12 @@
                                    
          }
       }
-    echo $html_ms;    
-
-    ?>
+     
+ get_header();
+ ?>
+<div class="jobs-page site-page--tutorial-form">
+	<div class="content-area">
+   <?php  echo $html_ms; ?>
 	<form method="post" action="" enctype="multipart/form-data" id="form-post-tutorial">
 		    <div class="tutorial-form__content">
             <h1 class="tutorial-form__title">Post your Tutorial</h1>
@@ -140,6 +139,7 @@
                       <div class="js-insert-steps" data-number-step = "1">
                         <div class="nested-fields">
                             <?php if($tutorial_step_data){
+                               print_r($tutorial_step_data);
                                  foreach ($tutorial_step_data as $data) {
                                       
                                ?>

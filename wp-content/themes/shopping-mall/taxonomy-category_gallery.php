@@ -19,7 +19,7 @@ get_header(); ?>
 		<div class="content-heading">
 		   <h2 class="content-heading__title">Community Showcase</h2>
 		   <p class="content-heading__subtitle">Showcase your creative work or discover other designers and their work - it's a perfect opportunity to get exposure and respect that you deserve! And it's absolutely free! 
-		   	<a class="js-auth-control" data-referer="gallery upload" href="<?php echo HOME_URL?>/gallery-new/">Upload project today</a>! </p>
+		   	<a class="js-auth-control" data-referer="gallery upload" href="<?php echo HOME_URL?>/post-gallery/">Upload project today</a>! </p>
 		</div>
 
 		<h4>Categories</h4>
