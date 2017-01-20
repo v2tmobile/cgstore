@@ -68,10 +68,10 @@
 			<h3 class="heading heading-small heading-on-contrast">Account</h3>
 		</div>
 		<ul class="vertical-menu">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Public profile</a></li>
-			<li><a href="#">Settings and preferences</a></li>
-			<li><a href="#">Payment agreement</a></li>
+			<li><a href="<?php echo HOME_URL?>/dashboard">Dashboard</a></li>
+			<li><a href="<?php echo bp_loggedin_user_domain(); ?>">Public profile</a></li>
+			<li><a href="<?php echo bp_loggedin_user_domain(); ?>/settings">Settings and preferences</a></li>
+			<li style="display: none;"><a href="#">Payment agreement</a></li>
 		</ul>
 	</div>
 	<div class="user-menu-section">
@@ -91,9 +91,9 @@
 			<h3 class="heading heading-small heading-on-contrast">Community</h3>
 		</div>
 		<ul class="vertical-menu">
-			<li><a href="#">Gallery</a></li>
-			<li><a href="#">Referrals</a></li>
-			<li><a href="#">Tutorials</a></li>
+			<li><a href="<?php echo HOME_URL?>/gallery"">Gallery</a></li>
+			<li><a href="<?php echo HOME_URL?>/referrals/">Referrals</a></li>
+			<li><a href="<?php echo HOME_URL?>/tutorial">Tutorials</a></li>
 		</ul>
 	</div>
 	<hr>
