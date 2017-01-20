@@ -53,8 +53,8 @@ get_header(); ?>
 		<div class="tabs-container">
 			<ul class="tabs">
 			   <li class="tabs__item is-active"><a href="<?php echo HOME_URL?>/gallery/">Popular</a></li>
-			   <li class="tabs__item"><a href="<?php echo HOME_URL?>/gallery/?type=newest">Newest</a></li>
-			   <li class="tabs__item"><a href="<?php echo HOME_URL?>/gallery/?type=lifetime">All time</a></li>
+			   <li class="tabs__item" style="display: none;"><a href="<?php echo HOME_URL?>/gallery/?type=newest">Newest</a></li>
+			   <li class="tabs__item" style="display: none;"><a href="<?php echo HOME_URL?>/gallery/?type=lifetime">All time</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>

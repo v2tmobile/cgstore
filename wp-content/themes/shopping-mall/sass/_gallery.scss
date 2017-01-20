@@ -530,6 +530,10 @@ a.button {
     padding: 0 10px;
     float: left;
 }
+#fileGallery .MultiFile-label img {
+    width: 73px;
+    max-width: 73px!important;
+}
 .like-button__counter {
     display: block;
     height: 24px;
@@ -615,22 +619,12 @@ a.button {
     color: #27a885;
     cursor: default;
 }
-#fileGallery{
-    .MultiFile-remove{
-        position: absolute;
-        right: 0;
-        top:0;
-            z-index: 2;
-    }
-    
-    .MultiFile-label{
-        position: relative;
-        img{
-            width: 73px;
-        }
-    }
+#fileGallery:after{
+	clear: both;
+	display: table;
+	content: "";
 }
-.gallery-form__upload{
-    .files{
-    }
+#gallery_tags_tagsinput{
+	    height: 36px!important;
+    min-height: 36px!important;
 }
