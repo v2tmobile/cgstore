@@ -28,7 +28,7 @@ get_header( 'shop' ); ?>
 <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
 				<div class="product-model">
-					<div class="bg"></div>
+					<div class="bg" style="background: url(<?php echo TEMPLATE_PATH ?>/images/BG02.png) no-repeat; background-size: cover;"></div>
 					<div class="model-header">
 						<div class="content-area">
 							<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>

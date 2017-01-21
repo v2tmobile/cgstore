@@ -23,7 +23,7 @@
 			<div class="main-nav">
 				<div class="left">
 					<div class="logo">
-						<span><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></span>
+						<span><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_field('logo', 'option')?>"/></a></span>
 					</div>
 				</div>
 				<div class="middle">
@@ -92,9 +92,12 @@
 		</header>
 	</div>
  <?php if( !is_account_page()) {?>
-	<div class="header-search <?php if( is_user_logged_in() ) echo 'header-login';?>">
+ 	<?php
+ 		$lightbg = get_field("light_background", "option");
+ 	?>
+	<div class="header-search <?php if( is_user_logged_in() || !is_home() ) echo 'header-login';?>" style="<?php if(!is_user_logged_in() && is_home()) echo 'background: url('.$lightbg.') no-repeat top center;background-size: cover;';?>">
 			<div class="header-content ">
-				<?php if( !is_user_logged_in() ) {?>
+				<?php if( !is_user_logged_in() && is_home()) {?>
 				<h1 class="header__title">3D models for VR / AR, 3D printing and computer graphics</h1>
 				<?php } ?>
 				<div class="search-form">

@@ -28,7 +28,7 @@
 }
 .header-search{
 	height: 300px;
-	background: url(../images/header_bg.jpg) no-repeat top center;
+	background: #181a1e;
     background-size: cover;
     &.header-login{
     	height: 100px; 
@@ -54,4 +54,14 @@
 
 .register-popup{
 	
+}
+
+.header a{
+	color: #d6e4e7;
+}
+.primary-navigation > ul.nav > li:hover > a{
+	background: #ff7d00;
+}
+.primary-navigation > ul.nav > li > ul > li:hover{
+	    border-left-color: #ff7d00;
 }
