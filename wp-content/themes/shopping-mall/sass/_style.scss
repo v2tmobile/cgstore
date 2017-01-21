@@ -1331,3 +1331,13 @@ label.error{
 	font-size: 12px;
 	padding-top: 5px;
 }
+
+#fileGallery.files .MultiFile-remove{
+	position: absolute;
+    right: 0;
+    top:0;
+        z-index: 1;
+}
+#fileGallery .MultiFile-label{
+	position: relative;
+}

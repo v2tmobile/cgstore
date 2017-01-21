@@ -38,7 +38,7 @@
               foreach ($attachments as $attachment) {
 	            $thumb_src  = wp_get_attachment_image_src($attachment->ID,array(250,250));
 	            $thumb_src = isset($thumb_src) ? $thumb_src[0] : '';
-                $thumb .= '<div class="MultiFile-label"><a class="MultiFile-remove" href="#fileUploadTutorial"><i class="fa fa-times fa-24 fa-pull-right"></i><span class="remove-string" data-id="'.$attachment->ID.'">x</span></a><span><span class="MultiFile-label" title=""><span class="MultiFile-title"></span><img class="MultiFile-preview"  style="max-height:100px; max-width:100px;" src="'.$thumb_src.'"></span></span></div>';
+                $thumb .= '<div id="gallery-'.$attachment->ID.'" class="MultiFile-label"><a onclick="SiteMain.deleteGalleryFile('.$attachment->ID.');" class="MultiFile-remove" href="#fileUploadTutorial"><i class="fa fa-times fa-24 fa-pull-right"></i><span class="remove-string" data-id="'.$attachment->ID.'">x</span></a><span><span class="MultiFile-label" title=""><span class="MultiFile-title"></span><img class="MultiFile-preview"  style="max-height:100px; max-width:100px;" src="'.$thumb_src.'"></span></span></div>';
               }
           }
 
@@ -203,7 +203,7 @@ get_header(); ?>
 				     	 	<div class="files" id="fileGallery"><?php echo $thumb; ?></div>
 				     	 	<?php
                                if($gallery_ob){
-                               	echo '<input id="attachmentids" type="hidden" name="Pgallery[attachmentIds]" value="">';
+                               	echo '<input id="gallery_attachment" type="hidden" name="Pgallery[attachmentIds]" value="">';
                                }
 				     	 	 ?>
 				     	 	 <div class="u-text-right">

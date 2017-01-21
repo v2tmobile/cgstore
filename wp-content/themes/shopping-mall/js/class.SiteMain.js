@@ -140,6 +140,13 @@ var SiteMain = (function() {
 		$('#attachment-job').val(JSON.stringify(attachment_delete));
 	}
 
+	var gallery_delete = [];
+	function deleteGalleryFile(fileid){
+		$('#gallery-' + fileid).remove();
+		gallery_delete.push(fileid);
+		$('#gallery_attachment').val(JSON.stringify(gallery_delete));
+	}
+
 	function removeLine(obj){
       inputFile.val('');
       var jqObj = $(obj);
@@ -392,7 +399,8 @@ var SiteMain = (function() {
 		createEditor :createEditor,
 		createCategorySelect:createCategorySelect,
 		previewTutorialFile:previewTutorialFile,
-		insertAndDeteleStep:insertAndDeteleStep
+		insertAndDeteleStep:insertAndDeteleStep,
+		deleteGalleryFile:deleteGalleryFile
 	}
 	
 })();		
