@@ -4,7 +4,7 @@
 			
 				<header class="content-heading">
 					<h2 class="content-heading-title">Top 3D Models</h2>
-					<p class="content-heading-subtitle">Check the best 3D models available on CGStore.com. Can you do better? <a href="#">Learn how to get on top of the list</a>! </p>
+					<p class="content-heading-subtitle">Check the best 3D models available on CGStore.com. Can you do better? <a href="#" style="display: none;">Learn how to get on top of the list</a>! </p>
 				</header>
 				<div class="content-box-wrapper grid">
 				 <?php

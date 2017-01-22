@@ -95,9 +95,9 @@
  	<?php
  		$lightbg = get_field("light_background", "option");
  	?>
-	<div class="header-search <?php if( is_user_logged_in() || !is_home() ) echo 'header-login';?>" style="<?php if(!is_user_logged_in() && is_home()) echo 'background: url('.$lightbg.') no-repeat top center;background-size: cover;';?>">
+	<div class="header-search <?php if( is_user_logged_in()  ) echo 'header-login';?>" style="<?php if(!is_user_logged_in()) echo 'background: url('.$lightbg.') no-repeat top center;background-size: cover;';?>">
 			<div class="header-content ">
-				<?php if( !is_user_logged_in() && is_home()) {?>
+				<?php if( !is_user_logged_in()) {?>
 				<h1 class="header__title">3D models for VR / AR, 3D printing and computer graphics</h1>
 				<?php } ?>
 				<div class="search-form">

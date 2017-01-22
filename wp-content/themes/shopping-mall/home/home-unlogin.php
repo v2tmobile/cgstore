@@ -21,7 +21,7 @@
       </div>
    </div>
 </div>
-<div class="section section--dark section--jobs js-bg is-loaded" style="background: url(<?php echo get_template_directory_uri() ?>/images/header_bg.jpg) no-repeat;    background-size: cover; position: relative; z-index: 0;">
+<div class="section section--dark section--jobs js-bg is-loaded" style="background: url(<?php echo get_field("gray_background", "option"); ?>) no-repeat;    background-size: cover; position: relative; z-index: 0;">
    <div class="container">
       <h2 class="section__title">3D Jobs</h2>
       <div class="section__content">
