@@ -67,6 +67,7 @@ get_header(); ?>
 				            
 				            <div class="gallery-item__stats">
 				               <ul class="list list--inline">
+				               		 <li><i class="fa fa-heart"></i><b>12</b></li>
 				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>
 				                  	<?php echo (get_post_meta($id,'views',true)) ? get_post_meta($id,'views',true) :0 ; ?>
 				                  </b></li>
