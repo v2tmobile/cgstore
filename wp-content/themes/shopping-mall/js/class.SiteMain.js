@@ -200,7 +200,7 @@ var SiteMain = (function() {
 		});
 		$('.jobs-sidebar__section input.iCheckBox').on('ifChanged', function (event) { 
 			var href = $(this).closest('a').attr('href');
-			window.location.href = href;
+			//window.location.href = href;
 		});
 	}
 

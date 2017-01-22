@@ -140,8 +140,11 @@ function add_subcat_for_product_cat(){
     do_action( 'woocommerce_before_main_content' );
   ?>
      <div class="filter-block">
-            
-     <form class="woocommerce-ordering hasborder" action="" method="get" id="woocommerce-filter">
+      <?php
+          $queried_object = get_queried_object(); 
+          $current_link = get_term_link($queried_object); 
+       ?>      
+     <form class="woocommerce-ordering hasborder" action="<?php echo $current_link; ?>" method="get" id="woocommerce-filter">
             <div class="price-range aleft">
               <input type="hidden" name="min_price" class="pricemin" value="<?php echo ($_GET['min_price']) ? $_GET['mix_price'] : 0;  ?>"/>
               <input type="hidden" name="max_price" class="pricemax" value="<?php echo ($_GET['min_price']) ? $_GET['max_price'] : 5000;  ?>"/>
@@ -156,13 +159,14 @@ function add_subcat_for_product_cat(){
             <div class="filterSelect aleft">
              <?php 
                  $tax_format = 'product_format';
+                 print_r($_GET['product_format']);
                  $tax_formats = get_terms( $tax_format, 'orderby=title&hide_empty=0');
                  if($tax_formats){
                     echo '<select name="product_format"><option value="">Formats</option>';
                     $selected = '';
                     foreach ($tax_formats as $format) {
                         if($_GET['product_format']){
-                           $selected = ($_GET['product_format'] == $format->slug) ? 'selected': '';  
+                           $selected = ($_GET['product_format'] == $format->slug) ? 'selected="selected"': '';  
                         }
                         echo '<option value="'.$format->slug.'"'.$selected.'>'.$format->name.'</option>';
                     }
@@ -175,9 +179,9 @@ function add_subcat_for_product_cat(){
             <div class="filterSelect aleft">
               <select name="product_poly" >
                 <option value="">Poly Count</option>
-                <option value="0-50000" <?php echo ($_GET['product_poly'] =='0-50000') ? 'selected' : ''; ?>>Up to 5k</option>
-                <option value="50000-100000" <?php echo ($_GET['product_poly'] =='50000-100000') ? 'selected' : ''; ?>>5K to 10k</option>
-                <option value="10000-50000" <?php echo ($_GET['product_poly'] =='10000-50000') ? 'selected' : ''; ?>>10k to 50k</option>
+                <option value="0-50000" <?php echo ($_GET['product_poly'] =='0-50000') ? 'selected="selected"' : ''; ?>>Up to 5k</option>
+                <option value="50000-100000" <?php echo ($_GET['product_poly'] =='50000-100000') ? 'selected="selected"' : ''; ?>>5K to 10k</option>
+                <option value="10000-50000" <?php echo ($_GET['product_poly'] =='10000-50000') ? 'selected="selected"' : ''; ?>>10k to 50k</option>
               </select>
             </div> 
             <div class="filterType aleft">
@@ -188,7 +192,7 @@ function add_subcat_for_product_cat(){
                     $selected = '';
                     foreach ($type_products as $type_product) {
                         if($_GET['type_product']){
-                           $selected = ($_GET['product_format'] == $type_product->slug) ? 'selected': '';  
+                           $selected = (in_array($type_product->slug,$_GET['type_product'])) ? 'checked="checked"': '';  
                         }
                         echo '<div class="labeltype aleft"><label><input class="iCheckBox" type="checkbox" name="type_product[]" value="'.$type_product->slug.'"'.$selected.'><span>'.$type_product->name.'</span></input></label></div>';
                     }
