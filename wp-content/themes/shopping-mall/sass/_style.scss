@@ -888,7 +888,7 @@ section.content-section .tutorials .tutorial .tutorial-content .tutorials-title{
 	    margin: 6px 4px;
 	    line-height: 36px;
 	    font-size: 0.875rem;
-	    background: #27a885;
+	    background: #009dff;
 	    text-transform: uppercase;
 	    box-shadow: 0 1px 4px rgba(0,0,0,0.24);
 	    color: #fff;
@@ -1340,4 +1340,24 @@ label.error{
 }
 #fileGallery .MultiFile-label{
 	position: relative;
+}
+.woocommerce-pagination{
+display: table;
+    margin: 0 auto 30px;
+	.page-numbers{
+		li{
+			padding: 3px 6px;
+    color: #131518;
+    font-weight: 700;
+    display: inline-block;
+			a{
+				display: block;
+			    padding: 3px 6px;
+			    text-decoration: none;
+			    color: #009dff;
+			    -webkit-transition: 0.15s ease-in-out all;
+			    transition: 0.15s ease-in-out all;
+			}
+		}
+	}
 }

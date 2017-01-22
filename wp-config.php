@@ -85,7 +85,12 @@ define('WP_DEBUG', false);
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 
+<<<<<<< HEAD
 define('WP_HOME','http://localhost/cgstore/');
 define('WP_SITEURL','http://localhost/cgstore');
+=======
+define('WP_HOME','http://localhost:8080/CGStore/git/cgstore/');
+define('WP_SITEURL','http://localhost:8080/CGStore/git/cgstore/');
+>>>>>>> 07ce80bee695fa7824c8a56e277a452e920b07bb
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
