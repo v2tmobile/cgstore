@@ -1,5 +1,5 @@
 <div class="jobs-sidebar__content">
- <form method="get" action="" class="filter-tutorial">
+ <form method="get" action="<?php echo HOME_URL; ?>/tutorial/" class="filter-tutorial">
     <h5 class="section__title">By Category</h5>
 
 	<div class="jobs-sidebar__section">

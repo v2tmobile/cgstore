@@ -1,4 +1,5 @@
 <div class="jobs-sidebar__content">
+<form method="get" action="<?php echo HOME_URL; ?>/jobs/" class="filter-tutorial">
 	<h5 class="section__title">Sort by</h5>
 	<div class="jobs-sidebar__section">
 	   <a href="<?php echo HOME_URL ?>/jobs/?order_by=asc">
@@ -18,13 +19,11 @@
 	 <?php
          $type_job_tax = 'type_job';
          $type_jobs = get_terms( $type_job_tax, 'orderby=count&hide_empty=0' );
-         $get_type_job = ($_GET['type_job']) ? $_GET['type_job'] : '';
+         $get_type_job = ($_GET['type_job']) ? $_GET['type_job'] : [];
          $is_checked ="checked='checked'";
          $jobs = wp_count_posts('jobs');
          if($type_jobs):
              if($get_type_job) $is_checked = '';
-              
-              
          	?>
 		     <a href="<?php echo HOME_URL; ?>/jobs">
 			      <div class="section__item">
@@ -37,12 +36,12 @@
            $is_checked = '';
            foreach ($type_jobs as $job):
             $link = HOME_URL.'/jobs/?'.$type_job_tax.'='.$job->slug; 
-            if($get_type_job == $job->slug) $is_checked ="checked='checked'"; else $is_checked = '';
+            if(in_array($job->slu,$get_type_job)) $is_checked ="checked='checked'"; else $is_checked = '';
 	  ?>
 	   <a href="<?php echo $link;?>">
 	      <div class="section__item">
 	         <div class="checkbox is-checked">
-	         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
+	         <input name="type_job[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
 	         <label><?php echo $job->name; ?></label><span><?php echo $job->count; ?></span>
 	      </div>
 	   </a>
@@ -56,34 +55,35 @@
       <?php
          $format_job_tax = 'job_format';
          $format_jobs = get_terms( $format_job_tax, 'orderby=count&hide_empty=0' );
-         $get_job_format = ($_GET['job_format']) ? $_GET['job_format'] : '';
+         $get_job_format = ($_GET['job_format']) ? $_GET['job_format'] : [];
          $is_checked ="checked='checked'";
          if($format_jobs):
              if($get_job_format) $is_checked = '';
          	?>
-		     <a href="/jobs">
+		     
 			      <div class="section__item">
 			         <div class="checkbox is-checked">
 			         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
 			         <label>All Formats</label><span><?php echo $jobs->publish; ?></span>
 			      </div>
-			   </a>
+			 
            <?php
            $is_checked = '';
            foreach ($format_jobs as $job):
-            $link = HOME_URL.'/jobs/?'.$format_job_tax.'='.$job->slug; 
-            if($get_job_format == $job->slug) $is_checked ="checked='checked'"; else $is_checked = '';
+             
+            if( in_array($job->slug, $get_job_format)) $is_checked ="checked='checked'"; else $is_checked = '';
 	  ?>
-	   <a href="<?php echo $link;?>">
+	   
 	      <div class="section__item">
 	         <div class="checkbox is-checked">
-	         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
+	         <input name="job_format[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
 	         <label><?php echo $job->name; ?></label><span><?php echo $job->count; ?></span>
 	      </div>
-	   </a>
+	  
 	  <?php
          endforeach;
 	   endif; ?>
 
 	</div>
+</form>
 </div>
