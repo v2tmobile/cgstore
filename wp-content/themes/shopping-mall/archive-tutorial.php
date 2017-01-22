@@ -20,8 +20,7 @@ get_header(); ?>
 					echo woocommerce_breadcrumb($args);
 				?>
 			</div>
-			<?php
-				if ( have_posts() ) : ?>
+			
 			<div class="jobs-header">
 			   <h1 class="jobs-header__title">3D Tutorial</h1>
 			   <div class="jobs-header__content">
@@ -35,12 +34,14 @@ get_header(); ?>
 			<div class="job-content">
 				<?php get_sidebar('tutorial');?>
 				<?php
+				if ( have_posts() ) : 
 				/* Start the Loop */
 					while ( have_posts() ) : the_post();
 	                $id= get_the_ID();
 	              // list challenge;
 				?>
 				<div class="jobs__content">
+
 				   <div class="jobs__item">
 				      <div class="jobs-item__image"><a href="<?php the_permalink(); ?>">
 				      	<?php if ( has_post_thumbnail() ) : ?>
@@ -67,7 +68,6 @@ get_header(); ?>
 				            
 				            <div class="gallery-item__stats">
 				               <ul class="list list--inline">
-				               		 <li><i class="fa fa-heart"></i><b>12</b></li>
 				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>
 				                  	<?php echo (get_post_meta($id,'views',true)) ? get_post_meta($id,'views',true) :0 ; ?>
 				                  </b></li>
@@ -87,15 +87,16 @@ get_header(); ?>
 
 					endwhile;
 				?>
-			</div>
-			<?php
+				<?php
 				the_posts_navigation();
 
 			else :
 
-				get_template_part( 'template-parts/content', 'none' );
+				get_template_part( 'template-parts/no', 'post' );
 
 			endif; ?>
+			</div>
+			
 		</div>
 	</div>
 

@@ -17,7 +17,7 @@
 	   
 	      <div class="section__item">
 	         <div class="checkbox is-checked">
-	         <input name="tutorial_cat[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
+	         <input name="tutorial_cat[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" value="<?php echo $cat->slug; ?>"></div>
 	         <label><?php echo $cat->name; ?></label>
 	      </div>
 	   
@@ -41,7 +41,7 @@
 	   
 	      <div class="section__item">
 	         <div class="checkbox is-checked">
-	         <input name="tutorial_software[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
+	         <input name="tutorial_software[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" value="<?php echo $software->slug; ?>" ></div>
 	         <label><?php echo $software->name; ?></label>
 	      </div>
 	   
