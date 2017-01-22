@@ -139,7 +139,7 @@
                       <div class="js-insert-steps" data-number-step = "1">
                         <div class="nested-fields">
                             <?php if($tutorial_step_data){
-                               print_r($tutorial_step_data);
+                               
                                  foreach ($tutorial_step_data as $data) {
                                       
                                ?>

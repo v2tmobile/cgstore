@@ -90,12 +90,15 @@
 					<p class="content-heading-subtitle">Ask questions, showcase your work, give feedback and have fun chatting!</p>
 				</header>
 				<div class="forum-post-list">
-					<div class="forum-post"><h3 class="forum-post-title"><a href="#">3D design for Yamaha MT-07 bike engine</a></h3><div class="forum-post-last-activity">Valid until: <b>2017-01-07</b></div></div>
-					<div class="forum-post"><h3 class="forum-post-title"><a href="#">Neighborhood 3D Model </a></h3><div class="forum-post-last-activity">Valid until: <b>2017-01-05</b></div></div>
-					<div class="forum-post"><h3 class="forum-post-title"><a href="#">anillo de jeep</a></h3><div class="forum-post-last-activity">Valid until: <b>2016-12-13</b></div></div>
-					<div class="forum-post"><h3 class="forum-post-title"><a href="#">3D Low poly Cartoon character</a></h3><div class="forum-post-last-activity">Valid until: <b>2016-12-19</b></div></div>
-					<div class="forum-post"><h3 class="forum-post-title"><a href="#">Ferrari 312 PB</a></h3><div class="forum-post-last-activity">Valid until: <b>2016-12-20</b></div></div></div>
-				<p class="u-text-right"><a class="button button-forward" href="#">Visit forum <i class="fa fa-chevron-right"></i> </a></p>
+				 <?php if ( bbp_has_topics( array( 'author' => 0, 'show_stickies' => false, 'order' => 'DESC', 'post_parent' => 'any', 'posts_per_page' => 5 ) ) ) : ?>
+                        <?php while ( bbp_topics() ) : bbp_the_topic(); ?>
+                        	<div class="forum-post"><h3 class="forum-post-title"><a href="<?php bbp_topic_permalink(); ?>"><?php bbp_topic_title(); ?></a></h3><div class="forum-post-last-activity">Last activity: <b><?php bbp_topic_freshness_link(); ?></b></div></div>
+                       <?php endwhile; ?>
+           <?php endif; ?>
+					
+
+				
+				<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL; ?>/forums/">Visit forum <i class="fa fa-chevron-right"></i> </a></p>
 			</div>
 		</section>
 	</div>
