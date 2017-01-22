@@ -17,42 +17,63 @@
 		</div>
 		<div class="site-footer-social social-networks">
 			<ul class="list list-inline">
+				<?php 
+
+					$facebook = get_field("facebook", "option");
+					$linkedin = get_field("linkedin", "option");
+					$twitter = get_field("twitter", "option");
+					$instagram = get_field("instagram", "option");
+					$pinterest = get_field("pinterest", "option");
+					$google_plus = get_field("google_plus", "option");
+				?>
+				<?php if(!empty($facebook)) {?>
 				<li class="list-item">
-					<a href="<?php echo get_field("facebook", "option");?>" target="_blank" class="social-icon facebook">
+					<a href="<?php echo $facebook;?>" target="_blank" class="social-icon facebook">
 						<span class="fa-stack fa-lg fa-facebook-icon"><i class="fa fa-circle fa-stack-2x"></i><i
 								class="fa fa-facebook fa-inverse fa-stack-1x"></i></span>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($linkedin)) {?>
 				<li class="list-item">
-					<a href="<?php echo get_field("linkedin", "option");?>" target="_blank" class="social-icon linkedin">
+					<a href="<?php echo $linkedin;?>" target="_blank" class="social-icon linkedin">
 						<span class="fa-stack fa-lg fa-linkedin-icon"><i class="fa fa-circle fa-stack-2x"></i><i
 								class="fa fa-linkedin fa-inverse fa-stack-1x"></i></span>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($twitter)) {?>
 				<li class="list-item">
-					<a href="<?php echo get_field("twitter", "option");?>" target="_blank" class="social-icon twitter">
+					<a href="<?php echo $twitter;?>" target="_blank" class="social-icon twitter">
 						<span class="fa-stack fa-lg fa-twitter-icon"><i class="fa fa-circle fa-stack-2x"></i><i
 								class="fa fa-twitter fa-inverse fa-stack-1x"></i></span>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($instagram)) {?>
 				<li class="list-item">
-					<a href="<?php echo get_field("instagram", "option");?>" target="_blank" class="social-icon instagram">
+					<a href="<?php echo $instagram;?>" target="_blank" class="social-icon instagram">
 						<span class="fa-stack fa-lg fa-instagram-icon"><i class="fa fa-circle fa-stack-2x"></i><i
 								class="fa fa-instagram fa-inverse fa-stack-1x"></i></span>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($pinterest)) {?>
 				<li class="list-item">
-					<a href="<?php echo get_field("pinterest", "option");?>" target="_blank" class="social-icon pinterest">
+					<a href="<?php echo $pinterest;?>" target="_blank" class="social-icon pinterest">
 						<span class="fa-stack fa-lg fa-pinterest-icon"><i class="fa fa-circle fa-stack-2x"></i><i
 								class="fa fa-pinterest fa-inverse fa-stack-1x"></i></span>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($google_plus)) {?>
 				<li class="list-item is-last">
-					<a href="<?php echo get_field("google-plus", "option");?>" target="_blank" class="social-icon google-plus">
+					<a href="<?php echo $google_plus;?>" target="_blank" class="social-icon google-plus">
 						<span class="fa-stack fa-lg fa-google-plus-icon"><i class="fa fa-circle fa-stack-2x"></i><i
 								class="fa fa-google-plus fa-inverse fa-stack-1x"></i></span>
 					</a>
 				</li>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>
