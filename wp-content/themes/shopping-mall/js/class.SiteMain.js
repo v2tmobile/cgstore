@@ -197,6 +197,7 @@ var SiteMain = (function() {
 		$('input.iCheckBox').on('ifChanged', function (event) { 
 			//$(event.target).trigger('change'); 
 			$("#woocommerce-filter").submit();
+			$('form.filter-tutorial').submit();
 		});
 		$('.jobs-sidebar__section input.iCheckBox').on('ifChanged', function (event) { 
 			var href = $(this).closest('a').attr('href');
