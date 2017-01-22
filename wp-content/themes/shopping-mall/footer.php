@@ -68,8 +68,8 @@
 			<h3 class="heading heading-small heading-on-contrast">Account</h3>
 		</div>
 		<ul class="vertical-menu">
-			<li><a href="<?php echo HOME_URL?>/dashboard">Dashboard</a></li>
-			<li><a href="<?php echo bp_loggedin_user_domain(); ?>">Public profile</a></li>
+			<li><a href="<?php echo bp_loggedin_user_domain(); ?>">Dashboard</a></li>
+			<li><a href="<?php echo bp_loggedin_user_domain(); ?>/profile/">Public profile</a></li>
 			<li><a href="<?php echo bp_loggedin_user_domain(); ?>/settings">Settings and preferences</a></li>
 			<li style="display: none;"><a href="#">Payment agreement</a></li>
 		</ul>
