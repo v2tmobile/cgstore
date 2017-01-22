@@ -28,23 +28,23 @@
 		     <a href="<?php echo HOME_URL; ?>/jobs">
 			      <div class="section__item">
 			         <div class="checkbox is-checked">
-			         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
+			         <input <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox"></div>
 			         <label>All types</label><span><?php echo $jobs->publish; ?></span>
 			      </div>
 			   </a>
            <?php
            $is_checked = '';
            foreach ($type_jobs as $job):
-            $link = HOME_URL.'/jobs/?'.$type_job_tax.'='.$job->slug; 
-            if(in_array($job->slu,$get_type_job)) $is_checked ="checked='checked'"; else $is_checked = '';
+           
+            if(in_array($job->slug,$get_type_job)) $is_checked ="checked='checked'"; else $is_checked = '';
 	  ?>
-	   <a href="<?php echo $link;?>">
+	  
 	      <div class="section__item">
 	         <div class="checkbox is-checked">
-	         <input name="type_job[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" ></div>
+	         <input name="type_job[]" <?php echo $is_checked; ?> class="iCheckBox is-checked" type="checkbox" value="<?php echo $job->slug; ?>"></div>
 	         <label><?php echo $job->name; ?></label><span><?php echo $job->count; ?></span>
 	      </div>
-	   </a>
+	  
 	  <?php
          endforeach;
 	   endif; ?>
