@@ -75,6 +75,36 @@ function generate_random_filename($length=10) {
  
 }
 
+function get_list_taxonomy($postId, $tax ='', $link = true ){
+	$list = '';
+  if($postId && $tax){
+  	 $terms = get_the_terms($postId,$tax);
+  	 if($terms):
+      $list ='<ul>';
+      foreach ($terms as $term) {
+      	$list .='<li>';
+      	if($link){
+      		$link_term = get_term_link($term);
+      		$list .='<a title="'.$term->name.'" href="'.$link_term.'">'.$term->name.'</a>';
+      	}else{
+      		$list .='<span>'. $term->name.'</span>';
+      	}
+      	$list .='</li>';
+      }
+
+      $list .= '</ul>';
+      endif;
+	}
+
+	return $list;
+
+}
+
+function cgs_disable_comment_url($fields) { 
+    unset($fields['url']);
+    return $fields;
+}
+add_filter('comment_form_default_fields','cgs_disable_comment_url');
 
 if ( ! function_exists( 'shopping_mall_setup' ) ) :
 function shopping_mall_setup() {

@@ -12,20 +12,13 @@ get_header(); ?>
 	<div class="jobs-page">
 		<div class="content-area">
 			<div class="breadcrumb-wrapper" id="breadcrumb">
-				<ul class="breadcrumb" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList">
-	               <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-		                <a href="http://localhost/cgstore" itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing" title="Home">
-		                    <span itemprop="name">Home</span>
-		                </a>
-		                <meta content="1" itemprop="position">
-	            	</li>
-	                <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
-			            <span itemprop="item" itemscope="itemscope" itemtype="http://schema.org/Thing">
-			              <span itemprop="name">Jobs</span>
-			            </span>
-			                <meta content="2" itemprop="position">
-			        </li>
-	            </ul>
+				<?php 
+                    $args = array(
+							'delimiter' => '/',
+								'before' => '<span class="breadcrumb-title">' . __( '', 'woothemes' ) . '</span>'
+					);
+					echo woocommerce_breadcrumb($args);
+				?>
 			</div>
 			<?php
 				if ( have_posts() ) : ?>
@@ -40,11 +33,11 @@ get_header(); ?>
 			
 
 			<div class="job-content">
-				<?php get_sidebar('job');?>
+				<?php get_sidebar('tutorial');?>
 				<?php
 				/* Start the Loop */
 					while ( have_posts() ) : the_post();
-	              
+	                $id= get_the_ID();
 	              // list challenge;
 				?>
 				<div class="jobs__content">
@@ -58,32 +51,31 @@ get_header(); ?>
 				      </a></div>
 				      <div class="jobs-item__content">
 				         <h3 class="jobs__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-				         <ul class="label-list">
-				            <li>
-				               <div class="jobs__software">
-				                  <div class="label--hexagon"><span>3D Computer Graphics</span></div>
-				               </div>
-				            </li>
-				            <li>
-				               <div class="jobs__deadline"><span class="label--hexagon">28 days to finish</span></div>
-				            </li>
-				            <li>
-				               <div class="jobs__aplicants">
-				                  <div class="label--hexagon"><span>1 applicant</span></div>
-				               </div>
-				            </li>
-				         </ul>
+                         <div class="gallery-item__author">by <a href="<?php echo get_the_author_link($id);?>"><?php echo get_the_author_meta('display_name') ;?></a></div>
+				         
 				         <div class="clear"></div>
 				         <div class="tag-list">
 				            <ul>
-				               <li>Lightwave</li>
-				               <li>Maya</li>
-				               <li>3D Studio Max</li>
+                              <?php
+								echo get_the_term_list($id,'tutorial_cat','<li>','','</li>');
+								echo get_the_term_list($id,'tutorial_software','<li>','','</li>');
+							  ?>
 				            </ul>
 				         </div>
 				      </div>
+				      <div class="gallery-item__info">
+				            
+				            <div class="gallery-item__stats">
+				               <ul class="list list--inline">
+				                  <li><i class="fa fa-eye fa-lg fa-red"></i> <b>
+				                  	<?php echo (get_post_meta($id,'views',true)) ? get_post_meta($id,'views',true) :0 ; ?>
+				                  </b></li>
+				                  <li><i class="fa fa-commenting-o fa-lg fa-red"></i> <b><?php echo get_comments_number();?></b></li>
+				               </ul>
+				            </div>
+				         </div>
 				      <div class="jobs-price__content">
-				         <h3 class="jobs__price u-text-right">$800</h3>
+				         
 				         <a href="<?php the_permalink(); ?>">
 				            <div class="button button--longer u-float-right">View</div>
 				         </a>
