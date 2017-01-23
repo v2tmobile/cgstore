@@ -33,6 +33,20 @@ get_header(); ?>
 
 			<div class="job-content">
 				<?php get_sidebar('tutorial');?>
+				<div class="tutorials-search__section">
+				   <div class="tutorials-search">
+				      <form>
+				      	<button class="tutorials-search__button" type="submit"><i class="fa fa-search fa-lg"></i></button>
+				      	<input type="search" name="keywords" autocomplete="off" class="tutorials-search__field" placeholder="search tutorials">
+				      </form>
+				   </div>
+				   <ul class="tutorials-sorting__section">
+				      <li>
+				         <a rel="nofollow" value="latest">latest</a><!-- react-text: 20 --> /<!-- /react-text -->
+				      </li>
+				      <li><a rel="nofollow" value="best">best</a></li>
+				   </ul>
+				</div>
 				<?php
 				if ( have_posts() ) : 
 				/* Start the Loop */
@@ -40,6 +54,7 @@ get_header(); ?>
 	                $id= get_the_ID();
 	              // list challenge;
 				?>
+
 				<div class="jobs__content">
 
 				   <div class="jobs__item">

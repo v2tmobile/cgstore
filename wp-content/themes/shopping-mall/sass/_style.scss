@@ -3,7 +3,9 @@
 html, body{width:100%;}
 a{text-decoration: none;}
 
-
+body{
+	min-width: 1120px;	
+}
  body.errorbody {
   background: #d6d5d3 url(../images/404_bg.jpg) no-repeat center;
   font-size: 16px;
@@ -1360,4 +1362,7 @@ display: table;
 			}
 		}
 	}
+}
+.fa-circle{
+	font-size: 2em;
 }

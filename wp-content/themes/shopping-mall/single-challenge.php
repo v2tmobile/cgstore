@@ -33,6 +33,38 @@
 			   <span>Share challenge:</span>
 			   <?php get_template_part('home/socials')?>
 			</div>
+
+			<div class="challenge-tabs" data-easytabs="true">
+			   <ul class="tabs">
+			      <li class="tabs__item is-active"><a href="#section-awards" class="is-active">Awards &amp; Prizes</a></li>
+			      <li class="tabs__item"><a href="#section-entries">Entries</a></li>
+			      <li class="tabs__item"><a href="#section-terms">Terms &amp; Conditions</a></li>
+			      <li class="tabs__item"><a href="#section-partners">Partners</a></li>
+			      <li class="tabs__item"><a href="#section-judging">Judging</a></li>
+			      <li class="tabs__item"><a href="#section-faq">FAQ</a></li>
+			   </ul>
+			</div>
+
+			<div class="challenge-sections">
+				<div id="section-awards" class="sec-challenge is-active">
+					dsad
+				</div>
+				<div id="section-entries" class="sec-challenge">
+					dsa
+				</div>
+				<div id="section-terms" class="sec-challenge">
+					dsa
+				</div>
+				<div id="section-partners" class="sec-challenge">
+					dsa
+				</div>
+				<div id="section-judging" class="sec-challenge">
+					dsa
+				</div>
+				<div id="section-faq" class="sec-challenge">
+					dsa
+				</div>
+			</div>
 			<div class="yourcomment">
 				<h3>Post a comment</h3>
 			<?php
@@ -65,6 +97,14 @@ $(document).ready(function(){
 		$('.countdown__hours').html($hour + 'h');
 		$('.countdown__minutes').html($minute + 'm');
 		$('.countdown__seconds').html($second + 's');
+	});
+
+	$('.challenge-tabs .tabs__item a').click(function(){
+		var href = $(this).attr('href');
+		$('.challenge-tabs .tabs__item').removeClass('is-active');
+		$(this).parent().addClass('is-active');
+		$('.challenge-sections .sec-challenge').removeClass('is-active');
+		$(href).addClass('is-active');
 	});
 });
 </script>
