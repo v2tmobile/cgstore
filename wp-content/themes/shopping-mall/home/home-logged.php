@@ -16,7 +16,7 @@
 				</div>
 			</div>
 		</section>
-		<section class="content-section light top-designer" style="display: none;">
+		<section class="content-section light top-designer">
 			<div class="container">
 				<header class="content-heading">
 					<h2 class="content-heading-title">Top Designers This Week</h2>

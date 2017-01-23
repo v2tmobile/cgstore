@@ -18,7 +18,7 @@
 			<div class="challenge-info">
 			   <div class="challenge-info__action"><a class="button button--alt button--material js-publisher-trigger js-auth-control" id="" href="javascript:;">Upload 3D Model</a></div>
 			   <div class="challenge-info__countdown">
-			      <div class="countdown js-countdown" data-timestamp="2017-01-23 23:59:59 UTC">
+			      <div class="countdown js-countdown" data-timestamp="2017-03-23 23:59:59 UTC">
 			         <div class="countdown__block countdown__months">0M</div>
 			         <div class="countdown__block countdown__days">23d</div>
 			         <div class="countdown__block countdown__hours">16h</div>
@@ -49,7 +49,26 @@
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
+<script>
+$(document).ready(function(){
 
+	var finalDate = $('.js-countdown').attr('data-timestamp');
+	finalDate = new Date(finalDate);
+	$('.js-countdown').countdown(finalDate, function(event) {
+		$week = event.strftime('%W');
+		$day = event.strftime('%D');
+		$hour = event.strftime('%H');
+		$minute = event.strftime('%M');
+		$second = event.strftime('%S');
+		$('.countdown__months').html($week + 'W');
+		$('.countdown__days').html($day + 'd');
+		$('.countdown__hours').html($hour + 'h');
+		$('.countdown__minutes').html($minute + 'm');
+		$('.countdown__seconds').html($second + 's');
+	});
+});
+</script>
 <?php
 //get_sidebar();
 get_footer();
+
