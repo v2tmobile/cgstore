@@ -299,6 +299,61 @@ if( function_exists('acf_add_options_page') ) {
     'menu_title' => 'Footer',
     'parent_slug' => 'theme-general-settings',
      ));
-  
+  	acf_add_options_sub_page(array(
+    'page_title'  => 'Color Picker',
+    'menu_title' => 'Color Picker',
+    'parent_slug' => 'theme-general-settings',
+     ));
    
 }
+
+// Theme color
+function theme_customize_css() { ?>
+
+	<style type="text/css">
+
+		<?php $header_color = get_field('header_hover_color', 'option');?>
+		.primary-navigation > ul.nav > li.is-active > a, .primary-navigation > ul.nav > li.current-menu-item > a, .primary-navigation>ul.nav>li:hover>a {
+			background: <?php echo $header_color; ?>;
+		}
+		.indicator{
+			background: <?php echo $header_color; ?>;
+		}
+		.primary-navigation>ul.nav>li>ul>li:hover{
+			border-left-color: <?php echo $header_color; ?>;
+		}
+		.tabs__item a, .product-container .product-content .product-main .product-stats li i, .list-files h3, .breadcrumb-wrapper ul li a:hover, section.content-section .jobs-list .job .job-deadline b, section.content-section .jobs-list .job .forum-post-last-activity b, section.content-section .jobs-list .forum-post .job-deadline b, section.content-section .jobs-list .forum-post .forum-post-last-activity b, section.content-section .forum-post-list .job .job-deadline b, section.content-section .forum-post-list .job .forum-post-last-activity b, section.content-section .forum-post-list .forum-post .job-deadline b, section.content-section .forum-post-list .forum-post .forum-post-last-activity b, section.content-section .designers .designer:hover .designer-link, section.content-section .designers .designer .designer-stats li b, footer.footer .site-footer-links .site-footer-copyright .site-footer-copyright-links a:hover, .categories-list .category .category-content .category-main-content .category-title a:hover{
+			color: <?php echo $header_color; ?>;
+		}
+
+		
+		<?php $body_color = get_field('body_color', 'option');?>
+		.box-tags a, .category-footer ul li a{
+			color: <?php echo $body_color; ?> !important;
+		}
+		.logo a b, section.content-section .challenges-list .challenge:hover .challenge-content .challenge-title a, section.content-section .designers .designer .designer-link, .content-box-wrapper .product-grid-item .content-box .content-box-content .content-box-price, a{
+			color: <?php echo $body_color; ?>;
+		}
+		.product-container .product-content .product-main .tabs .tabs-item a, .active-filters__item, section.content-section .tutorials .tutorial .tutorial-content .tutorials-title, section.content-section .jobs-list .job .job-title a, section.content-section .jobs-list .job .forum-post-title a, section.content-section .jobs-list .forum-post .job-title a, section.content-section .jobs-list .forum-post .forum-post-title a, section.content-section .forum-post-list .job .job-title a, section.content-section .forum-post-list .job .forum-post-title a, section.content-section .forum-post-list .forum-post .job-title a, section.content-section .forum-post-list .forum-post .forum-post-title a, .search-form button, button{
+			color: <?php echo $body_color; ?>;
+		}
+		.jobs-application__earnings .button, .form-submit input[type="submit"], .product-container .product-content .product-thumbs-slider .slick-arrow, .product-container .product-content .product-header .product-interaction .like-button .like-button-counter, .active-filters__item, .noUi-connect, section.content-section .showcase-items .showcase-item .showcase-item-content .showcase-item-header, .button{
+			background: <?php echo $body_color; ?>;
+		}
+		.jobs-application__content--footer{
+			background: <?php echo $header_color; ?>;
+		}
+		.jobs-application__earnings .button{
+			opacity: 0.7;
+		}
+		.product-container .product-content .product-thumbs-slider .slick-slide.slick-current img, .noUi-horizontal .noUi-handle{
+			border-color: <?php echo $body_color; ?>;
+		}
+		.product-container .product-content .product-header .product-interaction .like-button .like-button-counter:before{
+			border-right-color: <?php echo $body_color; ?>;
+		}
+	</style>
+
+<?php }
+
+add_action('wp_head', 'theme_customize_css');

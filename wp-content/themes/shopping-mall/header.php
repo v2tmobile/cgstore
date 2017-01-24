@@ -23,7 +23,7 @@
 			<div class="main-nav">
 				<div class="left">
 					<div class="logo">
-						<span><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_field('logo', 'option')?>"/></a></span>
+						<span><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><b>cg</b>store</span>
 					</div>
 				</div>
 				<div class="middle">
