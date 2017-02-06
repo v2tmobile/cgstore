@@ -313,6 +313,11 @@ var SiteMain = (function() {
 					return list;
 				},
 				open: function (elem,ui) {
+					$('ul.slick').not('.slick-initialized').slick({
+						dots: false,
+						    prevArrow: $('.prev'),
+							nextArrow: $('.next')
+					});
 					var left = $($this).offset().left;
     				var top = $($this).offset().top;
     				var proH = $($this).height();
@@ -338,29 +343,23 @@ var SiteMain = (function() {
 				        ui.tooltip.css({ top: yPos, left:  'auto', right: xPos  }, "fast" );
 				    } else if (topbottom == top && leftright == right) //done
 				    {
-				    	console.log(3);
+				    	
 				        var xPos = left + proW + 10;
-
+				        var imgH = $('.ui-tooltip .ui-tooltip-content').innerHeight();
 				        var yPos = top ;
 
-				        ui.tooltip.css({ top: yPos, left: xPos + 25  }, "fast" );
+				        ui.tooltip.css({ top: yPos - imgH/2, left: xPos + 25, 'margin-top': imgH/3 }, "fast" );
 				    } else if (topbottom == top && leftright == left) {
-				    	console.log(4);
+				    	 var imgH = $('.ui-tooltip .ui-tooltip-content').innerHeight();
 				        var yPos = top ;
 				        var xPos = left - proW - (tooltipw/2);
 				        console.log(left- proW- tooltipw);
-				        ui.tooltip.css({ top: yPos, left: xPos - 50  }, "fast" );
+				        ui.tooltip.css({ top: yPos - imgH/2, left: xPos + 25, 'margin-top': imgH/3  }, "fast" );
 				    } else {}
 
 
 					//ui.tooltip.css({ top: $($this).offset().top + 10, left:  $($this).offset().left + $($this).width() + 20 }, "fast" );
-					$('ul.slick').not('.slick-initialized').slick({
-						dots: false,
-						    prevArrow: $('.prev'),
-							nextArrow: $('.next')
-
-
-					});
+					
 
 				}
 			});
