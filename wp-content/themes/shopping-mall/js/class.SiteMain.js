@@ -383,7 +383,7 @@ var SiteMain = (function() {
 		});
 	}
 	function openPopup(idDiv){
-		$('.popover-box, .register-popup').css('display','none')
+		$('.popover-box, .register-popup, .hidepopup').css('display','none')
 		$(idDiv).css('display','block');	
 	}
 	function closePopup(idDiv){

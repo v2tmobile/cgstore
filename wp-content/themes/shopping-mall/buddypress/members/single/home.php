@@ -230,3 +230,4 @@
 	do_action( 'bp_after_member_home_content' ); ?>
 	<?php endif; ?>
 </div><!-- #buddypress -->
+<?php echo get_template_part('contact-user/index'); ?>
