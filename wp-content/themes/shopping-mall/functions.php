@@ -322,10 +322,12 @@ function theme_customize_css() { ?>
 		.primary-navigation>ul.nav>li>ul>li:hover{
 			border-left-color: <?php echo $header_color; ?>;
 		}
-		.tabs__item a, .product-container .product-content .product-main .product-stats li i, .list-files h3, .breadcrumb-wrapper ul li a:hover, section.content-section .jobs-list .job .job-deadline b, section.content-section .jobs-list .job .forum-post-last-activity b, section.content-section .jobs-list .forum-post .job-deadline b, section.content-section .jobs-list .forum-post .forum-post-last-activity b, section.content-section .forum-post-list .job .job-deadline b, section.content-section .forum-post-list .job .forum-post-last-activity b, section.content-section .forum-post-list .forum-post .job-deadline b, section.content-section .forum-post-list .forum-post .forum-post-last-activity b, section.content-section .designers .designer:hover .designer-link, section.content-section .designers .designer .designer-stats li b, footer.footer .site-footer-links .site-footer-copyright .site-footer-copyright-links a:hover, .categories-list .category .category-content .category-main-content .category-title a:hover{
+		.select2-container .select2-results ul li:hover, .tabs__item a, .product-container .product-content .product-main .product-stats li i, .list-files h3, .breadcrumb-wrapper ul li a:hover, section.content-section .jobs-list .job .job-deadline b, section.content-section .jobs-list .job .forum-post-last-activity b, section.content-section .jobs-list .forum-post .job-deadline b, section.content-section .jobs-list .forum-post .forum-post-last-activity b, section.content-section .forum-post-list .job .job-deadline b, section.content-section .forum-post-list .job .forum-post-last-activity b, section.content-section .forum-post-list .forum-post .job-deadline b, section.content-section .forum-post-list .forum-post .forum-post-last-activity b, section.content-section .designers .designer:hover .designer-link, section.content-section .designers .designer .designer-stats li b, footer.footer .site-footer-links .site-footer-copyright .site-footer-copyright-links a:hover, .categories-list .category .category-content .category-main-content .category-title a:hover{
 			color: <?php echo $header_color; ?>;
 		}
-
+		.select2-container .select2-results ul li:hover{
+			color: #fff;
+		}
 		/*Body color*/
 		<?php $body_color = get_field('body_color', 'option');?>
 		.filter-show-list a{
@@ -343,7 +345,7 @@ function theme_customize_css() { ?>
 		.jobs-application__earnings .button, .form-submit input[type="submit"], .product-container .product-content .product-thumbs-slider .slick-arrow, .product-container .product-content .product-header .product-interaction .like-button .like-button-counter, .active-filters__item, .noUi-connect, section.content-section .showcase-items .showcase-item .showcase-item-content .showcase-item-header, .button{
 			background: <?php echo $body_color; ?>;
 		}
-		.product-container .product-content .product-header .product-interaction .like-button:hover .like-button-counter, .jobs-application__content--footer{
+		.select2-container--default .select2-results__option--highlighted[aria-selected], .product-container .product-content .product-header .product-interaction .like-button:hover .like-button-counter, .jobs-application__content--footer{
 			background: <?php echo $header_color; ?>;
 		}
 		.jobs-application__earnings .button{
