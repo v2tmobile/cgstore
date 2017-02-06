@@ -23,54 +23,47 @@
 					<p class="content-heading-subtitle">Want to get featured here? Upload your 3D models, sell and engage with your peers to become the top member of CGTrader community</p>
 				</header>
 				<div class="designers">
-					<div class="designer">
+				  <?php 
+                      $vendor_arg = array ( 
+					  		'role' 				=> 'vendor', 
+					  		//'meta_key' 			=> 'pv_shop_slug', 
+				  			//'meta_value'   		=> '',
+							//'meta_compare' 		=> '>',
+							'orderby' 			=> 'registered',
+				  			'order'				=> 'ASC'
+					  	);
+                    $vendor_paged_query = New WP_User_Query( $vendor_arg ); 
+	  				$vendors = $vendor_paged_query->get_results(); 
+	  				if($vendors) :
+                       foreach($vendors as $vendor):
+                          
+                       	 ?>
+                     <div class="designer">
 						<div class="designer-photo">
-							<a href="#" title="squir">
-								<img alt="squir" src="https://img2.cgtrader.com/avatars/2159/large_f91c255e-cc12-41d3-99a1-156a9e5373cc.png">
-							</a>
+							<a href="<?php echo get_author_posts_url($vendor->ID); ?>" title="<?php the_author_meta( 'user_nicename', $vendor->ID );?>">
+                      <?php 
+                         echo bp_core_fetch_avatar('item_id='.$vendor->ID);
+                      ?>
+                    </a>
 						</div>
 						<div class="designer-content">
-							<div class="designer-name">squir</div>
+							<div class="designer-name"><?php the_author_meta( 'user_nicename', $vendor->ID );?></div>
 							<ul class="designer-stats">
-								<li>Weekly reputation: <b>1.38k</b></li>
-								<li>Models: <b>3,021</b></li>
-							</ul>
-							<div class="designer-link">View designer profile</div>
-						</div>
-					</div>
-					<div class="designer">
-						<div class="designer-photo">
-							<a href="#" title="Kasiopy">
-								<img alt="Kasiopy" src="https://assets.cgtrader.com/assets/avatar/large_avatar-455069f62968830b7bd5b2d67019e45ef7597bb44260ef297ce82a98c198ac19.png">
-							</a>
-						</div>
-						<div class="designer-content">
-							<div class="designer-name">Kasiopy</div>
-							<ul class="designer-stats">
-								<li>Weekly reputation: <b>812</b></li>
-								<li>Models: <b>15</b></li>
-							</ul>
-							<div class="designer-link">View designer profile</div>
-						</div>
-					</div>
-					<div class="designer">
-						<div class="designer-photo">
-							<a href="#" title="cbnuace">
-								<img alt="cbnuace" src="https://assets.cgtrader.com/assets/avatar/large_avatar-455069f62968830b7bd5b2d67019e45ef7597bb44260ef297ce82a98c198ac19.png">
-							</a>
-						</div>
-						<div class="designer-content">
-							<div class="designer-name">cbnuace</div>
-							<ul class="designer-stats">
-								<li>Weekly reputation: <b>547</b></li>
+								<li>Weekly reputation: <b>0</b></li>
 								<li>Models: <b>0</b></li>
 							</ul>
-							<div class="designer-link">View designer profile</div>
+							<div class="designer-link"><a href="<?php echo get_author_posts_url($vendor->ID); ?>" title="<?php the_author_meta( 'user_nicename', $vendor->ID );?>">View designer profile</a></div>
 						</div>
 					</div>
+
+                       	<?php 
+                       endforeach;
+	  				endif;
+				  ?>
+					
 				</div>
-				<p class="u-text-right"><a class="button button-forward" href="#">Find more designs <i class="fa fa-chevron-right"></i> </a></p>
-				<div class="link-promo"><a href="#">Learn more about royalty system and levels</a></div>
+				<p class="u-text-right"><a class="button button-forward" href="<?php echo HOME_URL;?>/designers/">Find more designs <i class="fa fa-chevron-right"></i> </a></p>
+				<div class="link-promo"><a href="<?php echo HOME_URL;?>/designers/">Learn more about royalty system and levels</a></div>
 			</div>
 		</section>
 		<?php echo get_template_part('challenge/index'); ?>
