@@ -50,7 +50,7 @@ do_action( 'bp_before_member_header' ); ?>
 						<a class="button button--pill button--tiny-pill button--alt js-hire-me" href="https://www.cgtrader.com/jobs/new?designer_id=39498"><i class="fa fa-dollar"></i> 
 							<span>Hire me</span>
 						</a>
-						<span class="has-question has-tooltip js-tooltip-with-list tooltipstered"><i class="fa fa-question-circle-o fa-green"></i></span>
+						<span class="has-question has-tooltip js-tooltip-with-list tooltipstered" data-tooltip-content="#hire-me-button-tooltip"><i class="fa fa-question-circle-o fa-green"></i></span>
 					</span>
 					<div class="clear"></div>
 				</div>

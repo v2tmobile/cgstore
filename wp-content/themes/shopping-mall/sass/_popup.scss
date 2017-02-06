@@ -841,3 +841,35 @@ label[for="adult_content"]{
     background: #f5f4f0;
     text-align: right;
 }
+#hire-me-button-tooltip{
+    ol{
+        display: block;
+        list-style-type: decimal;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 1em;
+    }    
+}
+.tooltip-content {
+    display: none;
+}
+.tooltipster-light .tooltipster-box{
+    border-radius: 5px;
+    background: white;
+    color: #6d6d6d;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    ol{
+    li{
+    color: #000;
+    }
+    }
+     .tooltipster-arrow-border{
+        border-color: #fff!important;
+    }
+}
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background, .tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border{
+        border-bottom-color: #fff;
+}

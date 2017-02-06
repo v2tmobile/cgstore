@@ -23,9 +23,16 @@ var SiteMain = (function() {
 		removeStep();
 		openTabSingleProduct();
 		removeImageTutorial();
+		questionTooltip();
 	}
 	var stepnumber = 0;
 
+	function questionTooltip(){
+		$('.has-question').tooltipster({
+		    theme: 'tooltipster-light',
+		    contentCloning: true
+		});
+	}
 	function removeImageTutorial(){
 		$('#fileTutorial a.MultiFile-remove').click(function(){
 			$('input#fileUploadTutorial').attr('data-file','');
@@ -268,7 +275,6 @@ var SiteMain = (function() {
 			range.noUiSlider.on('change', function( values, handle ) {
 				 $("#woocommerce-filter").submit();
 			});
-			console.log(pricemax);
 		}
 		
 	}
