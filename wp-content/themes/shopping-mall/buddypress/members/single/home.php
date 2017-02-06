@@ -68,6 +68,7 @@
 			<div class="tab-content " id="tab-galleries">
 				<div class="content-box-wrapper grid">
 					<?php 
+
 					    query_posts(array('post_type'=>'gallery','posts_per_page'=>10));
 					    if(have_posts()){
 					          
@@ -121,8 +122,10 @@
 						</article>
 						<?php } ?>
 					</div>
-					<?php } ?>
-				</div>
+					<?php } 
+                        wp_reset_query();
+					?>
+			
 				</div>
 			</div>
 		</div>
