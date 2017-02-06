@@ -347,14 +347,14 @@ var SiteMain = (function() {
 				        var xPos = left + proW + 10;
 				        var imgH = $('.ui-tooltip .ui-tooltip-content').innerHeight();
 				        var yPos = top ;
-
+				        console.log(3);
 				        ui.tooltip.css({ top: yPos - imgH/2, left: xPos + 25, 'margin-top': imgH/3 }, "fast" );
 				    } else if (topbottom == top && leftright == left) {
 				    	 var imgH = $('.ui-tooltip .ui-tooltip-content').innerHeight();
 				        var yPos = top ;
+				        console.log(4);
 				        var xPos = left - proW - (tooltipw/2);
-				        console.log(left- proW- tooltipw);
-				        ui.tooltip.css({ top: yPos - imgH/2, left: xPos + 25, 'margin-top': imgH/3  }, "fast" );
+				        ui.tooltip.css({ top: yPos - imgH/2, left: xPos - 40, 'margin-top': imgH/3  }, "fast" );
 				    } else {}
 
 

@@ -3,7 +3,7 @@
     if(have_posts()){
           
  ?>
-<section class="content-section light">
+<section class="content-section light gallery-content">
 	<hr class="split">
 	<div class="container">
 		<header class="content-heading">

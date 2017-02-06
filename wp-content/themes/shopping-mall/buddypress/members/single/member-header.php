@@ -65,6 +65,7 @@ do_action( 'bp_before_member_header' ); ?>
 			 */
 			do_action( 'bp_member_header_actions' ); ?>
 
+
 		</div><!-- #item-buttons -->
 
 		<?php

@@ -34,7 +34,7 @@ do_action( 'bp_before_member_header' ); ?>
 			<?php if ( bp_is_active( 'activity' ) && bp_activity_do_mentions() ) : ?>
 				<h2 class="user-nicename">@<?php bp_displayed_user_mentionname(); ?></h2>
 			<?php endif; ?>
-
+			<div class="user-header__status is-offline">Offline </div>
 			<div id="item-buttons"><?php
 
 				/**
@@ -42,9 +42,22 @@ do_action( 'bp_before_member_header' ); ?>
 				 *
 				 * @since 1.2.6
 				 */
-				do_action( 'bp_member_header_actions' ); ?></div><!-- #item-buttons -->
+				//do_action( 'bp_member_header_actions' ); ?>
+				<div class="user-header__actions">
+					<a href="#" class="button button--pill button--tiny-pill js-auth-control js-modal js-contact"><i class="fa fa-commenting-o"></i> <span>Contact</span></a>
+					<a href="" class="button button--pill button--tiny-pill js-follow js-auth-control js-modal"><i class="fa fa-check-circle"></i><span>Follow</span></a>
+					<span class="hire-designer-button">
+						<a class="button button--pill button--tiny-pill button--alt js-hire-me" href="https://www.cgtrader.com/jobs/new?designer_id=39498"><i class="fa fa-dollar"></i> 
+							<span>Hire me</span>
+						</a>
+						<span class="has-question has-tooltip js-tooltip-with-list tooltipstered"><i class="fa fa-question-circle-o fa-green"></i></span>
+					</span>
+					<div class="clear"></div>
+				</div>
 
-			<span class="activity" data-livestamp="<?php bp_core_iso8601_date( bp_get_user_last_activity( bp_displayed_user_id() ) ); ?>"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>
+			</div><!-- #item-buttons -->
+
+			<!-- <span class="activity" data-livestamp="<?php bp_core_iso8601_date( bp_get_user_last_activity( bp_displayed_user_id() ) ); ?>"><?php bp_last_activity( bp_displayed_user_id() ); ?></span> -->
 
 			<?php
 
@@ -86,41 +99,60 @@ do_action( 'bp_before_member_header' ); ?>
 		</div><!-- #item-header-content -->
 
 	</div><!-- #item-header-cover-image -->
-
 	<div class="card">
-   <div class="card__content">
-      <h2 class="card__heading">Share designer</h2>
-      <div class="user__share">
-         <ul class="list list-inline u-text-center social-networks">
-            <li class="list-item">
-                <a class="social-icon facebook" href="https://www.facebook.com/sharer.php?u=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
-                    <span class="fa-stack fa-social-share fa-facebook-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-inverse fa-stack-1x"></i></span>
-                </a>
-            </li>
-            <li class="list-item">
-                <a class="social-icon linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
-                    <span class="fa-stack fa-social-share fa-linkedin-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-inverse fa-stack-1x"></i></span>
-                </a>
-            </li>
-            <li class="list-item">
-                <a class="social-icon twitter" href="https://twitter.com/share?url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
-                    <span class="fa-stack fa-social-share fa-twitter-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-inverse fa-stack-1x"></i></span>
-                </a>
-            </li>
-            <li class="list-item">
-                <a class="social-icon google-plus" href="https://plus.google.com/share?url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
-                    <span class="fa-stack fa-social-share fa-google-plus-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google-plus fa-inverse fa-stack-1x"></i></span>
-                </a>
-            </li>
-            <li class="list-item is-last">
-                <a class="social-icon pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
-                    <span class="fa-stack fa-social-share fa-pinterest-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-pinterest fa-inverse fa-stack-1x"></i></span>
-                </a>
-            </li>
-        </ul>
-      </div>
-   </div>
-</div>
+	   <div class="card__content">
+	      <h2 class="card__heading">About</h2>
+	      <p>Dreamscape Studios has built well over 10,000 models for our publicly available 3d model library and over 2400 models for clients around the world.  Models range from very low poly to ultra high poly, from game and simulation models to models for movies and engineering projects.</p>
+	   </div>
+	</div>
+	<div class="card">
+	   <div class="card__content">
+	      <h2 class="card__heading">Share designer</h2>
+	      <div class="user__share">
+	         <ul class="list list-inline u-text-center social-networks">
+	            <li class="list-item">
+	                <a class="social-icon facebook" href="https://www.facebook.com/sharer.php?u=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
+	                    <span class="fa-stack fa-social-share fa-facebook-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-inverse fa-stack-1x"></i></span>
+	                </a>
+	            </li>
+	            <li class="list-item">
+	                <a class="social-icon linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
+	                    <span class="fa-stack fa-social-share fa-linkedin-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-inverse fa-stack-1x"></i></span>
+	                </a>
+	            </li>
+	            <li class="list-item">
+	                <a class="social-icon twitter" href="https://twitter.com/share?url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
+	                    <span class="fa-stack fa-social-share fa-twitter-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-inverse fa-stack-1x"></i></span>
+	                </a>
+	            </li>
+	            <li class="list-item">
+	                <a class="social-icon google-plus" href="https://plus.google.com/share?url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
+	                    <span class="fa-stack fa-social-share fa-google-plus-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google-plus fa-inverse fa-stack-1x"></i></span>
+	                </a>
+	            </li>
+	            <li class="list-item is-last">
+	                <a class="social-icon pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo bp_loggedin_user_domain(); ?>" target="_blank">
+	                    <span class="fa-stack fa-social-share fa-pinterest-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-pinterest fa-inverse fa-stack-1x"></i></span>
+	                </a>
+	            </li>
+	        </ul>
+	      </div>
+	   </div>
+	</div>
+	<div class="card">
+	   <div class="card__content stat_content">
+	      <h2 class="card__heading">Stats</h2>
+	      <ul class="list list--stats">
+	         <li>Reputation Score <b>165,553</b></li>
+	         <li>Models <b>7,344</b></li>
+	         <li>Views <b>2.35m</b></li>
+	         <li>Likes <b>809</b></li>
+	         <li>Followers <b>56</b></li>
+	         <li>Response Rate <b>96%</b></li>
+	         <li>Average Response Time <b>1.6h</b></li>
+	      </ul>
+	   </div>
+	</div>
 </div><!-- #cover-image-container -->
 
 <?php
