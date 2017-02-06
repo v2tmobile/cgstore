@@ -311,12 +311,12 @@ if( function_exists('acf_add_options_page') ) {
 function theme_customize_css() { ?>
 
 	<style type="text/css">
-
+		/*Header color*/
 		<?php $header_color = get_field('header_hover_color', 'option');?>
 		.primary-navigation > ul.nav > li.is-active > a, .primary-navigation > ul.nav > li.current-menu-item > a, .primary-navigation>ul.nav>li:hover>a {
 			background: <?php echo $header_color; ?>;
 		}
-		.indicator{
+		.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions a.buy-now, .indicator{
 			background: <?php echo $header_color; ?>;
 		}
 		.primary-navigation>ul.nav>li>ul>li:hover{
@@ -326,31 +326,45 @@ function theme_customize_css() { ?>
 			color: <?php echo $header_color; ?>;
 		}
 
-		
+		/*Body color*/
 		<?php $body_color = get_field('body_color', 'option');?>
 		.box-tags a, .category-footer ul li a{
 			color: <?php echo $body_color; ?> !important;
 		}
-		.logo a b, section.content-section .challenges-list .challenge:hover .challenge-content .challenge-title a, section.content-section .designers .designer .designer-link, .content-box-wrapper .product-grid-item .content-box .content-box-content .content-box-price, a{
+		.jobs-item__content .jobs__title a, .logo a b, section.content-section .challenges-list .challenge:hover .challenge-content .challenge-title a, section.content-section .designers .designer .designer-link, .content-box-wrapper .product-grid-item .content-box .content-box-content .content-box-price, a{
 			color: <?php echo $body_color; ?>;
 		}
-		.product-container .product-content .product-main .tabs .tabs-item a, .active-filters__item, section.content-section .tutorials .tutorial .tutorial-content .tutorials-title, section.content-section .jobs-list .job .job-title a, section.content-section .jobs-list .job .forum-post-title a, section.content-section .jobs-list .forum-post .job-title a, section.content-section .jobs-list .forum-post .forum-post-title a, section.content-section .forum-post-list .job .job-title a, section.content-section .forum-post-list .job .forum-post-title a, section.content-section .forum-post-list .forum-post .job-title a, section.content-section .forum-post-list .forum-post .forum-post-title a, .search-form button, button{
+		.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions .product-pricing-make-offer, .product-container .product-content .product-main .tabs .tabs-item a, .active-filters__item, section.content-section .tutorials .tutorial .tutorial-content .tutorials-title, section.content-section .jobs-list .job .job-title a, section.content-section .jobs-list .job .forum-post-title a, section.content-section .jobs-list .forum-post .job-title a, section.content-section .jobs-list .forum-post .forum-post-title a, section.content-section .forum-post-list .job .job-title a, section.content-section .forum-post-list .job .forum-post-title a, section.content-section .forum-post-list .forum-post .job-title a, section.content-section .forum-post-list .forum-post .forum-post-title a, .search-form button, button{
 			color: <?php echo $body_color; ?>;
 		}
 		.jobs-application__earnings .button, .form-submit input[type="submit"], .product-container .product-content .product-thumbs-slider .slick-arrow, .product-container .product-content .product-header .product-interaction .like-button .like-button-counter, .active-filters__item, .noUi-connect, section.content-section .showcase-items .showcase-item .showcase-item-content .showcase-item-header, .button{
 			background: <?php echo $body_color; ?>;
 		}
-		.jobs-application__content--footer{
+		.product-container .product-content .product-header .product-interaction .like-button:hover .like-button-counter, .jobs-application__content--footer{
 			background: <?php echo $header_color; ?>;
 		}
 		.jobs-application__earnings .button{
 			opacity: 0.7;
 		}
-		.product-container .product-content .product-thumbs-slider .slick-slide.slick-current img, .noUi-horizontal .noUi-handle{
+		.site-publishing-overlay, .product-container .product-content .product-thumbs-slider .slick-slide.slick-current img, .noUi-horizontal .noUi-handle{
 			border-color: <?php echo $body_color; ?>;
 		}
 		.product-container .product-content .product-header .product-interaction .like-button .like-button-counter:before{
-			border-right-color: <?php echo $body_color; ?>;
+			border-right-color: <?php echo $body_color; ?>!important;
+		}
+
+		/*Icons*/
+		<?php $spliticon = get_field('split_icon', 'option');?>
+		<?php $hexagon = get_field('hexagon', 'option');?>
+		<?php $radio_checkbox = get_field('radio_checkbox', 'option');?>
+		.split {
+			background: url(<?php echo $spliticon; ?>) no-repeat center;
+		}
+		.jobs-form__label:before, .label--with-hexagon:before, .bullet--hexagon li:before, .label--hexagon:before, .jobs-header__annotation:before{
+			background: url(<?php echo $hexagon; ?>) no-repeat;
+		}
+		.icheckbox{
+			background: url(<?php echo $radio_checkbox; ?>) no-repeat;
 		}
 	</style>
 
