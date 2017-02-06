@@ -319,7 +319,7 @@ function theme_customize_css() { ?>
 		.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions a.buy-now, .indicator{
 			background: <?php echo $header_color; ?>;
 		}
-		.primary-navigation>ul.nav>li>ul>li:hover{
+		.vertical-menu li a:hover, .primary-navigation>ul.nav>li>ul>li:hover{
 			border-left-color: <?php echo $header_color; ?>;
 		}
 		.select2-container .select2-results ul li:hover, .tabs__item a, .product-container .product-content .product-main .product-stats li i, .list-files h3, .breadcrumb-wrapper ul li a:hover, section.content-section .jobs-list .job .job-deadline b, section.content-section .jobs-list .job .forum-post-last-activity b, section.content-section .jobs-list .forum-post .job-deadline b, section.content-section .jobs-list .forum-post .forum-post-last-activity b, section.content-section .forum-post-list .job .job-deadline b, section.content-section .forum-post-list .job .forum-post-last-activity b, section.content-section .forum-post-list .forum-post .job-deadline b, section.content-section .forum-post-list .forum-post .forum-post-last-activity b, section.content-section .designers .designer:hover .designer-link, section.content-section .designers .designer .designer-stats li b, footer.footer .site-footer-links .site-footer-copyright .site-footer-copyright-links a:hover, .categories-list .category .category-content .category-main-content .category-title a:hover{
@@ -361,6 +361,7 @@ function theme_customize_css() { ?>
 		/*Icons*/
 		<?php $spliticon = get_field('split_icon', 'option');?>
 		<?php $hexagon = get_field('hexagon', 'option');?>
+		<?php $hexagon_small = get_field('hexagon_small', 'option');?>
 		<?php $radio_checkbox = get_field('radio_checkbox', 'option');?>
 		.split {
 			background: url(<?php echo $spliticon; ?>) no-repeat center;
@@ -368,8 +369,11 @@ function theme_customize_css() { ?>
 		.jobs-form__label:before, .label--with-hexagon:before, .bullet--hexagon li:before, .label--hexagon:before, .jobs-header__annotation:before{
 			background: url(<?php echo $hexagon; ?>) no-repeat;
 		}
+		.heading {
+			background: url(<?php echo $hexagon_small; ?>) no-repeat 0 3px;
+		}
 		.icheckbox{
-			background: url(<?php echo $radio_checkbox; ?>) no-repeat;
+			background: url(<?php echo $radio_checkbox; ?>) no-repeat;no-repeat 0 3px
 		}
 	</style>
 
