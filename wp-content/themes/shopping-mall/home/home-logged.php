@@ -36,7 +36,8 @@
 	  				$vendors = $vendor_paged_query->get_results(); 
 	  				if($vendors) :
                        foreach($vendors as $vendor):
-                          
+                       	 $count_product = 0;
+                       	 $count_product = count_user_posts($vendor->ID,'product');
                        	 ?>
                      <div class="designer">
 						<div class="designer-photo">
@@ -50,7 +51,7 @@
 							<div class="designer-name"><?php the_author_meta( 'user_nicename', $vendor->ID );?></div>
 							<ul class="designer-stats">
 								<li>Weekly reputation: <b>0</b></li>
-								<li>Models: <b>0</b></li>
+								<li>Models: <b><?php echo $count_product; ?></b></li>
 							</ul>
 							<div class="designer-link"><a href="<?php echo get_author_posts_url($vendor->ID); ?>" title="<?php the_author_meta( 'user_nicename', $vendor->ID );?>">View designer profile</a></div>
 						</div>
