@@ -106,6 +106,16 @@ function cgs_disable_comment_url($fields) {
 }
 add_filter('comment_form_default_fields','cgs_disable_comment_url');
 
+
+// filter vendor 
+//if(is_home() || is_front_page() || is_page_template('page-top-designer')){
+add_action( 'pre_user_query', 'cgs_filter_vendor_product' );
+function cgs_filter_vendor_product($user_query){
+     $user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from); 
+  }
+//}
+
+
 if ( ! function_exists( 'shopping_mall_setup' ) ) :
 function shopping_mall_setup() {
 	/*

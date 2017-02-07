@@ -33,7 +33,7 @@ add_action('woocommerce_before_shop_loop_item_title', function (){
       <div class="content-box-content">
         <a class="content-box-link" href="<?php echo get_permalink(get_the_ID())?>" title="<?php echo get_the_title(get_the_ID())?>">
             <figure class="content-box-image">
-                <img alt="<?php echo get_the_title(get_the_ID())?>" src="<?php isset($image) ? $image : the_post_thumbnail_url('medium')?>">
+                <img alt="<?php echo get_the_title(get_the_ID())?>" src="<?php echo isset($image) ? $image : the_post_thumbnail_url('medium')?>">
                 <figcaption class="content-box-title"><?php echo get_the_title(get_the_ID())?></figcaption>
             </figure>
         </a>

@@ -26,11 +26,10 @@
 				  <?php 
                       $vendor_arg = array ( 
 					  		'role' 				=> 'vendor', 
-					  		//'meta_key' 			=> 'pv_shop_slug', 
-				  			//'meta_value'   		=> '',
-							//'meta_compare' 		=> '>',
-							'orderby' 			=> 'registered',
-				  			'order'				=> 'ASC'
+							'orderby' 			=> 'post_count',
+							'per_page'=>3,
+				  			'order'				=> 'DESC',
+				  			'show_products'	=> 'no'
 					  	);
                     $vendor_paged_query = New WP_User_Query( $vendor_arg ); 
 	  				$vendors = $vendor_paged_query->get_results(); 
