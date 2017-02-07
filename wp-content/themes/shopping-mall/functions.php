@@ -356,7 +356,7 @@ function theme_customize_css() { ?>
 		.user-header__status, .fa.fa-green, .ui-tooltip-content .product-price, .product-container .product-sidebar .details-box .product-pricing .product-pricing-actions .product-pricing-make-offer, .product-container .product-content .product-main .tabs .tabs-item a, .active-filters__item, section.content-section .tutorials .tutorial .tutorial-content .tutorials-title, section.content-section .jobs-list .job .job-title a, section.content-section .jobs-list .job .forum-post-title a, section.content-section .jobs-list .forum-post .job-title a, section.content-section .jobs-list .forum-post .forum-post-title a, section.content-section .forum-post-list .job .job-title a, section.content-section .forum-post-list .job .forum-post-title a, section.content-section .forum-post-list .forum-post .job-title a, section.content-section .forum-post-list .forum-post .forum-post-title a, .search-form button, button{
 			color: <?php echo $body_color; ?>;
 		}
-		#buddypress .user-header__actions .button, .jobs-application__earnings .button, .form-submit input[type="submit"], .product-container .product-content .product-thumbs-slider .slick-arrow, .product-container .product-content .product-header .product-interaction .like-button .like-button-counter, .active-filters__item, .noUi-connect, section.content-section .showcase-items .showcase-item .showcase-item-content .showcase-item-header, .button{
+		.popup-content:before, #buddypress .user-header__actions .button, .jobs-application__earnings .button, .form-submit input[type="submit"], .product-container .product-content .product-thumbs-slider .slick-arrow, .product-container .product-content .product-header .product-interaction .like-button .like-button-counter, .active-filters__item, .noUi-connect, section.content-section .showcase-items .showcase-item .showcase-item-content .showcase-item-header, .button{
 			background: <?php echo $body_color; ?>;
 		}
 		.select2-container--default .select2-results__option--highlighted[aria-selected], .product-container .product-content .product-header .product-interaction .like-button:hover .like-button-counter, .jobs-application__content--footer{
@@ -383,10 +383,10 @@ function theme_customize_css() { ?>
 		.split {
 			background: url(<?php echo $spliticon; ?>) no-repeat center;
 		}
-		.title, .jobs-form__label:before, .label--with-hexagon:before, .bullet--hexagon li:before, .label--hexagon:before, .jobs-header__annotation:before{
+		.jobs-form__label:before, .label--with-hexagon:before, .bullet--hexagon li:before, .label--hexagon:before, .jobs-header__annotation:before{
 			background: url(<?php echo $hexagon; ?>) no-repeat;
 		}
-		.heading {
+		.title, .heading {
 			background: url(<?php echo $hexagon_small; ?>) no-repeat 0 3px;
 		}
 		.icheckbox{

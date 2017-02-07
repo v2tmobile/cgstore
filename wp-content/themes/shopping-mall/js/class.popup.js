@@ -135,7 +135,7 @@ var Popup = (function() {
              }
          });
 	}
-
+	
 	
 	function openPopup(idDiv){
 		$('.hidepopup').css('display','none')

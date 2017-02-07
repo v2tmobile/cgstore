@@ -230,3 +230,7 @@
 	do_action( 'bp_after_member_home_content' ); ?>
 	<?php endif; ?>
 </div><!-- #buddypress -->
+<?php echo get_template_part('contact-user/index'); ?>
+<div class="tooltip-content">
+<div id="hire-me-button-tooltip"><ol><li>Provide job details and price</li><li>Designer negotiates or accepts </li><li>Pay the accepted price</li><li>Confirm job is done</li><li>Designer receives payment</li></ol></div>
+</div>
