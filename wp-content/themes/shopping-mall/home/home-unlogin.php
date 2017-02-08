@@ -1,7 +1,8 @@
+
 <div class="section section--low-poly">
    <div class="container">
       <h2 class="section__title">VR / AR Ready Low-poly 3D Models</h2>
-      <div class="section__content">
+      <div class="section__content" style="background:url(<?php echo get_field('low_poly', get_the_ID())?>) no-repeat center left">
          <div class="section__text">
             <h3 class="title">Low Poly 3D Models ready for video games, VR &amp; AR real-time applications</h3>
             <a class="button button--big button--full button--big-text" href="<?php echo HOME_URL; ?>/product-category/vr-low-poly-models/" >Low poly 3D models</a>
@@ -13,7 +14,7 @@
 <div class="section section--alt section--cg-models">
    <div class="container">
       <h2 class="section__title">3D Models</h2>
-      <div class="section__content">
+      <div class="section__content" style="background:url(<?php echo get_field('3d_models', get_the_ID())?>) no-repeat center right">
          <div class="section__text">
             <h3 class="title">Buy professional 3D Models for your project</h3>
             <a class="button button--big button--full button--big-text" href="<?php echo HOME_URL; ?>/product-category/3d-models/" id="">Buy 3D models</a>
@@ -26,12 +27,23 @@
       <h2 class="section__title">3D Jobs</h2>
       <div class="section__content">
          <div class="jobs-content">
-            <div class="jobs-content__find">
-               <h3 class="title">Find 3D related jobs and sell your skills</h3>
-            </div>
-            <div class="jobs-content__hire">
-               <h3 class="title">Hire freelancers to help finish your projects in time</h3>
-            </div>
+            <?php if( have_rows('3d_jobs') ): ?>
+               <?php $i = -1;?>
+               <?php while( have_rows('3d_jobs') ): the_row(); 
+
+                  // vars
+                  $desc = get_sub_field('description');
+                  $img = get_sub_field('image');
+                  $arr = ['find', 'hire'];
+                  $i++;
+                  ?>
+                  <div class="jobs-content__<?php echo $arr[$i]?>" style="background: url(<?php echo $img;?>) no-repeat top center">
+                     <h3 class="title"><?php echo $desc;?></h3>
+                  </div>
+
+               <?php endwhile; ?>
+
+            <?php endif; ?>
          </div>
       </div>
       <p><a class="button button--big button--big-text button--longer" href="<?php echo HOME_URL; ?>/jobs/">Post or find 3D jobs</a></p>
@@ -42,22 +54,24 @@
       <h2 class="section__title">3D Designer Community</h2>
       <div class="section__content">
          <div class="community-content">
-            <div class="community-content__col community-content__col--designers">
-               <h3 class="community-content__title">Designers</h3>
-               <p class="title">Build your portfolio and become the best among 3D designers</p>
-            </div>
-            <div class="community-content__col community-content__col--challenges">
-               <h3 class="community-content__title">Challenges</h3>
-               <p class="title">Participate in challenges and win hefty prizes</p>
-            </div>
-            <div class="community-content__col community-content__col--galleries">
-               <h3 class="community-content__title">Galleries</h3>
-               <p class="title">Showcase your best renders, get feedback and recognition</p>
-            </div>
-            <div class="community-content__col community-content__col--forum">
-               <h3 class="community-content__title">Forum</h3>
-               <p class="title">Find tutorials and discuss other 3d related matters</p>
-            </div>
+            <?php if( have_rows('3d_designer') ): ?>
+               <?php $i = -1;?>
+               <?php while( have_rows('3d_designer') ): the_row(); 
+
+                  // vars
+                  $desc = get_sub_field('description');
+                  $img = get_sub_field('image');
+                  $title = get_sub_field('title');
+                  $arr = ['designers', 'challenges', 'galleries', 'forum'];
+                  $i++;
+                  ?>
+                  <div class="community-content__col community-content__col--<?php echo $arr[$i]?>" style="background: url(<?php echo $img;?>) no-repeat top center">
+                     <h3 class="community-content__title"><?php echo $title; ?></h3>
+                     <p class="title"><?php echo $desc;?></p>
+                  </div>
+               <?php endwhile; ?>
+
+            <?php endif; ?>
          </div>
       </div>
       <p><a class="button button--big button--big-text button--longer" href="<?php echo HOME_URL; ?>/3d-community/" id="">Join the Community!</a></p>

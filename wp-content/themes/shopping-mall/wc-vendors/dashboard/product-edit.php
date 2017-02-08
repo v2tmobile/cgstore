@@ -144,7 +144,11 @@ html{
 					                 }
 				                  }
 				              	?>
-				              
+				              	<li class="sortable__item sortable__item--new js-new-visual" draggable="false">
+							        <div>
+							            <i class="fa fa-plus-circle fa-24 fa-not-spaced"></i>
+							        </div>
+							    </li>
 				            </ul>
 				          </div>
 				        </div>
@@ -563,6 +567,7 @@ html{
 	  </div>
 	</div>
 </form>
+<?php echo get_template_part('contact-user/new-visual'); ?>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/product-preview.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/dmuploader.min.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH;?>/js/class.popup.js"></script>
@@ -570,7 +575,11 @@ html{
 
  jQuery(document).ready(function($){
 
+ 	$('.js-new-visual').click(function(){
+ 		Popup.openPopup('#modal-new-visual');
+ 	});
 
+ 	Popup.reviewVideoUrl();
    /*$("#wcv-product-edit").validate({
 		onkeyup: false,
         errorClass: "error",
