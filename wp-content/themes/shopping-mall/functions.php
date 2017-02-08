@@ -4,6 +4,8 @@ define('HOME_URL',get_home_url());
 define('BlOG_NAME',get_bloginfo('blog_name'));
 define('SLOGAN', get_bloginfo('description'));
 define('PREFIX_WEBSITE','cgs_');
+define('D3_MODEL',24);
+define('VR_MODEL',32);
 //add_image_size( 'thumb-service',225,230,true);
 
 
@@ -40,6 +42,28 @@ function add_class_product_cat_parent($classes){
   
   return $classes;
 
+}
+
+function cgs_count_product_by_user($authorID = null,$termID = null, $taxonomy = null,$post_type ='product',$free = false){
+   $args = array(
+          'post_type'=>$post_type,
+          'orderby'       =>  'post_date',
+    	  'order'         =>  'ASC'
+       	);
+   if($authorID) $args['author'] = $authorID;
+   if($termID && $taxonomy) $args['tax_query'] = array( array(  
+            'taxonomy' =>$taxonomy,  
+            'field' => 'id',  
+            'terms' =>$termID  
+        ) );
+   	if($free) $args['meta_query'] =  array(
+                  'key' => '_regular_price',
+                  'value' => 0,
+                  'compare' => '=',
+                  'type' => 'NUMERIC'
+      );
+  
+   return new WP_Query($args);
 }
 
 
@@ -109,10 +133,11 @@ add_filter('comment_form_default_fields','cgs_disable_comment_url');
 
 // filter vendor 
 //if(is_home() || is_front_page() || is_page_template('page-top-designer')){
-add_action( 'pre_user_query', 'cgs_filter_vendor_product' );
-function cgs_filter_vendor_product($user_query){
-     $user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from); 
-  }
+// add_action( 'pre_user_query', 'cgs_filter_vendor_product',999,1);
+// function cgs_filter_vendor_product($user_query){
+//      $user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from); 
+//      print_r($user_query->query_from);
+//   }
 //}
 
 

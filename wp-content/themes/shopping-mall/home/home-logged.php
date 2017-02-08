@@ -24,12 +24,21 @@
 				</header>
 				<div class="designers">
 				  <?php 
+				  add_action( 'pre_user_query', 'cgs_filter_vendor_product');
+				  function cgs_filter_vendor_product($user_query){
+				  	    global $wpdb;
+					     $user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from); 
+					     //$user_query->query_where  = $user_query->query_where . " AND {$wpdb->posts}.post_date > '" . date('Y-m-d', strtotime('-7 days')) . "'"; 
+					    
+					  }
+
                       $vendor_arg = array ( 
 					  		'role' 				=> 'vendor', 
 							'orderby' 			=> 'post_count',
 							'per_page'=>3,
 				  			'order'				=> 'DESC',
-				  			'show_products'	=> 'no'
+				  			'show_products'	=> 'no',
+				  			'has_published_posts' => array('product')
 					  	);
                     $vendor_paged_query = New WP_User_Query( $vendor_arg ); 
 	  				$vendors = $vendor_paged_query->get_results(); 

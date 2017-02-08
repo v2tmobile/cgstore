@@ -47,6 +47,10 @@ get_header(); ?>
       
 		<div class="users-list">
 			<?php 
+			  add_action( 'pre_user_query', 'cgs_filter_vendor_product');
+				  function cgs_filter_vendor_product($user_query){   
+					$user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from);	    
+			   }
               $vendor_args = array(
               	 'role' 		    => 'vendor',
 	  			 'orderby' 		    => 'post_count',
@@ -54,7 +58,8 @@ get_header(); ?>
 				 'number'         => 12,
 				 'show_products'	=> 'yes',
 				 'search' => isset($_GET['keywords']) ? $_GET['keywords'] : '',
-				 'search_columns'=>array('user_nicename')
+				 'search_columns'=>array('user_nicename'),
+				 'has_published_posts' => array('product')
 			   );
              $vendor_query = New WP_User_Query( $vendor_args ); 
 	  		 $all_vendors = $vendor_query->get_results(); 
@@ -78,7 +83,7 @@ get_header(); ?>
 					   <div class="user__name">
 					      <h4><a id="" href="<?php echo get_author_posts_url($vendor->ID); ?>"><?php the_author_meta( 'user_nicename', $vendor->ID );?></a></h4>
 					   </div>
-					   <div class="user__tags">
+					   <!--<div class="user__tags">
 					      <div class="tag-list">
 					         <ul>
 					            <li><a id="" href="#">car</a></li>
@@ -88,7 +93,7 @@ get_header(); ?>
 					            <li><a id="" href="#">sport</a></li>
 					         </ul>
 					      </div>
-					   </div>
+					   </div>-->
 					   <div class="clear"></div>
 					</div>
 					<div class="user__info">

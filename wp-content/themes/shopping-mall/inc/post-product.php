@@ -86,6 +86,12 @@
     	 update_field($prefix.'challenge',$challenge,$product_id);
      }
 
+     // $userID  = get_current_user_id();
+     // if($userID){
+     //     $tags = get_user_meta($userID,PREFIX_WEBSITE.'tags_product',true);
+         
+     // }
+
    }
 
  }
