@@ -5,7 +5,7 @@
         width: 100%;
         top: 0;
         height: 100%;
-            z-index: 100;
+            z-index: 1000;
     .overlay{
         background: #000;
         opacity: 0.7;
@@ -789,7 +789,8 @@ label[for="adult_content"]{
         z-index: -1;
     }
 }
-.modal__title{
+.popup{
+    .modal__title{
     font-size: 1.5rem;
     line-height: 24px;
     color: #fff;
@@ -841,6 +842,7 @@ label[for="adult_content"]{
     background: #f5f4f0;
     text-align: right;
 }
+}
 #hire-me-button-tooltip{
     ol{
         display: block;
@@ -872,4 +874,7 @@ label[for="adult_content"]{
 }
 .tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background, .tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border{
         border-bottom-color: #fff;
+}
+.preview-container{
+    display: none;
 }
