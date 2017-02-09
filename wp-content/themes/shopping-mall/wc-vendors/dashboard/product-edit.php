@@ -578,8 +578,13 @@ html{
  	$('.js-new-visual').click(function(){
  		Popup.openPopup('#modal-new-visual');
  	});
+ 	$('.modal__close').click(function(){
+ 		Popup.closePopup('#modal-new-visual');
+ 	});
+
 
  	Popup.reviewVideoUrl();
+ 	Popup.attachVideo();
    /*$("#wcv-product-edit").validate({
 		onkeyup: false,
         errorClass: "error",

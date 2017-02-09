@@ -1135,3 +1135,15 @@
 		}
 	}
 }
+
+.sortable__item{
+	&.video_yt{
+		background: url(../images/youtube.png) no-repeat;
+	}	
+	&.video_vm{
+		background: url(../images/vimeo.png) no-repeat;
+	}
+	&.video_skfb{
+		background: url(../images/sketchfab.png) no-repeat;
+	}
+}
