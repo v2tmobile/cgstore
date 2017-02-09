@@ -20,7 +20,7 @@
 						<iframe style="width: 100%" src="" width="100%" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 					</div>
 			</div>
-			<div class="modal__footer"><input type="submit" class="button js-submit" value="Attach"/></div>
+			<div class="modal__footer"><input type="button" class="button js-submit" value="Attach"/></div>
 		</form>
 	</div>
 </div>
