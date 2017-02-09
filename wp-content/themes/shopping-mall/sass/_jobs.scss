@@ -1154,3 +1154,19 @@
 		}
 	}	
 }
+.follow-button{
+	    margin-top: 13px!important;
+    a{
+    color: #fff!important;
+    height: auto;
+    line-height: 1.5;
+    border-radius: 20px;
+    padding: 5px 10px!important;
+    	&:before{
+    		content: "\f058";
+    		    font: normal normal normal 14px/17px FontAwesome;
+    		    display: inline-block;
+    		    margin-right: 5px;
+    	}
+    }
+}
