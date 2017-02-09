@@ -43,7 +43,7 @@
        $vr_model = cgs_count_product_by_user($profile_ID,VR_MODEL,'product_cat');
        $gallery = cgs_count_product_by_user($profile_ID,null,null,'gallery');
        $free = cgs_count_product_by_user($profile_ID,null,null,'product',true);
-       
+
 	 ?>
 	<div class="user-content">
 		<div class="user-content__tabs" data-easytabs="true">
@@ -58,27 +58,29 @@
 			<div class="tab-content is-active" id="tab-low_poly">
 				<div class="content-box-wrapper grid">
 					<?php
-		                echo do_shortcode('[recent_products per_page="8" columns="4"]');
+		                echo do_shortcode('[custom_category_products category="3d-models" per_page="12" columns="4" author="'.$profile_ID.'"]');
 					  ?>
 				</div>
 			</div>
 			<div class="tab-content " id="tab-cg">
 				<div class="content-box-wrapper grid">
 					<?php
-		                echo do_shortcode('[recent_products per_page="8" columns="4"]');
+		                echo do_shortcode('[custom_category_products category="vr-low-poly-models" per_page="12" columns="4" author="'.$profile_ID.'"]');
 					  ?>
 				</div>
 			</div>
 			<div class="tab-content " id="tab-free">
 				<div class="content-box-wrapper grid">
-					dsd
+					<?php
+		                echo do_shortcode('[custom_category_products per_page="12" columns="4" author="'.$profile_ID.'" free="1"]');
+					  ?>
 				</div>
 			</div>
 			<div class="tab-content " id="tab-galleries">
 				<div class="content-box-wrapper grid">
 					<?php 
 
-					    query_posts(array('post_type'=>'gallery','posts_per_page'=>10,'author'=>$profile_ID));
+					    query_posts(array('post_type'=>'gallery','posts_per_page'=>12,'author'=>$profile_ID,'post_status' => 'publish'));
 					    if(have_posts()){
 					          
 					 ?>
@@ -233,7 +235,7 @@
 
 	/**
 	 * Fires after the display of member home content.
-	 *
+	 *	
 	 * @since 1.2.0
 	 */
 	do_action( 'bp_after_member_home_content' ); ?>

@@ -17,6 +17,7 @@ include_once 'inc/add-like.php';
 include_once 'inc/helper.php';
 include_once 'inc/post-product.php';
 include_once 'inc/ajax.php';
+include_once 'inc/shortcodes.php';
 
 add_filter('woocommerce_login_redirect', 'wc_login_redirect');
  
@@ -48,6 +49,7 @@ function cgs_count_product_by_user($authorID = null,$termID = null, $taxonomy = 
    $args = array(
           'post_type'=>$post_type,
           'orderby'       =>  'post_date',
+          'post_status'         => 'publish',
     	  'order'         =>  'ASC'
        	);
    if($authorID) $args['author'] = $authorID;
@@ -62,7 +64,7 @@ function cgs_count_product_by_user($authorID = null,$termID = null, $taxonomy = 
                   'compare' => '=',
                   'type' => 'NUMERIC'
       );
-  
+   	
    return new WP_Query($args);
 }
 
