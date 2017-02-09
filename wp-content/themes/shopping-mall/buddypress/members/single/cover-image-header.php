@@ -52,7 +52,7 @@ do_action( 'bp_before_member_header' ); ?>
 					<a href="#" class="button button--pill button--tiny-pill js-auth-control js-modal js-contact"><i class="fa fa-commenting-o"></i> <span>Contact</span></a>
 					<a href="" class="button button--pill button--tiny-pill js-follow js-auth-control js-modal"><i class="fa fa-check-circle"></i><span>Follow</span></a>
 					<span class="hire-designer-button">
-						<a class="button button--pill button--tiny-pill button--alt js-hire-me" href="https://www.cgtrader.com/jobs/new?designer_id=39498"><i class="fa fa-dollar"></i> 
+						<a class="button button--pill button--tiny-pill button--alt js-hire-me" href="<?php echo HOME_URL; ?>/post-job/?designer_id=<?php echo $profile_ID; ?>"><i class="fa fa-dollar"></i> 
 							<span>Hire me</span>
 						</a>
 						<span class="has-question has-tooltip js-tooltip-with-list tooltipstered" data-tooltip-content="#hire-me-button-tooltip"><i class="fa fa-question-circle-o fa-green"></i></span>
@@ -174,7 +174,7 @@ do_action( 'bp_before_member_header' ); ?>
  *
  * @since 1.2.0
  */
-do_action( 'bp_after_member_header' ); ?>
+//do_action( 'bp_after_member_header' ); ?>
 
 <div id="template-notices" role="alert" aria-atomic="true">
 	<?php

@@ -33,52 +33,59 @@
 		?>
 
 	</div><!-- #item-header -->
-
-	<!--User Category-->
-	<?php if ( bp_displayed_user_use_cover_image_header() ) : ?>
-	<?php
+    <?php
        $profile_ID = bp_displayed_user_id();
        $userID   = get_current_user_id();
        $d_model  = cgs_count_product_by_user($profile_ID,D3_MODEL,'product_cat');
        $vr_model = cgs_count_product_by_user($profile_ID,VR_MODEL,'product_cat');
        $gallery = cgs_count_product_by_user($profile_ID,null,null,'gallery');
        $free = cgs_count_product_by_user($profile_ID,null,null,'product',true);
-       
+       if(bp_is_user_activity()):  
 	 ?>
 	<div class="user-content">
 		<div class="user-content__tabs" data-easytabs="true">
 		   <ul class="tabs tabs--sealed">
+		   <?php if($d_model->found_posts > 0 ):  ?>
 		      <li class="tabs__item is-active" data-count="128"><a href="#tab-low_poly" class="is-active">VR / Low-Poly models (<?php echo isset($d_model->found_posts) ? $d_model->found_posts : 0; ?>)</a></li>
+		  <?php  endif; ?>
+		  <?php if($vr_model->found_posts > 0 ):  ?>
 		      <li class="tabs__item" data-count="7340"><a href="#tab-cg">3D Models (<?php echo isset($vr_model->found_posts) ? $vr_model->found_posts : 0; ?>)</a></li>
+		   <?php endif; ?>
+		   <?php if($free->found_posts > 0 ):  ?>
 		      <li class="tabs__item" data-count="4"><a href="#tab-free">Free 3D Models (<?php echo isset($free->found_posts) ? $free->found_posts : 0; ?>)</a></li>
+		    <?php endif; ?>
+		    <?php if($gallery->found_posts > 0 ):  ?>
 		      <li class="tabs__item" data-count="1"><a href="#tab-galleries">Gallery (<?php echo isset($gallery->found_posts) ? $gallery->found_posts : 0; ?>)</a></li>
+		     <?php endif; ?>
 		   </ul>
 		</div>
 		<div class="user-content__content">
 			<div class="tab-content is-active" id="tab-low_poly">
 				<div class="content-box-wrapper grid">
 					<?php
-		                echo do_shortcode('[recent_products per_page="8" columns="4"]');
+		                echo do_shortcode('[custom_category_products category="3d-models" per_page="12" columns="4" author="'.$profile_ID.'"]');
 					  ?>
 				</div>
 			</div>
 			<div class="tab-content " id="tab-cg">
 				<div class="content-box-wrapper grid">
 					<?php
-		                echo do_shortcode('[recent_products per_page="8" columns="4"]');
+		                echo do_shortcode('[custom_category_products category="vr-low-poly-models" per_page="12" columns="4" author="'.$profile_ID.'"]');
 					  ?>
 				</div>
 			</div>
 			<div class="tab-content " id="tab-free">
 				<div class="content-box-wrapper grid">
-					dsd
+					<?php
+		                echo do_shortcode('[custom_category_products per_page="12" columns="4" author="'.$profile_ID.'" free="1"]');
+					  ?>
 				</div>
 			</div>
 			<div class="tab-content " id="tab-galleries">
 				<div class="content-box-wrapper grid">
 					<?php 
 
-					    query_posts(array('post_type'=>'gallery','posts_per_page'=>10,'author'=>$profile_ID));
+					    query_posts(array('post_type'=>'gallery','posts_per_page'=>12,'author'=>$profile_ID,'post_status' => 'publish'));
 					    if(have_posts()){
 					          
 					 ?>
@@ -151,14 +158,12 @@
 			});
 		});
 	</script>
-	<?php else : ?>
-
-
-	<div id="item-nav">
+ <?php endif; ?>
+	<!--<div id="item-nav">
 		<div class="item-list-tabs no-ajax" id="object-nav" aria-label="<?php esc_attr_e( 'Member primary navigation', 'buddypress' ); ?>" role="navigation">
 			<ul>
 
-				<?php bp_get_displayed_user_nav(); ?>
+				<?php //bp_get_displayed_user_nav(); ?>
 
 				<?php
 
@@ -167,12 +172,12 @@
 				 *
 				 * @since 1.2.4
 				 */
-				do_action( 'bp_member_options_nav' ); ?>
+				//do_action( 'bp_member_options_nav' ); ?>
 
 			</ul>
 		</div>
 	</div><!-- #item-nav -->
-
+<?php if(!bp_is_user_activity()): ?>
 	<div id="item-body">
 
 		<?php
@@ -188,10 +193,10 @@
 			bp_displayed_user_front_template_part();
 
 		elseif ( bp_is_user_activity() ) :
-			bp_get_template_part( 'members/single/activity' );
+			//bp_get_template_part( 'members/single/activity' );
 
 		elseif ( bp_is_user_blogs() ) :
-			bp_get_template_part( 'members/single/blogs'    );
+			//bp_get_template_part( 'members/single/blogs'    );
 
 		elseif ( bp_is_user_friends() ) :
 			bp_get_template_part( 'members/single/friends'  );
@@ -216,7 +221,7 @@
 
 		// If nothing sticks, load a generic template
 		else :
-			bp_get_template_part( 'members/single/plugins'  );
+			//bp_get_template_part( 'members/single/plugins'  );
 
 		endif;
 
@@ -228,18 +233,14 @@
 		do_action( 'bp_after_member_body' ); ?>
 
 	</div><!-- #item-body -->
-	
-	<?php
 
+	<?php
+          endif;
 	/**
 	 * Fires after the display of member home content.
 	 *
 	 * @since 1.2.0
 	 */
 	do_action( 'bp_after_member_home_content' ); ?>
-	<?php endif; ?>
+
 </div><!-- #buddypress -->
-<?php echo get_template_part('contact-user/index'); ?>
-<div class="tooltip-content">
-<div id="hire-me-button-tooltip"><ol><li>Provide job details and price</li><li>Designer negotiates or accepts </li><li>Pay the accepted price</li><li>Confirm job is done</li><li>Designer receives payment</li></ol></div>
-</div>
