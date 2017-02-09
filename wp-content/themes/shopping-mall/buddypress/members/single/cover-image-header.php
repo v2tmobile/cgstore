@@ -50,7 +50,8 @@ do_action( 'bp_before_member_header' ); ?>
 		 ?>
 				<div class="user-header__actions">
 					<a href="#" class="button button--pill button--tiny-pill js-auth-control js-modal js-contact"><i class="fa fa-commenting-o"></i> <span>Contact</span></a>
-					<a href="" class="button button--pill button--tiny-pill js-follow js-auth-control js-modal"><i class="fa fa-check-circle"></i><span>Follow</span></a>
+					<!--<a href="" class="button button--pill button--tiny-pill js-follow js-auth-control js-modal"><i class="fa fa-check-circle"></i><span>Follow</span></a>-->
+					<?php echo bp_follow_add_profile_follow_button(); ?>
 					<span class="hire-designer-button">
 						<a class="button button--pill button--tiny-pill button--alt js-hire-me" href="<?php echo HOME_URL; ?>/post-job/?designer_id=<?php echo $profile_ID; ?>"><i class="fa fa-dollar"></i> 
 							<span>Hire me</span>
