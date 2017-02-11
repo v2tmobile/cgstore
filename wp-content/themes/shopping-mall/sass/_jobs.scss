@@ -1309,3 +1309,99 @@
 .site-page--community-rating .product-preview__navigation-right {
     right: 0;
 }
+.product-thumbs ul li {
+    display: inline-block;
+    width: 79px!important;
+    height: 59px;
+    margin-right: 2px;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    padding: 1px;
+    opacity: 1;
+    -webkit-transition: 0.15s ease-in-out all;
+    transition: 0.15s ease-in-out all;
+    list-style: none;
+}
+.product-thumbs .slick-list{
+	padding: 0 50px;
+	.slick-slide{
+		    border: 2px solid transparent;
+	}
+	.slick-slide.slick-current.slick-active{
+		    border-color: #ce3c5c
+	}
+}
+.product-thumbs ul li img {
+    width: 100%;
+    height: 53px;
+}
+.product-thumb-navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #fff;
+}
+.product-thumb-navigation__item {
+    position: absolute;
+    margin-top: -63px;
+    border-radius: 5px;
+    padding: 16px 4px;
+    background: rgba(103,196,176,0.7);
+    cursor: pointer;
+    -webkit-transition: 0.15s ease-in-out color;
+    transition: 0.15s ease-in-out color;
+}
+.product-thumb-navigation__item.community-ratings-item-navigation {
+    margin-top: -88px;
+}
+.product-thumb-navigation__item.navigation-without-scrollbar {
+    margin-top: -58px;
+}
+.product-thumb-navigation__item.is-prev {
+    left: 0;
+}
+.product-thumb-navigation__item.is-disabled {
+}
+.product-thumb-navigation__item.is-next {
+    right: 0;
+}
+.site-page--community-rating .rating-sidebar {
+    width: 36.95271%;
+    float: right;
+    margin-right: 0;
+}
+.site-page--community-rating .tabs {
+    padding-left: 215px;
+    margin-top: -38px;
+}
+.site-page--community-rating .rating-top__table li {
+    padding: 10px 0;
+}
+.list--stats .list__value {
+    margin-right: 10px;
+    color: black;
+    font-weight: bold;
+}
+.site-page--community-rating .rating-top__accuracy {
+    right: 20px;
+    position: absolute;
+}
+.site-page--community-rating .list--stats b {
+    top: 5px;
+}
+.site-page--community-rating #tab-points.is-active .rating-top__accuracy, .site-page--community-rating #tab-accuracy.is-active .rating-top__points {
+    color: #999;
+}
+.site-page--community-rating .rating-top__points {
+    right: 105px;
+    position: absolute;
+}
+.rating-content{
+	margin-bottom: 140px;
+}
+.tab-pane{
+	display: none;
+	&.is-active{
+	display: block;
+	}
+}

@@ -61,7 +61,7 @@
 									   <li class="is-distinct"><span class="list__value">0</span><a id="8f555c877f47475e65bf276f8cac64e4" href="https://www.cgtrader.com/binhdarkcu">binhdarkcu</a> (you) <b class="rating-top__accuracy">N/A</b><b class="rating-top__points"></b></li>
 									</ul>
 								</div>
-								<div class="tab-pane" id="tab-accuracy" style="position: static; visibility: visible; display: none;">
+								<div class="tab-pane" id="tab-accuracy" >
 								   <ul class="list list--stats">
 								      <li><span class="list__value">1</span><a id="66c97f26152f3cb3bff717a5ae807427" href="https://www.cgtrader.com/Richy">Richy</a> <b class="rating-top__accuracy">96%</b><b class="rating-top__points">1356</b></li>
 								      <li><span class="list__value">2</span><a id="ce9b9e02b0dc2837521300b7d9fa7edf" href="https://www.cgtrader.com/RyanN">RyanN</a> <b class="rating-top__accuracy">94%</b><b class="rating-top__points">2</b></li>
@@ -101,12 +101,24 @@ get_footer();
   		  nextArrow: $('.js-preview-next')
 		});
 		$('.js-thumbnail-images').slick({
-		  slidesToShow: 3,
+		  slidesToShow: 5,
 		  slidesToScroll: 1,
 		  asNavFor: '.js-preview-images',
-		  dots: true,
-		  centerMode: true,
-		  focusOnSelect: true
+		  dots: false,
+		  focusOnSelect: true,
+		  variableWidth: true
+		});
+
+
+		$('#users-tabs li a').click(function(){
+			$('#users-tabs li, #users-tabs li a').removeClass('is-active');
+			$(this).addClass('is-active');
+			$(this).parent().addClass('is-active');
+			$('.rating-top__table .tab-pane').removeClass('is-active');
+			var href= $(this).attr('href');
+			$(href).addClass('is-active');
 		});
 	});
+
+
 </script>
