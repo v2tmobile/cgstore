@@ -1405,3 +1405,10 @@
 	display: block;
 	}
 }
+.single-product{
+	.product-preview .overlay-button{
+		position: absolute;
+		    right: 10px;
+		    top: 10px;
+	}
+}
