@@ -145,10 +145,13 @@ var Popup = (function() {
 	   return (url.match(p)) ? RegExp.$1 : false;
 	}
 	var typeVideo = '';
+	var video_arr = [];
+	var video_url = '';
 	function reviewVideoUrl(){
 		var src="";
 		$('#external_url').bind("blur", function() {
 		    var url = $(this).val();
+		    video_url = url;
 		    if (validYT(url) !== false) {
 		    	$('.preview-container').show();
 		    	yid = url.split('v=')[1];
@@ -173,6 +176,7 @@ var Popup = (function() {
 					      if(response.video_id) {
 					      	$('.preview-container').show();
 					        id = response.video_id;
+
 					        //imgVideo = response.thumbnail_url;
 					        typeVideo = 'vm';
 					        src = "//player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0&color=ffffff&autoplay=1";
@@ -182,6 +186,7 @@ var Popup = (function() {
 					});
 		    	}
 		    }
+
 		});
 	}
 
@@ -191,7 +196,8 @@ var Popup = (function() {
 			$('.preview-container iframe').attr('src','');
 			$('.preview-container').hide();
 			$('#external_url').val('');
-			$('<li class="sortable__item video_'+typeVideo+'"></li>').insertBefore('.js-new-visual');
+			$('<li class="sortable__item video_'+typeVideo+'"><input type="hidden" value="'+video_url+'" name="attach_video[]"/>
+				<span onclick="$(this).remove()" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span></li>').insertBefore('.js-new-visual');
 		});
 	}
 

@@ -152,8 +152,10 @@ html{
 				            </ul>
 				          </div>
 				        </div>
+
 					</div>
-					
+
+					<input type="hidden" id="product_video_url" name="product_video_url" value="">
 					<input type="hidden" id="product_image_gallery" name="product_image_gallery" value="<?php echo ( ( sizeof( $attachment_ids ) > 0 ) ? '['.($product->product_image_gallery).']' : '' ); ?>">
 					<input type="hidden" name="_downloadable" value="1">
 					
