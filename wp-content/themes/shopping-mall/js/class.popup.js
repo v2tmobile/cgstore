@@ -196,8 +196,7 @@ var Popup = (function() {
 			$('.preview-container iframe').attr('src','');
 			$('.preview-container').hide();
 			$('#external_url').val('');
-			$('<li class="sortable__item video_'+typeVideo+'"><input type="hidden" value="'+video_url+'" name="attach_video[]"/>
-				<span onclick="$(this).remove()" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span></li>').insertBefore('.js-new-visual');
+			$('<li class="sortable__item video_'+typeVideo+'"><input type="hidden" value='+video_url+' name="attach_video[]"/><span onclick="$(this).parent().remove()" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span></li>').insertBefore('.js-new-visual');
 		});
 	}
 
