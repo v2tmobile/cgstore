@@ -128,3 +128,26 @@ function uploadAjaxFile(){
    die();
 }
 
+add_action( 'wp_ajax_nopriv_cgs-delete-product-custom', 'cgs_delete_product' );
+add_action( 'wp_ajax_cgs-delete-product-custom', 'cgs_delete_product' );
+
+function cgs_delete_product(){
+   $result = array('success'=>false);
+   if(is_user_logged_in()){
+   $data = ($_POST['data']) ? ($_POST['data']) :'';
+   $current_user = wp_get_current_user();
+    if($data && $data['UID'] == $current_user->ID){
+       if($data['PID']){
+          $p = get_post($data['PID']);
+          if($p->post_author == $current_user->ID){
+             //wp_delete_post($data['PID']);
+             $result['success'] = true;
+          }
+         
+       }
+    }
+  }
+  echo wp_send_json($result);
+  die();
+
+}

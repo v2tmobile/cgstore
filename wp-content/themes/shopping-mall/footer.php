@@ -90,8 +90,8 @@
 		</div>
 		<ul class="vertical-menu">
 			<li><a href="<?php echo bp_loggedin_user_domain(); ?>">Dashboard</a></li>
-			<li><a href="<?php echo bp_loggedin_user_domain(); ?>/profile/">Public profile</a></li>
-			<li><a href="<?php echo bp_loggedin_user_domain(); ?>/settings">Settings and preferences</a></li>
+			<li><a href="<?php echo bp_loggedin_user_domain(); ?>profile/">Public profile</a></li>
+			<li><a href="<?php echo bp_loggedin_user_domain(); ?>settings">Settings and preferences</a></li>
 			<li style="display: none;"><a href="#">Payment agreement</a></li>
 		</ul>
 	</div>
@@ -100,11 +100,11 @@
 			<h3 class="heading heading-small heading-on-contrast">Marketplace</h3>
 		</div>
 		<ul class="vertical-menu">
-			<li><a href="#">My products</a></li>
-			<li><a href="#">My jobs</a></li>
-			<li><a href="#">My favorite models</a></li>
-			<li><a href="#">Sales</a></li>
-			<li><a href="#">Purchases</a></li>
+			<li><a href="<?php echo HOME_URL; ?>/my-products/">My products</a></li>
+			<li><a href="<?php echo HOME_URL; ?>/my-jobs/">My jobs</a></li>
+			<li><a href="<?php echo HOME_URL; ?>/my-favorite/">My favorite models</a></li>
+			<li><a href="<?php echo HOME_URL; ?>/my-sales/">Sales</a></li>
+			<li><a href="<?php echo HOME_URL; ?>/purchases/">Purchases</a></li>
 		</ul>
 	</div>
 	<div class="user-menu-section">
@@ -133,6 +133,9 @@
 <!-- SCRIPTS -->
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/js/libs.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/js/app.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
+
 <!-- Google Analytics -->
 <?php echo get_template_part('contact-user/index'); ?>
 <div class="tooltip-content">

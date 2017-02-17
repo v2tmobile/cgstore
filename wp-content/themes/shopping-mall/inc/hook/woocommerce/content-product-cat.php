@@ -159,7 +159,6 @@ function add_subcat_for_product_cat(){
             <div class="filterSelect aleft">
              <?php 
                  $tax_format = 'product_format';
-                 print_r($_GET['product_format']);
                  $tax_formats = get_terms( $tax_format, 'orderby=title&hide_empty=0');
                  if($tax_formats){
                     echo '<select name="product_format"><option value="">Formats</option>';
