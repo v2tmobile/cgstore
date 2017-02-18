@@ -60,7 +60,7 @@ h4{
 .tabs-container {
     padding-top: 20px;
 }
-.tabs {
+.tabs, .item-list-tabs ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -69,7 +69,7 @@ h4{
     border-bottom: 1px solid #d5d1c3;
 }
 
-.tabs__item {
+.tabs__item, .item-list-tabs li {
     font-size: 0.875rem;
     display: block;
     float: left;
@@ -78,7 +78,7 @@ h4{
     color: #ce3c5c;
     position: relative;
 }
-.tabs__item a {
+.tabs__item a, .item-list-tabs li a {
     color: #ce3c5c;
     display: block;
     padding: 10px 7px;
@@ -86,7 +86,7 @@ h4{
     border-bottom: 0;
     text-decoration: none;
 }
-.tabs__item.is-active {
+.tabs__item.is-active, .item-list-tabs li.current.selected {
     background: #f5f4f0;
     color: black;
     font-weight: normal;
@@ -96,14 +96,14 @@ h4{
     border-color: #d5d1c3;
     cursor: default;
 }
-.tabs:before, .tabs:after {
+.tabs:before, .tabs:after, .item-list-tabs ul:before, .item-list-tabs ul:after {
     content: " ";
     display: table;
 }
-.tabs:after {
+.tabs:after, .item-list-tabs ul:after {
     clear: both;
 }
-.tabs__item.is-active:after {
+.tabs__item.is-active:after, .item-list-tabs li.current.selected:after {
     display: block;
     width: 13px;
     height: 8px;
