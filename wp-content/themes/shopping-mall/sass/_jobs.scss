@@ -1550,3 +1550,86 @@ small {
     font-size: 0.875rem;
     line-height: 18px;
 }
+
+.site-page--community-rating .rating-action {
+    min-height: 100px;
+    padding: 20px 0;
+    line-height: 60px;
+    display: block;
+    width: 100%;
+    background: #8cd2c3;
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 400;
+}
+.site-page--community-rating .rating-action__content {
+    margin-left: 50px;
+    float: left;
+    position: relative;
+}
+.site-page--community-rating .rating-action__label {
+    margin-right: 10px;
+    font-size: 1rem;
+    display: inline-block;
+    color: rgba(0,0,0,0.48);
+}
+.site-page--community-rating .rating-action__value {
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+}
+.site-page--community-rating .rating-action .button {
+    margin-right: 10px;
+    position: relative;
+    z-index: 201;
+}
+.site-page--community-rating .rating-selector {
+    float: right;
+}
+.site-page--community-rating .rating-selector__form .rating-action__label {
+    margin-left: 4px;
+}
+.site-page--community-rating .rating-action__value-label {
+    left: 5px;
+    bottom: -25px;
+    display: none;
+    position: absolute;
+    color: rgba(0,0,0,0.48);
+}
+.site-page--community-rating .rating-action__value-label {
+    left: 5px;
+    bottom: -25px;
+    display: none;
+    position: absolute;
+    color: rgba(0,0,0,0.48);
+}
+.site-page--community-rating .rating-action__value.is-last .rating-action__value-label {
+    left: 1px;
+}
+.site-page--community-rating .rating-action__heading {
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    float: left;
+    color: #fff;
+        
+}
+.site-page--community-rating .rating-action__values {
+    margin-right: 10px;
+    display: inline-block;
+}
+.site-page--community-rating h3{
+	font-size: 24px;
+}
+.site-page--community-rating .rating-selector {
+    float: right;
+}
+.site-page--community-rating .rating-action__info {
+    font-size: 0.875rem;
+    top: -15px;
+    right: 25px;
+    position: absolute;
+    color: rgba(0,0,0,0.48);
+}

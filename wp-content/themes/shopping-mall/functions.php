@@ -353,7 +353,7 @@ function theme_customize_css() { ?>
 		.bp_members .user-content .showcase-items .showcase-item:hover .showcase-item-content .showcase-item-header, .primary-navigation > ul.nav > li.is-active > a, .primary-navigation > ul.nav > li.current-menu-item > a, .primary-navigation>ul.nav>li:hover>a {
 			background: <?php echo $header_color; ?>;
 		}
-		.product-container .product-sidebar .details-box .product-pricing .product-pricing-actions a.buy-now, .indicator{
+		.site-page--community-rating .rating-action .button, .product-container .product-sidebar .details-box .product-pricing .product-pricing-actions a.buy-now, .indicator{
 			background: <?php echo $header_color; ?>;
 		}
 		.vertical-menu li a:hover, .primary-navigation>ul.nav>li>ul>li:hover{
@@ -383,7 +383,7 @@ function theme_customize_css() { ?>
 		.user-header__status, .fa.fa-green, .ui-tooltip-content .product-price, .product-container .product-sidebar .details-box .product-pricing .product-pricing-actions .product-pricing-make-offer, .product-container .product-content .product-main .tabs .tabs-item a, .active-filters__item, section.content-section .tutorials .tutorial .tutorial-content .tutorials-title, section.content-section .jobs-list .job .job-title a, section.content-section .jobs-list .job .forum-post-title a, section.content-section .jobs-list .forum-post .job-title a, section.content-section .jobs-list .forum-post .forum-post-title a, section.content-section .forum-post-list .job .job-title a, section.content-section .forum-post-list .job .forum-post-title a, section.content-section .forum-post-list .forum-post .job-title a, section.content-section .forum-post-list .forum-post .forum-post-title a, .search-form button, button{
 			color: <?php echo $body_color; ?>;
 		}
-		.follow-button a, .action-bar{
+		.site-page--community-rating .rating-action, .follow-button a, .action-bar{
 			background: <?php echo $body_color; ?>!important;
 		}
 		.popup-content:before, #buddypress .user-header__actions .button, .jobs-application__earnings .button, .form-submit input[type="submit"], .product-container .product-content .product-thumbs-slider .slick-arrow, .product-container .product-content .product-header .product-interaction .like-button .like-button-counter, .active-filters__item, .noUi-connect, section.content-section .showcase-items .showcase-item .showcase-item-content .showcase-item-header, .button{

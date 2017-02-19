@@ -82,9 +82,104 @@
 				</div>
 			</div>
 		</section>
+		<div class="rating-action">
+	    <div class="container">
+	        <div class="rating-action__content">
+	            <h3 class="rating-action__heading">How would you rate this model?</h3>
+	            <form class="new_community_rating" id="new_community_rating" action="/community_ratings" accept-charset="UTF-8" method="post">
+	                <input type="hidden" name="authenticity_token" value="">
+	                <input value="Item" type="hidden" name="community_rating[target_type]" id="community_rating_target_type">
+	                <input value="440" type="hidden" name="community_rating[target_id]" id="community_rating_target_id">
+	                <input value="0" class="js-rate-value" type="hidden" name="community_rating[value]" id="community_rating_value">
+	                <input value="0" class="js-skipped-value" type="hidden" name="community_rating[skipped]" id="community_rating_skipped">
+	                <div class="rating-action__values js-rating-values">
+	                    <div class="rating-action__label">Awful</div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">1</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="1" name="community_rating[value]" id="community_rating_value_1">
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">2</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="2" name="community_rating[value]" id="community_rating_value_2">
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">3</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="3" name="community_rating[value]" id="community_rating_value_3" >
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">4</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="4" name="community_rating[value]" id="community_rating_value_4">
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">5</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="5" name="community_rating[value]" id="community_rating_value_5" >
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">6</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="6" name="community_rating[value]" id="community_rating_value_6" >
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">7</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="7" name="community_rating[value]" id="community_rating_value_7" >
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">8</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="8" name="community_rating[value]" id="community_rating_value_8">
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value">
+	                        <div class="rating-action__value-label js-value-label">9</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="9" name="community_rating[value]" id="community_rating_value_9" >
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__value is-last">
+	                        <div class="rating-action__value-label js-value-label">10</div>
+	                        <div class="radio">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="10" name="community_rating[value]" id="community_rating_value_10" >
+	                        </div>
+	                    </div>
+	                    <div class="rating-action__label">Excellent</div>
+	                </div>
+	                <button name="button" type="submit" class="button button--material button--alt js-cast-rating" disabled="disabled">Rate</button>
+	                <div class="rating-action__info"><b>50</b> left to rate today </div>
+	            </form>
+	        </div>
+	        <div class="rating-selector">
+	            <h3 class="rating-selector__heading">Choose model type to rate</h3>
+	            <div class="rating-selector__form">
+	                <form class="js-type-select" action="https://www.cgtrader.com/community_ratings/new" accept-charset="UTF-8" method="get">
+	                    <div class="radio">
+	                        <input class="iCheckBox" type="radio" name="product_type" id="product_type_cg" value="cg" checked="checked" >
+	                    </div>
+	                    <label class="rating-action__label" for="product_type_cg">3D models</label>
+	                    <div class="radio">
+	                        <input class="iCheckBox" type="radio" name="product_type" id="product_type_printable" value="printable" >
+	                    </div>
+	                    <label class="rating-action__label" for="product_type_printable">3D printable models</label>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 	</div>
 
-
+	
 <?php
 //get_sidebar();
 get_footer();
