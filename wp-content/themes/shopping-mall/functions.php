@@ -428,27 +428,71 @@ function theme_customize_css() { ?>
 
 add_action('wp_head', 'theme_customize_css');
 
-
-// echo '<pre>';
-// print_r(get_option( 'wc_customizer_active_customizations' ));
-// die;
-
 function my_wcv_commission_rate( $orders )
 {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . "pv_commission";
-    $order_ids = array();
+    $customizations = get_option( 'wc_customizer_active_customizations' );
 
-    foreach ($orders as $order) {
-        $order_ids[] = $order['order_id'];
+    if (!$customizations) {
+        return;
     }
 
-    if ( is_array( $order_ids ) )
-        $order_id = implode( ',', $order_ids );
+    $values = array();
+    $percents = array();
+    $table_name = $wpdb->prefix . "pv_commission";
+    $order_id = '';
+    $vendor_id = '';
+    $total_due = 0;
+    $percent = 0;
 
-    $query  = "UPDATE `{$table_name}` SET `total_due` = 10.2 WHERE order_id IN ($order_id)";
-    $result = $wpdb->query( $query );
+    if (is_array($customizations)) {
+        foreach ($customizations as $key => $value) {
+            $tmp = explode('_', $key);
+
+            if ($tmp[0] == 'value') {
+                $values[] = $value;
+            } else if ($tmp[0] == 'percent') {
+                $percents[] = $value;
+            }
+        }
+    }
+
+    foreach ($values as $key => $val) {
+        if (empty($val)) {
+            unset($values[$key]);
+            unset($percents[$key]);
+        }
+    }
+
+    arsort($values);
+
+    foreach ($orders as $order) {
+        $order_id = $order['order_id'];
+        $vendor_id = $order['vendor_id'];
+    }
+
+    if ($vendor_id) {
+        $query_count = "SELECT SUM(`qty`) AS total_qty FROM `{$table_name}` WHERE `vendor_id` = $vendor_id";
+        $row = $wpdb->get_row( $query_count, ARRAY_A);
+    }
+
+    if (isset($row['total_qty'])) {
+        foreach ($values as $key => $val) {
+            if ($row['total_qty'] >= $val && isset($percents[$key])) {
+                $percent = $percents[$key];
+                break;
+            }
+        }
+
+        if ($percent > 0 && $order_id) {
+            $order = new WC_Order( $order_id );
+            $total_due = round($percent * $order->get_total() / 100, 2);
+
+            $query  = "UPDATE `{$table_name}` SET `total_due` = $total_due WHERE `order_id` IN ($order_id)";
+            $result = $wpdb->query( $query );
+        }
+    }
 }
 
 add_filter( 'wcv_commissions_inserted', 'my_wcv_commission_rate' );

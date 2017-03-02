@@ -50,6 +50,7 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 		$assets_path          = str_replace( array( 'http:', 'https:' ), '', plugins_url( 'assets', dirname(__FILE__) ));
 
 		wp_enqueue_script( 'script', $assets_path . '/js/script.js');
+		wp_enqueue_style('customize', $assets_path . '/css/customize.css');
 	}
 
 	/**
@@ -132,7 +133,7 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 		    $tmp = explode('_', $key);
 
             if ($tmp[0] == 'value' || $tmp[0] == 'percent') {
-                $customizations[ $key ] = (int) wp_kses_post( stripslashes( $_POST[ $key ] ) );
+                $customizations[ $key ] = !empty($_POST[ $key ]) ? (int) wp_kses_post( stripslashes( $_POST[ $key ] ) ) : '';
             }
 		}
 
@@ -154,11 +155,13 @@ class WC_Customizer_Settings extends WC_Settings_Page {
         $customizations = get_option( 'wc_customizer_active_customizations' );
         $k = 0;
 
-        foreach ($customizations as $key => $value) {
-            $tmp = explode('_', $key);
+        if (is_array($customizations)) {
+            foreach ($customizations as $key => $value) {
+                $tmp = explode('_', $key);
 
-            if ($tmp[0] == 'value') {
-                $k++;
+                if ($tmp[0] == 'value') {
+                    $k++;
+                }
             }
         }
 
@@ -177,9 +180,10 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 		        ),
                 array(
                     'id'       => 'button_' . $i,
-                    'name'     => '-',
+                    'name'     => 'Remove',
                     'class'    => 'button_remove',
                     'value'    => $i,
+                    'style'    => 'color: red;',
                     'type'     => 'button'
                 ),
 		        array(
@@ -205,8 +209,9 @@ class WC_Customizer_Settings extends WC_Settings_Page {
         $commissions = array_merge($commissions, array(
             array(
                 'id'       => 'button_add',
-                'name'     => '+',
-                'class'    => '',
+                'name'     => 'Add',
+                'class'    => 'page-title-action',
+                'style'    => '',
                 'type'     => 'button'
             ),
             array( 'type' => 'sectionend' )
