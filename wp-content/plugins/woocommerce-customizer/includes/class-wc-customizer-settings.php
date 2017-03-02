@@ -47,6 +47,9 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 		parent::__construct();
 
 		$this->customizations = get_option( 'wc_customizer_active_customizations', array() );
+		$assets_path          = str_replace( array( 'http:', 'https:' ), '', plugins_url( 'assets', dirname(__FILE__) ));
+
+		wp_enqueue_script( 'script', $assets_path . '/js/script.js');
 	}
 
 	/**
@@ -107,7 +110,7 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 	 */
 	public function save() {
 
-		foreach ( $this->get_settings() as $field ) {
+		/* foreach ( $this->get_settings() as $field ) {
 
 			// skip titles, etc
 			if ( ! isset( $field['id'] ) ) {
@@ -122,7 +125,18 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 
 				unset( $this->customizations[ $field['id'] ] );
 			}
+		} */
+	    $customizations = array();
+
+		foreach ($_POST as $key => $value) {
+		    $tmp = explode('_', $key);
+
+            if ($tmp[0] == 'value' || $tmp[0] == 'percent') {
+                $customizations[ $key ] = (int) wp_kses_post( stripslashes( $_POST[ $key ] ) );
+            }
 		}
+
+		$this->customizations = $customizations;
 
 		update_option( 'wc_customizer_active_customizations', $this->customizations );
 	}
@@ -135,105 +149,71 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 	 * @return array
 	 */
 	public function get_settings() {
+        $commissions = array();
+
+        $customizations = get_option( 'wc_customizer_active_customizations' );
+        $k = 0;
+
+        foreach ($customizations as $key => $value) {
+            $tmp = explode('_', $key);
+
+            if ($tmp[0] == 'value') {
+                $k++;
+            }
+        }
+
+        if ($k == 0) {
+            $k = 1;
+        }
+
+        for ($i = 1; $i <= $k; $i++) {
+            $commission = array(
+                array(
+                    'id'    => 'title_' . $i,
+                    'class' => 'customizer_title',
+		            'title' => __( 'Level ' . $i, 'woocommerce-customizer' ),
+                    'value' => $i,
+		            'type'  => 'title_customize'
+		        ),
+                array(
+                    'id'       => 'button_' . $i,
+                    'name'     => '-',
+                    'class'    => 'button_remove',
+                    'value'    => $i,
+                    'type'     => 'button'
+                ),
+		        array(
+		            'id'       => 'value_' . $i,
+		            'class'    => 'customizer_value',
+		            'title'    => __( 'Value', 'woocommerce-customizer' ),
+		            'desc_tip' => __( 'Number product sale of vendor', 'woocommerce-customizer' ),
+		            'type'     => 'text'
+		        ),
+
+		        array(
+		            'id'       => 'percent_' . $i,
+		            'class'    => 'customizer_percent',
+		            'title'    => __( 'Percent (%)', 'woocommerce-customizer' ),
+		            'desc_tip' => __( 'Commission percent for vendor', 'woocommerce-customizer' ),
+		            'type'     => 'text'
+		        ),
+		        array( 'type' => 'sectionend' )
+            );
+            $commissions = array_merge($commissions, $commission);
+        }
+
+        $commissions = array_merge($commissions, array(
+            array(
+                'id'       => 'button_add',
+                'name'     => '+',
+                'class'    => '',
+                'type'     => 'button'
+            ),
+            array( 'type' => 'sectionend' )
+        ));
 
 		$settings = array(
-		    'commission' => array(
-		        array(
-		            'title' => __( 'Level 1', 'woocommerce-customizer' ),
-		            'type'  => 'title'
-		        ),
-
-		        array(
-		            'id'       => 'level_1_value',
-		            'title'    => __( 'Value', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Number product sale of vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-
-		        array(
-		            'id'       => 'level_1_percent',
-		            'title'    => __( 'Percent (%)', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Commission percent for vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-		        array( 'type' => 'sectionend' ),
-		        array(
-		            'title' => __( 'Level 2', 'woocommerce-customizer' ),
-		            'type'  => 'title'
-		        ),
-
-		        array(
-		            'id'       => 'level_2_value',
-		            'title'    => __( 'Value', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Number product sale of vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-
-		        array(
-		            'id'       => 'level_2_percent',
-		            'title'    => __( 'Percent (%)', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Commission percent for vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-		        array( 'type' => 'sectionend' ),
-		        array(
-		            'title' => __( 'Level 3', 'woocommerce-customizer' ),
-		            'type'  => 'title'
-		        ),
-
-		        array(
-		            'id'       => 'level_3_value',
-		            'title'    => __( 'Value', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Number product sale of vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-
-		        array(
-		            'id'       => 'level_3_percent',
-		            'title'    => __( 'Percent (%)', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Commission percent for vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-		        array( 'type' => 'sectionend' ),
-		        array(
-		            'title' => __( 'Level 4', 'woocommerce-customizer' ),
-		            'type'  => 'title'
-		        ),
-
-		        array(
-		            'id'       => 'level_4_value',
-		            'title'    => __( 'Value', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Number product sale of vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-
-		        array(
-		            'id'       => 'level_4_percent',
-		            'title'    => __( 'Percent (%)', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Commission percent for vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-		        array( 'type' => 'sectionend' ),
-		        array(
-		            'title' => __( 'Level 5', 'woocommerce-customizer' ),
-		            'type'  => 'title'
-		        ),
-
-		        array(
-		            'id'       => 'level_5_value',
-		            'title'    => __( 'Value', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Number product sale of vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-
-		        array(
-		            'id'       => 'level_5_percent',
-		            'title'    => __( 'Percent (%)', 'woocommerce-customizer' ),
-		            'desc_tip' => __( 'Commission percent for vendor', 'woocommerce-customizer' ),
-		            'type'     => 'text'
-		        ),
-		        array( 'type' => 'sectionend' ),
-		    ),
+		    'commission' => $commissions,
 
 			/* 'shop_loop' =>
 

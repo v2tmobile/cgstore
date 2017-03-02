@@ -210,16 +210,16 @@ class WC_Customizer {
 
 					if ( $filter_name == 'single_add_to_cart_text' ) {
 
-						add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'customize_single_add_to_cart_text' ) );
+						//add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'customize_single_add_to_cart_text' ) );
 
 					} else {
 
-						add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'customize_add_to_cart_text' ), 10, 2 );
+						//add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'customize_add_to_cart_text' ), 10, 2 );
 					}
 
 				} else {
 
-					add_filter( $filter_name, array( $this, 'customize' ) );
+					//add_filter( $filter_name, array( $this, 'customize' ) );
 				}
 			}
 		}
@@ -401,7 +401,7 @@ class WC_Customizer {
 
 		// upgrade if installed version lower than plugin version
 		if ( -1 === version_compare( $installed_version, self::VERSION ) ) {
-			$this->upgrade( $installed_version );
+			//$this->upgrade( $installed_version );
 		}
 	}
 
@@ -415,7 +415,7 @@ class WC_Customizer {
 	private function upgrade( $installed_version ) {
 
 		// update the installed version option
-		update_option( 'wc_customizer_version', self::VERSION );
+		//update_option( 'wc_customizer_version', self::VERSION );
 	}
 
 

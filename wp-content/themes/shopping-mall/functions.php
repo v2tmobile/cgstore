@@ -20,7 +20,7 @@ include_once 'inc/ajax.php';
 include_once 'inc/shortcodes.php';
 
 add_filter('woocommerce_login_redirect', 'wc_login_redirect');
- 
+
 function wc_login_redirect( $redirect_to ) {
      $redirect_to = HOME_URL;
      return $redirect_to;
@@ -40,7 +40,7 @@ function add_class_product_cat_parent($classes){
    	      $classes[] ='parent-cat-'.$tax->slug;
    	  }
    }
-  
+
   return $classes;
 
 }
@@ -53,10 +53,10 @@ function cgs_count_product_by_user($authorID = null,$termID = null, $taxonomy = 
     	  'order'         =>  'ASC'
        	);
    if($authorID) $args['author'] = $authorID;
-   if($termID && $taxonomy) $args['tax_query'] = array( array(  
-            'taxonomy' =>$taxonomy,  
-            'field' => 'id',  
-            'terms' =>$termID  
+   if($termID && $taxonomy) $args['tax_query'] = array( array(
+            'taxonomy' =>$taxonomy,
+            'field' => 'id',
+            'terms' =>$termID
         ) );
    	if($free) $args['meta_query'] =  array(
                   'key' => '_regular_price',
@@ -64,7 +64,7 @@ function cgs_count_product_by_user($authorID = null,$termID = null, $taxonomy = 
                   'compare' => '=',
                   'type' => 'NUMERIC'
       );
-   	
+
    return new WP_Query($args);
 }
 
@@ -89,16 +89,16 @@ function wc_cp_show_zero_min_quantity( $value, $min, $max, $product, $component_
 }
 
 function generate_random_filename($length=10) {
- 
+
    $string = '';
    $characters = "23456789ABCDEFHJKLMNPRTVWXYZabcdefghijklmnopqrstuvwxyz";
- 
+
    for ($p = 0; $p < $length; $p++) {
        $string .= $characters[mt_rand(0, strlen($characters)-1)];
    }
- 
+
    return $string;
- 
+
 }
 
 function get_list_taxonomy($postId, $tax ='', $link = true ){
@@ -126,18 +126,18 @@ function get_list_taxonomy($postId, $tax ='', $link = true ){
 
 }
 
-function cgs_disable_comment_url($fields) { 
+function cgs_disable_comment_url($fields) {
     unset($fields['url']);
     return $fields;
 }
 add_filter('comment_form_default_fields','cgs_disable_comment_url');
 
 
-// filter vendor 
+// filter vendor
 //if(is_home() || is_front_page() || is_page_template('page-top-designer')){
 // add_action( 'pre_user_query', 'cgs_filter_vendor_product',999,1);
 // function cgs_filter_vendor_product($user_query){
-//      $user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from); 
+//      $user_query->query_from = str_replace("post_type = 'post'","post_type = 'product'",$user_query->query_from);
 //      print_r($user_query->query_from);
 //   }
 //}
@@ -319,13 +319,13 @@ foreach (scandir(get_template_directory() . '/inc/hook/woocommerce') as $filenam
 //require_once (dirname(__FILE__) . '/inc/shopping-mall-config.php');
 
 if( function_exists('acf_add_options_page') ) {
- 
+
    acf_add_options_page(array(
     'page_title'  => 'Theme Options',
     'menu_title' => 'Theme Options',
     'menu_slug'  => 'theme-general-settings'
    ));
- 
+
      acf_add_options_sub_page(array(
       'page_title'  => 'Header',
       'menu_title' => 'Header',
@@ -341,7 +341,7 @@ if( function_exists('acf_add_options_page') ) {
     'menu_title' => 'Color Picker',
     'parent_slug' => 'theme-general-settings',
      ));
-   
+
 }
 
 // Theme color
@@ -427,3 +427,50 @@ function theme_customize_css() { ?>
 <?php }
 
 add_action('wp_head', 'theme_customize_css');
+
+
+// echo '<pre>';
+// print_r(get_option( 'wc_customizer_active_customizations' ));
+// die;
+
+function my_wcv_commission_rate( $orders )
+{
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . "pv_commission";
+    $order_ids = array();
+
+    foreach ($orders as $order) {
+        $order_ids[] = $order['order_id'];
+    }
+
+    if ( is_array( $order_ids ) )
+        $order_id = implode( ',', $order_ids );
+
+    $query  = "UPDATE `{$table_name}` SET `total_due` = 10.2 WHERE order_id IN ($order_id)";
+    $result = $wpdb->query( $query );
+}
+
+add_filter( 'wcv_commissions_inserted', 'my_wcv_commission_rate' );
+
+function woocommerce_customizer_add_field($option)
+{
+    ?>
+    <button class="<?php echo $option['class']?>" id="<?php echo $option['id']?>" type="button" value="<?php echo $option['value']?>"><?php echo $option['name']?></button>
+    <?php
+}
+
+add_filter('woocommerce_admin_field_button', 'woocommerce_customizer_add_field');
+
+function woocommerce_customizer_add_field_title($option)
+{
+    if ( ! empty( $option['title'] ) ) {
+		echo '<h2 id="' . $option['id'] . '" class="' . $option['class'] . '">' . esc_html( $option['title'] ) . '</h2>';
+	}
+	if ( ! empty( $option['desc'] ) ) {
+		echo wpautop( wptexturize( wp_kses_post( $option['desc'] ) ) );
+	}
+	echo '<table class="form-table" id="form_table_' . $option['value'] . '">'. "\n\n";
+}
+
+add_filter('woocommerce_admin_field_title_customize', 'woocommerce_customizer_add_field_title');
