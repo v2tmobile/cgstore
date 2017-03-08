@@ -30,3 +30,16 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 .product-pricing-price ins {
     text-decoration: none;
 }
+
+.rating-selector__heading {
+    line-height: 2;
+}
+
+.rating-selector__form {
+    line-height: 25px;
+}
+
+.site-page--community-rating .rating-action__value-label.is-active {
+    color: #ce3c5c;
+    display: block;
+}

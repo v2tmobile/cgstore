@@ -220,6 +220,16 @@ get_footer();
 			var href= $(this).attr('href');
 			$(href).addClass('is-active');
 		});
+
+		$('.js-tooltip').each(function() {
+			if ($(this).attr('checked') == true) {
+				$('button.js-cast-rating').attr('disabled', false);
+			}
+		});
+
+		$('#new_community_rating .iCheck-helper').click(function() {
+			$('button.js-cast-rating').attr('disabled', false);
+		});
 	});
 
 
