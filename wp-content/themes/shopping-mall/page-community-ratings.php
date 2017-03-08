@@ -221,14 +221,18 @@ get_footer();
 			$(href).addClass('is-active');
 		});
 
-		$('.js-tooltip').each(function() {
-			if ($(this).attr('checked') == true) {
+		$('.iradio').each(function() {
+			if ($(this).hasClass('checked')) {
 				$('button.js-cast-rating').attr('disabled', false);
+				$(this).parent().parent().find('.rating-action__value-label').addClass('is-active');
 			}
 		});
 
 		$('#new_community_rating .iCheck-helper').click(function() {
 			$('button.js-cast-rating').attr('disabled', false);
+			$('.rating-action__value-label').removeClass('is-active');
+
+			$(this).parent().parent().parent().find('.rating-action__value-label').addClass('is-active');
 		});
 	});
 
