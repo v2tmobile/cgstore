@@ -1,4 +1,11 @@
-<?php get_header(); ?>
+<?php
+/* Template Name: Community ratings Page */
+/**
+ * @package Shopping_Mall
+ */
+
+get_header();
+?>
 
 
 	<div class="content-area site-page--community-rating">
@@ -179,7 +186,7 @@
 	</div>
 	</div>
 
-	
+
 <?php
 //get_sidebar();
 get_footer();
