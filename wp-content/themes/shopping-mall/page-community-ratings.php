@@ -163,7 +163,7 @@ get_header();
 	                    </div>
 	                    <div class="rating-action__label">Excellent</div>
 	                </div>
-	                <button name="button" type="submit" class="button button--material button--alt js-cast-rating" disabled="disabled">Rate</button>
+	                <button name="button" type="button" class="button button--material button--alt js-cast-rating" disabled="disabled">Rate</button>
 	                <div class="rating-action__info"><b>50</b> left to rate today </div>
 	            </form>
 	        </div>
@@ -233,6 +233,11 @@ get_footer();
 			$('.rating-action__value-label').removeClass('is-active');
 
 			$(this).parent().parent().parent().find('.rating-action__value-label').addClass('is-active');
+		});
+
+		$('button.js-cast-rating').click(function() {
+		    alert('Rate successfull!');
+		    location.reload();
 		});
 	});
 
