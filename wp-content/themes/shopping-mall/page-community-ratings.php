@@ -5,13 +5,55 @@
  */
 
 get_header();
-?>
 
+if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
+    global $wpdb;
+    $community_rating = $_POST['community_rating'];
+    $product_id = $_POST['product_id'];
+    $user_id = get_current_user_id();
+
+    $wc_product = new WC_product($product_id);
+    $product_author = $wc_product->post->post_author;
+
+    $table_name = $wpdb->prefix . "product_ratings";
+
+    $query  = "INSERT `{$table_name}` (`product_id`, `rating`, `product_author`, `user_id`, `created_at`) VALUES ('{$_POST['product_id']}', '{$_POST['community_rating']}', {$product_author}, {$user_id}, NOW())";
+    $result = $wpdb->query( $query );
+
+    exit();
+}
+
+?>
+<?php
+    $args = array( 'post_type' => 'product', 'posts_per_page' => 1, 'orderby' => 'rand' );
+
+    $loop = new WP_Query( $args );
+    $product_id = '';
+    $product_title = '';
+    $attachment_ids = [];
+
+    while ( $loop->have_posts() ) : $loop->the_post();
+        global $product;
+
+        $product_id = $product->id;
+        $product_title = $product->post->post_title;
+    endwhile;
+
+    if ($product_id) {
+        $wc_product = new WC_product($product_id);
+        $attachment_ids = $wc_product->get_gallery_attachment_ids();
+    }
+
+    $rates = getRates();
+
+    wp_reset_query();
+
+?>
 
 	<div class="content-area site-page--community-rating">
 	  	<section class="content-section blog-post rating-wrapper is-spaced">
 			<div class="container">
-				<div class="content-heading"><h2 class="content-heading__title">Alessi Anna candleholder</h2>
+				<div class="content-heading"><h2 class="content-heading__title"><?php echo $product_title; ?></h2>
 				</div>
 				<div class="rating-content">
 					<div class="card">
@@ -19,11 +61,9 @@ get_header();
 							<div class="product-preview">
 								<div class="product-preview__image">
 									<ul class="js-preview-images">
-										<li class=""><img alt="Alessi Anna candleholder" src="https://img1.cgtrader.com/items/399/6b0e823837/large/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-										<li class=""><img alt="Alessi Anna candleholder" src="https://img1.cgtrader.com/items/399/21db7aa611/large/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-										<li class=""><img alt="Alessi Anna candleholder" src="https://img2.cgtrader.com/items/399/728a107b3a/large/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-										<li class=""><img alt="Alessi Anna candleholder" src="https://img-new.cgtrader.com/items/399/379528abe2/large/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-										<li class=""><img alt="Alessi Anna candleholder" src="https://img2.cgtrader.com/items/399/34daaaf5d1/large/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
+									   <?php foreach ($attachment_ids as $attachment_id) : ?>
+										  <li class=""><img alt="<?php echo $product_title; ?>" src="<?php echo $Original_image_url = wp_get_attachment_url( $attachment_id ); ?>"></li>
+										<?php endforeach; ?>
 									</ul>
 								</div>
 								<span class="product-preview__navigation-left"><div class="overlay-button overlay-button--big overlay-button--transparent js-preview-prev"><i class="fa fa-chevron-left fa-3x fa-not-spaced"></i></div></span>
@@ -33,11 +73,9 @@ get_header();
 					</div>
 					<div class="product-thumbs" style="overflow: hidden;">
 						<ul class="js-thumbnail-images">
-							<li class=""><img alt="Alessi Anna candleholder" src="https://img2.cgtrader.com/items/399/6b0e823837/thumb/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-							<li class=""><img alt="Alessi Anna candleholder" src="https://img1.cgtrader.com/items/399/21db7aa611/thumb/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-							<li class=""><img alt="Alessi Anna candleholder" src="https://img1.cgtrader.com/items/399/728a107b3a/thumb/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-							<li class=""><img alt="Alessi Anna candleholder" src="https://img2.cgtrader.com/items/399/379528abe2/thumb/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
-							<li class=""><img alt="Alessi Anna candleholder" src="https://img2.cgtrader.com/items/399/34daaaf5d1/thumb/alessi-anna-candleholder-3d-model-max-obj-3ds-fbx-dxf.jpg"></li>
+							<?php foreach ($attachment_ids as $attachment_id) : ?>
+    							<li class=""><img alt="<?php echo $product_title; ?>" src="<?php echo $Original_image_url = wp_get_attachment_url( $attachment_id ); ?>"></li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 					<ul class="product-thumb-navigation"><li class="product-thumb-navigation__item community-ratings-item-navigation is-prev js-preview-prev is-disabled navigation-without-scrollbar" data-trigger="manual"><i class="fa fa-chevron-left fa-not-spaced"></i></li><li class="product-thumb-navigation__item community-ratings-item-navigation is-next js-preview-next navigation-without-scrollbar" data-trigger="manual"><i class="fa fa-chevron-right fa-not-spaced"></i></li></ul>
@@ -55,17 +93,11 @@ get_header();
 							<div class="rating-top__table">
 								<div class="tab-pane is-active" id="tab-points">
 									<ul class="list list--stats">
-									   <li><span class="list__value">1</span><a href="https://www.cgtrader.com/dennish2010">dennish2010</a> <b class="rating-top__accuracy">88%</b><b class="rating-top__points">32524</b></li>
-									   <li><span class="list__value">2</span><a href="https://www.cgtrader.com/andrej_persolja">andrej_persolja</a> <b class="rating-top__accuracy">87%</b><b class="rating-top__points">26980</b></li>
-									   <li><span class="list__value">3</span><a href="https://www.cgtrader.com/Semsa">Semsa</a> <b class="rating-top__accuracy">93%</b><b class="rating-top__points">18200</b></li>
-									   <li><span class="list__value">4</span><a href="https://www.cgtrader.com/flashmypixel">flashmypixel</a> <b class="rating-top__accuracy">91%</b><b class="rating-top__points">12584</b></li>
-									   <li><span class="list__value">5</span><a href="https://www.cgtrader.com/Dharmatov">Dharmatov</a> <b class="rating-top__accuracy">88%</b><b class="rating-top__points">10824</b></li>
-									   <li><span class="list__value">6</span><a id="d6a5afb0413c6c99a6e2dd3d3e722b4b" href="https://www.cgtrader.com/limonadinis">limonadinis</a> <b class="rating-top__accuracy">94%</b><b class="rating-top__points">10774</b></li>
-									   <li><span class="list__value">7</span><a id="01f2416c0763ac72a154f8ebf57186fb" href="https://www.cgtrader.com/arkviz">arkviz</a> <b class="rating-top__accuracy">88%</b><b class="rating-top__points">10163</b></li>
-									   <li><span class="list__value">8</span><a id="e0e8483d905cdb48f6fed549e517dbce" href="https://www.cgtrader.com/unrealmaster">unrealmaster</a> <b class="rating-top__accuracy">92%</b><b class="rating-top__points">8579</b></li>
-									   <li><span class="list__value">9</span><a id="bce2f63b191636042fa96cd57280d97c" href="https://www.cgtrader.com/dafunk">dafunk</a> <b class="rating-top__accuracy">93%</b><b class="rating-top__points">8266</b></li>
-									   <li><span class="list__value">10</span><a id="bebdb733a21484e4b3ad5be6d4e5b118" href="https://www.cgtrader.com/soul_fire">soul_fire</a> <b class="rating-top__accuracy">91%</b><b class="rating-top__points">7449</b></li>
-									   <li class="is-distinct"><span class="list__value">0</span><a id="8f555c877f47475e65bf276f8cac64e4" href="https://www.cgtrader.com/binhdarkcu">binhdarkcu</a> (you) <b class="rating-top__accuracy">N/A</b><b class="rating-top__points"></b></li>
+									   <?php $i = 1; ?>
+									   <?php foreach ($rates as $rate) : ?>
+									   <li><span class="list__value"><?php $i ?></span><a href="/members/<?php echo $rate['member'] ?>"><?php echo $rate['author']; ?></a> <b class="rating-top__accuracy">88%</b><b class="rating-top__points"><?php echo $rate['point']; ?></b></li>
+									   <?php $i++; ?>
+									   <?php endforeach; ?>
 									</ul>
 								</div>
 								<div class="tab-pane" id="tab-accuracy" >
@@ -93,72 +125,68 @@ get_header();
 	    <div class="container">
 	        <div class="rating-action__content">
 	            <h3 class="rating-action__heading">How would you rate this model?</h3>
-	            <form class="new_community_rating" id="new_community_rating" action="/community_ratings" accept-charset="UTF-8" method="post">
-	                <input type="hidden" name="authenticity_token" value="">
-	                <input value="Item" type="hidden" name="community_rating[target_type]" id="community_rating_target_type">
-	                <input value="440" type="hidden" name="community_rating[target_id]" id="community_rating_target_id">
-	                <input value="0" class="js-rate-value" type="hidden" name="community_rating[value]" id="community_rating_value">
-	                <input value="0" class="js-skipped-value" type="hidden" name="community_rating[skipped]" id="community_rating_skipped">
+	            <form class="new_community_rating" id="new_community_rating" action="" accept-charset="UTF-8" method="post">
+	                <input type="hidden" name="product_id" value="<?php echo $product_id ?>">
 	                <div class="rating-action__values js-rating-values">
 	                    <div class="rating-action__label">Awful</div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">1</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="1" name="community_rating[value]" id="community_rating_value_1">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="1" name="community_rating" id="community_rating_value_1">
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">2</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="2" name="community_rating[value]" id="community_rating_value_2">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="2" name="community_rating" id="community_rating_value_2">
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">3</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="3" name="community_rating[value]" id="community_rating_value_3" >
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="3" name="community_rating" id="community_rating_value_3" >
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">4</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="4" name="community_rating[value]" id="community_rating_value_4">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="4" name="community_rating" id="community_rating_value_4">
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">5</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="5" name="community_rating[value]" id="community_rating_value_5" >
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="5" name="community_rating" id="community_rating_value_5" >
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">6</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="6" name="community_rating[value]" id="community_rating_value_6" >
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="6" name="community_rating" id="community_rating_value_6" >
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">7</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="7" name="community_rating[value]" id="community_rating_value_7" >
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="7" name="community_rating" id="community_rating_value_7" >
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">8</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="8" name="community_rating[value]" id="community_rating_value_8">
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="8" name="community_rating" id="community_rating_value_8">
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value">
 	                        <div class="rating-action__value-label js-value-label">9</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="9" name="community_rating[value]" id="community_rating_value_9" >
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="9" name="community_rating" id="community_rating_value_9" >
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__value is-last">
 	                        <div class="rating-action__value-label js-value-label">10</div>
 	                        <div class="radio">
-	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="10" name="community_rating[value]" id="community_rating_value_10" >
+	                            <input class="js-tooltip tooltipstered iCheckBox" type="radio" value="10" name="community_rating" id="community_rating_value_10" >
 	                        </div>
 	                    </div>
 	                    <div class="rating-action__label">Excellent</div>
@@ -222,10 +250,9 @@ get_footer();
 		});
 
 		$('.iradio').each(function() {
-			if ($(this).hasClass('checked')) {
-				$('button.js-cast-rating').attr('disabled', false);
-				$(this).parent().parent().find('.rating-action__value-label').addClass('is-active');
-			}
+			$(this).find('input').attr('checked', false);
+			$(this).removeClass('checked');
+			$('button.js-cast-rating').attr('disabled', true);
 		});
 
 		$('#new_community_rating .iCheck-helper').click(function() {
@@ -236,10 +263,39 @@ get_footer();
 		});
 
 		$('button.js-cast-rating').click(function() {
-		    alert('Rate successfull!');
-		    location.reload();
+			$.ajax({
+				url: '/community-ratings',
+				method: 'POST',
+				data: $('form#new_community_rating').serialize(),
+				success: function() {
+					alert('Rated successfull!');
+				    location.reload();
+				}
+			});
 		});
 	});
 
 
 </script>
+<?php
+function getRates() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . "product_ratings";
+    $rates = array();
+
+    $query = "SELECT * FROM `{$table_name}`";
+    $rows = $wpdb->get_results($query, ARRAY_A);
+
+    foreach ($rows as $row) {
+        if (! isset ($rates[$row['product_author']])) {
+            $user = get_userdata($row['product_author']);
+            $rates[$row['product_author']]['author'] = $user->data->display_name;
+            $rates[$row['product_author']]['member'] = $user->data->user_login;
+            $rates[$row['product_author']]['point'] = 0;
+        }
+
+        $rates[$row['product_author']]['point'] += $row['rating'];
+    }
+
+    return $rates;
+}

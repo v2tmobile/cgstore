@@ -43,3 +43,15 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
     color: #ce3c5c;
     display: block;
 }
+
+.site-page--community-rating .tabs > li {
+    text-transform: capitalize;
+}
+
+.site-page--community-rating .tabs {
+    padding-left: 200px;
+}
+
+.tabs__item.is-active {
+    margin-right: 25px;
+}
