@@ -21,7 +21,9 @@ if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
     $query  = "INSERT `{$table_name}` (`product_id`, `rating`, `product_author`, `user_id`, `created_at`) VALUES ('{$_POST['product_id']}', '{$_POST['community_rating']}', {$product_author}, {$user_id}, NOW())";
     $result = $wpdb->query( $query );
 
-    $limit = 200;
+    $options = get_option( 'wc_customizer_active_rate', array());
+
+    $limit = isset($options['rating_start_value']) ? $options['rating_start_value'] : 200;
 
     $query_get = "SELECT rating FROM {$table_name} WHERE `product_author` = {$product_author} ORDER BY created_at DESC LIMIT {$limit}";
     $rows = $wpdb->get_results($query_get, ARRAY_A);
@@ -138,6 +140,7 @@ if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
 								      <?php $i = 1; ?>
 								      <?php foreach ($accuracy_rates as $rate) : ?>
 								      <li><span class="list__value"><?php echo $i; ?></span><a href="/members/<?php echo $rate['member'] ?>"><?php echo $rate['author']; ?></a> <b class="rating-top__accuracy"><?php echo $rate['accuracy']; ?>%</b><b class="rating-top__points"><?php echo $rate['point']; ?></b></li>
+								      <?php $i++; ?>
 								      <?php endforeach; ?>
 								   </ul>
 								</div>
