@@ -42,7 +42,7 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 	public function __construct() {
 
 		$this->id    = 'customizer';
-		$this->label = __( 'Setting', 'woocommerce-customizer' );
+		$this->label = __( 'Common Setting', 'woocommerce-customizer' );
 
 		parent::__construct();
 
