@@ -42,11 +42,13 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 	public function __construct() {
 
 		$this->id    = 'customizer';
-		$this->label = __( 'Commission Setting', 'woocommerce-customizer' );
+		$this->label = __( 'Setting', 'woocommerce-customizer' );
 
 		parent::__construct();
 
 		$this->customizations = get_option( 'wc_customizer_active_customizations', array() );
+		$this->rate           = get_option( 'wc_customizer_active_rate', array());
+
 		$assets_path          = str_replace( array( 'http:', 'https:' ), '', plugins_url( 'assets', dirname(__FILE__) ));
 
 		wp_enqueue_script( 'script', $assets_path . '/js/script.js');
@@ -65,7 +67,8 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 			'product_page' => __( 'Product Page', 'woocommerce-customizer' ),
 			'checkout'     => __( 'Checkout', 'woocommerce-customizer' ),
 			'misc'         => __( 'Misc', 'woocommerce-customizer' ) */
-		    'commission'   => __( 'Commission', 'woocommerce-customizer' )
+		    'commission'   => __( 'Commission', 'woocommerce-customizer' ),
+		    'rating'       => __( 'Rating', 'woocommerce-customizer')
 		);
 	}
 
@@ -86,6 +89,11 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 			add_filter( "pre_option_{$filter}", array( $this, 'get_customization' ) );
 		}
 
+		foreach ( $this->rate as $filter => $value ) {
+
+		    add_filter( "pre_option_{$filter}", array( $this, 'get_customization' ) );
+		}
+
 		WC_Admin_Settings::output_fields( $settings );
 	}
 
@@ -98,9 +106,17 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 	 */
 	public function get_customization() {
 
+	    $result = '';
+
 		$filter = str_replace( 'pre_option_', '', current_filter() );
 
-		return isset( $this->customizations[ $filter ] ) ? $this->customizations[ $filter ] : '';
+		if (isset( $this->customizations[ $filter ] )) {
+		    $result = $this->customizations[ $filter ];
+		} else if (isset ($this->rate[ $filter ])) {
+		    $result = $this->rate[ $filter ];
+		}
+
+		return $result;
 	}
 
 
@@ -130,16 +146,25 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 	    $customizations = array();
 
 		foreach ($_POST as $key => $value) {
-		    $tmp = explode('_', $key);
+		    if ($key == 'rating_start_value') {
+		        $rate[$key] = !empty($value) ? (int) wp_kses_post( stripslashes( $value ) ) : '';
+		        $this->rate = $rate;
+		    } else {
+    		    $tmp = explode('_', $key);
 
-            if ($tmp[0] == 'value' || $tmp[0] == 'percent') {
-                $customizations[ $key ] = !empty($_POST[ $key ]) ? (int) wp_kses_post( stripslashes( $_POST[ $key ] ) ) : '';
-            }
+                if ($tmp[0] == 'value' || $tmp[0] == 'percent') {
+                    $customizations[ $key ] = !empty($_POST[ $key ]) ? (int) wp_kses_post( stripslashes( $_POST[ $key ] ) ) : '';
+                }
+		    }
 		}
 
-		$this->customizations = $customizations;
+		if (isset($_POST['rating_start_value'])) {
+		    update_option( 'wc_customizer_active_rate', $this->rate );
+		} else {
+    		$this->customizations = $customizations;
 
-		update_option( 'wc_customizer_active_customizations', $this->customizations );
+    		update_option( 'wc_customizer_active_customizations', $this->customizations );
+		}
 	}
 
 
@@ -219,6 +244,19 @@ class WC_Customizer_Settings extends WC_Settings_Page {
 
 		$settings = array(
 		    'commission' => $commissions,
+		    'rating' => array(
+		        array(
+		            'title' => __('Rating setting', 'woocommerce-customizer'),
+		            'type'  => 'title'
+		        ),
+		        array(
+		            'id' => 'rating_start_value',
+		            'title' => __( 'Start', 'woocommerce-customizer'),
+		            'desc_tip' => __( 'Rate number begin (default 200)', 'woocommerce-customizer'),
+		            'type' => 'text'
+		        ),
+		        array( 'type' => 'sectionend' ),
+		    ),
 
 			/* 'shop_loop' =>
 

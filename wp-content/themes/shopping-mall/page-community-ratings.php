@@ -16,9 +16,41 @@ if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
     $product_author = $wc_product->post->post_author;
 
     $table_name = $wpdb->prefix . "product_ratings";
+    $table_name_vendor_rating =$wpdb->prefix . "vendor_ratings";
 
     $query  = "INSERT `{$table_name}` (`product_id`, `rating`, `product_author`, `user_id`, `created_at`) VALUES ('{$_POST['product_id']}', '{$_POST['community_rating']}', {$product_author}, {$user_id}, NOW())";
     $result = $wpdb->query( $query );
+
+    $limit = 200;
+
+    $query_get = "SELECT rating FROM {$table_name} WHERE `product_author` = {$product_author} ORDER BY created_at DESC LIMIT {$limit}";
+    $rows = $wpdb->get_results($query_get, ARRAY_A);
+
+    if (sizeof($rows) == $limit) {
+        $total_rate = 0;
+
+        foreach ($rows as $row) {
+            $total_rate += $row['rating'];
+        }
+
+        $accuracy = round(10 * $total_rate / $limit);
+
+        $query_get_vendor_rating = "SELECT point FROM {$table_name_vendor_rating} WHERE vendor_id = {$product_author}";
+        $vendor = $wpdb->get_row($query_get_vendor_rating, ARRAY_A);
+
+        $point = isset($vendor['point']) ? $vendor['point'] : 0;
+
+        if ($accuracy >= 85) {
+            $point += 2;
+        } else if ($accuracy < 85 && $accuracy >= 80) {
+            $point += 1;
+        }
+
+        if ($point > 0) {
+            $query_replace = "REPLACE INTO {$table_name_vendor_rating} VALUES ({$product_author}, {$point}, {$accuracy}, NOW(), NOW())";
+            $wpdb->query($query_replace);
+        }
+    }
 
     exit();
 }
@@ -44,7 +76,8 @@ if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
         $attachment_ids = $wc_product->get_gallery_attachment_ids();
     }
 
-    $rates = getRates();
+    $point_rates = getRates('point');
+    $accuracy_rates = getRates('accuracy');
 
     wp_reset_query();
 
@@ -86,7 +119,7 @@ if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
 							<h2 class="card__heading">Top 10 Raters </h2>
 							<div id="users-tabs">
 								<ul class="tabs">
-									<li class="tabs__item is-active"><a class="has-tooltip tooltipstered is-active" href="#tab-points">Points</a></li>
+									<li class="tabs__item is-active tab-point"><a class="has-tooltip tooltipstered is-active" href="#tab-points">Points</a></li>
 									<li class="tabs__item"><a class="has-tooltip tooltipstered" href="#tab-accuracy">Accuracy</a></li>
 								</ul>
 							</div>
@@ -94,25 +127,18 @@ if (isset($_POST['community_rating']) && isset($_POST['product_id'])) {
 								<div class="tab-pane is-active" id="tab-points">
 									<ul class="list list--stats">
 									   <?php $i = 1; ?>
-									   <?php foreach ($rates as $rate) : ?>
-									   <li><span class="list__value"><?php $i ?></span><a href="/members/<?php echo $rate['member'] ?>"><?php echo $rate['author']; ?></a> <b class="rating-top__accuracy">88%</b><b class="rating-top__points"><?php echo $rate['point']; ?></b></li>
+									   <?php foreach ($point_rates as $rate) : ?>
+									   <li><span class="list__value"><?php echo $i ?></span><a href="/members/<?php echo $rate['member'] ?>"><?php echo $rate['author']; ?></a> <b class="rating-top__accuracy"><?php echo $rate['accuracy']; ?>%</b><b class="rating-top__points"><?php echo $rate['point']; ?></b></li>
 									   <?php $i++; ?>
 									   <?php endforeach; ?>
 									</ul>
 								</div>
 								<div class="tab-pane" id="tab-accuracy" >
 								   <ul class="list list--stats">
-								      <li><span class="list__value">1</span><a id="66c97f26152f3cb3bff717a5ae807427" href="https://www.cgtrader.com/Richy">Richy</a> <b class="rating-top__accuracy">96%</b><b class="rating-top__points">1356</b></li>
-								      <li><span class="list__value">2</span><a id="ce9b9e02b0dc2837521300b7d9fa7edf" href="https://www.cgtrader.com/RyanN">RyanN</a> <b class="rating-top__accuracy">94%</b><b class="rating-top__points">2</b></li>
-								      <li><span class="list__value">3</span><a id="89a241fde1441ca2a4046e4cb589a30e" href="https://www.cgtrader.com/CGModelsNet">CGModelsNet</a> <b class="rating-top__accuracy">94%</b><b class="rating-top__points">80</b></li>
-								      <li><span class="list__value">4</span><a id="ffaad9b17356b38a6ed4f90669f8b2a2" href="https://www.cgtrader.com/limonadinis">limonadinis</a> <b class="rating-top__accuracy">94%</b><b class="rating-top__points">10774</b></li>
-								      <li><span class="list__value">5</span><a id="fa30e87f85281fdd03f16fc2b7ccd94f" href="https://www.cgtrader.com/Semsa">Semsa</a> <b class="rating-top__accuracy">93%</b><b class="rating-top__points">18200</b></li>
-								      <li><span class="list__value">6</span><a id="bdef69cb2e86b1d91694aecd69134ae9" href="https://www.cgtrader.com/dafunk">dafunk</a> <b class="rating-top__accuracy">93%</b><b class="rating-top__points">8266</b></li>
-								      <li><span class="list__value">7</span><a id="9e895a17cd0d7df2ec6422773791519c" href="https://www.cgtrader.com/turedurekimama">turedurekimama</a> <b class="rating-top__accuracy">92%</b><b class="rating-top__points">5979</b></li>
-								      <li><span class="list__value">8</span><a id="a258bee306107864191a36b0abcb2dc5" href="https://www.cgtrader.com/8insent">8insent</a> <b class="rating-top__accuracy">92%</b><b class="rating-top__points">25</b></li>
-								      <li><span class="list__value">9</span><a id="7046892395e3a0091d76443a017fcb44" href="https://www.cgtrader.com/unrealmaster">unrealmaster</a> <b class="rating-top__accuracy">92%</b><b class="rating-top__points">8579</b></li>
-								      <li><span class="list__value">10</span><a id="71ac29375ae5e5654369af243d7162c7" href="https://www.cgtrader.com/flashmypixel">flashmypixel</a> <b class="rating-top__accuracy">91%</b><b class="rating-top__points">12584</b></li>
-								      <li class="is-distinct"><span class="list__value">0</span><a id="ff491d5bf8af6399d8a429d81537a2ba" href="https://www.cgtrader.com/binhdarkcu">binhdarkcu</a> (you) <b class="rating-top__accuracy">N/A</b><b class="rating-top__points"></b></li>
+								      <?php $i = 1; ?>
+								      <?php foreach ($accuracy_rates as $rate) : ?>
+								      <li><span class="list__value"><?php echo $i; ?></span><a href="/members/<?php echo $rate['member'] ?>"><?php echo $rate['author']; ?></a> <b class="rating-top__accuracy"><?php echo $rate['accuracy']; ?>%</b><b class="rating-top__points"><?php echo $rate['point']; ?></b></li>
+								      <?php endforeach; ?>
 								   </ul>
 								</div>
 							</div>
@@ -278,23 +304,20 @@ get_footer();
 
 </script>
 <?php
-function getRates() {
+function getRates($order = 'point') {
     global $wpdb;
-    $table_name = $wpdb->prefix . "product_ratings";
+    $table_name = $wpdb->prefix . "vendor_ratings";
     $rates = array();
 
-    $query = "SELECT * FROM `{$table_name}`";
+    $query = "SELECT * FROM `{$table_name}` ORDER BY `{$order}` DESC LIMIT 10";
     $rows = $wpdb->get_results($query, ARRAY_A);
 
     foreach ($rows as $row) {
-        if (! isset ($rates[$row['product_author']])) {
-            $user = get_userdata($row['product_author']);
-            $rates[$row['product_author']]['author'] = $user->data->display_name;
-            $rates[$row['product_author']]['member'] = $user->data->user_login;
-            $rates[$row['product_author']]['point'] = 0;
-        }
-
-        $rates[$row['product_author']]['point'] += $row['rating'];
+        $user = get_userdata($row['vendor_id']);
+        $rates[$row['vendor_id']]['author'] = $user->data->display_name;
+        $rates[$row['vendor_id']]['member'] = $user->data->user_login;
+        $rates[$row['vendor_id']]['point'] = $row['point'];
+        $rates[$row['vendor_id']]['accuracy'] = $row['accuracy'];
     }
 
     return $rates;

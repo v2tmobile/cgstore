@@ -52,6 +52,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
     padding-left: 200px;
 }
 
-.tabs__item.is-active {
+.tab-point {
     margin-right: 25px;
 }
