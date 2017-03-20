@@ -18,22 +18,26 @@
     	$('.upload-progress').html(progressbar);
     },
     addImageFile: function(id, i, data){
-		var template = '<li class="sortable__item" id="gallery-'+data.data.attachmentID+'">' +
-			                   '<img src="'+data.data.url+'" class="demo-image-preview" />' +
-			                   '<span onClick="$.danidemo.removeImage('+data.data.attachmentID+')" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span>'+			                   
-		                   '</li>';
-		
-		var i = $(id).attr('file-counter');
-		if (!i){
-			$(id).empty();
+    	if (checkImageAdult(data.data.url)) {
+    		$.danidemo.removeImage(data.data.attachmentID);
+    	} else {
+			var template = '<li class="sortable__item" id="gallery-'+data.data.attachmentID+'">' +
+				                   '<img src="'+data.data.url+'" class="demo-image-preview" />' +
+				                   '<span onClick="$.danidemo.removeImage('+data.data.attachmentID+')" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span>'+			                   
+			                   '</li>';
 			
-			i = 0;
-		}
-		
-		i++;
-		
-		$(id).attr('file-counter', i);
-		$(id).prepend(template);
+			var i = $(id).attr('file-counter');
+			if (!i){
+				$(id).empty();
+				
+				i = 0;
+			}
+			
+			i++;
+			
+			$(id).attr('file-counter', i);
+			$(id).prepend(template);
+    	}
 	},
 	addFile: function(id, i, data){
 		var input_name ='<input type="hidden" name="_wc_file_names[]" value="'+data.data.name+'">';
@@ -110,5 +114,37 @@
     }
 
   }, $.danidemo);
+  
+  function checkImageAdult(url) {
+	  var params = {
+        // Request parameters
+        "visualFeatures": "Adult",
+        "details": "Celebrities",
+        "language": "en",
+    };
+
+    $.ajax({
+        url: "https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze?" + $.param(params),
+        beforeSend: function(xhrObj){
+            // Request headers
+            xhrObj.setRequestHeader("Content-Type","application/json");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","cf5a162e90704fef8acafd8049e3a731");
+        },
+        type: "POST",
+        // Request body
+        data: '{"url":' + url + '}',
+    })
+    .done(function(data) {
+        if (data.adult.isAdultContent) {
+            // code here
+        	alert('Image has adult content!');
+        	return true;
+        }
+    })
+    .fail(function() {
+    });
+
+    return false;
+  }
 })(jQuery, this);
 
