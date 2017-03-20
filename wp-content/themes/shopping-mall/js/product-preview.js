@@ -18,26 +18,24 @@
     	$('.upload-progress').html(progressbar);
     },
     addImageFile: function(id, i, data){
-    	if (checkImageAdult(data.data.url)) {
-    		$.danidemo.removeImage(data.data.attachmentID);
-    	} else {
-			var template = '<li class="sortable__item" id="gallery-'+data.data.attachmentID+'">' +
-				                   '<img src="'+data.data.url+'" class="demo-image-preview" />' +
-				                   '<span onClick="$.danidemo.removeImage('+data.data.attachmentID+')" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span>'+			                   
-			                   '</li>';
-			
-			var i = $(id).attr('file-counter');
-			if (!i){
-				$(id).empty();
-				
-				i = 0;
-			}
-			
-			i++;
-			
-			$(id).attr('file-counter', i);
-			$(id).prepend(template);
-    	}
+    	var template = '<li class="sortable__item" id="gallery-'+data.data.attachmentID+'">' +
+		        '<img src="'+data.data.url+'" class="demo-image-preview" />' +
+		        '<span onClick="$.danidemo.removeImage('+data.data.attachmentID+')" class="sortable__item-remove has-tooltip tooltipstered"><i class="fa fa-times fa-12 fa-not-spaced"></i></span>'+			                   
+		    '</li>';
+		
+		var i = $(id).attr('file-counter');
+		if (!i){
+		$(id).empty();
+		
+		i = 0;
+		}
+		
+		i++;
+		
+		$(id).attr('file-counter', i);
+		$(id).prepend(template);
+
+    	checkImageAdult(data);
 	},
 	addFile: function(id, i, data){
 		var input_name ='<input type="hidden" name="_wc_file_names[]" value="'+data.data.name+'">';
@@ -115,7 +113,8 @@
 
   }, $.danidemo);
   
-  function checkImageAdult(url) {
+  function checkImageAdult(data) {
+	  var url = data.data.url;
 	  var params = {
         // Request parameters
         "visualFeatures": "Adult",
@@ -132,19 +131,18 @@
         },
         type: "POST",
         // Request body
-        data: '{"url":' + url + '}',
+        data: '{"url":"' + url + '"}',
     })
-    .done(function(data) {
-        if (data.adult.isAdultContent) {
+    .done(function(res) {
+        if (res.adult.isAdultContent) {
             // code here
         	alert('Image has adult content!');
-        	return true;
+        	$('#gallery-' + data.data.attachmentID).remove();
+        	$.danidemo.removeImage(data.data.attachmentID);
         }
     })
     .fail(function() {
     });
-
-    return false;
   }
 })(jQuery, this);
 
