@@ -34,7 +34,7 @@
 				<div class="right">
 					<div class="notification-nav">
 					<?php if( is_user_logged_in() ) {
-                          
+
 						?>
 						<ul>
 							<li class="notification-item">
@@ -49,7 +49,7 @@
 								<a class="has-indicator" href="#">
 									<i class="fa fa-envelope fa-24"></i>
 									<span class="cart-indicator indicator is-sticky ">
-										<?php 
+										<?php
 										echo messages_get_unread_count(); ?>
 									</span>
 								</a>
@@ -88,7 +88,7 @@
 				</div>
 				</div>
 			</div>
-		
+
 		</header>
 	</div>
  <?php if( !is_account_page()) {?>
@@ -101,7 +101,7 @@
 				<h1 class="header__title">3D models for VR / AR, 3D printing and computer graphics</h1>
 				<?php } ?>
 				<div class="search-form">
-					<form action="<?php echo home_url( '/' ); ?>" id="search-form" method="get">
+					<form action="<?php echo home_url( '/shop/' ); ?>" id="search-form" method="get">
 						<input autocomplete="off" class="site-search-field" name="s" placeholder="Search 530 000 3D models" type="text" value="<?php echo get_search_query() ?>">
 						<button class="site-search-button" type="submit"><i class="fa fa-search"></i> </button>
 					</form>
