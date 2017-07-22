@@ -5,6 +5,9 @@
  * Time: 3:28 PM
  * Copyright (c) Ahiho.,JSC. All right reserved.
  */
+include ABSPATH.'/vendor/autoload.php';
+
+use Google\Cloud\Vision\VisionClient;
 
 remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
 
@@ -16,12 +19,31 @@ remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_l
 remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
 
 add_action('woocommerce_before_shop_loop_item_title', function (){
+    $vision = new VisionClient([
+        'projectId' => 'solar-solution-137123',
+    ]);
+
     $product = new WC_Product( get_the_ID() );
     if ( !has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
         $image = get_template_directory_uri() . '/images/cg-holder.png';
+    } else {
+        $image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+        $image_data = file_get_contents($image);
+        if ($image_data) {
+            $vision_image = $vision->image($image_data, [
+                'SAFE_SEARCH_DETECTION'
+            ]);
+            $result = $vision->annotate($vision_image);
+            $safe = $result->safeSearch();
+            if ($safe->isAdult()) {
+                $image = 'https://dummyimage.com/600x400/000/fff&text=Image+contains+nudity+content';
+            }
+        }
     }
+
     $attachment_ids = $product->get_gallery_attachment_ids();
     $listImgs = [];
+
     foreach( $attachment_ids as $attachment_id )
             {
                 $image_link = wp_get_attachment_image_src( $attachment_id,'medium');

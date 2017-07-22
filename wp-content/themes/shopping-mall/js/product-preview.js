@@ -35,7 +35,7 @@
 		$(id).attr('file-counter', i);
 		$(id).prepend(template);
 
-    	checkImageAdult(data);
+    	// checkImageAdult(data);
 	},
 	addFile: function(id, i, data){
 		var input_name ='<input type="hidden" name="_wc_file_names[]" value="'+data.data.name+'">';
