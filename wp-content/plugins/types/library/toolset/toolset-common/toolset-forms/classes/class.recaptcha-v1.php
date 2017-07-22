@@ -6,7 +6,7 @@ require_once 'class.textfield.php';
  *
  * @author Srdjan
  */
-class WPToolset_Field_Recaptcha extends WPToolset_Field_Textfield
+class WPToolset_Field_Recaptcha_v1 extends WPToolset_Field_Textfield
 {
     private $pubkey = '';
     private $privkey = '';
@@ -41,7 +41,7 @@ class WPToolset_Field_Recaptcha extends WPToolset_Field_Textfield
         $form = array();
 		
 	$capture = '';
-        if ($this->pubkey || !is_admin()) {
+        if ($this->pubkey || !Toolset_Utils::is_real_admin()) {
             try {
                 $capture = recaptcha_get_html($this->pubkey,null,is_ssl());
             } catch(Exception $e ) {

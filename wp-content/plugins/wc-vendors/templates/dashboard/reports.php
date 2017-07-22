@@ -28,18 +28,18 @@ if ( $datepicker !== 'false' ) {
 		<?php if ( !empty( $vendor_summary[ 'products' ] ) ) : ?>
 
 			<?php foreach ( $vendor_summary[ 'products' ] as $product ) :
-				$_product = get_product( $product[ 'id' ] ); ?>
+				$_product = wc_get_product( $product[ 'id' ] ); ?>
 
 				<tr>
 
 					<td class="product"><strong><a
-								href="<?php echo esc_url( get_permalink( $_product->id ) ) ?>"><?php echo $product[ 'title' ] ?></a></strong>
+								href="<?php echo esc_url( get_permalink( $_product->get_id() ) ) ?>"><?php echo $product[ 'title' ] ?></a></strong>
 						<?php if ( !empty( $_product->variation_id ) ) {
 							echo woocommerce_get_formatted_variation( $_product->variation_data );
 						} ?>
 					</td>
 					<td class="qty"><?php echo $product[ 'qty' ]; ?></td>
-					<td class="commission"><?php echo woocommerce_price( $product[ 'cost' ] ); ?></td>
+					<td class="commission"><?php echo wc_price( $product[ 'cost' ] ); ?></td>
 					<td class="rate"><?php echo sprintf( '%.2f%%', $product[ 'commission_rate' ] ); ?></td>
 
 					<?php if ( $can_view_orders ) : ?>
@@ -55,7 +55,7 @@ if ( $datepicker !== 'false' ) {
 			<tr>
 				<td><strong><?php _e( 'Totals', 'wcvendors' ); ?></strong></td>
 				<td><?php echo $vendor_summary[ 'total_qty' ]; ?></td>
-				<td><?php echo woocommerce_price( $vendor_summary[ 'total_cost' ] ); ?></td>
+				<td><?php echo wc_price( $vendor_summary[ 'total_cost' ] ); ?></td>
 				<td></td>
 
 				<?php if ( $can_view_orders ) : ?>

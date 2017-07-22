@@ -42,7 +42,7 @@ class WCV_Orders
 		$orders_page = $orders_page_id; 
 		// Only if the orders page is set should we check access 
 		if ( $orders_page && is_page( $orders_page ) && !is_user_logged_in() ) {
-			wp_redirect( get_permalink( woocommerce_get_page_id( 'myaccount' ) ), 303 );
+			wp_redirect( get_permalink( wc_get_page_id( 'myaccount' ) ), 303 );
 			exit;
 		}
 		
@@ -63,7 +63,7 @@ class WCV_Orders
 			
 			$products = array( $this->product_id );
 
-			$_product = get_product( $this->product_id );
+			$_product = wc_get_product( $this->product_id );
 
 			if  ( is_object( $_product ) ) { 
 
@@ -104,7 +104,7 @@ class WCV_Orders
 			
 			$products = array( $this->product_id );
 
-			$_product = get_product( $this->product_id );
+			$_product = wc_get_product( $this->product_id );
 
 			if  ( is_object( $_product ) ) { 
 
@@ -170,7 +170,7 @@ class WCV_Orders
 			
 			$products = array( $this->product_id );
 
-			$_product = get_product( $this->product_id );
+			$_product = wc_get_product( $this->product_id );
 
 			if  ( is_object( $_product ) ) { 
 
@@ -276,22 +276,34 @@ class WCV_Orders
 	public function format_order_details( $orders, $product_id )
 	{
 		$body    = $items = array();
-		$product = get_product( $product_id )->get_title();
+		$product = wc_get_product( $product_id )->get_title();
 
 		foreach ( $orders as $i => $order ) {
-			$i          = $order->order_id;
-			$order      = new WC_Order ( $i );
+			$i          		= $order->order_id;
+			$order      		= new WC_Order ( $i );
+			$order_date 		= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->order_date : $order->get_date_created(); 
+
+			$shipping_first_name = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_first_name 	: $order->get_shipping_first_name(); 
+			$shipping_last_name  = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_last_name 	: $order->get_shipping_last_name(); 
+			$shipping_address_1  = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_address_1 	: $order->get_shipping_address_1();
+			$shipping_city 		 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_city 		: $order->get_shipping_city();
+			$shipping_country 	 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_country 	: $order->get_shipping_country();
+			$shipping_state 	 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_state 		: $order->get_shipping_state();
+			$shipping_postcode 	 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_postcode    : $order->get_shipping_postcode(); 
+			$billing_email 		 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_email 		: $order->get_billing_email(); 
+			$customer_note 		 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->customer_note 		: $order->get_customer_note(); 
+
 			$body[ $i ] = array(
 				'order_number' => $order->get_order_number(),
 				'product'      => $product,
-				'name'         => $order->shipping_first_name . ' ' . $order->shipping_last_name,
-				'address'      => $order->shipping_address_1,
-				'city'         => $order->shipping_city,
-				'state'        => $order->shipping_state,
-				'zip'          => $order->shipping_postcode,
-				'email'        => $order->billing_email,
-				'date'         => $order->order_date,
-				'comments'     => wptexturize( $order->customer_note ),
+				'name'         => $shipping_first_name . ' ' . $shipping_last_name,
+				'address'      => $shipping_address_1,
+				'city'         => $shipping_city,
+				'state'        => $shipping_state,
+				'zip'          => $shipping_postcode,
+				'email'        => $billing_email,
+				'date'         => date_i18n( wc_date_format(), strtotime( $order_date ) ),
+				'comments'     => wptexturize( $customer_note ),
 			);
 
 			if ( !$this->can_view_emails ) {

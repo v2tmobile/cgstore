@@ -1,5 +1,61 @@
 Changelog for WC Vendors
 
+Version 1.9.12 
+
+* Added: For hook for vendor order content
+* Updated: Portuguese translations thanks Elsa
+* Updated: Show SKU in emails as per pre WC3.0 updates
+* Fixed: Static reference calls in commision class
+* Fixed: Shipping tax bug in vendor calculations
+* Fixed: Variations showing $0 price in emails thanks damanmehta
+* Fixed: Prevent PHP notice for getting non-existing vendor name from JeroenSormani/master
+
+Version 1.9.11 
+
+* Fixed: Correct product id being parsed to shipping function
+* Fixed: Payment method notice due to direct access to object property
+* Fixed: Sold by incorrectly showing in cart for variations
+
+Version 1.9.10 
+
+* Fixed: Terms & Conditions Checkbox is not functioning normally #348
+* Fixed: Apply to Become a Vendor Checkbox is Missing with WC 3.0 + WC Vendors 1.9.9 #349
+* Fixed: New product title formatting is showing product #350
+* Fixed: Incorrect use of wpdb->prepare
+* Fixed: Mark shipped filter not providing parameters correctly
+* Fixed: Incorrect reference to billing email in notification email
+* Updated: Removed Sales reports from backend
+
+Version 1.9.9 
+
+* Added: Filters to vendor admin dashboard class for custom columns #339
+* Added: Vendor shop name to the <title> tag on products archive page
+* Updated Woocommerce 2.7 compatibility
+* Updated: i18n text domain loading for proper translations #341
+* Fixed: Class logger when called via includes files
+* Fixed: Bug in how admin notices are displayed when saving shop settings
+* Fixed: 2.7 compatibility bugs
+* Fixed: Commissions Subtotal showing Full Product Price in vendor email #330
+* Fixed: Capabilities Fix for Resetting Roles #329
+* Fixed: HTML title attribute doesn't change for store pages #328
+* Fixed: Login form not displayed if get variable set
+* Fixed: Depreciated action in product edit screen
+
+Templates Updated: 
+	templates/emails/vendor-new-order.php
+	templates/emails/notify-vendor-shipped.php 
+	templates/order/orders.php
+	
+Version 1.9.8 
+
+* Fixed: Paypal adaptive payments url changes 
+* Added: Store Vendor ID in vendor child order #326
+* Added: 100% Japanese translations thanks to Shohei Tanaka 
+
+Version 1.9.7
+
+* Fixed: Capabilities Fix for Resetting Roles #329
+
 Version 1.9.6 
 
 * Added: Commission Query Functions #321

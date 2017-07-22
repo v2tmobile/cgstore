@@ -28,7 +28,6 @@ class WCV_Shipping
 		}
 	}
 
-
 	/**
 	 *
 	 *
@@ -38,14 +37,14 @@ class WCV_Shipping
 	 *
 	 * @return unknown
 	 */
-	public static function get_shipping_due( $order_id, $product, $author )
+	public static function get_shipping_due( $order_id, $product, $author, $product_id = 0 )
 	{
 		global $woocommerce;
 
 		$shipping_costs = array( 'amount' => 0, 'tax' => 0);
 		$shipping_due = 0; 
 		$method = '';
-		$_product     = get_product( $product[ 'product_id' ] );
+		$_product     = wc_get_product( $product[ 'product_id' ] );
 		$order = wc_get_order( $order_id ); 
 
 		if ( $_product && $_product->needs_shipping() && !$_product->is_downloadable() ) {
@@ -88,7 +87,7 @@ class WCV_Shipping
 			}
 		}
 
-		$shipping_costs = apply_filters( 'wcvendors_shipping_due', $shipping_costs, $order_id, $product, $author );
+		$shipping_costs = apply_filters( 'wcvendors_shipping_due', $shipping_costs, $order_id, $product, $author, $product_id );
 
 		return $shipping_costs;
 	}
@@ -113,9 +112,14 @@ class WCV_Shipping
 		$taxable = $settings['tax_status']; 
 
 		$order = new WC_Order( $order_id );
-		$package[ 'destination' ][ 'country' ]  = $order->shipping_country;
-		$package[ 'destination' ][ 'state' ]    = $order->shipping_state;
-		$package[ 'destination' ][ 'postcode' ] = $order->shipping_postcode;
+
+		$shipping_country 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_country 	: $order->get_shipping_country();
+		$shipping_state 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_state 	: $order->get_shipping_state();
+		$shipping_postcode 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_postcode : $order->get_shipping_postcode();
+
+		$package[ 'destination' ][ 'country' ]  = $shipping_country; 
+		$package[ 'destination' ][ 'state' ]    = $shipping_state; 
+		$package[ 'destination' ][ 'postcode' ] = $shipping_postcode;
 		$product_id = !empty( $product['variation_id'] ) ? $product['variation_id'] : $product['product_id'];
 
 		if ( !empty( $product['variation_id'] ) ) {
@@ -147,8 +151,17 @@ class WCV_Shipping
 
 	public static function calculate_shipping_tax( $shipping_amount, $order ) { 
 
-		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
-		$wc_tax_enabled = get_option( 'woocommerce_calc_taxes' ); 
+		$tax_based_on 		= get_option( 'woocommerce_tax_based_on' );
+		$wc_tax_enabled 	= get_option( 'woocommerce_calc_taxes' );
+
+		$shipping_city 		= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_city 	: $order->get_shipping_city();
+		$shipping_country 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_country 	: $order->get_shipping_country();
+		$shipping_state 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_state 	: $order->get_shipping_state();
+		$shipping_postcode 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->shipping_postcode : $order->get_shipping_postcode(); 
+		$billing_city 		= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_city 		: $order->get_billing_city();
+		$billing_country 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_country 	: $order->get_billing_country();
+		$billing_state 		= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_state 	: $order->get_billing_state();
+		$billing_postcode 	= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->billing_postcode 	: $order->get_billing_postcode(); 
 
 		// if taxes aren't enabled don't calculate them 
 		if ( 'no' === $wc_tax_enabled ) return 0; 
@@ -163,17 +176,17 @@ class WCV_Shipping
 
         } elseif ( 'billing' === $tax_based_on ) {
 
-            $country  = $order->billing_country;
-            $state    = $order->billing_state;
-            $postcode = $order->billing_postcode;
-            $city     = $order->billing_city;
+            $country  = $billing_country;
+            $state    = $billing_state;
+            $postcode = $billing_postcode;
+            $city     = $billing_city;
 
         } else {
 
-            $country  = $order->shipping_country;
-            $state    = $order->shipping_state;
-            $postcode = $order->shipping_postcode;
-            $city     = $order->shipping_city;
+            $country  = $shipping_country;
+            $state    = $shipping_state;
+            $postcode = $shipping_postcode;
+            $city     = $shipping_city;
 
         }
 

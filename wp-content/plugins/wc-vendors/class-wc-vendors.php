@@ -8,16 +8,16 @@
  * Author URI:          https://www.wcvendors.com
  * GitHub Plugin URI:   https://github.com/wcvendors/wcvendors
  *
- * Version:             1.9.7
+ * Version:             1.9.12
  * Requires at least:   4.4.0
- * Tested up to:        4.7.0
+ * Tested up to:        4.8.0
  *
  * Text Domain:         wcvendors
  * Domain Path:         /languages/
  *
  * @category            Plugin
  * @copyright           Copyright © 2012 Matt Gates
- * @copyright           Copyright © 2016 WC Vendors
+ * @copyright           Copyright © 2017 WC Vendors
  * @author              Matt Gates, WC Vendors
  * @package             WCVendors
  * @license     		GPL2
@@ -72,7 +72,7 @@ if ( wcv_is_woocommerce_activated() ) {
 	if ( !defined( 'wcv_plugin_dir_path' ) )	define( 'wcv_plugin_dir_path', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 
-	define('WCV_VERSION', '1.9.7' ); 
+	define('WCV_VERSION', '1.9.12' ); 
 
 	/**
 	 * Main Product Vendor class
@@ -125,7 +125,7 @@ if ( wcv_is_woocommerce_activated() ) {
 		 */
 		public function invalid_wc_version()
 		{
-			echo '<div class="error"><p>' . __( '<b>WC Vendors is disabled</b>. WC Vendors requires a minimum of WooCommerce v2.5.0.', 'wcvendors' ) . '</p></div>';
+			echo '<div class="error"><p>' . __( '<b>WC Vendors is inactive</b>. WC Vendors requires a minimum of WooCommerce v2.7.0.', 'wcvendors' ) . '</p></div>';
 		}
 
 		/**
@@ -159,8 +159,7 @@ if ( wcv_is_woocommerce_activated() ) {
 		{
 			global $woocommerce;
 
-			// WC 2.5.0+ is required
-			if ( version_compare( $woocommerce->version, '2.5', '<' ) ) {
+			if ( version_compare( WC_VERSION, '2.6', '<' ) ) { 	
 				add_action( 'admin_notices', array( $this, 'invalid_wc_version' ) );
 				deactivate_plugins( plugin_basename( __FILE__ ) );
 				return false;
@@ -187,13 +186,11 @@ if ( wcv_is_woocommerce_activated() ) {
 		}
 
 		public function load_il8n() { 
-
-			$domain = 'wcvendors';
 		    
-		    $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		    $locale = apply_filters( 'plugin_locale', get_locale(), 'wcvendors' );
 
 		    //Place your custom translations into wp-content/languages/wc-vendors to be upgrade safe 
-		    load_textdomain($domain, WP_LANG_DIR.'/wc-vendors/'.$domain.'-'.$locale.'.mo');
+		    load_textdomain( 'wcvendors', WP_LANG_DIR.'/wc-vendors/wcvendors-'.$locale.'.mo');
 			
 			load_plugin_textdomain( 'wcvendors', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
@@ -388,11 +385,34 @@ if ( wcv_is_woocommerce_activated() ) {
 			if ( isset($_GET['wcv_pl_ignore_notice']) && '0' == $_GET['wcv_pl_ignore_notice'] ) {
 			 	add_user_meta( $current_user_id, 'wcv_pl_ignore_notice', 'true' , true);
 			}
+			
 		}
 
+		/**
+		 * Class logger so that we can keep our debug and logging information cleaner 
+		 *
+		 * @since 1.4.0 
+		 * @access public
+		 * 
+		 * @param mixed - $data the data to go to the error log could be string, array or object
+		 */
+		public static function log( $data = '' ){ 
+
+			$trace 		= debug_backtrace( false, 2 ); 
+			$path_info  = pathinfo( $trace[ 0 ][ 'file' ] );  
+
+			// Only display the class file if there is actually a class file 
+			$caller = ( isset( $trace[ 1 ] ) ) ? array_key_exists( 'class', $trace[ 1 ] ) ? $trace[ 1 ][ 'class' ] : $path_info[ 'basename' ] : ''; 
+
+			if ( is_array( $data ) || is_object( $data ) ) { 
+				error_log( $caller . ' : ' . print_r( $data, true ) ); 
+			} else { 
+				error_log( $caller  . ' : ' . $data );
+			}
+
+		} // log() 
 
 	}
-
 
 	$wc_vendors = new WC_Vendors;
 

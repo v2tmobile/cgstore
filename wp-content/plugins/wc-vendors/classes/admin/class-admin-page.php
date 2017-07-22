@@ -36,11 +36,13 @@ class WCV_Admin_Setup
 	{
 		global $woocommerce;
 
+		$order_id = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->id : $order->get_id();  	
+
 		$authors = WCV_Vendors::get_vendors_from_order( $order );
 		$authors = $authors ? array_keys( $authors ) : array();
 		if ( empty( $authors ) ) return false;
 
-		$shipped = (array) get_post_meta( $order->id, 'wc_pv_shipped', true );
+		$shipped = (array) get_post_meta( $order_id, 'wc_pv_shipped', true );
 		$string = '</br></br>';
 
 		foreach ($authors as $author ) {
@@ -354,14 +356,14 @@ class WCV_Admin_Page extends WP_List_Table
 				$user = get_userdata( $item->vendor_id );
 				return '<a href="' . admin_url( 'user-edit.php?user_id=' . $item->vendor_id ) . '">' . WCV_Vendors::get_vendor_shop_name( $item->vendor_id ) . '</a>';
 			case 'total_due' :
-				return woocommerce_price( $item->total_due );
+				return wc_price( $item->total_due );
 			case 'total_shipping': 
-				return woocommerce_price($item->total_shipping );
+				return wc_price($item->total_shipping );
 			case 'tax': 
-				return woocommerce_price( $item->tax );
+				return wc_price( $item->tax );
 			case 'totals' :
 				$totals = ( wc_tax_enabled() ) ? $item->total_due + $item->total_shipping + $item->tax :  $item->total_due + $item->total_shipping; 
-				return woocommerce_price( $totals );
+				return wc_price( $totals );
 			case 'product_id' :
 				$parent = get_post_ancestors( $item->product_id );
 				$product_id = $parent ? $parent[ 0 ] : $item->product_id;

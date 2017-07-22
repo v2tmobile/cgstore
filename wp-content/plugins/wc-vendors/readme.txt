@@ -1,12 +1,12 @@
 === WC Vendors ===
-Contributors: wcvendors, digitalchild, bentasm1
+Contributors: digitalchild, benwcv, annawcvendors
 Tags: commission rate,  e-commerce, ecommerce, ebay, free, marketplace, multi seller, multi store, multi vendor, multistore, multivendor, multivendors, product vendor, product vendors, seller, shops, store, vendor, vendor shop, vendor system, vendors, wc multivendor, wc vendors, wc marketplace, wc market, woo vendors, woocommerce, woocommerce marketplace, woocommerce multi vendor, WooCommerce multivendor, woocommerce product vendors, WooCommerce vendors, yit, yith, yithemes
 Donate link: http://www.wcvendors.com/
 Author URI: http://www.wcvendors.com/
 Plugin URI: http://www.wcvendors.com/
-Requires at least: 4.0
-Tested up to: 4.6.1
-Stable tag: 1.9.6
+Requires at least: 4.4.0
+Tested up to: 4.8.0
+Stable tag: 1.9.12
 License: GPLv2 or later
 
 The free marketplace plugin for WooCommerce.  Now you can allow anyone to open a store on your site!
@@ -74,6 +74,7 @@ We currently ship WC Vendors free with the following language translations. If y
 * Austrian German
 * German
 * Chinese 
+* Japanese (thanks Shohei Tanaka)
 * Brazilian Portuguese
 * Italian
 * Spanish
@@ -120,6 +121,52 @@ Also be sure to visit our KnowledgeBase at https://www.wcvendors.com/kb/
 No Upgrade required at this time.
 
 == Changelog ==
+
+= Version 1.9.11 - 25th Aprl 2017 = 
+
+* Fixed: Correct product id being parsed to shipping function
+* Fixed: Payment method notice due to direct access to object property
+* Fixed: Sold by incorrectly showing in cart for variations
+
+= Version 1.9.10 - 10th April 2017 = 
+
+* Fixed: Terms & Conditions Checkbox is not functioning normally #348
+* Fixed: Apply to Become a Vendor Checkbox is Missing with WC 3.0 + WC Vendors 1.9.9 #349
+* Fixed: New product title formatting is showing product #350
+* Fixed: Incorrect use of wpdb->prepare
+* Fixed: Mark shipped filter not providing parameters correctly
+* Fixed: Incorrect reference to billing email in notification email
+* Updated: Removed Sales reports from backend
+
+= Version 1.9.9 - 14th March 2017 = 
+
+* Added: Filters to vendor admin dashboard class for custom columns #339
+* Added: Vendor shop name to the <title> tag on products archive page
+* Updated Woocommerce 2.7 compatibility
+* Updated: i18n text domain loading for proper translations #341
+* Fixed: Class logger when called via includes files
+* Fixed: Bug in how admin notices are displayed when saving shop settings
+* Fixed: 2.7 compatibility bugs
+* Fixed: Commissions Subtotal showing Full Product Price in vendor email #330
+* Fixed: Capabilities Fix for Resetting Roles #329
+* Fixed: HTML title attribute doesn't change for store pages #328
+* Fixed: Login form not displayed if get variable set
+* Fixed: Depreciated action in product edit screen
+
+Templates Updated: 
+	templates/emails/vendor-new-order.php
+	templates/emails/notify-vendor-shipped.php 
+	templates/order/orders.php
+
+= Version 1.9.8 - 18th January 2017 =
+
+* Fixed: Paypal adaptive payments url changes 
+* Added: Store Vendor ID in vendor child order #326
+* Added: 100% Japanese translations thanks to Shohei Tanaka 
+
+= Version 1.9.7 - 13 December 2016 =
+
+* Fixed: Capabilities Fix for Resetting Roles #329
 
 = Version 1.9.6 - 4th November 2016 = 
 

@@ -81,7 +81,7 @@ class WCV_Commission
 	 *
 	 * @return unknown
 	 */
-	public function reverse_due_commission( $order_id )
+	public static function reverse_due_commission( $order_id )
 	{
 		global $wpdb;
 
@@ -90,7 +90,7 @@ class WCV_Commission
 		if ( !$count ) return false;
 
 		// Deduct this amount from the vendor's total due
-		$results = WCV_Commission::sum_total_due_for_order( $order_id );
+		$results 	= WCV_Commission::sum_total_due_for_order( $order_id );
 		$ids        = implode( ',', $results[ 'ids' ] );
 		$table_name = $wpdb->prefix . "pv_commission";
 
@@ -128,8 +128,10 @@ class WCV_Commission
 			$insert_due = array();
 
 			foreach ( $details as $key => $detail ) {
-				$product_id = $detail['product_id'];
 
+				$product_id = $detail['product_id'];
+				$order_date = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->order_date : $order->get_date_created();  
+				
 				$insert_due[ $product_id ] = array(
 					'order_id'       => $order_id,
 					'vendor_id'      => $vendor_id,
@@ -138,7 +140,7 @@ class WCV_Commission
 					'total_shipping' => !empty( $insert_due[ $product_id ][ 'total_shipping' ] ) ? ( $detail[ 'shipping' ] + $insert_due[ $product_id ][ 'total_shipping' ] ) : $detail[ 'shipping' ],
 					'tax'            => !empty( $insert_due[ $product_id ][ 'tax' ] ) ? ( $detail[ 'tax' ] + $insert_due[ $product_id ][ 'tax' ] ) : $detail[ 'tax' ],
 					'qty'            => !empty( $insert_due[ $product_id ][ 'qty' ] ) ? ( $detail[ 'qty' ] + $insert_due[ $product_id ][ 'qty' ] ) : $detail[ 'qty' ],
-					'time'           => $order->order_date,
+					'time'           => date( 'Y-m-d H:i:s', strtotime( $order_date ) ),
 				);
 			}
 
@@ -157,7 +159,7 @@ class WCV_Commission
 	 *
 	 * @return array
 	 */
-	public function sum_total_due_for_order( $order_id, $status = 'due' )
+	public static function sum_total_due_for_order( $order_id, $status = 'due' )
 	{
 		global $wpdb;
 
@@ -199,7 +201,7 @@ class WCV_Commission
 		$where      = $wpdb->prepare( 'WHERE status = %s', 'due' );
 		$where 		= apply_filters( 'wcvendors_commission_all_due_where', $where ); 
 		$query      = "SELECT id, vendor_id, total_due FROM `{$table_name}` $where";  
-		$query 		= apply_filters( 'wcvendors_commission_all_due_sql', $wpdb->prepare( $query ) ); 
+		$query 		= apply_filters( 'wcvendors_commission_all_due_sql', $query ); 
 		$results    = $wpdb->get_results(  $query );
 
 		return $results;
@@ -501,5 +503,35 @@ class WCV_Commission
 
 	} // commissions_now() 
 
+
+	/**
+	 * Get the commission for a specific order, product and vendor 
+	 * 
+	 * @since 1.9.9
+	 * @access public
+	 * @param int $order_id the order id to search for 
+	 * @param int $product_id the product id to search for 
+	 * @param int $vendor_id the vendor id to search for 
+	 */
+	public static function get_commission_due( $order_id, $product_id, $vendor_id ){ 
+
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . "pv_commission";
+
+		$sql = "SELECT total_due"; 
+
+		$sql .= " 
+				FROM `{$table_name}`
+				WHERE vendor_id = {$vendor_id} 
+				AND product_id = '{$product_id}' 
+				AND order_id = '{$order_id}' 
+			"; 
+
+		$commission_due = $wpdb->get_var( $sql ); 
+
+		return $commission_due; 
+
+	} // get_commission_due() 
 
 }

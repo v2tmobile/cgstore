@@ -103,14 +103,15 @@ class WCV_Vendors
 			$is_vendor  				= WCV_Vendors::is_vendor( $author );
 			$commission 				= $is_vendor ? WCV_Commission::calculate_commission( $product[ 'line_subtotal' ], $product_id, $order, $product[ 'qty' ] ) : 0;
 			$tax        				= !empty( $product[ 'line_tax' ] ) ? (float) $product[ 'line_tax' ] : 0;
+			$order_id 					= ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->id : $order->get_id();  	
 			
 			// Check if shipping is enabled
 			if ( get_option('woocommerce_calc_shipping') === 'no' ) { 
 				$shipping = 0; $shipping_tax = 0; 
 			} else {
-					$shipping_costs = WCV_Shipping::get_shipping_due( $order->id, $product, $author );
-					$shipping = $shipping_costs['amount']; 
-					$shipping_tax = $shipping_costs['tax']; 
+				$shipping_costs = WCV_Shipping::get_shipping_due( $order_id, $product, $author, $product_id );
+				$shipping = $shipping_costs['amount']; 
+				$shipping_tax = $shipping_costs['tax']; 
 			}
 	
 			$_product = new WC_Product( $product['product_id'] ); 
@@ -186,8 +187,8 @@ class WCV_Vendors
 		
 		// Add remainders on end to admin
 		$discount = $order->get_total_discount();
-		$shipping 	= round( ( $order->order_shipping - $shipping_given ), 2 );
-		$tax 		= round(( $order->order_tax + $order->order_shipping_tax ) - $tax_given, 2); 
+		$shipping 	= round( ( $order->get_total_shipping() - $shipping_given ), 2 );
+		$tax 		= round( $order->get_total_tax() - $tax_given, 2); 
 		$total    	= ( $tax + $shipping ) - $discount;
 
 		if ( $group ) {
@@ -199,7 +200,7 @@ class WCV_Vendors
 		} else {
 			$r_total = round( $receiver[ 1 ][ $key ][ 'total' ], 2 ); 
 			$receiver[ 1 ][ $key ][ 'commission' ] = round( $receiver[ 1 ][ $key ][ 'commission' ], 2 ) - round( $discount, 2 );
-			$receiver[ 1 ][ $key ][ 'shipping' ]   = ( $order->order_shipping - $shipping_given );
+			$receiver[ 1 ][ $key ][ 'shipping' ]   = ( $order->get_total_shipping() - $shipping_given );
 			$receiver[ 1 ][ $key ][ 'tax' ]        = $tax;
 			$receiver[ 1 ][ $key ][ 'total' ] 	   = $r_total + round( $total, 2 );
 		}
@@ -398,7 +399,7 @@ class WCV_Vendors
 	{
 		$vendor_id = self::get_vendor_id( $vendor_id );
 		$name      = $vendor_id ? get_user_meta( $vendor_id, 'pv_shop_name', true ) : false;
-		$shop_name = !$name ? get_userdata( $vendor_id )->user_login : $name;
+		$shop_name = ( ! $name && $vendor = get_userdata( $vendor_id ) ) ? $vendor->user_login : $name;
 
 		return $shop_name;
 	}
@@ -484,6 +485,7 @@ class WCV_Vendors
 	 * @return void
 	 */
 	public static function create_child_orders ( $order_id ) {
+
 		$order = wc_get_order( $order_id );
 		$items = $order->get_items();
 		$vendor_items = array();
@@ -565,12 +567,17 @@ class WCV_Vendors
 		}
 
 		if ( ! $updating ) {
+			// Store vendor ID
+			update_post_meta( $vendor_order_id, '_vendor_id', $args['vendor_id'] );
+
 			// Get vendor order object
 			$vendor_order = wc_get_order( $vendor_order_id );
 			$order        = wc_get_order( $args['order_id'] );
 
+			$order_currency = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $order->get_order_currency() : $order->get_currency(); 
+
 			// Order currency is the same used for the parent order
-			update_post_meta( $vendor_order_id, '_order_currency', $order->get_order_currency() );
+			update_post_meta( $vendor_order_id, '_order_currency', $order_currency );
 
 			if ( sizeof( $args['line_items'] ) > 0 ) {
 				$order_items = $order->get_items( array( 'line_item', 'fee', 'shipping' ) );

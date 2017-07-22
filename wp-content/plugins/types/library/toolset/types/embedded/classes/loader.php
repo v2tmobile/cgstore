@@ -119,8 +119,10 @@ class WPCF_Loader
      */
     private static function __registerScripts() {
         $min = '';//WPCF_DEBUG ? '-min' : '';
-        wp_register_script( 'types', WPCF_EMBEDDED_RES_RELPATH . '/js/basic.js',
-                array('jquery'), WPCF_VERSION, true );
+        wp_register_script( 'types',
+	        WPCF_EMBEDDED_RES_RELPATH . '/js/basic.js',
+	        array('jquery', 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery-ui-tabs', 'toolset_select2'),
+	        WPCF_VERSION, true );
         wp_register_script( 'types-knockout',
                 WPCF_EMBEDDED_RES_RELPATH . '/js/knockout-2.2.1.js',
                 array('jquery'), WPCF_VERSION, true );
@@ -176,14 +178,6 @@ class WPCF_Loader
             wp_register_style( 'toolset-colorbox',
                     WPCF_EMBEDDED_RES_RELPATH . '/css/colorbox.css', array(),
                     WPCF_VERSION );
-        }
-        if ( !wp_style_is( 'font-awesome', 'registered' ) ) {
-            wp_register_style(
-                'font-awesome',
-	            WPCF_EMBEDDED_TOOLSET_RELPATH . '/toolset-common/res/lib/font-awesome/css/font-awesome.min.css',
-                array(),
-                '4.4.0'
-            );
         }
         if ( !wp_style_is( 'toolset-dashicons', 'registered' ) ) {
             wp_register_style(

@@ -1,10 +1,8 @@
-<?php
-
-global $woocommerce; ?>
-
 <?php if ( function_exists( 'wc_print_notices' ) ) { wc_print_notices(); } ?>
 
-<h2><?php printf( 'Orders for %s', get_product( $product_id )->get_title() ); ?></h2>
+<h2><?php printf( 'Orders for %s', wc_get_product( $product_id )->get_title() ); ?></h2>
+
+<?php do_action('wc_vendors_before_order_detail', $body);?>
 
 <table class="table table-striped table-bordered">
 	<thead>
@@ -118,12 +116,9 @@ global $woocommerce; ?>
 
 						<div class="order-tracking">
 							<?php 
-							if ( function_exists( 'wc_enqueue_js' ) ) {
-								wc_enqueue_js( WCV_Vendor_dashboard::wc_st_js( $provider_array ) );
-							} else {
-								$woocommerce->add_inline_js( $js );
-							}
-
+							
+							wc_enqueue_js( WCV_Vendor_dashboard::wc_st_js( $provider_array ) );
+							
 							wc_get_template( 'shipping-form.php', array(
 																				'order_id'       => $order_id,
 																				'product_id'     => $product_id,
@@ -146,3 +141,4 @@ global $woocommerce; ?>
 
 	</tbody>
 </table>
+<?php do_action('wc_vendors_after_order_detail', $body);?>

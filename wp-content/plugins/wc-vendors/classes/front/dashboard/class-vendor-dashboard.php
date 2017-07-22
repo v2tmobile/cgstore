@@ -52,7 +52,7 @@ class WCV_Vendor_Dashboard
 				do_action('wcvendors_vendor_ship', $order_id, $user_id);
 				wc_add_notice( __( 'Order marked shipped.', 'wcvendors' ), 'success' );
 				$shop_name = WCV_Vendors::get_vendor_shop_name( $user_id );
-				$order->add_order_note( apply_filters( 'wcvendors_vendor_shipped_note', sprintf( __(  '%s has marked as shipped. ', 'wcvendors'), $shop_name ) ), $user_id, $shop_name ); 
+				$order->add_order_note( apply_filters( 'wcvendors_vendor_shipped_note', sprintf( __(  '%s has marked as shipped. ', 'wcvendors'), $shop_name ) , $user_id, $shop_name ) ); 
 			} elseif ( false != ( $key = array_search( $user_id, $shippers) ) ) {
 				unset( $shippers[$key] ); // Remove user from the shippers array
  			}
@@ -65,11 +65,11 @@ class WCV_Vendor_Dashboard
 			$order_id   = (int) $_POST[ 'order_id' ];
 			$product_id = (int) $_POST[ 'product_id' ];
 
-			$tracking_provider        = woocommerce_clean( $_POST[ 'tracking_provider' ] );
-			$custom_tracking_provider = woocommerce_clean( $_POST[ 'custom_tracking_provider_name' ] );
-			$custom_tracking_link     = woocommerce_clean( $_POST[ 'custom_tracking_url' ] );
-			$tracking_number          = woocommerce_clean( $_POST[ 'tracking_number' ] );
-			$date_shipped             = woocommerce_clean( strtotime( $_POST[ 'date_shipped' ] ) );
+			$tracking_provider        = wc_clean( $_POST[ 'tracking_provider' ] );
+			$custom_tracking_provider = wc_clean( $_POST[ 'custom_tracking_provider_name' ] );
+			$custom_tracking_link     = wc_clean( $_POST[ 'custom_tracking_url' ] );
+			$tracking_number          = wc_clean( $_POST[ 'tracking_number' ] );
+			$date_shipped             = wc_clean( strtotime( $_POST[ 'date_shipped' ] ) );
 
 			$order    = new WC_Order( $order_id );
 			$products = $order->get_items();
@@ -80,8 +80,8 @@ class WCV_Vendor_Dashboard
 				}
 			}
 			if ( $order_item_id ) {
-				woocommerce_delete_order_item_meta( $order_item_id, __( 'Tracking number', 'wcvendors' ) );
-				woocommerce_add_order_item_meta( $order_item_id, __( 'Tracking number', 'wcvendors' ), $tracking_number );
+				wc_delete_order_item_meta( $order_item_id, __( 'Tracking number', 'wcvendors' ) );
+				wc_add_order_item_meta( $order_item_id, __( 'Tracking number', 'wcvendors' ), $tracking_number );
 
 				$message = __( 'Success. Your tracking number has been updated.', 'wcvendors' );
 				wc_add_notice( $message, 'success' );
@@ -152,7 +152,7 @@ class WCV_Vendor_Dashboard
 
 		if ( $vendor_dashboard_page && is_page( $vendor_dashboard_page ) || $shop_settings_page && is_page( $shop_settings_page ) ) {
 			if ( !is_user_logged_in() ) {
-				wp_redirect( get_permalink( woocommerce_get_page_id( 'myaccount' ) ), 303 );
+				wp_redirect( get_permalink( wc_get_page_id( 'myaccount' ) ), 303 );
 				exit;
 			}
 		}
@@ -362,8 +362,9 @@ class WCV_Vendor_Dashboard
 				if ( $order_item->qty < 1 ) continue;
 
 				$commission_rate = WCV_Commission::get_commission_rate( $order_item->product_id );
-				$_product        = get_product( $order_item->product_id );
-				$id              = !empty($_product->parent->id) ? $_product->parent->id : $order_item->product_id;
+				$_product        = wc_get_product( $order_item->product_id );
+				$parent_id 		 = ( version_compare( WC_VERSION, '2.7', '<' ) ) ? $_product->parent->id : $_product->get_parent_id(); 
+				$id              = !empty( $parent_id   ) ?$parent_id  : $order_item->product_id;
 
 				$data[ 'products' ][$id] = array(
 					'id'              => $id,

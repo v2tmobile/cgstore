@@ -5,11 +5,11 @@
  * Description: Customize WooCommerce without code! Easily change add to cart button text and more.
  * Author: SkyVerge
  * Author URI: http://www.skyverge.com
- * Version: 2.3.1
+ * Version: 2.5.0
  * Text Domain: woocommerce-customizer
  * Domain Path: /i18n/languages/
  *
- * Copyright: (c) 2013-2016 SkyVerge, Inc. (info@skyverge.com)
+ * Copyright: (c) 2013-2017, SkyVerge, Inc. (info@skyverge.com)
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -17,7 +17,7 @@
  * @package   WC-Customizer
  * @author    SkyVerge
  * @category  Utility
- * @copyright Copyright (c) 2013-2016, SkyVerge, Inc.
+ * @copyright Copyright (c) 2013-2017, SkyVerge, Inc.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
@@ -25,14 +25,12 @@ defined( 'ABSPATH' ) or exit;
 
 // Check if WooCommerce is active
 if ( ! WC_Customizer::is_woocommerce_active() ) {
-
 	add_action( 'admin_notices', 'wc_customizer_render_wc_inactive_notice' );
 	return;
 }
 
 // WC version check
-if ( version_compare( get_option( 'woocommerce_db_version' ), '2.4.13', '<' ) ) {
-
+if ( version_compare( get_option( 'woocommerce_db_version' ), '2.5.5', '<' ) ) {
 	add_action( 'admin_notices', 'wc_customizer_render_outdated_wc_version_notice' );
 	return;
 }
@@ -47,7 +45,7 @@ function wc_customizer_render_outdated_wc_version_notice() {
 
 	$message = sprintf(
 		/* translators: %1$s and %2$s are <strong> tags. %3$s and %4$s are <a> tags */
-		__( '%1$sWooCommerce Customizer is inactive.%2$s This version requires WooCommerce 2.4.13 or newer. Please %3$supdate WooCommerce to version 2.4.13 or newer%4$s', 'woocommerce-customizer' ),
+		__( '%1$sWooCommerce Customizer is inactive.%2$s This version requires WooCommerce 2.5.5 or newer. Please %3$supdate WooCommerce to version 2.5.5 or newer%4$s', 'woocommerce-customizer' ),
 		'<strong>',
 		'</strong>',
 		'<a href="' . admin_url( 'plugins.php' ) . '">',
@@ -67,7 +65,7 @@ function wc_customizer_render_wc_inactive_notice() {
 
 	$message = sprintf(
 		/* translators: %1$s and %2$s are <strong> tags. %3$s and %4$s are <a> tags */
-		__( '%1$sWooCommerce Customizer is inactive%2$s as it requires WooCommerce. Please %3$sactivate WooCommerce version 2.4.13 or newer%4$s', 'woocommerce-customizer' ),
+		__( '%1$sWooCommerce Customizer is inactive%2$s as it requires WooCommerce. Please %3$sactivate WooCommerce version 2.5.5 or newer%4$s', 'woocommerce-customizer' ),
 		'<strong>',
 		'</strong>',
 		'<a href="' . admin_url( 'plugins.php' ) . '">',
@@ -113,7 +111,7 @@ class WC_Customizer {
 
 
 	/** plugin version number */
-	const VERSION = '2.3.1';
+	const VERSION = '2.5.0';
 
 	/** @var \WC_Customizer single instance of this plugin */
 	protected static $instance;
@@ -210,16 +208,27 @@ class WC_Customizer {
 
 					if ( $filter_name == 'single_add_to_cart_text' ) {
 
-						//add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'customize_single_add_to_cart_text' ) );
+						add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'customize_single_add_to_cart_text' ) );
 
 					} else {
 
-						//add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'customize_add_to_cart_text' ), 10, 2 );
+						add_filter( 'woocommerce_product_add_to_cart_text', array( $this, 'customize_add_to_cart_text' ), 10, 2 );
 					}
+
+				} elseif ( 'woocommerce_placeholder_img_src' === $filter_name ) {
+
+					// only filter placeholder images on the frontend
+					if ( ! is_admin() ) {
+						add_filter( $filter_name, array( $this, 'customize' ) );
+					}
+
+				} elseif ( 'loop_sale_flash_text' === $filter_name || 'single_sale_flash_text' === $filter_name ) {
+
+					add_filter( 'woocommerce_sale_flash', array( $this, 'customize_woocommerce_sale_flash' ), 50, 3 );
 
 				} else {
 
-					//add_filter( $filter_name, array( $this, 'customize' ) );
+					add_filter( $filter_name, array( $this, 'customize' ) );
 				}
 			}
 		}
@@ -338,6 +347,51 @@ class WC_Customizer {
 	}
 
 
+	/**
+	 * Apply the shop loop sale flash text customization.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @param string $html add to cart flash HTML
+	 * @param \WP_Post $_ post object, unused
+	 * @param \WC_Product $product the prdouct object
+	 * @return string updated HTML
+	 */
+	public function customize_woocommerce_sale_flash( $html, $_, $product ) {
+
+		if ( is_product() && isset( $this->filters['single_sale_flash_text'] ) ) {
+
+			$text = $this->filters['single_sale_flash_text'];
+
+			// only get sales percentages when we should be replacing text
+			// check "false" specifically since the position could be 0
+			if ( false !== strpos( $text, '{percent}' ) ) {
+
+				$percent = $this->get_sale_percentage( $product );
+				$text    = str_replace( '{percent}', "{$percent}%", $text );
+			}
+
+			$html = "<span class='onsale'>{$text}</span>";
+
+		} elseif ( ! is_product() && isset( $this->filters['loop_sale_flash_text'] ) ) {
+
+			$text = $this->filters['loop_sale_flash_text'];
+
+			// only check for sales percentages when we should be replacing text
+			// check "false" specifically since the position could be 0
+			if ( false !== strpos( $text, '{percent}' ) ) {
+
+				$percent = $this->get_sale_percentage( $product );
+				$text    = str_replace( '{percent}', "{$percent}%", $text );
+			}
+
+			$html = "<span class='onsale'>{$text}</span>";
+		}
+
+		return $html;
+	}
+
+
 	/** Admin methods ******************************************************/
 
 
@@ -352,9 +406,9 @@ class WC_Customizer {
 	public function add_plugin_action_links( $actions ) {
 
 		$custom_actions = array(
-			'configure' => sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=wc-settings&tab=customizer&section=commission' ), __( 'Configure', 'woocommerce-customizer' ) ),
-			/* 'faq'       => sprintf( '<a href="%s">%s</a>', 'http://wordpress.org/plugins/woocommerce-customizer/faq/', __( 'FAQ', 'woocommerce-customizer' ) ),
-			'support'   => sprintf( '<a href="%s">%s</a>', 'http://wordpress.org/support/plugin/woocommerce-customizer', __( 'Support', 'woocommerce-customizer' ) ), */
+			'configure' => sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=wc-settings&tab=customizer&section=shop_loop' ), __( 'Configure', 'woocommerce-customizer' ) ),
+			'faq'       => sprintf( '<a href="%s">%s</a>', 'http://wordpress.org/plugins/woocommerce-customizer/#faq', __( 'FAQ', 'woocommerce-customizer' ) ),
+			'support'   => sprintf( '<a href="%s">%s</a>', 'http://wordpress.org/support/plugin/woocommerce-customizer', __( 'Support', 'woocommerce-customizer' ) ),
 		);
 
 		// add the links to the front of the actions list
@@ -363,6 +417,76 @@ class WC_Customizer {
 
 
 	/** Helper methods ******************************************************/
+
+
+	/**
+	 * Helper to get the percent discount for a product on sale.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @param \WC_Product $product product instance
+	 * @return string percentage discount
+	 */
+	private function get_sale_percentage( $product ) {
+
+		$child_sale_percents = array();
+		$percentage          = '0';
+
+		if ( $product->is_type( 'grouped' ) || $product->is_type( 'variable' ) ) {
+
+			foreach ( $product->get_children() as $child_id ) {
+
+				$child = wc_get_product( $child_id );
+
+				if ( $child->is_on_sale() ) {
+
+					$regular_price         = $child->get_regular_price();
+					$sale_price            = $child->get_sale_price();
+					$child_sale_percents[] = $this->calculate_sale_percentage( $regular_price, $sale_price );
+				}
+			}
+
+			// filter out duplicate values
+			$child_sale_percents = array_unique( $child_sale_percents );
+
+			// only add "up to" if there's > 1 percentage possible
+			if ( ! empty ( $child_sale_percents ) ) {
+
+				/* translators: Placeholder: %s - sale percentage */
+				$percentage = count( $child_sale_percents ) > 1 ? sprintf( esc_html__( 'up to %s', 'woocommerce-customizer' ), max( $child_sale_percents ) ) : current( $child_sale_percents );
+			}
+
+		} else {
+
+			$percentage = $this->calculate_sale_percentage( $product->get_regular_price(), $product->get_sale_price() );
+		}
+
+		return $percentage;
+	}
+
+
+	/**
+	 * Calculates a sales percentage difference given regular and sale prices for a product.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @param string $regular_price product regular price
+	 * @param string $sale_price product sale price
+	 * @return float percentage difference
+	 */
+	private function calculate_sale_percentage( $regular_price, $sale_price ) {
+
+		$percent = 0;
+		$regular = (float) $regular_price;
+		$sale    = (float) $sale_price;
+
+		// in case of free products so we don't divide by 0
+		if ( $regular ) {
+			$percent = round( ( ( $regular - $sale ) / $regular ) * 100 );
+		}
+
+		return $percent;
+	}
 
 
 	/**
@@ -401,7 +525,7 @@ class WC_Customizer {
 
 		// upgrade if installed version lower than plugin version
 		if ( -1 === version_compare( $installed_version, self::VERSION ) ) {
-			//$this->upgrade( $installed_version );
+			$this->upgrade( $installed_version );
 		}
 	}
 
@@ -415,7 +539,7 @@ class WC_Customizer {
 	private function upgrade( $installed_version ) {
 
 		// update the installed version option
-		//update_option( 'wc_customizer_version', self::VERSION );
+		update_option( 'wc_customizer_version', self::VERSION );
 	}
 
 
@@ -435,7 +559,10 @@ function wc_customizer() {
 
 /**
  * The WC_Customizer global object
+ * TODO: Remove with WC 3.1 compat {BR 2017-03-09}
+ *
  * @deprecated 2.3.0
+ *
  * @name $wc_customizer
  * @global WC_Customizer $GLOBALS['wc_customizer']
  */

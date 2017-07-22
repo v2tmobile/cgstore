@@ -1,13 +1,21 @@
 var wptDate = (function ($) {
-    var _tempConditions, _tempField;
-    function init(parent) {
+    var _tempConditions,
+		_tempField,
+		is_datepicker_style_loaded = false;
+    function init(parent, options) {
         if ($.isFunction($.fn.datepicker)) {
             $('input.js-wpt-date', $(parent)).each(function (index) {
-                //removed !$(this).is(':disabled') && 
-                //cred-64
-                if (/*!$(this).is(':disabled') &&*/ !$(this).hasClass('hasDatepicker')) {
-                    a = wptDate.add($(this));
-                    //a.next().after('<span style="margin-left:10px"><i>' + wptDateData.dateFormatNote + '</i></span>').data( 'dateFormatNote', true );
+                if (!$(this).hasClass('hasDatepicker')) {
+                    if($(this).attr('id').indexOf('cred_form') != -1){
+                        if(typeof(options) !== 'undefined' && options.hasOwnProperty('source') && options.source == 'cred_form_ready_init'){
+                            wptDate.add($(this));
+                        }
+                    }else{
+                        wptDate.add($(this));
+                    }
+                }else{
+                    //Load the datepicker stylesheet if the field is already initialized
+                    wptDate.maybeLoadDatepickerStyle();
                 }
             });
         }
@@ -58,6 +66,7 @@ var wptDate = (function ($) {
                 old_id = el.attr('id');
         el.attr('id', old_id + '-' + rand_number);
         // Walk along, nothing to see here...
+		wptDate.maybeLoadDatepickerStyle();
         return el.datepicker({
             onSelect: function (dateText, inst) {
                 //	The el_aux element depends on the scenario: backend or frontend
@@ -90,10 +99,10 @@ var wptDate = (function ($) {
                         el_aux.val(response['timestamp']).trigger('wptDateSelect');
                     }
                     el.val(response['display']);
-                    el_clear.show();
+                    el_clear.css('display', 'inline-block');
                     
                     //Fix adding remove label on date
-                    el.prev('label.wpt-form-error').remove();
+                    el.prev('small.wpt-form-error').remove();
                 });
                 //el.trigger('wptDateSelect');
             },
@@ -137,6 +146,30 @@ var wptDate = (function ($) {
         if ($(this).val().length >= wptDateData.dateFormatPhp.length)
             func();
     }
+	function maybeLoadDatepickerStyle() {
+		// @note the handle for this used to be wptoolset-field-datepicker
+		if ( ! is_datepicker_style_loaded ) {
+			if ( document.getElementById( 'js-toolset-datepicker-style' ) ) {
+				
+				is_datepicker_style_loaded = true;
+				
+			} else {
+				
+				var head	= document.getElementsByTagName( 'head' )[0],
+					link	= document.createElement( 'link' );
+				
+				link.id 	= 'js-toolset-datepicker-style';
+				link.rel	= 'stylesheet';
+				link.type	= 'text/css';
+				link.href	= wptDateData.datepicker_style_url;
+				link.media	= 'all';
+				head.appendChild( link );
+				
+				is_datepicker_style_loaded = true;
+				
+			}
+		}
+	}
     return {
         init: init,
         add: add,
@@ -144,14 +177,20 @@ var wptDate = (function ($) {
         ajaxCheck: ajaxCheck,
         ignoreConditional: ignoreConditional,
         bindConditionalChange: bindConditionalChange,
-        triggerAjax: triggerAjax
+        triggerAjax: triggerAjax,
+		maybeLoadDatepickerStyle: maybeLoadDatepickerStyle
     };
 })(jQuery);
 
 jQuery(document).ready(function () {
     wptDate.init('body');
-    //fixing unknown Srdjan error
-    jQuery('.ui-datepicker-inline').hide();
+});
+
+//Init date fields after CRED form is ready
+jQuery(document).on('cred_form_ready', function(){
+    wptDate.init('body', {
+        source: 'cred_form_ready_init'
+    });
 });
 
 if ('undefined' != typeof (wptCallbacks)) {
