@@ -1,0 +1,11 @@
+Hi Daniel
+My name is Binh, I'm a front end developer, I have over 5 experince in developing website. 
+I have worked a lot of website project and many clients as: Toyota, nivea, lexus,... I compatible with BE framework as
+Wordpress, drupal, magento, and I can code Ruby on rails, but my strong skill is FE.
+
+Thanks.
+
+
+Can you tell me about existing projec that apply the best practices?
+
+On one existing project ogrinal estimation, we work 1 month, after we apply my best practices we only work 3 weeks.
